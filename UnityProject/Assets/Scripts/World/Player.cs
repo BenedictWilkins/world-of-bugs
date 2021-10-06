@@ -84,8 +84,8 @@ public class Player : Agent
         } else if (rleftright < 50) {
             _actionsOut[0] = 5; // rotate left
         }
-        Debug.Log(Screen.width - rleftright);
-        Debug.Log(_actionsOut[0]);
+        //Debug.Log(Screen.width - rleftright);
+        //Debug.Log(_actionsOut[0]);
     }
 
    
