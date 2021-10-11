@@ -41,7 +41,8 @@ public class Player : Agent
     }
 
     ActionMethod[] actions = {
-        none, forward, back, left, right, rotate_left, rotate_right
+        //none, forward, back, left, right, rotate_left, rotate_right
+        none, forward, back, rotate_left, rotate_right
     };
 
     public override void OnEpisodeBegin() {
@@ -56,11 +57,6 @@ public class Player : Agent
         foreach (int action in actionBuffers.DiscreteActions) {
             actions[action](this); // perform the action
         } 
-
-        if (this.transform.localPosition.y < -1) // the agent fell out of the world
-        {
-            EndEpisode();
-        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut) {
@@ -71,18 +67,20 @@ public class Player : Agent
         var _actionsOut = actionsOut.DiscreteActions;
         _actionsOut[0] = 0; //default do nothing
 
-        if (leftright < 0) { 
-            _actionsOut[0] = 3; // left
-        } else if (leftright > 0) {
-            _actionsOut[0] = 4; // right
-        } else if (forwardback > 0) {
+        //if (leftright < 0) { 
+        //    _actionsOut[0] = 3; // left
+        //} else if (leftright > 0) {
+        //    _actionsOut[0] = 4; // right
+        //} else
+        
+         if (forwardback > 0) {
             _actionsOut[0] = 1; // forward
         } else if (forwardback < 0) {
             _actionsOut[0] = 2; // back
         } else if (Screen.width - rleftright < 50) {
-            _actionsOut[0] = 6; //rotate right
+            _actionsOut[0] = 4; //rotate right
         } else if (rleftright < 50) {
-            _actionsOut[0] = 5; // rotate left
+            _actionsOut[0] = 3; // rotate left
         }
         //Debug.Log(Screen.width - rleftright);
         //Debug.Log(_actionsOut[0]);

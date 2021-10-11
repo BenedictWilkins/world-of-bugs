@@ -11,5 +11,7 @@ __status__ = "Development"
 
 from . import utils
 from . import dataset
+from . import sidechannel
+from . import environment
 
 from .utils import make

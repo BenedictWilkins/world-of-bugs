@@ -9,15 +9,15 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
-import re
+
 import os
 import glob
-import h5py
 import gym
-import numpy as np
 
-from mlagents_envs.environment import UnityEnvironment
 from gym_unity.envs import UnityToGymWrapper
+from mlagents_envs.environment import UnityEnvironment
+
+from .environment import BuggedUnityEnvironment
 
 UNITY_BUILDS_DIR = "builds"
 UNITY_BUILD_EXT = ".x86_64"
@@ -26,11 +26,20 @@ class ObservationUnwrap(gym.ObservationWrapper):
     def observation(self, obs):
         return obs[0]
 
-def make(env_id, worker=0): 
+
+# use side channels?
+# https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Python-API.md#interacting-with-a-unity-environment
+def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3, time_scale=1.0, log_folder=None, debug=True): 
     env_id, ex_path = _get_unity_environment_info(env_id)
-    env = UnityEnvironment(file_name=ex_path, worker_id=worker)
+    env = BuggedUnityEnvironment(file_name=ex_path, 
+                                    worker_id=worker, 
+                                    log_folder=log_folder, 
+                                    display_height=display_height, 
+                                    display_width=display_width, 
+                                    quality_level=quality_level, 
+                                    time_scale=time_scale, 
+                                    debug=debug)
     env = UnityToGymWrapper(env, uint8_visual=True, allow_multiple_obs=True)
-    env = ObservationUnwrap(env)
     return env
 
 def get_unity_environments():
