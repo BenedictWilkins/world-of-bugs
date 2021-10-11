@@ -10,6 +10,8 @@ public class Player : Agent
 {
     public float rotation_speed = 1f;
     public float movement_speed = 0.1f;
+    public Controller controller;
+    public Camera camera;
 
     delegate void ActionMethod(Player instance);
 
@@ -53,6 +55,12 @@ public class Player : Agent
         this.transform.eulerAngles = new Vector3(0f,0f,0f);
     }
 
+    public override void CollectObservations(VectorSensor sensor) {
+        // Orientation of the cube (2 floats)
+        //sensor.AddObservation(gameObject.transform.rotation.z);
+        bool inview = controller.BugInView(this);
+    }
+
     public override void OnActionReceived(ActionBuffers actionBuffers){
         foreach (int action in actionBuffers.DiscreteActions) {
             actions[action](this); // perform the action
@@ -67,13 +75,7 @@ public class Player : Agent
         var _actionsOut = actionsOut.DiscreteActions;
         _actionsOut[0] = 0; //default do nothing
 
-        //if (leftright < 0) { 
-        //    _actionsOut[0] = 3; // left
-        //} else if (leftright > 0) {
-        //    _actionsOut[0] = 4; // right
-        //} else
-        
-         if (forwardback > 0) {
+        if (forwardback > 0) {
             _actionsOut[0] = 1; // forward
         } else if (forwardback < 0) {
             _actionsOut[0] = 2; // back
@@ -82,8 +84,6 @@ public class Player : Agent
         } else if (rleftright < 50) {
             _actionsOut[0] = 3; // rotate left
         }
-        //Debug.Log(Screen.width - rleftright);
-        //Debug.Log(_actionsOut[0]);
     }
 
    

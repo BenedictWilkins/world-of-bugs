@@ -19,9 +19,6 @@ public class Floor : MonoBehaviour
         Vector2 offset = new Vector2(num_tiles[0] * tile_size[0], num_tiles[1] * tile_size[1]);
         offset = offset / 2 - tile_size / 2;
 
-        Debug.Log(offset);
-
-
         for(int i = 0; i < num_tiles[0]; i++) {
             for(int j = 0; j < num_tiles[1]; j++) {
                 GameObject tile = Instantiate(p_tile, new Vector3(offset[0] - i * tile_size[0], 0, offset[1] - j * tile_size[1]), Quaternion.identity);

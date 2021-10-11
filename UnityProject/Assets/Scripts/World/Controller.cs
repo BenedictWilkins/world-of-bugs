@@ -11,8 +11,11 @@ public class Controller : MonoBehaviour {
     
     public BugOption[] bugs;
     public Agent player; 
+    public RenderTexture bugMask;
+
     private ConfigSideChannel configChannel;
     private LogSideChannel logChannel;
+
 
     [Serializable]
     public class BugOption { 
@@ -20,13 +23,19 @@ public class Controller : MonoBehaviour {
         public bool enabled = false;
         // TODO there might be more too it with enabling/disabling...
         public void Enable() {
+            //Debug.Log("ENABLE");
             if (!enabled) {
+                //Debug.Log("REAL ENABLE");
                 bug.Enable();
+                enabled = true;
             }
         }
         public void Disable() {
+           // Debug.Log("DISABLE");
             if (enabled) {
+                //Debug.Log("REAL DISABLE");
                 bug.Disable();
+                enabled = false;
             }
         }
     }
@@ -40,34 +49,18 @@ public class Controller : MonoBehaviour {
         SideChannelManager.RegisterSideChannel(logChannel);
         Application.logMessageReceived += logChannel.LogDebug;
         
-
-        Debug.Log("???");
+        // if running in the editor, use the options provided, otherwise assume all bugs are turned off and wait for input from the config side channel.
         if (Application.isEditor) {
-            Debug.Log("RUNNING EDITOR");
             BugOption[] bugOptions = Array.FindAll(bugs, x => x.enabled);
             foreach (BugOption bugOption in bugOptions) {
                 bugOption.bug.Enable();
             }
         } else {
-            
-            Debug.Log("RUNNING STANDALONE");
-
-            // BugOption enabled will be ignored as used, enable bugs based on command line arguments
-            Bug[] bugs_ = bugs.Select(x => x.bug).ToArray();
-            string[] args = System.Environment.GetCommandLineArgs();
-            char[] trimChars = {'-'};
-            for (var i = 0; i < args.Length - 1; i++) {  
-                Debug.Log(args[i]); 
-                if (args[i].StartsWith("-")) {
-                    string name = args[i].Trim(trimChars);
-                    Bug bug = Array.Find(bugs_, x => x.GetType().Name.Equals(name));
-                    if (bug != null) {
-                        bug.Enable();
-                        Debug.Log("ENABLE BUG: " + name);
-                    }
-                }
+            // initially disable all bugs in a build version, they must be set explicitly using the config side channel
+            foreach (BugOption bugOption in bugs) {
+                bugOption.enabled = false; 
             }
-        } 
+        }
     }
 
     public void OnDestroy() {
@@ -92,6 +85,34 @@ public class Controller : MonoBehaviour {
         }
     }
 
+    public bool BugMaskActive() {
+        Texture2D tex = new Texture2D(bugMask.width, bugMask.height);
+        int mipmapLevel = (int) Mathf.Log(bugMask.width, 2);
+        int activeLowerBound = 0; // change this?? TODO 
+
+        RenderTexture.active = bugMask;
+        tex.ReadPixels(new Rect(0, 0, bugMask.width, bugMask.height), 0, 0, true);
+        tex.Apply();
+        Color32 ac = tex.GetPixels32(mipmapLevel)[0];
+        bool active = (ac[0] + ac[1] + ac[2]) > activeLowerBound;
+        return active;
+    }
+
+    public bool BugInView(Player player) {
+        // if the player is using a camera then check if it is in view
+
+        BugMaskActive();
+
+        Camera camera = player.camera;
+        foreach (BugOption bugOption in bugs) {
+            bool inview = bugOption.bug.InView(camera);
+            if (inview) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public class ConfigSideChannel : SideChannel {
         Controller contr;
 
@@ -114,10 +135,10 @@ public class Controller : MonoBehaviour {
                     throw new KeyNotFoundException("Requested bug was not found: " + name);
                 } else if (enable) {
                     bugOption.Enable();
-                    Debug.Log("ENABLED BUG : " + name);
+                    //Debug.Log("ENABLED BUG : " + name);
                 } else {
                     bugOption.Disable();
-                    Debug.Log("DISABLED BUG : " + name);
+                    //Debug.Log("DISABLED BUG : " + name);
                 }
                 
             } catch  (Exception e){

@@ -11,4 +11,8 @@ public class ZFighting : Bug {
     public override void Disable() {
         gameObject.SetActive(false);
     }
+
+    public override bool InView(Camera camera) {
+        return Bug.GameObjectInView(gameObject, camera);
+    }
 }

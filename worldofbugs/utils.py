@@ -17,7 +17,7 @@ import gym
 from gym_unity.envs import UnityToGymWrapper
 from mlagents_envs.environment import UnityEnvironment
 
-from .environment import BuggedUnityEnvironment
+from .environment import BuggedUnityEnvironment, BuggedUnityGymEnvironment
 
 UNITY_BUILDS_DIR = "builds"
 UNITY_BUILD_EXT = ".x86_64"
@@ -39,7 +39,7 @@ def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3,
                                     quality_level=quality_level, 
                                     time_scale=time_scale, 
                                     debug=debug)
-    env = UnityToGymWrapper(env, uint8_visual=True, allow_multiple_obs=True)
+    env = BuggedUnityGymEnvironment(env, uint8_visual=True, allow_multiple_obs=True)
     return env
 
 def get_unity_environments():

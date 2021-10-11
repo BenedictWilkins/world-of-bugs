@@ -13,8 +13,19 @@ from mlagents_envs.environment import UnityEnvironment
 from typing import Dict, List, Optional, Tuple, Mapping as MappingType
 from mlagents_envs.side_channel.side_channel import SideChannel
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
+from mlagents_envs.environment import UnityEnvironment
+from gym_unity.envs import UnityToGymWrapper
 
 from .sidechannel import UnityLogChannel, UnityConfigChannel
+
+class BuggedUnityGymEnvironment(UnityToGymWrapper):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # inherit some methods from the wrapped environment
+        setattr(self, self._env.enable_bug.__name__, self._env.enable_bug)
+        setattr(self, self._env.disable_bug.__name__, self._env.disable_bug)
+
 
 class BuggedUnityEnvironment(UnityEnvironment):
 
@@ -65,3 +76,5 @@ class BuggedUnityEnvironment(UnityEnvironment):
     def disable_bug(self, bug):
         msg = f"{bug}:{False}"
         self.config_channel.write(str(msg))
+
+    
