@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class BugMaskReplacementShader : MonoBehaviour
 {
     public Shader ReplacementShader;
-    public Color OverDrawColor;
 
     void OnEnable()
     {

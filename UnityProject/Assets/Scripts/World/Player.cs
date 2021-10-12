@@ -11,7 +11,9 @@ public class Player : Agent
     public float rotation_speed = 1f;
     public float movement_speed = 0.1f;
     public Controller controller;
-    public Camera camera;
+    
+    [NotNull, Tooltip("Camera that is used to create the bug mask, this camera should use the ShowBug shader and a RenderTexture.")]
+    public Camera bugCamera; // camera used to detect bugs
 
     delegate void ActionMethod(Player instance);
 

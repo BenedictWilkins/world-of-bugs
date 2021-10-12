@@ -11,7 +11,6 @@ public class Controller : MonoBehaviour {
     
     public BugOption[] bugs;
     public Agent player; 
-    public RenderTexture bugMask;
 
     private ConfigSideChannel configChannel;
     private LogSideChannel logChannel;
@@ -23,19 +22,18 @@ public class Controller : MonoBehaviour {
         public bool enabled = false;
         // TODO there might be more too it with enabling/disabling...
         public void Enable() {
-            //Debug.Log("ENABLE");
-            if (!enabled) {
-                //Debug.Log("REAL ENABLE");
-                bug.Enable();
-                enabled = true;
-            }
+            bug.Enable();
+            enabled = true;
         }
         public void Disable() {
-           // Debug.Log("DISABLE");
+            bug.Disable();
+            enabled = false;
+        }
+        public void Initialise() {
             if (enabled) {
-                //Debug.Log("REAL DISABLE");
+                bug.Enable();
+            } else {
                 bug.Disable();
-                enabled = false;
             }
         }
     }
@@ -51,14 +49,16 @@ public class Controller : MonoBehaviour {
         
         // if running in the editor, use the options provided, otherwise assume all bugs are turned off and wait for input from the config side channel.
         if (Application.isEditor) {
-            BugOption[] bugOptions = Array.FindAll(bugs, x => x.enabled);
-            foreach (BugOption bugOption in bugOptions) {
-                bugOption.bug.Enable();
+            Debug.Log("RUNNING IN EDITOR MODE");
+            foreach (BugOption bugOption in bugs) {
+                bugOption.Initialise();
             }
         } else {
+            Debug.Log("RUNNING IN STANDALONE MODE");
             // initially disable all bugs in a build version, they must be set explicitly using the config side channel
             foreach (BugOption bugOption in bugs) {
                 bugOption.enabled = false; 
+                bugOption.Initialise();
             }
         }
     }
@@ -85,25 +85,8 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    public bool BugMaskActive() {
-        Texture2D tex = new Texture2D(bugMask.width, bugMask.height);
-        int mipmapLevel = (int) Mathf.Log(bugMask.width, 2);
-        int activeLowerBound = 0; // change this?? TODO 
-
-        RenderTexture.active = bugMask;
-        tex.ReadPixels(new Rect(0, 0, bugMask.width, bugMask.height), 0, 0, true);
-        tex.Apply();
-        Color32 ac = tex.GetPixels32(mipmapLevel)[0];
-        bool active = (ac[0] + ac[1] + ac[2]) > activeLowerBound;
-        return active;
-    }
-
     public bool BugInView(Player player) {
-        // if the player is using a camera then check if it is in view
-
-        BugMaskActive();
-
-        Camera camera = player.camera;
+        Camera camera = player.bugCamera;
         foreach (BugOption bugOption in bugs) {
             bool inview = bugOption.bug.InView(camera);
             if (inview) {

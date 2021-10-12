@@ -4,7 +4,7 @@ Shader "ShowBug"
 {
 	Properties
 	{
-		_Color("Color", Color) = (0,0,0,0)
+		_BugType("BugType", Color) = (1,1,1,1)
 	}
 
 	SubShader
@@ -42,11 +42,8 @@ Shader "ShowBug"
 				return o;
 			}
 			
-			half4 _Color;
-
 			fixed4 frag (v2f i) : SV_Target
 			{
-				float invert = 1 - i.depth;
 				return fixed4(0, 0, 0, 1) ;
 			}
 			ENDCG
@@ -87,11 +84,11 @@ Shader "ShowBug"
 				return o;
 			}
 			
-			half4 _Color;
+			half4 _BugType;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
-				return fixed4(1,1,1,1) ;
+				return _BugType;
 			}
 			ENDCG
 		}

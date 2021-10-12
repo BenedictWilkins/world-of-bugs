@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class BugTag : MonoBehaviour {  
 
-public class BugTag : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void OnValidate() {
-        //Material material = GetComponent<Renderer>().sharedMaterial;
-        //material.SetOverrideTag("RenderType", "Bug");
-        //Debug.Log(material);
-    }
-    
+    [SerializeField]
+    public BugType bugType; 
+
     void Awake() {
         Material material = GetComponent<Renderer>().material;
         material.SetOverrideTag("RenderType", "Bug");
+        material.SetColor("_BugType", (Color32) bugType);
     }
 }
