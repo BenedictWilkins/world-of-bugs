@@ -26,6 +26,7 @@ public class Controller : MonoBehaviour {
             enabled = true;
         }
         public void Disable() {
+            //Debug.Log("DISABLE? ");
             bug.Disable();
             enabled = false;
         }
@@ -46,11 +47,14 @@ public class Controller : MonoBehaviour {
         logChannel = new LogSideChannel();
         SideChannelManager.RegisterSideChannel(logChannel);
         Application.logMessageReceived += logChannel.LogDebug;
-        
+    }
+
+    void Start() {
         // if running in the editor, use the options provided, otherwise assume all bugs are turned off and wait for input from the config side channel.
         if (Application.isEditor) {
             Debug.Log("RUNNING IN EDITOR MODE");
             foreach (BugOption bugOption in bugs) {
+                //Debug.Log(bugOption.bug);
                 bugOption.Initialise();
             }
         } else {

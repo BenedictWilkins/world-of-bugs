@@ -7,10 +7,17 @@ public class BugTag : MonoBehaviour {
 
     [SerializeField]
     public BugType bugType; 
+    public string bugTag = "Bug";
 
-    void Awake() {
-        Material material = GetComponent<Renderer>().material;
-        material.SetOverrideTag("RenderType", "Bug");
+    public void Tag(GameObject go) {
+        Material material = go.GetComponent<Renderer>().material;
+        material.SetOverrideTag("RenderType", bugTag);
         material.SetColor("_BugType", (Color32) bugType);
+    }
+
+    public void Untag(GameObject go) {
+        Material material = go.GetComponent<Renderer>().material;
+        material.SetOverrideTag("RenderType", "");
+        //material.SetColor("_BugType", (Color32) bugType);
     }
 }
