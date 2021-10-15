@@ -116,7 +116,7 @@ Shader "ShowBug"
 			ENDCG
 		}
 
-			Pass { // second pass is checking for camera clipping...
+		Pass { // second pass is checking for camera clipping...
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag

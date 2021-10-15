@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class BugTag : MonoBehaviour {  
@@ -19,5 +20,12 @@ public class BugTag : MonoBehaviour {
         Material material = go.GetComponent<Renderer>().material;
         material.SetOverrideTag("RenderType", "");
         //material.SetColor("_BugType", (Color32) bugType);
+    }
+
+    public void TagCanvas(GameObject go) {
+        //Debug.Log(go.GetComponent<CanvasRenderer>());
+        Material material = go.GetComponent<Image>().material;
+        material.SetOverrideTag("RenderType", bugTag);
+        material.SetColor("_BugType", (Color32) bugType);
     }
 }

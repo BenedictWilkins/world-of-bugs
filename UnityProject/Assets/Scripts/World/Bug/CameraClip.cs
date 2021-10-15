@@ -10,12 +10,12 @@ public class CameraClip : Bug {
     protected float _oldclip;
     
     void Awake() {
-        BugTag tag = GetComponent<BugTag>(); 
-        Shader.SetGlobalFloat("_CameraNearClip", clip);
-        Shader.SetGlobalColor("_CameraClipColor", (Color)tag.bugType);
     }
 
     public override void Enable() {
+        BugTag tag = GetComponent<BugTag>(); 
+        Shader.SetGlobalFloat("_CameraNearClip", clip);
+        Shader.SetGlobalColor("_CameraClipColor", (Color)tag.bugType);
         // set the near clipping plan to be farther away
         // when close to an object the view will clip inside
         Camera _camera = camera.GetComponent<Camera>();

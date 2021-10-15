@@ -26,16 +26,17 @@ public class ZFighting : Bug {
         foreach (Camera c in camera.GetComponentsInChildren<Camera>()) {
             HideLayer(c, layer); // hide the zfighting layer if its not already hidden...
         }
-
-        zCamera = Instantiate(camera);
+        zCamera = new GameObject("ZFightingCamera");
+        Camera _zCamera = zCamera.AddComponent<Camera>();
+        _zCamera.CopyFrom(camera.GetComponent<Camera>());
         zCamera.transform.parent = camera.transform;
         foreach (Camera c in zCamera.GetComponentsInChildren<Camera>()) {
-            makeZCamera(c);
+            _MakeZCamera(c);
         }
         GetComponent<BugTag>().bugTag = BUGTAG;
     }
-
-    protected void makeZCamera(Camera camera) {
+    
+    protected void _MakeZCamera(Camera camera) {
         // set up zcamera properties
         camera.cullingMask = 0; // hide all layers
         ShowLayer(camera, layer); // show only the zfighting layer

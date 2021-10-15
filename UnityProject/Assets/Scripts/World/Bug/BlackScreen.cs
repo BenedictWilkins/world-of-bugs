@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class BlackScreen : Bug {
 
-   
+    public Canvas canvas;
     public Color color = new Color(0f,0f,0f,1f);
     public Vector2Int range = new Vector2Int(5, 50);
 
-    protected GameObject canvas;
+    protected Image image;
     protected bool _enabled = false;
     protected int lastFrame = 0;
     protected int toWait = 0;
 
 
     void Awake() { 
-        canvas = transform.GetChild(0).gameObject;
+        canvas.gameObject.AddComponent<Image>();
+        image = canvas.gameObject.GetComponent<Image>();
+        GetComponent<BugTag>().TagCanvas(canvas.gameObject);
+        Off(); // make the image transparent
     }
 
     public override void Enable() {
@@ -24,22 +27,23 @@ public class BlackScreen : Bug {
     }
 
     public override void Disable() {
+
         _enabled = false;
     }
 
     void On() {
         color.a = 1;
-        canvas.GetComponent<Image>().color = color;
+        image.color = color;
     }
 
     void Off() {
         color.a = 0;
-        canvas.GetComponent<Image>().color = color;
+        image.color = color;
     }
 
     void toggle() {
         color.a = Mathf.Abs(1 - color.a);
-        canvas.GetComponent<Image>().color = color;
+        image.color = color;
     }
 
     public override bool InView(Camera camera) { 
@@ -48,7 +52,7 @@ public class BlackScreen : Bug {
 
     void Update() { 
         if (_enabled) {
-            Debug.Log($"??? {Time.frameCount} {lastFrame} {toWait}");
+
             if (Time.frameCount - lastFrame > toWait) {
                 
                 toWait = UnityEngine.Random.Range(range.x, range.y);
