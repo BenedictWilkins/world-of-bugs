@@ -4,8 +4,8 @@ Shader "ShowBug"
 {
 	Properties {
 		_BugType("BugType", Color) = (1,1,1,1)
-		_CameraClipColor("CameraClipColor", Color) = (1,1,1,1)
-		_CameraNearClip("NearCameraClip", Float) = 1
+		_CameraClipColor("CameraClipColor", Color) = (0,0,0,1)
+		_CameraNearClip("NearCameraClip", Float) = 0.01
 	}
 
 	SubShader {
@@ -76,8 +76,6 @@ Shader "ShowBug"
 			}
 			ENDCG
 		}
-
-
 	}
 
 	SubShader {

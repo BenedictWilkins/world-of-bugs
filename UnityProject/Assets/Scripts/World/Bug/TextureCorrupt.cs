@@ -3,62 +3,71 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class TextureCorrupt : Bug { 
+public class TextureCorrupt : Bug {
 
-    public GameObject original;
-    protected GameObject clone;
+    public GameObject level;
+    [Range(0.05f,1f)]
+    public float uvcomplexity = 0.2f;
 
-    public void Awake() {
-        clone = Instantiate(original);
-        clone.transform.parent = gameObject.transform;
+    protected GameObject _go;
+    protected Vector2 _textureOffset;
+    protected Vector2[] _uv;
 
+    public void OnEnable() {
         BugTag tag = GetComponent<BugTag>();
-        Transform[] children = gameObject.transform.GetComponentsInChildren<Transform>(true);
+        // get children of the given game object (level)
+        Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
-
-        foreach (Transform child in children) {
-            // invert all the textures, this will cause some z-fighting if the game object is placed exactly on a duplicate.
-            Vector3 ls = child.localScale;
-            child.localScale = new Vector3(-ls.x, ls.y, ls.z);
-            // tag children for rendering with the BugMask.
-            tag.Tag(child.gameObject);
-            // we only want to render the game object, all other components should be disabled
-            foreach (Behaviour c in child.GetComponents<Behaviour>()) {
-                c.enabled = false;
-            }
-            foreach (Collider c in child.GetComponents<Collider>()) {
-                c.enabled = false;
-            }
-            child.GetComponent<Renderer>().enabled = true;
-        }
-    }
-
-    public override void Enable() {
-        // ensure that all children are inactive
-        Transform[] children = gameObject.transform.GetComponentsInChildren<Transform>(true);
-        foreach (Transform c in children) {
-            c.gameObject.SetActive(false);
-        }
-        children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null).ToArray();
-        // randomly choose a child to activate
         int i = UnityEngine.Random.Range(0, children.Length); 
-        Transform child = children[i];
-        while (child != this.transform) {
-            child.gameObject.SetActive(true);
-            child = child.parent;
-        }
-        gameObject.SetActive(true);
+        _go = children[i].gameObject;
+        Material material = _go.GetComponent<Renderer>().material;
+        Mesh mesh = _go.GetComponent<MeshFilter>().mesh;
+        _textureOffset = material.mainTextureOffset; 
+        _uv = mesh.uv;
+        Vector3 size  = mesh.bounds.size;
+        float m = Mathf.Max(Mathf.Max(size.x, size.y), size.z);
+        material.mainTextureOffset = new Vector2(_GetRandom() * m, _GetRandom() * m);
+        mesh.uv = RandomUV(mesh); 
+        tag.Tag(_go);
     }
 
-    public override void Disable() {
-        //Debug.Log("DISABLE");
-        //Transform[] children = gameObject.transform.GetComponentsInChildren<Transform>(true);
-        gameObject.SetActive(false);
+    private float _GetRandom() {
+        return Mathf.Min(UnityEngine.Random.value + 0.2f, 1f);
+    }
+
+    private Vector2[] RandomUV(Mesh mesh) {
+        Vector2[] uvs = mesh.uv;
+        Vector2[] _uvs = new Vector2[uvs.Length];
+        bool modified = false;
+        for (int i = 0; i < uvs.Length; i++) {
+            if (UnityEngine.Random.value < uvcomplexity) {
+                _uvs[i] = new Vector2(UnityEngine.Random.value, UnityEngine.Random.value);
+                modified = true;
+            } else {
+                _uvs[i] = uvs[i];
+            }
+        }
+        if (!modified) { // if the uv map wasnt modified, it should be, this is a bug after all!
+            int i = UnityEngine.Random.Range(0, uvs.Length);
+            _uvs[i] = new Vector2(UnityEngine.Random.value, UnityEngine.Random.value);
+        }
+        return _uvs;
+    }
+
+    public void OnDisable() {
+        if (_go != null) {
+            Material material = _go.GetComponent<Renderer>().material;
+            Mesh mesh = _go.GetComponent<MeshFilter>().mesh;
+            material.mainTextureOffset = _textureOffset;
+            mesh.uv = _uv;
+            BugTag tag = GetComponent<BugTag>();
+            tag.Untag(_go);
+            _go = null;
+        }  
     }
 
     public override bool InView(Camera camera) { 
         if (gameObject.activeSelf) {
-             // shouldnt call this too often its a bit expensive? 
             BugTag tag = GetComponent<BugTag>(); 
             int[] mask = BugMask.Instance.Mask(camera); 
             // Compare the mask with my bug type...

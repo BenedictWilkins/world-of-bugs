@@ -22,12 +22,11 @@ public class BlackScreen : Bug {
         Off(); // make the image transparent
     }
 
-    public override void Enable() {
+    public void OnEnable() {
         _enabled = true;
     }
 
-    public override void Disable() {
-
+    public void OnDisable() {
         _enabled = false;
     }
 

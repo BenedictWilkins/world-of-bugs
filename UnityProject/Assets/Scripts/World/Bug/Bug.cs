@@ -3,9 +3,6 @@ using UnityEngine;
 
 public abstract class Bug : MonoBehaviour {
 
-    // enable the bug, this will have different effects for different kinds of bugs...
-    public abstract void Enable();
-    public abstract void Disable();
     public abstract bool InView(Camera camera); // is the bug inview of the given camera
     
     public static bool GameObjectInView(GameObject go, Camera camera) {

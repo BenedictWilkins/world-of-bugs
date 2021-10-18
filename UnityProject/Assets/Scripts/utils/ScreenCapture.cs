@@ -11,6 +11,15 @@ public class ScreenCapture : MonoBehaviour {
     public KeyCode screenshotKey = KeyCode.F9;
     public string fileName = "screen";
 
+    void Awake() {
+        foreach (int display in displays) {
+            string path = $"{Application.dataPath}/Captures/display{display+1}";
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+        }
+    }
+
     void LateUpdate() {
         if (Input.GetKeyDown(screenshotKey)) {
             foreach (int display in displays) {

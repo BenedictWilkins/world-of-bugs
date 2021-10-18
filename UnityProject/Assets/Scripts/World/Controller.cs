@@ -22,19 +22,16 @@ public class Controller : MonoBehaviour {
         public bool enabled = false;
         // TODO there might be more too it with enabling/disabling...
         public void Enable() {
-            bug.Enable();
-            enabled = true;
+            bug.gameObject.SetActive(true);
         }
         public void Disable() {
-            //Debug.Log("DISABLE? ");
-            bug.Disable();
-            enabled = false;
+            bug.gameObject.SetActive(false);
         }
         public void Initialise() {
             if (enabled) {
-                bug.Enable();
+                Enable();
             } else {
-                bug.Disable();
+                Disable();
             }
         }
     }
