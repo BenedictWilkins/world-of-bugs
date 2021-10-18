@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta name="generator" content="Hugo 0.74.3" />
+    <style>
+
+@font-face {
+font-family: "Computer Modern";
+src: url('fonts/cmunsx.otf');
+font-weight: bold;
+}
+@font-face {
+font-family: "Computer Modern";
+src: url('fonts/cmunsi.otf');
+font-style: italic, oblique;
+}
+@font-face {
+font-family: "Computer Modern";
+src: url('fonts/cmunbxo.otf');
+font-weight: bold;
+font-style: italic, oblique;
+}
+@font-face {
+font-family: "Computer Modern";
+src: url('fonts/cmunss.otf');
+}
+</style>
+
+
+    <link rel="stylesheet" href="http://example.org/css/custom.css">
+
+    <link rel="stylesheet" href="http://example.org/css/hugo-easy-gallery.css">
+
+
+
+    <script type="text/javascript" src="http://example.org/js/custom.js"></script>
+
+
+    <meta charset="utf-8">
+  </head>
+  <body>
+    
+    
+<main>
+    <article>
+        <header>
+            <h1 style="font-size:300%;">World Of Bugs</h1>
+        </header>
+    </article>
+    <ul>
+    
+    
+        <h2></h2> 
+        <h3 id="texture-missing">Texture Missing</h3>
+<p>When a texture is missing from an object a shader will typically resort to rendering it in one colour, in the example below, pink, to signify an issue.</p>
+
+<div class="gallery">
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/TextureMissing/TextureMissing.png');" >
+				</div>
+			</div>
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/TextureMissing/TextureMissingMask.png');" >
+				</div>
+			</div>
+</div>
+<h3 id="texture-corruption">Texture Corruption</h3>
+<p>A texture may render incorrectly/become corrupte for various reasons, for example, offsets incorrectly set, the UV map is incorrect or other shader related issues. Similar visually jaring effects may also be due to lighting problems.</p>
+
+<div class="gallery">
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/TextureCorrupt/TextureCorrupt.png');" >
+				</div>
+			</div>
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/TextureCorrupt/TextureCorruptMask.png');" >
+				</div>
+			</div>
+</div>
+<h3 id="geometry-corruption">Geometry Corruption</h3>
+<h3 id="geometry-clipping">Geometry Clipping</h3>
+<h3 id="z-fighting">Z-fighting</h3>
+<p>Z-Fighting happens when two sufaces have the same depth (z). The shader does not know which to show first and this results in a mixing of textures as shown below. A flickering effect may also occur during a view point change.</p>
+
+<div class="gallery">
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/ZFighting/ZFighting.png');" >
+				</div>
+			</div>
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/ZFighting/ZFightingmask.png');" >
+				</div>
+			</div>
+</div>
+<h3 id="z-clipping">Z-Clipping</h3>
+<p>Rendering pipelines often have layers, layers are placed in a queue and rendered in order, new pixels replace or are blended with old pixels in subsequent layers. If an object is placed in the wrong layer, it can cause Z-clipping, the object is rendered on top of other objects leading to a confusing spatial effect like the one seen below.</p>
+
+<div class="gallery">
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/ZClipping/ZClipping.png');" >
+				</div>
+			</div>
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/ZClipping/ZClippingMask.png');" >
+				</div>
+			</div>
+</div>
+<h3 id="camera-clipping">Camera Clipping</h3>
+<p>For efficiency reasons, rendering pipelines cull geometry that is out of view. Cameras are a useful abstraction that are used by many engines to describe what can be seen on screen, the view frustum is used to cull unseen geometry. If this frustum is too small, some geometry that should be rendered isn&rsquo;t. In the example below, the near clipping plane has been set too far away from the player. At certain view points, when close to an object some of its geometry is culled leading to the &ldquo;see through&rdquo; effect seen below. In some cicumstances this bug allows players to see into areas they shouldnt be able to (looking through walls/floors).</p>
+
+<div class="gallery">
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/CameraClip/CameraClip.png');" >
+				</div>
+			</div>
+			<div class="box">
+				<div class="img" style="background-image: url('http://example.org//image/CameraClip/CameraClipMask.png');" >
+				</div>
+			</div>
+</div>
+<h3 id="black-screen">Black Screen</h3>
+<h3 id="screen-tearing">Screen Tearing</h3>
+<h1 id="control">Control</h1>
+<h3 id="unresponsive">Unresponsive</h3>
+<h3 id="action-failed">Action Failed</h3>
+<h3 id="action-incorrect">Action Incorrect</h3>
+<h1 id="game-play--physics">Game Play / Physics</h1>
+<h3 id="invisible-wall">Invisible Wall</h3>
+<h3 id="hole-in-map">Hole in Map</h3>
+
+    
+    </ul>
+</main>
+
+    
+    
+    
+  </body>
+</html>
+
