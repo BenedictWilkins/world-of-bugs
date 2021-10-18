@@ -13,7 +13,7 @@ When a texture is missing from an object a shader will typically resort to rende
 
 ### Texture Corruption ✔️ 
 
-A texture may render incorrectly/become corrupte for various reasons, for example, offsets incorrectly set, the UV map is incorrect or other shader related issues. Similar visually jaring effects may also be due to lighting problems.
+A texture may render incorrectly/become corrupte for various reasons, for example, offsets incorrectly set, the UV map is incorrect or other shader related issues.
 
 | Example | Mask    | 
 | ------- | ------- | 
