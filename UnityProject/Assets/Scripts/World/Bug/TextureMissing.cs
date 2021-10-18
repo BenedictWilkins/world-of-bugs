@@ -14,7 +14,6 @@ public class TextureMissing : Bug {
     protected Color _color;
 
     public void OnEnable() {
-        Debug.Log("TEXTURE MISSING ACTIVE");
         BugTag tag = GetComponent<BugTag>();
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);

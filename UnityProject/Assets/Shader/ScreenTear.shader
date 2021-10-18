@@ -1,11 +1,5 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "ScreenTear"
+﻿Shader "ScreenTear"
 {
-    Properties
-    {
-        _MainTex("Texture", 2D) = "white" {}
-    }
     SubShader
     {
         // No culling or depth
@@ -27,8 +21,9 @@ Shader "ScreenTear"
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
+                
                 float4 vertex : SV_POSITION;
+                float2 uv : TEXCOORD0;
             };
 
             v2f vert (appdata v)

@@ -24,8 +24,10 @@ public class BugMask : MonoBehaviour {
     protected Dictionary<int, MaskData> _masks = new Dictionary<int, MaskData>(); // map from RenderTexture GUID to pixel array (mask)
     
     public int[] Mask(Camera camera) {
-        RenderTexture _renderTexture = camera.targetTexture;
-        if (camera.targetTexture == null) {
+        BugMaskReplacementShader replacementShader = camera.gameObject.GetComponent<BugMaskReplacementShader>();
+        RenderTexture _renderTexture = replacementShader.MaskTexture;
+    
+        if (_renderTexture == null) {
             throw new NullReferenceException("Camera does not contain a RenderTexture.");
         }
         int _id = _renderTexture.GetInstanceID();

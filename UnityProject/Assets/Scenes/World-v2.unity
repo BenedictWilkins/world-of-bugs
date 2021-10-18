@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 65883144}
-  uvcomplexity: 0.1
+  uvcomplexity: 0.2
 --- !u!114 &185156699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ MonoBehaviour:
   bugType:
     type:
       serializedVersion: 2
-      rgba: 4294901760
+      rgba: 4278221055
   bugTag: Bug
 --- !u!4 &185156700
 Transform:
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bugs:
   - bug: {fileID: 670918510}
-    enabled: 0
+    enabled: 1
   - bug: {fileID: 1835508189}
     enabled: 0
   - bug: {fileID: 1228090951}
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   - bug: {fileID: 799085451}
     enabled: 0
   - bug: {fileID: 185156698}
-    enabled: 1
+    enabled: 0
   player: {fileID: 6237308485596919809}
 --- !u!4 &517195456
 Transform:
@@ -1927,8 +1927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f741c7d88bc5d5049cd0191ded883ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 331821556}
-  color: {r: 0, g: 0, b: 0, a: 1}
+  _camera: {fileID: 4921208}
   range: {x: 5, y: 50}
 --- !u!1001 &837802678
 PrefabInstance:
@@ -3432,8 +3431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff7804e44776a4a99a89a15b718377e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReplacementShader: {fileID: 4800000, guid: 1696b9b71cf736da49a19e159773fc7a, type: 3}
-  debug: 1
+  postProcess:
+  - {fileID: 2100000, guid: 4b2b89c756e889b4c96ab43b2e11b42f, type: 2}
+  maskShader: {fileID: 4800000, guid: 1696b9b71cf736da49a19e159773fc7a, type: 3}
 --- !u!1 &1778611087
 GameObject:
   m_ObjectHideFlags: 0
