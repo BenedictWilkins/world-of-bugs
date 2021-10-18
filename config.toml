@@ -1,0 +1,10 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "World Of Bugs"
+
+[params]
+    author = ["Wilkins B."]
+    author_email = ["Benedict.Wilkins.2014@rhul.ac.uk"]
+    author_affil = ["Royal Holloway University of London"]
+    custom_css = ["css/custom.css", "css/hugo-easy-gallery.css"]
+    custom_js = ["js/custom.js"]
