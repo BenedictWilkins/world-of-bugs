@@ -17,10 +17,22 @@ import h5py
 import numpy as np
 
 from tqdm.auto import tqdm
+from types import SimpleNamespace
 
 from . import utils
 DATASET_NAME = "dataset"
 DATASET_EXT = ".hdf5"
+
+def load(env_id, dataset_id=0):
+    _, ex_path = utils._get_unity_environment_info(env_id)
+    path, _ = os.path.split(ex_path)
+    path = os.path.join(path, 'dataset')
+    path = os.path.join(path, f"{DATASET_NAME}-{dataset_id}{DATASET_EXT}")
+    with h5py.File(path, "r") as f:
+        for k in sorted(f.keys()):
+            episode = f[k]
+            print(episode.keys())
+            yield SimpleNamespace(**{j:episode[j][...] for j in episode.keys()})
 
 def dataset(env_id, policy=None, n_episodes=10, max_episode_length=100, workers=10):
     """ Create a new dataset from a unity build.
@@ -31,7 +43,6 @@ def dataset(env_id, policy=None, n_episodes=10, max_episode_length=100, workers=
         n_episodes (int, optional): number of episodes to generate. Defaults to 10.
         max_episode_length (int, optional): max length of an episode (longer episodes will be cut to fit). Defaults to 100.
         workers (int, optional): numbe of (ray) workers to use. Defaults to 10.
-
     Raises:
         FileExistsError: if a dataset file already exists
     """
@@ -56,21 +67,13 @@ def dataset(env_id, policy=None, n_episodes=10, max_episode_length=100, workers=
         iter = Episodes(env_f, policy=policy, n_episodes=n_episodes, max_episode_length=max_episode_length) 
     
     with h5py.File(path, "w") as f:
-        for i, (state, action, reward, done) in enumerate(tqdm(iter, total=n_episodes)):
+        for i, data in enumerate(tqdm(iter, total=n_episodes)):
             g = f.create_group(f"ep-{str(i).zfill(4)}")
-            g.create_dataset('state', data=state)
-            g.create_dataset('action', data=action) 
-            g.create_dataset('reward', data=reward)
-            g.create_dataset('done', data=done)
+            print("EPISODE!")
+            for k,v in data.items():
+                print(v.shape, v.dtype)
+                g.create_dataset(k.lower(), data=v)
 
-def load(env_id, dataset_id=0):
-    _, ex_path = utils._get_unity_environment_info(env_id)
-    path, _ = os.path.split(ex_path)
-    path = os.path.join(path, 'dataset')
-    path = os.path.join(path, f"{DATASET_NAME}-{dataset_id}{DATASET_EXT}")
-    with h5py.File(path, "r") as f:
-        for k in sorted(f.keys()):
-            yield f[k]['state'][...], f[k]['action'][...], f[k]['reward'][...], f[k]['done'][...]
 
 class Episodes:
 
@@ -93,8 +96,17 @@ class Episodes:
     def episode(self):
         iterator = itertools.islice(self.iterator, 0, self.max_episode_length)
         state, action, reward, done = zip(*iterator)
-        state, action, reward, done = np.stack(state), np.stack(action), np.stack(reward), np.stack(done).astype(np.uint8)
-        return state, action, reward, done
+        sensor_keys = state[0].keys()
+        data = {k:np.stack([d[k] for d in state]) for k in sensor_keys} # maybe there is a more efficient way.. TODO
+        info = data.get('info', None)
+        if info is not None:
+            action = info[:,0] # if we are using a python policy this will be the same as action anyway...
+        else:
+            action = np.stack(action)
+        data['action'] = action.astype(np.int64)
+        data['reward'] = np.stack(reward).astype(np.float32)
+        data['done'] = np.stack(done).astype(np.uint8)
+        return data
 
     def __len__(self):
         return self.n_episodes

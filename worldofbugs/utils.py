@@ -39,7 +39,7 @@ def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3,
                                     quality_level=quality_level, 
                                     time_scale=time_scale, 
                                     debug=debug)
-    env = BuggedUnityGymEnvironment(env, uint8_visual=True, allow_multiple_obs=True)
+    env = BuggedUnityGymEnvironment(env)
     return env
 
 def get_unity_environments():

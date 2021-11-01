@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class ScreenTear : MonoBehaviour {
 
-    public Material screenTearMat; 
+    public Camera _camera;
 
     void Awake() {
-    }
-
-    void OnRenderImage(RenderTexture source, RenderTexture destination) {
-        Graphics.Blit(source, destination, screenTearMat);
+        _camera.gameObject.AddComponent<ScreenTearPost>();
     }
 }

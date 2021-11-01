@@ -21,11 +21,4 @@ public class BugTag : MonoBehaviour {
         material.SetOverrideTag("RenderType", "");
         //material.SetColor("_BugType", (Color32) bugType);
     }
-
-    public void TagCanvas(GameObject go) {
-        //Debug.Log(go.GetComponent<CanvasRenderer>());
-        Material material = go.GetComponent<Image>().material;
-        material.SetOverrideTag("RenderType", bugTag);
-        material.SetColor("_BugType", (Color32) bugType);
-    }
 }

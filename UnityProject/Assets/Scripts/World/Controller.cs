@@ -2,19 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.SideChannels;
 
+using System.Linq;
+
 public class Controller : MonoBehaviour {
     
     public BugOption[] bugs;
-    public Agent player; 
+    public Player player; 
 
     private ConfigSideChannel configChannel;
     private LogSideChannel logChannel;
-
 
     [Serializable]
     public class BugOption { 
@@ -73,9 +73,8 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    void Reset() {
-        player.EndEpisode();
-        // read the environment channel TODO
+    public void Reset() {
+        player.Reset();
     }
 
     // Update is called once per frame
@@ -87,7 +86,7 @@ public class Controller : MonoBehaviour {
     }
 
     public bool BugInView(Player player) {
-        Camera camera = player.bugCamera;
+        Camera camera = player.bugMaskCamera;
         foreach (BugOption bugOption in bugs) {
             bool inview = bugOption.bug.InView(camera);
             if (inview) {
@@ -99,6 +98,12 @@ public class Controller : MonoBehaviour {
 
     public class ConfigSideChannel : SideChannel {
         Controller contr;
+
+        public class ConfigurationException : Exception{
+                public ConfigurationException(string message): base(message) {}
+                public ConfigurationException(string message, Exception inner): base(message, inner) {}
+        }
+
 
         public ConfigSideChannel(Controller controller) {
             contr = controller;
@@ -112,22 +117,46 @@ public class Controller : MonoBehaviour {
                 string[] received = msg.ReadString().Split(':');
                 string name = received[0];
                 bool enable = bool.Parse(received[1]);
-
-                BugOption bugOption = Array.Find(contr.bugs, x => x.bug.GetType().Name.Equals(name));
-
-                if (bugOption == null) {
-                    throw new KeyNotFoundException("Requested bug was not found: " + name);
-                } else if (enable) {
-                    bugOption.Enable();
-                    //Debug.Log("ENABLED BUG : " + name);
-                } else {
-                    bugOption.Disable();
-                    //Debug.Log("DISABLED BUG : " + name);
+                if (ConfigureBugOption(name, enable)) {
+                    return;
                 }
-                
+                if (ConfigurePlayer(name, enable)) {
+                    return;
+                }
+                  
             } catch  (Exception e){
                 Debug.LogException(e, contr);
             }
+        }
+   
+
+        protected bool ConfigurePlayer(string name, bool enable) {
+            if (! enable) { 
+                //throw new ConfigurationException("Player behaviours can only be enabled.");
+                return false;
+            }
+            BehaviourType value =  (BehaviourType) Enum.Parse(typeof(BehaviourType), name);
+            if (value == null) {
+                //string[] valid = Array.Select(Enum.GetValues(typeof(BehaviourType)), x => x.GetName());
+                //throw new ConfigurationException($"Behaviour {name} not found, valid behaviours include: {valid}");
+                return false;
+            }
+            contr.player.BehaviourType = value;
+
+            return true;
+        }
+
+        protected bool ConfigureBugOption(string name, bool enable) {
+            // enable/disable bugs
+            BugOption bugOption = Array.Find(contr.bugs, x => x.bug.GetType().Name.Equals(name));
+            if (bugOption != null) {
+                if (enable) {
+                    bugOption.Enable();
+                } else {
+                    bugOption.Disable();
+                }
+            }
+            return bugOption != null;        
         }
     }
 

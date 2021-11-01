@@ -1,21 +1,24 @@
 from worldofbugs.dataset import dataset, load
 from worldofbugs.utils import get_unity_environments, make
 
-#dataset("World-v1", workers=20, n_episodes=200, max_episode_length=1000)
-#dataset("World-v2", workers=10, n_episodes=200, max_episode_length=1000)
+import pygame
+import numpy as np
+
+#env = make("World-v1")
+#env.set_player_behaviour("NavMesh")
+#dataset("World-v1", n_episodes=2, max_episode_length=100, workers=1)
+
+for ep in load("World-v1"):
+    print(ep)
 
 
-print(get_unity_environments())
-env = make("WorldTest-v2", display_width=84*4, display_height=84*4)
-print(env.unwrapped)
-env.enable_bug("ZFighting")
-env.reset()
+"""
+for i in range(10000):
+    action = env.action_space.sample()
+    state, *_ = env.step(action)  # Move the simulation forward
+    #assert int(state['InfoSensor'][0]) == action
+    #print(state['BugMask'].shape, state['Camera'].shape)
+    env.render()
 
-for i in range(50):
-    env.step(3)
-
-env.disable_bug("ZFighting")
-env.reset()
-
-for i in range(100):
-    env.step(3)
+env.close()
+"""

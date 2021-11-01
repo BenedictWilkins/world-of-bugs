@@ -1,20 +1,32 @@
 
 from mlagents_envs.environment import UnityEnvironment
-from mlagents_envs.side_channel.side_channel import SideChannel, IncomingMessage, OutgoingMessage
-import uuid
 
+import matplotlib.pyplot as plt
+import numpy as np
 
-from worldofbugs.environment import BuggedUnityEnvironment
+#plt.ion()
+#fig = plt.figure()
+
+from worldofbugs.environment import BuggedUnityEnvironment, BuggedUnityGymEnvironment
 
 # We start the communication with the Unity Editor and pass the string_log side channel as input
 env = BuggedUnityEnvironment()
-env.enable_bug("ZFighting")
+env = BuggedUnityGymEnvironment(env)
+
+
+# Manual, MLAgents, NavMesh
+env.set_player_behaviour("MLAgents")
 env.reset()
 
-group_name = list(env.behavior_specs.keys())[0]  # Get the first group_name
-group_spec = env.behavior_specs[group_name]
-for i in range(1000):
-    decision_steps, terminal_steps = env.get_steps(group_name)
-    env.step()  # Move the simulation forward
-
+for i in range(100):
+    action = env.action_space.sample()
+    state, *_ = env.step(action)  # Move the simulation forward
+   
+    assert int(state['InfoSensor'][0]) == action
+    print(state['BugMask'].shape, state['Camera'].shape)
+    
+    #plt.pause(0.001)
+    #plt.clf()
+    #plt.imshow(np.concatenate([state['BugMask'], state['Camera']], axis=1))
+   
 env.close()
