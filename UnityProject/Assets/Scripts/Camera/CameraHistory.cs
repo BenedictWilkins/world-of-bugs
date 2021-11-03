@@ -30,7 +30,7 @@ public class CameraHistory : MonoBehaviour {
 
     public RenderTexture this[int index] {
         get {
-            Debug.Log($"{n} {index} {(n + _ptindex - index) % n}");
+            //Debug.Log($"{n} {index} {(n + _ptindex - index) % n}");
             if (index >= n) 
                 throw new IndexOutOfRangeException();
             return _previousTextures[(n + _ptindex - index) % n];
@@ -46,8 +46,9 @@ public class CameraHistory : MonoBehaviour {
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dst) {
+        _ptindex = (_ptindex +  1) % n;
         Graphics.Blit(src, dst);
         Graphics.Blit(src, _previousTextures[_ptindex]); 
-        _ptindex = (_ptindex +  1) % n;
     }
+
 }
