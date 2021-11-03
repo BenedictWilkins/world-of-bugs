@@ -187,7 +187,7 @@ class DebugRenderer:
                 return
         # otherwise, render the current observation
         state = self.env.current_observation
-        obs = np.concatenate([state['Camera'].transpose(1,0,2), state['BugMask'].transpose(1,0,2)], axis=0)
+        obs = np.concatenate([state['observation'].transpose(1,0,2), state['bugmask'].transpose(1,0,2)], axis=0)
         obs = (obs * 255).astype(np.uint8)
         surf = self.pygame.Surface(obs.shape[:2])
         print(obs.shape[:2])

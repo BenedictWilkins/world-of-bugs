@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class BugMaskReplacementShader : MonoBehaviour {
 
     public Shader maskShader;
-
     protected Camera _camera;
     public RenderTexture MaskTexture { get { return _camera.targetTexture; }}
 
@@ -14,6 +13,7 @@ public class BugMaskReplacementShader : MonoBehaviour {
         _camera = GetComponent<Camera>();
         _camera.SetReplacementShader(maskShader, "RenderType");
     }
+
 
     void OnDestroy() {
         _camera.ResetReplacementShader();

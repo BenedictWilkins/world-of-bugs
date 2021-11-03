@@ -13,20 +13,14 @@ from worldofbugs.environment import BuggedUnityEnvironment, BuggedUnityGymEnviro
 env = BuggedUnityEnvironment()
 env = BuggedUnityGymEnvironment(env)
 
-
 # Manual, MLAgents, NavMesh
-env.set_player_behaviour("MLAgents")
+# env.set_player_behaviour("MLAgents")
 env.reset()
+env.render()
 
-for i in range(100):
+for i in range(1000):
     action = env.action_space.sample()
     state, *_ = env.step(action)  # Move the simulation forward
-   
-    assert int(state['InfoSensor'][0]) == action
-    print(state['BugMask'].shape, state['Camera'].shape)
-    
-    #plt.pause(0.001)
-    #plt.clf()
-    #plt.imshow(np.concatenate([state['BugMask'], state['Camera']], axis=1))
-   
+    env.render()
+
 env.close()

@@ -31,10 +31,9 @@ def load(env_id, dataset_id=0):
     with h5py.File(path, "r") as f:
         for k in sorted(f.keys()):
             episode = f[k]
-            print(episode.keys())
             yield SimpleNamespace(**{j:episode[j][...] for j in episode.keys()})
 
-def dataset(env_id, policy=None, n_episodes=10, max_episode_length=100, workers=10):
+def dataset(env_id, policy=None, n_episodes=10, max_episode_length=100, workers=10, bugs=[]):
     """ Create a new dataset from a unity build.
 
     Args:
@@ -42,7 +41,8 @@ def dataset(env_id, policy=None, n_episodes=10, max_episode_length=100, workers=
         policy (function, optional): policy used to generate data. Defaults to None.
         n_episodes (int, optional): number of episodes to generate. Defaults to 10.
         max_episode_length (int, optional): max length of an episode (longer episodes will be cut to fit). Defaults to 100.
-        workers (int, optional): numbe of (ray) workers to use. Defaults to 10.
+        workers (int, optional): number of (ray) workers to use. Defaults to 10.
+        bugs (list): list of bugs to enable in the environment
     Raises:
         FileExistsError: if a dataset file already exists
     """
@@ -57,23 +57,25 @@ def dataset(env_id, policy=None, n_episodes=10, max_episode_length=100, workers=
     if os.path.exists(path):
         raise FileExistsError(f"{path} already exists, failed to create a new dataset.")
 
-    env_f = lambda : utils.make(env_id, worker=os.getpid())
+    def make_environment(): 
+        env =  utils.make(env_id, worker=os.getpid())
+        for bug in bugs:
+            env.enable_bug(bug)
+        return env
+   
     if workers > 1:
         import ray
         ray.init()
-        workers = [EpisodesWorker.remote(env_f, policy=policy, n_episodes = int(n_episodes // workers), max_episode_length=max_episode_length) for _ in range(workers)]
+        workers = [EpisodesWorker.remote(make_environment, policy=policy, n_episodes = int(n_episodes // workers), max_episode_length=max_episode_length) for _ in range(workers)]
         iter = ray.util.iter.from_actors(workers).gather_async()
     else:
-        iter = Episodes(env_f, policy=policy, n_episodes=n_episodes, max_episode_length=max_episode_length) 
+        iter = Episodes(make_environment, policy=policy, n_episodes=n_episodes, max_episode_length=max_episode_length) 
     
     with h5py.File(path, "w") as f:
         for i, data in enumerate(tqdm(iter, total=n_episodes)):
             g = f.create_group(f"ep-{str(i).zfill(4)}")
-            print("EPISODE!")
             for k,v in data.items():
-                print(v.shape, v.dtype)
                 g.create_dataset(k.lower(), data=v)
-
 
 class Episodes:
 
@@ -115,6 +117,7 @@ class GymIterator:
 
     def __init__(self, env, policy=None):
         self.env = env
+        self.env.reset() # reset once to avoid an initial black frame...
         if policy is None:
             policy = lambda *args, **kwargs: env.action_space.sample()
         self.policy = policy

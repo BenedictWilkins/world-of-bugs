@@ -29,6 +29,7 @@ class RenderTextureCameraPreview : EditorWindow {
         //Debug.Log("???");
         for (int i = 0; i < cameras.Length; i++) {
             RenderTexture tex = cameras[i].targetTexture;
+            //Debug.Log($"{tex.width} {tex.height} {tex}");
             GUI.DrawTexture(GetBounds(i, tex.width / tex.height), tex);   
         }
     }

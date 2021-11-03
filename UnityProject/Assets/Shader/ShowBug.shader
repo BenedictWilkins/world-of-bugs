@@ -14,6 +14,7 @@ Shader "ShowBug"
 		}
 
 		ZWrite On
+		ColorMask RGB
 
 		Pass {
 			CGPROGRAM
@@ -84,6 +85,7 @@ Shader "ShowBug"
 		}
 
 		ZWrite On
+		ColorMask RGB
 
 		Pass {
 			CGPROGRAM
@@ -159,9 +161,12 @@ Shader "ShowBug"
 		}
 
 		ZWrite Off // TODO remove? 
+		ColorMask RGB
+		
 
 		Pass {
 
+			Offset -1, -1
 			ZTest Greater
 
 			CGPROGRAM
@@ -195,7 +200,7 @@ Shader "ShowBug"
 		Pass {
 
 			ZTest Less
-
+			
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag

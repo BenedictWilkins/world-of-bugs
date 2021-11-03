@@ -1,11 +1,8 @@
-﻿Shader "Bug/ScreenTear"
+﻿﻿Shader "Bug/HardEdge"
 {
 
     Properties {
         _MainTex("Texture", 2D) = "white" {}
-        _TearTex("TearTexture", 2D) = "white" {}
-        _TearMin("TearMin", Float) = 0.1
-        _TearMax("TearMax", Float) = 0.5
     } 
 
     SubShader {
@@ -14,7 +11,6 @@
 			#pragma vertex vert
 			#pragma fragment frag
 			#include "UnityCG.cginc"
-
 			struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
@@ -33,23 +29,17 @@
 				return o;
 			}
 
-            sampler2D _TearTex;
-			sampler2D _MainTex;
-            float _TearMin;
-            float _TearMax;
+            sampler2D _MainTex;
 
 			float4 frag (v2f i) : SV_Target {
-                float4 col1 = tex2D(_TearTex, i.uv);
-                float4 col2 = tex2D(_MainTex, i.uv);
-                float tmax = step(_TearMax, i.uv.y);
-                float tmin = step(i.uv.y, _TearMin);
-                float v = clamp(tmax+tmin, 0, 1);
-                return lerp(col1, col2, v);
+                float4 col = tex2D(_MainTex, i.uv);
+                // hide pixels that have alpha < 1
+                // these are typically on the edge
+                col = floor(col[3]) * col; 
+                col[3] = 1; // set alpha to 1
+                return col;
             }
 			ENDCG
 		}
-
 	}
-   
 }
-

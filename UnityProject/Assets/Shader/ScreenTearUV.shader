@@ -1,11 +1,9 @@
-﻿Shader "Bug/ScreenTear"
+﻿Shader "Bug/ScreenTearUV"
 {
 
     Properties {
         _MainTex("Texture", 2D) = "white" {}
-        _TearTex("TearTexture", 2D) = "white" {}
-        _TearMin("TearMin", Float) = 0.1
-        _TearMax("TearMax", Float) = 0.5
+        _TearTex("TearTexture", 2D) = "black" {}
     } 
 
     SubShader {
@@ -33,23 +31,18 @@
 				return o;
 			}
 
+            sampler2D _MainTex;
             sampler2D _TearTex;
-			sampler2D _MainTex;
-            float _TearMin;
-            float _TearMax;
 
 			float4 frag (v2f i) : SV_Target {
-                float4 col1 = tex2D(_TearTex, i.uv);
-                float4 col2 = tex2D(_MainTex, i.uv);
-                float tmax = step(_TearMax, i.uv.y);
-                float tmin = step(i.uv.y, _TearMin);
-                float v = clamp(tmax+tmin, 0, 1);
-                return lerp(col1, col2, v);
+                float4 offset = tex2D(_TearTex, i.uv);
+                float u = fmod(offset[0] + i.uv.x, 1);
+                float v = fmod(offset[1] + i.uv.y, 1);
+                float2 uv = float2(u,v);
+                return tex2D(_MainTex, uv);
             }
 			ENDCG
 		}
-
 	}
-   
 }
 

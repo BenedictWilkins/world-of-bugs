@@ -6,11 +6,10 @@ import numpy as np
 
 #env = make("World-v1")
 #env.set_player_behaviour("NavMesh")
-#dataset("World-v1", n_episodes=2, max_episode_length=100, workers=1)
+BUG_LABELS = ["TextureMissing"]
 
-for ep in load("World-v1"):
-    print(ep)
-
+#dataset("World-v1", n_episodes=100, max_episode_length=1000, workers=20)
+# dataset("World-v1", n_episodes=1, max_episode_length=1000, workers=1, bugs=["TextureMissing"])
 
 """
 for i in range(10000):
