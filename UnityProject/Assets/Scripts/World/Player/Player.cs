@@ -9,10 +9,15 @@ using Unity.MLAgents.Policies;
 
 public class Player : MonoBehaviour {
 
-    [NotNull, Tooltip("Camera that is used to create the bug mask, this camera should use the ShowBug shader and a RenderTexture.")]
-    public Camera bugMaskCamera; // camera used to detect bugs
-    [NotNull, Tooltip("Camera that is used to create a view of the world.")]
-    public Camera mainCamera;
+    public float MapBottom = -20; // MOVE THIS SOMEWHERE MORE SUITABLE?
+
+    [SerializeField, NotNull, Tooltip("Camera that is used to create a view of the world.")]
+    private Camera _cameraMain;
+    [SerializeField, NotNull, Tooltip("Camera that is used to create the bug mask, this camera should use the ShowBug shader and a RenderTexture.")]
+    private Camera _cameraBugMask; // camera used to detect bugs
+    
+    public Camera CameraBugMask { get { return _cameraBugMask; }}
+    public Camera CameraMain { get { return _cameraMain; }}
 
     [SerializeField, Tooltip("Type of behaviour for this agent.")]
     protected BehaviourType behaviourType = BehaviourType.Manual;
@@ -32,11 +37,9 @@ public class Player : MonoBehaviour {
     public float radius = 0.5f;
 
     // MLAgents parameters...
-    public int DecisionPeriod = 5;
+    public int DecisionPeriod = 1;
     public int MaxStep = 10000;
 
-
-   
     public void Awake() {
         UpdateBehaviourType();
     }
@@ -58,12 +61,12 @@ public class Player : MonoBehaviour {
             }
             default: break;
         }
-        script.gameObject.SetActive(true);
-        script.MaxStep = MaxStep;
-        script.gameObject.GetComponent<DecisionRequester>().DecisionPeriod = DecisionPeriod;       
         if (behaviour != null) {
             behaviour.gameObject.SetActive(false);
         }
+        script.gameObject.SetActive(true);
+        script.MaxStep = MaxStep;
+        script.gameObject.GetComponent<DecisionRequester>().DecisionPeriod = DecisionPeriod;       
         behaviour = script;
     }
 

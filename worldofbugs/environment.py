@@ -93,6 +93,9 @@ class SingleAgentUnityGymEnvironment(gym.Env):
 
         self.current_observation = None
 
+    def close(self):
+        self._env.close()
+
     def __init_action_space(self):
         if self.spec.action_spec.is_continuous():
             self._action_handler = ContinuousActionHandler(self.spec)
@@ -157,8 +160,8 @@ class BuggedUnityGymEnvironment(SingleAgentUnityGymEnvironment):
         
     def _collect_observations(self, decision_steps, terminal_steps):
         steps = decision_steps if len(decision_steps) > 0 else terminal_steps
-        if steps.reward.shape[0] > 0:
-            reward = steps.reward[0] # sometimes the reward is not defined
+        if steps.reward.shape[0] > 0: # sometimes the reward is not defined
+            reward = steps.reward[0] 
         else:
             reward = 0.
         observations = {k:v[0] for k,v in zip(self.sensors, steps.obs)}
@@ -190,7 +193,6 @@ class DebugRenderer:
         obs = np.concatenate([state['observation'].transpose(1,0,2), state['bugmask'].transpose(1,0,2)], axis=0)
         obs = (obs * 255).astype(np.uint8)
         surf = self.pygame.Surface(obs.shape[:2])
-        print(obs.shape[:2])
         self.pygame.surfarray.blit_array(surf, obs)
         surf = self.pygame.transform.scale(surf, self.display_size)
         self.display.blit(surf, (0,0))
@@ -207,11 +209,11 @@ class BuggedUnityEnvironment(UnityEnvironment):
             file_name = None,
             worker_id: int = 0,
             base_port: Optional[int] = None,
-            seed: int = 0,
+            seed: int = None,
             no_graphics: bool = False,
             timeout_wait: int = 60,
             additional_args: Optional[List[str]] = None,
-            side_channels: Optional[List[SideChannel]] = [],
+            side_channels: Optional[List[SideChannel]] = None,
             log_folder: Optional[str] = None,
             display_width=84, 
             display_height=84, 
@@ -220,7 +222,9 @@ class BuggedUnityEnvironment(UnityEnvironment):
             debug=True,
             **kwargs
             ):
-
+        if side_channels is None:
+            side_channels = []
+            
         engine_channel = EngineConfigurationChannel()
         engine_channel.set_configuration_parameters(width=display_width,height=display_height, quality_level=quality_level,time_scale=time_scale)
         side_channels.append(engine_channel)
@@ -231,7 +235,8 @@ class BuggedUnityEnvironment(UnityEnvironment):
         if debug:
             log_channel = UnityLogChannel()
             side_channels.append(log_channel)
-
+        if seed is None:
+            seed = np.random.randint(0, 1e8) # set up environment with a random seed
         super().__init__(file_name = file_name, 
                          worker_id = worker_id,
                          base_port = base_port,

@@ -17,7 +17,7 @@ public class Behaviour : Agent {
     protected Vector3 intialPosition;
     protected Vector3 initialRotation;
 
-    protected int action; // the action that is currently being taken
+    protected int action = 0; // the action that is currently being taken
     //protected bool done = false; // where the episode ended now.
 
     public Player Player { get {return player;}} 
@@ -67,7 +67,8 @@ public class Behaviour : Agent {
 
     public override void OnEpisodeBegin() {
         player.transform.localPosition = intialPosition;
-        player.transform.localEulerAngles = initialRotation;
+        //player.transform.localEulerAngles = initialRotation;
+        player.transform.localEulerAngles = new Vector3(0, UnityEngine.Random.value * 360, 0);
     }
 
     public void FixedUpdate() {
@@ -79,6 +80,10 @@ public class Behaviour : Agent {
         if (movementDirection != 0) {
             Vector3 movement = player.transform.forward * Time.deltaTime * movementDirection * player.movementSpeed;
             player.transform.Translate(movement, Space.World); // change this to move position?
+        }
+
+        if (player.transform.position.y < player.MapBottom) { // fallen out of the map...
+            EndEpisode();
         }
     }
 }

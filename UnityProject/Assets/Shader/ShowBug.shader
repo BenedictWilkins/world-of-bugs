@@ -4,8 +4,9 @@ Shader "ShowBug"
 {
 	Properties {
 		_BugType("BugType", Color) = (1,1,1,1)
-		_CameraClipColor("CameraClipColor", Color) = (0,0,0,1)
+		_CameraClipColor("CameraClipColor", Color) = (1,1,1,1)
 		_CameraNearClip("NearCameraClip", Float) = 0.01
+		_BackFaceColor("BackFaceColor", Color) = (1,1,1,1)
 	}
 
 	SubShader {
@@ -13,6 +14,7 @@ Shader "ShowBug"
 			"RenderType"="Opaque"
 		}
 
+		Cull Off
 		ZWrite On
 		ColorMask RGB
 
@@ -43,7 +45,8 @@ Shader "ShowBug"
 			ENDCG
 		}
 
-		Pass { // second pass is checking for camera clipping...
+		// second pass is checking for camera clipping...
+		Pass { 
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -74,6 +77,40 @@ Shader "ShowBug"
 					return fixed4(0, 0, 0, 1) ;
 				}
 				return _CameraClipColor;
+			}
+			ENDCG
+		}
+
+		// Render the inside of any object (if we can see inside, we have clipped through the geometry)
+		Pass { 
+			Cull Front
+			
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+
+			#include "UnityCG.cginc"
+
+			struct appdata {
+				float4 vertex : POSITION;
+			};
+
+			struct v2f {
+				float4 vertex : SV_POSITION;
+				float depth : DEPTH;
+			};
+
+			v2f vert (appdata v) {
+				v2f o;
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.depth = -UnityObjectToViewPos(v.vertex).z;
+				return o;
+			}
+
+			half4 _BackFaceColor;
+
+			fixed4 frag (v2f i) : SV_Target {
+				return _BackFaceColor;
 			}
 			ENDCG
 		}
@@ -115,42 +152,6 @@ Shader "ShowBug"
 			}
 			ENDCG
 		}
-
-		Pass { // second pass is checking for camera clipping...
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-
-			#include "UnityCG.cginc"
-
-			struct appdata {
-				float4 vertex : POSITION;
-			};
-
-			struct v2f {
-				float4 vertex : SV_POSITION;
-				float depth : DEPTH;
-			};
-
-			v2f vert (appdata v) {
-				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.depth = -UnityObjectToViewPos(v.vertex).z;
-				return o;
-			}
-
-			half4 _CameraClipColor;
-			float _CameraNearClip; 
-
-			fixed4 frag (v2f i) : SV_Target {
-				if (i.depth > _CameraNearClip) { 
-					discard;
-				}
-				return _CameraClipColor;
-			}
-			ENDCG
-		}
-
 	}
 
 	

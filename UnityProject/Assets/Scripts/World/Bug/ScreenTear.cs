@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+using GD.MinMaxSlider;
+
 public class ScreenTear : Bug {
 
     [Tooltip("Camera RenderTexture to apply the screen tear to.")]
@@ -14,20 +16,24 @@ public class ScreenTear : Bug {
     [Range(1,8), Tooltip("Number of frames to tear into, the effect will be more pronounced with larger n.")]
     public int n = 1;
 
-    [Range(0f,1f), Tooltip("Y position of the bottom of the tear.")]
-    public float _tearMin = 0.2f;
-    [Range(0f,1f), Tooltip("Y position of the top of the tear.")]
-    public float _tearMax = 0.3f;
+    [MinMaxSlider(0f,10f)]
+    public Vector2 deltaRange = new Vector2(0.1f, 1f);
+
+    [SerializeField, MinMaxSlider(0f, 1f), Tooltip("Y position of the top/bottom of the tear.")]
+    private Vector2 TearMinMax = new Vector2(0.2f, 0.3f);
+    [Tooltip("Whether to randomly modify the tear coordinates.")]
+    public bool random = true;
+
 
     protected float TearMin { 
-        get { return _tearMin; }
-        set { _tearMin = value; 
+        get { return TearMinMax.x; }
+        set { TearMinMax.x = value; 
               cameraPostEffect.TearMin = value;
               bugMaskCameraPostEffect.TearMin = value; }
     }
     protected float TearMax {
-        get { return _tearMax; }
-        set { _tearMax = value; 
+        get { return TearMinMax.y; }
+        set { TearMinMax.y = value; 
               cameraPostEffect.TearMax = value;
               bugMaskCameraPostEffect.TearMax = value; }
     }
@@ -46,7 +52,6 @@ public class ScreenTear : Bug {
         // find cameras, add various components for on post render
         // TODO this camera history should be static somewhere!!! when introducing freezing, this will be important.
         CameraHistory history = _camera.gameObject.AddComponent<CameraHistory>();
-        
         history.n = n;
 
         cameraPostEffect = _camera.gameObject.AddComponent<ScreenTearPostCamera>();
@@ -54,7 +59,19 @@ public class ScreenTear : Bug {
 
         bugMaskCameraPostEffect = _bugMaskCamera.gameObject.AddComponent<ScreenTearPostBugMaskCamera>();
         bugMaskCameraPostEffect.Initialise(this, history);   
-     
+        StartCoroutine("EnableDisable");
+    }
+
+    IEnumerator EnableDisable() {
+        while (true) {
+            if (random) {    
+                TearMin = UnityEngine.Random.Range(0f, 0.9f);
+                TearMax = Mathf.Min(TearMin + UnityEngine.Random.Range(0.1f, 0.7f), 1f);
+            }
+            cameraPostEffect._enable = ! cameraPostEffect._enable;
+            bugMaskCameraPostEffect._enable = ! bugMaskCameraPostEffect._enable;
+            yield return new WaitForSeconds(UnityEngine.Random.Range(deltaRange.x, deltaRange.y));
+        }
     }
 
     public override bool InView(Camera camera) { 
@@ -66,11 +83,11 @@ public class ScreenTear : Bug {
         public bool _enable = true;
 
         public float TearMin {
-            get { return _bug._tearMin; }
+            get { return _bug.TearMinMax.x; }
             set { _material.SetFloat("_TearMin", value); }
         }
         public float TearMax {
-            get { return _bug._tearMax; }
+            get { return _bug.TearMinMax.y; }
             set { _material.SetFloat("_TearMax", value); }
         }
         public int n {
@@ -88,8 +105,8 @@ public class ScreenTear : Bug {
             if (_bug == null) { 
                 _bug = bug;
                 _history = history;
-                TearMin = _bug._tearMin;
-                TearMax = _bug._tearMax;
+                TearMin = _bug.TearMinMax.x;
+                TearMax = _bug.TearMinMax.y;
             }
         }
     }

@@ -10,8 +10,8 @@ using System.Linq;
 
 public class Controller : MonoBehaviour {
     
-    public BugOption[] bugs;
     public Player player; 
+    public BugOption[] bugs;
 
     private ConfigSideChannel configChannel;
     private LogSideChannel logChannel;
@@ -35,6 +35,9 @@ public class Controller : MonoBehaviour {
             }
         }
     }
+
+   
+
 
     void Awake() {
         // set up side channels for communicating with Python
@@ -86,7 +89,7 @@ public class Controller : MonoBehaviour {
     }
 
     public bool BugInView(Player player) {
-        Camera camera = player.bugMaskCamera;
+        Camera camera = player.CameraBugMask;
         foreach (BugOption bugOption in bugs) {
             bool inview = bugOption.bug.InView(camera);
             if (inview) {
@@ -142,13 +145,13 @@ public class Controller : MonoBehaviour {
                 return false;
             }
             contr.player.BehaviourType = value;
-
             return true;
         }
 
         protected bool ConfigureBugOption(string name, bool enable) {
             // enable/disable bugs
             BugOption bugOption = Array.Find(contr.bugs, x => x.bug.GetType().Name.Equals(name));
+            
             if (bugOption != null) {
                 if (enable) {
                     bugOption.Enable();

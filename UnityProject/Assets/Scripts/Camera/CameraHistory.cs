@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraHistory : MonoBehaviour {
+    
+    public float delta = 0.01f;
 
     private int _n = 1;
     private Camera _camera;
     private RenderTexture[] _previousTextures; //circular buffer
     private int _ptindex = 0;
+    private float _ptime;
 
     public int Length => _previousTextures.Length; // should reflect _n
 
@@ -38,6 +41,7 @@ public class CameraHistory : MonoBehaviour {
     }
 
     void Awake() {
+        _ptime = Time.time;
         _camera = GetComponent<Camera>();
         _previousTextures = new RenderTexture[n];
         for (int i = 0; i < _previousTextures.Length; i++) {
@@ -46,9 +50,13 @@ public class CameraHistory : MonoBehaviour {
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dst) {
-        _ptindex = (_ptindex +  1) % n;
         Graphics.Blit(src, dst);
-        Graphics.Blit(src, _previousTextures[_ptindex]); 
+        if (Time.time - _ptime > delta) {
+            _ptime = Time.time;
+            _ptindex = (_ptindex +  1) % n;
+            // save this frame for use in the history, note that this history is dependant on delta, but is independant of the application framerate.
+            Graphics.Blit(src, _previousTextures[_ptindex]); 
+        }
     }
 
 }
