@@ -9,7 +9,18 @@ public class DatasetRecorder : MonoBehaviour {
 
     protected int count = 0;
     protected int episode = 0;
+    // screenshot stuff TODO remove...
+    public KeyCode screenshotKey = KeyCode.F9;
+    private int fileCount = 0;
 
+    public string path { get { 
+        string path = $"{Application.dataPath}/Captures/Preview/";
+        if (!Directory.Exists(path)) {
+            Directory.CreateDirectory(path);
+        }
+        return path;
+    }}
+    
 
 
     void Capture() {
@@ -22,7 +33,6 @@ public class DatasetRecorder : MonoBehaviour {
         }
         // TODO log agents actions aswell!
     }
-
 
     void CaptureCamera(Camera camera, string file) {
         RenderTexture renderTexture = camera.targetTexture;

@@ -76,15 +76,14 @@ public class Controller : MonoBehaviour {
         }
     }
 
-    public void Reset() {
-        player.Reset();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        // the agent fell out of the world
-        if (player.transform.localPosition.y < -1) {
-            Reset();
+    public void OnEpisodeBegin() {
+        // renable bugs
+        foreach (BugOption bugOption in bugs) {
+            Debug.Log($"ENABLED: {bugOption} {bugOption.enabled}");
+            if (bugOption.enabled) {
+                bugOption.bug.OnDisable();
+                bugOption.bug.OnEnable();
+            }
         }
     }
 
@@ -154,8 +153,10 @@ public class Controller : MonoBehaviour {
             
             if (bugOption != null) {
                 if (enable) {
+                    bugOption.enabled = true;
                     bugOption.Enable();
                 } else {
+                    bugOption.enabled = false;
                     bugOption.Disable();
                 }
             }

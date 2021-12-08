@@ -9,6 +9,7 @@ using Unity.MLAgents.Policies;
 
 public class Player : MonoBehaviour {
 
+    public Controller controller;
     public float MapBottom = -20; // MOVE THIS SOMEWHERE MORE SUITABLE?
 
     [SerializeField, NotNull, Tooltip("Camera that is used to create a view of the world.")]
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour {
         behaviour = script;
     }
 
-    public void Reset() {
-        // end the episode?
+    public void OnEpisodeBegin() {
+        controller.OnEpisodeBegin();
     }
 }

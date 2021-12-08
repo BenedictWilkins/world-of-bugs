@@ -33,7 +33,7 @@ public class ZFighting : Bug {
         }
     }
 
-    public void OnEnable() {
+    public override void OnEnable() {
         // ensure that all children are inactive
         Transform[] children = gameObject.transform.GetComponentsInChildren<Transform>(true);
         foreach (Transform c in children) {
@@ -51,11 +51,13 @@ public class ZFighting : Bug {
         }
     }
 
-    public void OnDisable() {
+    public override void OnDisable() {
         // TODO disable all children? 
         Transform[] children = gameObject.transform.GetComponentsInChildren<Transform>(true);
         foreach (Transform c in children) {
-            c.gameObject.SetActive(false);
+            if (c != gameObject.transform) { // dont turn yourself off again...
+                c.gameObject.SetActive(false);
+            }
         }
     }
 

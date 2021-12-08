@@ -44,7 +44,7 @@ public class ZClipping : Bug {
         camera.depth = camera.depth + 1;
     }
 
-    public void OnEnable() {
+    public override void OnEnable() {
         BugTag tag = GetComponent<BugTag>();
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
@@ -56,7 +56,7 @@ public class ZClipping : Bug {
         tag.Tag(_fighter);
     }
 
-    public void OnDisable() {
+    public override void OnDisable() {
         if (_fighter != null) {
             Material material = _fighter.GetComponent<Renderer>().material;
             BugTag tag = GetComponent<BugTag>();

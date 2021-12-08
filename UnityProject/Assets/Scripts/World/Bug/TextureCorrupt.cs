@@ -13,7 +13,7 @@ public class TextureCorrupt : Bug {
     protected Vector2 _textureOffset;
     protected Vector2[] _uv;
 
-    public void OnEnable() {
+    public override void OnEnable() {
         BugTag tag = GetComponent<BugTag>();
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
@@ -54,7 +54,7 @@ public class TextureCorrupt : Bug {
         return _uvs;
     }
 
-    public void OnDisable() {
+    public override void OnDisable() {
         if (_go != null) {
             Material material = _go.GetComponent<Renderer>().material;
             Mesh mesh = _go.GetComponent<MeshFilter>().mesh;

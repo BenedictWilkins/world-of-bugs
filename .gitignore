@@ -1,6 +1,9 @@
 # Builds (use build.cs to build the scenes)
 builds/
 
+*.mp4
+*.pt
+
 # Datasets (download them from kaggle or recreate them!)
 *.hdf5
 Captures/

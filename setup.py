@@ -16,7 +16,7 @@ setup(name='worldofbugs',
       author='Benedict Wilkins',
       author_email='benrjw@gmail.com',
       packages=find_packages(),
-      install_requires=['numpy', 'gym', 'h5py'],
+      install_requires=['numpy', 'gym', 'h5py', 'torch', 'torchvision', 'ray', ''],
       zip_safe=False)
 
 

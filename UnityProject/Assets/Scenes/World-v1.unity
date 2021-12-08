@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 115390036}
   - component: {fileID: 115390037}
   m_Layer: 0
-  m_Name: Bug - CollisionClipping
+  m_Name: Bug - GeometryClipping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -731,9 +731,9 @@ MonoBehaviour:
   - bug: {fileID: 556801286}
     enabled: 0
   - bug: {fileID: 57023687}
-    enabled: 1
+    enabled: 0
   - bug: {fileID: 115390036}
-    enabled: 1
+    enabled: 0
 --- !u!4 &517195456
 Transform:
   m_ObjectHideFlags: 0
@@ -1304,7 +1304,7 @@ MonoBehaviour:
   _bugMaskRenderTexture: {fileID: 8400000, guid: cb0f69f72f83b07b399aa14a9d41163c,
     type: 2}
   frameRange: {x: 0.058188267, y: 0.1}
-  deltaRange: {x: 2.2538733, y: 4}
+  deltaRange: {x: 4, y: 6}
 --- !u!1 &925496411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2217,11 @@ PrefabInstance:
       propertyPath: radius
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 314728250385190979, guid: d46096a7649614ec3ae4dada80296439,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 517195455}
     - target: {fileID: 7271161209883660081, guid: d46096a7649614ec3ae4dada80296439,
         type: 3}
       propertyPath: surfaces.Array.size

@@ -16,7 +16,7 @@ public class CameraClipping : Bug {
         OnDisable();
     }
 
-    public void OnEnable() {
+    public override void OnEnable() {
         // set the near clipping plan to be farther away
         // when close to an object the view will clip inside
         _oldclip = _camera.nearClipPlane;
@@ -26,7 +26,7 @@ public class CameraClipping : Bug {
         Shader.SetGlobalColor("_CameraClipColor", (Color)tag.bugType);
     }
 
-    public void OnDisable() {
+    public override void OnDisable() {
         Shader.SetGlobalFloat("_CameraNearClip", 0.01f);
         Shader.SetGlobalColor("_CameraClipColor", transparent);
     }

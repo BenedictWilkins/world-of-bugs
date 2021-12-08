@@ -66,9 +66,12 @@ public class Behaviour : Agent {
     }
 
     public override void OnEpisodeBegin() {
+        Debug.Log("EPISODE BEGIN!");
+        // TODO maybe this stuff should be moved into player? ... hmm
         player.transform.localPosition = intialPosition;
-        //player.transform.localEulerAngles = initialRotation;
         player.transform.localEulerAngles = new Vector3(0, UnityEngine.Random.value * 360, 0);
+        // ** //
+        player.OnEpisodeBegin();
     }
 
     public void FixedUpdate() {

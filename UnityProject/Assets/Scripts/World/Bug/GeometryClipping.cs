@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CollisionClip : Bug {
+public class GeometryClipping : Bug {
 
     public GameObject level;
     private GameObject _go; // disable colldier on this game object
@@ -14,7 +14,7 @@ public class CollisionClip : Bug {
         Shader.SetGlobalColor("_BackFaceColor", (Color)tag.bugType);
     }
 
-    void OnEnable() {
+    public override void OnEnable() {
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Collider>() != null); // leaf children
         int j = UnityEngine.Random.Range(0, children.Length); 
@@ -22,7 +22,7 @@ public class CollisionClip : Bug {
         _go.GetComponent<Collider>().enabled = false;
     }
 
-    void OnDisable() {
+    public override void OnDisable() {
         if (_go != null) {
             _go.GetComponent<Collider>().enabled = true;
         }

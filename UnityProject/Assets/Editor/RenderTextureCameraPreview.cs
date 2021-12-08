@@ -1,17 +1,19 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 class RenderTextureCameraPreview : EditorWindow {
 
+    // internal
     private Camera[] cameras;
     private int n;
     private int m;
 
-    [MenuItem ("Window/RenderTextureCameraPreview")]
+    [MenuItem ("Window/Preview/RenderTextureCameraPreview")]
     public static void ShowWindow() {
         EditorWindow editorWindow = GetWindow(typeof(RenderTextureCameraPreview));
         editorWindow.autoRepaintOnSceneChange = true;
@@ -60,4 +62,9 @@ class RenderTextureCameraPreview : EditorWindow {
         y = y + (h - ha) / 2;
         return new Rect(x, y, wa, ha);
     }
+
+ 
+
+
+
 }

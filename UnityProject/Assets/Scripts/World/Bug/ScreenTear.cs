@@ -62,6 +62,9 @@ public class ScreenTear : Bug {
         StartCoroutine("EnableDisable");
     }
 
+    public override void OnDisable() {}
+    public override void OnEnable() {}
+
     IEnumerator EnableDisable() {
         while (true) {
             if (random) {    

@@ -13,7 +13,7 @@ public class TextureMissing : Bug {
     protected Texture _texture;
     protected Color _color;
 
-    public void OnEnable() {
+    public override void OnEnable() {
         BugTag tag = GetComponent<BugTag>();
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
@@ -28,9 +28,9 @@ public class TextureMissing : Bug {
         tag.Tag(_missing);
     }
 
-    public void OnDisable() {
+    public override void OnDisable() {
         if (_missing != null) {
-             Material material = _missing.GetComponent<Renderer>().material;
+            Material material = _missing.GetComponent<Renderer>().material;
             material.SetTexture("_MainTex", _texture);
             material.SetColor("_Color", _color);
             BugTag tag = GetComponent<BugTag>();

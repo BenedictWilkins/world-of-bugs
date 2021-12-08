@@ -21,6 +21,9 @@ public abstract class Bug : MonoBehaviour {
         return false;
     }
 
+    public abstract void OnEnable();
+    public abstract void OnDisable();
+
    
 }
 
