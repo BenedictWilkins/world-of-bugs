@@ -142,6 +142,8 @@ class GymIterator:
         
     def __iter__(self):
         state = self.env.reset()
+        
+
         done = False
         while not done:
             action = self.policy(state)

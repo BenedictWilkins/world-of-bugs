@@ -6,7 +6,13 @@ using System.Linq;
 public class ZFighting : Bug { 
 
     public GameObject original;
+    // unfortunately it is not enough just to tag the cloned object, the label is not correctly rendered after build
+    // the main and bug mask cameras render differently (probably a platform specific shader thing...) they treat the z-order differently? so the mask is incorrect.
+    // as a work around, we just mask the whole game object... this will lead to some false positives, if it happens that the original object is displayed only. 
+    // but this is better than miss labelling True positives.
+    protected GameObject taggedOriginal;
     protected GameObject clone;
+    
 
     public void Awake() {
         clone = Instantiate(original);
@@ -49,6 +55,12 @@ public class ZFighting : Bug {
             child.gameObject.SetActive(true);
             child = child.parent;
         }
+
+        children = original.GetComponentsInChildren<Transform>(true);
+        children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null).ToArray();
+        BugTag tag = GetComponent<BugTag>();
+        taggedOriginal = children[i].gameObject;
+        tag.Tag(taggedOriginal);
     }
 
     public override void OnDisable() {
@@ -59,6 +71,8 @@ public class ZFighting : Bug {
                 c.gameObject.SetActive(false);
             }
         }
+        BugTag tag = GetComponent<BugTag>();
+        tag.Untag(taggedOriginal);
     }
 
     public override bool InView(Camera camera) { 

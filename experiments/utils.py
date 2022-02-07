@@ -9,6 +9,8 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
+import glob
+
 import os
 import h5py
 from tqdm.auto import tqdm
@@ -16,29 +18,77 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.utils.data import TensorDataset, ConcatDataset, DataLoader
+import sklearn
+import sklearn.metrics
 
 # download from kaggle... ?
 WORLDOFBUGS_PATH = os.path.abspath("..")
-DEFAULT_TRAIN_FILE_SMALL = "worldofbugs/builds/World-v1/dataset/NORMAL-50k.hdf5"
-DEFAULT_TRAIN_FILE_LARGE = "worldofbugs/builds/World-v1/dataset/NORMAL-300k.hdf5"
-DEFAULT_TEST_FILE = "worldofbugs/builds/World-v1/dataset/dataset-1.hdf5"
+FILES_VALIDATE = [os.path.join(WORLDOFBUGS_PATH, "worldofbugs/builds/World-v1/dataset/NORMAL-50k.hdf5")]
+FILES_TRAIN = [os.path.join(WORLDOFBUGS_PATH,"worldofbugs/builds/World-v1/dataset/NORMAL-300k.hdf5")]
+FILES_TEST = [f for f in glob.glob(os.path.join(WORLDOFBUGS_PATH,"worldofbugs/builds/World-v1/dataset/TEST/*.hdf5"))]
 
-def load_train(file=os.path.join(WORLDOFBUGS_PATH, DEFAULT_TRAIN_FILE_SMALL), keys=["observation", "action"]):
-    return [ep for ep in load(file, keys)]
+def forward(model, x, device="cpu"):
+    with torch.no_grad():
+        loader = DataLoader(x, batch_size=512)
+        result = [model(x.to(device)) for x in loader]
+    if isinstance(result[0], (tuple, list)):
+        return [torch.cat(r) for r in zip(*result)]
+    return torch.cat(result)
 
-def load_test(file=os.path.join(WORLDOFBUGS_PATH, DEFAULT_TEST_FILE), keys=["observation", "bugmask"]):
-    return [ep for ep in load(file, keys)]
 
-def load(file, keys, lazy=False):
-    with h5py.File(file, 'r') as f:
-        for g in tqdm(f):
-            if not lazy:
+def load(files, keys, lazy=False):
+    if isinstance(files, str):
+        files = [files]
+    def _load(file, keys):
+        with h5py.File(file, 'r') as f:
+            for g in tqdm(f):
                 yield tuple([f[g][k][...] for k in keys])
-            else:
+    def _load_lazy(file, keys):
+        with h5py.File(file, 'r') as f:
+            for g in tqdm(f):
                 yield tuple([f[g][k] for k in keys])
-                
+    loader = _load_lazy if lazy else _load
+    for file in files:
+        yield from loader(file, keys)
 
+          
+def roc(label, score, label_thresholds=[0, 10, 50, 100, 200]):
+    assert label.shape[0] == score.shape[0]
+    assert len(label.shape) == len(score.shape)
+    results = []
+    aucs = []
+    for lt in label_thresholds:
+        _label = (label > lt).astype(np.float32)
+        fpr, tpr, thresholds = sklearn.metrics.roc_curve(_label, score) 
+        results.append((fpr, tpr))
+        aucs.append(sklearn.metrics.auc(fpr, tpr))
+    return label_thresholds, results, aucs
 
+def pr(label, score, label_thresholds=[0, 10, 50, 100, 200]):
+    assert label.shape[0] == score.shape[0]
+    assert len(label.shape) == len(score.shape)
+    results = []
+    aucs = []
+    for lt in label_thresholds:
+        _label = (label > lt).astype(np.float32)
+        p, r, thresholds = sklearn.metrics.precision_recall_curve(_label, score) 
+        results.append((r, p))
+        aucs.append(sklearn.metrics.auc(r, p))
+    return label_thresholds, results, aucs
+
+class S3N(nn.Module):
+    
+    def __init__(self, input_shape, latent_shape):
+        super().__init__()
+        self.s1 = Encoder(input_shape, latent_shape, n=16)
+        self.s2 = Encoder(input_shape, latent_shape, n=16)
+    
+    def forward(self, x1, x2=None):
+        if x2 == None:
+            x2 = x1
+        return self.s1(x1), self.s2(x2)
+        
 class AE(nn.Module):
     
     def __init__(self, input_shape, latent_shape=1024):
@@ -104,8 +154,6 @@ class Encoder(Sequential):
             nn.ConvTranspose2d(n, self.input_shape[0], (6,6), 2)
         ]
         return Sequential(self.output_shape, self.input_shape, layers)    
-
-
 
 class ResBlock2D(nn.Module):
 
@@ -181,7 +229,7 @@ class Flatten(View):
         super().__init__(input_shape, (-1,))
         
 
-def distance(fun):
+def distance_matrix(fun):
     def decorator(x1, x2=None):
         if x2 is None:
             x2 = x1
@@ -192,10 +240,13 @@ def distance(fun):
         return dist
     return decorator
 
-@distance
-def L22(x1, x2): # Squared L2
+@distance_matrix
+def L22(x1, x2): # L2 ^ 2 matrix
     n_dif = x1.unsqueeze(1) - x2.unsqueeze(0)
     return torch.sum(n_dif * n_dif, -1)
+
+def L22_(x1, x2): # L2 ^ 2 vector
+    return ((x1.view(x1.shape[0], -1) - x2.view(x2.shape[0], -1)) ** 2).sum(-1)
 
 class PairedTripletLoss:
 
@@ -219,4 +270,11 @@ class PairedTripletLoss:
         
         xf = F.relu(xf + self.margin)
         return xf.mean()
+    
+    
+  
+    
+    
+    
+    
     

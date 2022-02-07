@@ -1,7 +1,6 @@
 from worldofbugs.dataset import dataset, load
 from worldofbugs.utils import get_unity_environments, make
 
-import pygame
 import numpy as np
 import time
 
@@ -14,15 +13,16 @@ BUG_LABELS = [#"GeometryClipping", "BoundaryHole",
 "ScreenTear", "GeometryCorruption", 
 ]
 
-BUGS = BUG_LABELS
+BUGS = ["BoundaryHole"]
 
-#dataset("World-v1", "NavMesh", n_episodes=1, max_episode_length=1000, workers=1, append=0)
+#dataset("World-v1", "NavMesh", n_episodes=2, max_episode_length=1000, workers=1, append=0)
 #dataset("World-v1", "NavMesh", n_episodes=30, max_episode_length=5000, workers=2, append=1)
 
 for i, bug in enumerate(BUGS, 1):
     print("*********************************************************************")
     print(bug)
-    dataset("World-v1", "NavMesh", n_episodes=10, max_episode_length=5000, workers=2, bugs=[bug], append=i)
+    #dataset("World-v1", "NavMesh", n_episodes=10, max_episode_length=5000, workers=2, bugs=[bug], append=0)
+    dataset("World-v1", "NavMesh", n_episodes=2, max_episode_length=5000, workers=2, bugs=[bug], append=0)
     print("*********************************************************************")
 
 

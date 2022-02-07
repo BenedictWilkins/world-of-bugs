@@ -11,6 +11,7 @@ __status__ = "Development"
 
 from os import device_encoding
 import numpy as np
+import time
 
 import gym
 from gym import error, spaces
@@ -117,6 +118,8 @@ class SingleAgentUnityGymEnvironment(gym.Env):
         self.observation_space = spaces.Tuple(list_spaces)
 
     def reset(self):
+        #time.sleep(4)
+        print("RESET")
         self._env.reset()
         self.__done = False
         decision_steps, terminal_steps = self._env.get_steps(self.name)
@@ -152,9 +155,8 @@ class BuggedUnityGymEnvironment(SingleAgentUnityGymEnvironment):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         # get index of each sensor
-        print(self.spec.observation_specs)
+        # print(self.spec.observation_specs)
         self.sensors = [spec.name for spec in self.spec.observation_specs]
         self._renderer = None
         
@@ -165,6 +167,7 @@ class BuggedUnityGymEnvironment(SingleAgentUnityGymEnvironment):
         else:
             reward = 0.
         observations = {k:v[0] for k,v in zip(self.sensors, steps.obs)}
+
         self.current_observation = observations
         return observations, reward
 

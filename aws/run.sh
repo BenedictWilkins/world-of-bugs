@@ -3,7 +3,7 @@
 DIRECTORY="/home/ubuntu/.aws"
 
 # sync install files
-rsync -rv ./ ubuntu@$1:$DIRECTORY
+rsync -rv --inplace ./ ubuntu@$1:$DIRECTORY
 
 # update and add packages
 ssh ubuntu@$1 "source $DIRECTORY/install_dpkg.sh $DIRECTORY && exit"
@@ -14,8 +14,11 @@ ssh ubuntu@$1 "source $DIRECTORY/install_conda.sh && exit"
 # install python packages
 ssh ubuntu@$1 "source $DIRECTORY/install_python.sh  && exit"
 
-# setup kaggle
-rsync -rv ~/.kaggle/ ubuntu@$1:/home/ubuntu/.kaggle/
+
+
+# setup kaggle & wandb 
+rsync -rv --inplace ~/.wandb/ ubuntu@$1:/home/ubuntu/.wandb/
+rsync -rv --inplace ~/.kaggle/ ubuntu@$1:/home/ubuntu/.kaggle/
 ssh ubuntu@$1 "source $DIRECTORY/kaggle_datasets.sh $DIRECTORY && exit"
 
 # set up git repositories

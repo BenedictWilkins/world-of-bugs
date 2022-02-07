@@ -13,7 +13,7 @@ Shader "ShowBug"
 		Tags {
 			"RenderType"="Opaque"
 		}
-
+		ZTest LEqual 
 		Cull Off
 		ZWrite On
 		ColorMask RGB
@@ -120,7 +120,7 @@ Shader "ShowBug"
 		Tags {
 			"RenderType"="Bug"
 		}
-
+		//ZTest LEqual 
 		ZWrite On
 		ColorMask RGB
 

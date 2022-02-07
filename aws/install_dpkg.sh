@@ -6,5 +6,6 @@ sudo apt-get autoremove
 
 sudo apt-get install git
 sudo apt-get install ffmpeg -y
+sudo apt-get install unzip
 
 

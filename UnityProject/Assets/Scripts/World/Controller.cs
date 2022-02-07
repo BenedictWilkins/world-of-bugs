@@ -6,6 +6,8 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.SideChannels;
 
+
+
 using System.Linq;
 
 public class Controller : MonoBehaviour {
@@ -78,8 +80,9 @@ public class Controller : MonoBehaviour {
 
     public void OnEpisodeBegin() {
         // renable bugs
+        Debug.Log($"RESTART {System.Diagnostics.Process.GetCurrentProcess().Id}");
         foreach (BugOption bugOption in bugs) {
-            Debug.Log($"ENABLED: {bugOption} {bugOption.enabled}");
+            //Debug.Log($"ENABLED: {bugOption} {bugOption.enabled}");
             if (bugOption.enabled) {
                 bugOption.bug.OnDisable();
                 bugOption.bug.OnEnable();

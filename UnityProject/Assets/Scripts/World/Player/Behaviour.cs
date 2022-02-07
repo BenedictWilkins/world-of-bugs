@@ -30,7 +30,7 @@ public class Behaviour : Agent {
         initialRotation = player.transform.localEulerAngles;
     }
 
-    protected  delegate void ActionMethod(Behaviour instance);
+    protected delegate void ActionMethod(Behaviour instance);
 
      // ACTION METHODS
     protected  static void none(Behaviour instance) {

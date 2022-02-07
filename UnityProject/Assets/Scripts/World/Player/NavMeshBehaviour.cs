@@ -100,7 +100,7 @@ public class NavMeshBehaviour : Behaviour {
         }
         
         Debug.DrawLine(player.transform.position, player.transform.position + direction, Color.blue, dt);
-        Debug.DrawLine(player.transform.position, player.transform.position+ player.transform.forward, Color.green, dt);
+        Debug.DrawLine(player.transform.position, player.transform.position + player.transform.forward, Color.green, dt);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers){
@@ -113,6 +113,7 @@ public class NavMeshBehaviour : Behaviour {
         foreach (int a in actionBuffers.DiscreteActions) {
             actions[a](this); // perform the action
             action = a; // save the action to be part of the observation meta data
+            //Debug.Log($"{a} {StepCount}");
         }
         isHeuristic = false;
     }
