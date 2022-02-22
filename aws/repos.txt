@@ -1,3 +1,0 @@
-https://github.com/BenedictWilkinsAI/jnu.git
-https://github.com/BenedictWilkinsAI/nnu.git
-https://github.com/BenedictWilkins/WorldOfBugs.git
