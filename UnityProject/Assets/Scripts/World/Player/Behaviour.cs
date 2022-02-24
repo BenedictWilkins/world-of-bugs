@@ -14,8 +14,7 @@ public class Behaviour : Agent {
     protected int movementDirection;
     protected int rotationDirection;
 
-    protected Vector3 intialPosition;
-    protected Vector3 initialRotation;
+
 
     protected int action = 0; // the action that is currently being taken
     //protected bool done = false; // where the episode ended now.
@@ -26,8 +25,6 @@ public class Behaviour : Agent {
 
     void Awake() {
         player = transform.parent.gameObject.GetComponent<Player>();
-        intialPosition = player.transform.localPosition;
-        initialRotation = player.transform.localEulerAngles;
     }
 
     protected delegate void ActionMethod(Behaviour instance);
@@ -66,11 +63,7 @@ public class Behaviour : Agent {
     }
 
     public override void OnEpisodeBegin() {
-        Debug.Log("EPISODE BEGIN!");
-        // TODO maybe this stuff should be moved into player? ... hmm
-        player.transform.localPosition = intialPosition;
-        player.transform.localEulerAngles = new Vector3(0, UnityEngine.Random.value * 360, 0);
-        // ** //
+        //Debug.Log("EPISODE BEGIN!");
         player.OnEpisodeBegin();
     }
 

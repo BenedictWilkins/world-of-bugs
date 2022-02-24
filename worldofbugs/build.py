@@ -14,8 +14,7 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
-# /home/ben/Documents/repos/unity/editors/2019.4.25f1/Editor/Unity -batchmode -projectPath "/home/ben/Documents/repos/WorldOfBugs/UnityProject" -executeMethod Build.Start
-
+# /home/ben/Documents/unity/2019.4.25f1/Editor/Unity
 # TODO add options for which scene to build?
 # TODO add plaform specific options e.g. build target, see UnityProject/Editor/Build.cs
 
@@ -26,7 +25,7 @@ import subprocess
 UNITY_PROJECT_DIR = "UnityProject"
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('--path', '-p', type=str,
+parser.add_argument('--path', '-p', type=str, required=True,
                     help="Path of the unity editor to use (please use version 2019.4.25f1 to avoid issues). The editor path can be found in the Unity Hub Settings. Example: '.../editors/2019.4.25f1/Editor/Unity'")
 
 args = parser.parse_args()
@@ -34,7 +33,6 @@ args = parser.parse_args()
 project_path = os.path.split(__file__)[0]
 project_path = os.path.join(project_path, "..", UNITY_PROJECT_DIR)
 project_path = os.path.abspath(project_path)
-
 command = f"{args.path} -projectpath {project_path} -executeMethod Build.Start" 
 print(f"BUILDING UNITY SCENES USING COMMAND: {command}")
 proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)

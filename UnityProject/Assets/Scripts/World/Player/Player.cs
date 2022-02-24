@@ -20,6 +20,9 @@ public class Player : MonoBehaviour {
     public Camera CameraBugMask { get { return _cameraBugMask; }}
     public Camera CameraMain { get { return _cameraMain; }}
 
+    protected Vector3 initialPosition;
+    protected Vector3 initialRotation;
+
     [SerializeField, Tooltip("Type of behaviour for this agent.")]
     protected BehaviourType behaviourType = BehaviourType.Manual;
 
@@ -42,10 +45,13 @@ public class Player : MonoBehaviour {
     public int MaxStep = 10000;
 
     public void Awake() {
+        initialPosition = gameObject.transform.localPosition;
+        initialRotation = gameObject.transform.localEulerAngles;
         UpdateBehaviourType();
     }
 
     protected void UpdateBehaviourType() {
+        Debug.Log($"UPDATE BEHAVIOUR {BehaviourType}");
         Behaviour script = (Behaviour) null;
         switch(BehaviourType) {
             case (BehaviourType.Manual): {
@@ -73,5 +79,8 @@ public class Player : MonoBehaviour {
 
     public void OnEpisodeBegin() {
         controller.OnEpisodeBegin();
+        gameObject.transform.position = initialPosition;
+        //gameObject.transform.localEulerAngles = new Vector3(0, UnityEngine.Random.value * 360, 0);
+
     }
 }

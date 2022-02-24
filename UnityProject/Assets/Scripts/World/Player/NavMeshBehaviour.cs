@@ -49,8 +49,6 @@ public class NavMeshBehaviour : Behaviour {
     }
 
     void Start() {
-        intialPosition = player.transform.localPosition;
-        initialRotation = player.transform.localEulerAngles;
         path = new NavMeshPath();
         BuildNavMesh();
         UpdateNavPath();
@@ -113,9 +111,10 @@ public class NavMeshBehaviour : Behaviour {
         foreach (int a in actionBuffers.DiscreteActions) {
             actions[a](this); // perform the action
             action = a; // save the action to be part of the observation meta data
-            //Debug.Log($"{a} {StepCount}");
+            // Debug.Log($"{a} {StepCount}");
         }
         isHeuristic = false;
+
     }
 
     void Update() {

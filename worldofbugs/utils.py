@@ -30,7 +30,10 @@ class ObservationUnwrap(gym.ObservationWrapper):
 # use side channels?
 # https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Python-API.md#interacting-with-a-unity-environment
 def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3, time_scale=1.0, log_folder=None, debug=True): 
-    env_id, ex_path = _get_unity_environment_info(env_id)
+    if env_id is not None:
+        env_id, ex_path = _get_unity_environment_info(env_id)
+    else:
+        ex_path = None # USE THE UNITY EDITOR
     env = BuggedUnityEnvironment(file_name=ex_path, 
                                     worker_id=worker, 
                                     log_folder=log_folder, 

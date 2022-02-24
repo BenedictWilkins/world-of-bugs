@@ -9,12 +9,12 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
-from os import device_encoding
+
 import numpy as np
-import time
 
 import gym
-from gym import error, spaces
+from gym import spaces
+from types import SimpleNamespace
 
 from mlagents_envs.environment import UnityEnvironment
 from typing import Dict, List, Optional, Tuple, Mapping as MappingType
@@ -22,8 +22,6 @@ from mlagents_envs.side_channel.side_channel import SideChannel
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
 from mlagents_envs.environment import UnityEnvironment
 from gym_unity.envs import UnityToGymWrapper, ActionFlattener, ActionTuple, UnityGymException
-from numpy.core.numeric import False_
-from numpy.lib.shape_base import dsplit
 
 from .sidechannel import UnityLogChannel, UnityConfigChannel
 
@@ -73,8 +71,8 @@ class SingleAgentUnityGymEnvironment(gym.Env):
         super().__init__()
         assert isinstance(env, BuggedUnityEnvironment) # only the bugged unity environment is supported!
         self._env = env
+        #self._env.set_player_behaviour('ML')
         
-
         # inherit some methods from the wrapped environment
         setattr(self, self._env.enable_bug.__name__, self._env.enable_bug)
         setattr(self, self._env.disable_bug.__name__, self._env.disable_bug)
@@ -90,10 +88,8 @@ class SingleAgentUnityGymEnvironment(gym.Env):
         self.__init_action_space()
         self.__init_observation_space()
 
-        self.__done = False
-
-        self.current_observation = None
-
+        self._data = SimpleNamespace(state=None, action=None, reward=None, done=False, info=None)
+        
     def close(self):
         self._env.close()
 
@@ -118,34 +114,34 @@ class SingleAgentUnityGymEnvironment(gym.Env):
         self.observation_space = spaces.Tuple(list_spaces)
 
     def reset(self):
-        #time.sleep(4)
-        print("RESET")
         self._env.reset()
-        self.__done = False
+        self._data.done = False
         decision_steps, terminal_steps = self._env.get_steps(self.name)
         #assert len(terminal_steps) == 0 # ???
-        return self._collect_observations(decision_steps, terminal_steps)[0]
+        state, _, _, info = self._collect(None, decision_steps, terminal_steps)
+        self._data.state, self._data.info = info
+        return state, info
 
     def step(self, action):
-        if self.__done:
+        if self._data.done:
             raise UnityGymException("Attempted to call step when the environment is already done.")
 
         action_tuple = self._action_handler.get_action_tuple(np.array([action]))
         self._env.set_actions(self.name, action_tuple)
         self._env.step()
         decision_steps, terminal_steps = self._env.get_steps(self.name)
-        self.__done = len(terminal_steps) > 0
-        observation, reward = self._collect_observations(decision_steps, terminal_steps)
-        return observation, reward, self.__done, None
+        self._data.done = len(terminal_steps) > 0
+        state, action, reward, info = self._collect(action, decision_steps, terminal_steps)
+        self._data.state, self._data.action, self._data.reward, self._data.info = state, action, reward, info
+        return state, reward, self._data.done, info
 
-    def _collect_observations(self, decision_steps, terminal_steps):
+    def _collect(self, action, decision_steps, terminal_steps):
         steps = decision_steps if len(decision_steps) > 0 else terminal_steps
         if steps.reward.shape[0] > 0:
             reward = steps.reward[0] # sometimes the reward is not defined
         else:
             reward = 0.
-        self.current_observation = steps.obs
-        return steps.obs, reward
+        return steps.obs, action, reward, None
 
     @property
     def action_space(self):
@@ -155,21 +151,22 @@ class BuggedUnityGymEnvironment(SingleAgentUnityGymEnvironment):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # get index of each sensor
-        # print(self.spec.observation_specs)
         self.sensors = [spec.name for spec in self.spec.observation_specs]
         self._renderer = None
         
-    def _collect_observations(self, decision_steps, terminal_steps):
+    def _collect(self, action, decision_steps, terminal_steps):
         steps = decision_steps if len(decision_steps) > 0 else terminal_steps
         if steps.reward.shape[0] > 0: # sometimes the reward is not defined
             reward = steps.reward[0] 
         else:
             reward = 0.
-        observations = {k:v[0] for k,v in zip(self.sensors, steps.obs)}
+        info = {k:v[0] for k,v in zip(self.sensors, steps.obs)}
+        state = info['observation'] 
+        del info['observation']
 
-        self.current_observation = observations
-        return observations, reward
+
+        action = info.get('info', [action])[0] # if the policy used is a unity policy, this is important. Otherwise, there is not difference here.
+        return state, action, reward, info
 
     def render(self):
         if self._renderer is None:
@@ -180,7 +177,10 @@ class DebugRenderer:
 
     def __init__(self, env, display_size=(400,200)):
         self.env = env
-        import pygame
+        try:
+            import pygame
+        except:
+            raise ImportError("To visualise a WOB environment the pygame is required.")
         self.pygame = pygame
         self.pygame.init()
         self.display_size = display_size
@@ -192,8 +192,7 @@ class DebugRenderer:
                 self.close()
                 return
         # otherwise, render the current observation
-        state = self.env.current_observation
-        obs = np.concatenate([state['observation'].transpose(1,0,2), state['bugmask'].transpose(1,0,2)], axis=0)
+        obs = np.concatenate([self.env._data.state.transpose(1,0,2), self.env._data.info['bugmask'].transpose(1,0,2)], axis=0)
         obs = (obs * 255).astype(np.uint8)
         surf = self.pygame.Surface(obs.shape[:2])
         self.pygame.surfarray.blit_array(surf, obs)
@@ -203,6 +202,8 @@ class DebugRenderer:
         
     def close(self):
         self.pygame.quit()
+
+
 
 
 

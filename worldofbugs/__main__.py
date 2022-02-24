@@ -9,4 +9,15 @@ __status__ = "Development"
 
 import worldofbugs
 
+env = worldofbugs.utils.make(None)
+env.set_player_behaviour('NavMesh') 
+
+env.reset()
+for i in range(1000):
+   env.step(env.action_space.sample())
+   env.render() # requires pygame installed
+
+
+#worldofbugs.dataset.dataset("./dataset", "World-v1", max_episode_length=10)
+
 

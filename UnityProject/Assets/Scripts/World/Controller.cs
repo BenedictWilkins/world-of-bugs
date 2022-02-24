@@ -38,9 +38,6 @@ public class Controller : MonoBehaviour {
         }
     }
 
-   
-
-
     void Awake() {
         // set up side channels for communicating with Python
         configChannel = new ConfigSideChannel(this);
@@ -141,11 +138,6 @@ public class Controller : MonoBehaviour {
                 return false;
             }
             BehaviourType value =  (BehaviourType) Enum.Parse(typeof(BehaviourType), name);
-            if (value == null) {
-                //string[] valid = Array.Select(Enum.GetValues(typeof(BehaviourType)), x => x.GetName());
-                //throw new ConfigurationException($"Behaviour {name} not found, valid behaviours include: {valid}");
-                return false;
-            }
             contr.player.BehaviourType = value;
             return true;
         }

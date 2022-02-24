@@ -6,7 +6,7 @@ using System.Linq;
 // /home/ben/Documents/repos/unity/editors/2019.4.25f1/Editor/Unity -projectPath "/home/ben/Documents/repos/WorldOfBugs/UnityProject" -executeMethod Build.Start
 public class Build: MonoBehaviour
 {
-    static readonly string BUILD_LOCATION = "../world-of-bugs/builds/";
+    static readonly string BUILD_LOCATION = "../worldofbugs/builds/";
     static readonly string BUILD_EXT_LINUX = ".x86_64";
 
     static string[] GetSceneInfo(string scene_path) {
