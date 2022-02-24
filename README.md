@@ -25,9 +25,9 @@ Below is a list of the currently implemented bugs in WOB, the list is growing!
 | **Texture Missing:** When a texture is missing from an object, which may happen if a developer forgets to set the texture, its missing/inaccessible in the file system or otherwise, the shader responsible for rendering the texture will typically resort to rendering the object it in one colour (typically bright pink) or resort to a default texture. _Implementation_: remove the texture from a chosen game object. | <img src="https://github.com/BenedictWilkins/WorldOfBugs/blob/gh-pages/static/image/bugs/TextureMissing.png?raw=True" width=256 style="border: 1px solid black"> |
 | **Z-Clipping:** Rendering pipelines often have layers, layers contain geometry to be rendered and are queued and rendered in order. Pixels in the layers rendered subsequently are replaced or are blended with pixels in previous layers. If an object geometry is placed in the wrong layer, it may be rendered on top of others leading to some strange spatial effects (which may or may not be desirable). _Implementation_: places a chosen game object in a layer that is always rendered last. | <img src="https://github.com/BenedictWilkins/WorldOfBugs/blob/gh-pages/static/image/bugs/ZClipping.png?raw=True" width=256 style="border: 1px solid black"> |
 | **Z-Fighting:** Z-Fighting happens when two surfaces have the same depth (z). The renderer/shader does not know which to show first and this results in a mixing of textures from the two surfaces. A flickering effect may also occur during when the players view shifts. _Implementation_: copies a game object, modifies its texture and places it exactly at the position of the original. | <img src="https://github.com/BenedictWilkins/WorldOfBugs/blob/gh-pages/static/image/bugs/ZFighting.png?raw=True" width=256 style="border: 1px solid black"> |
-| **Invisible Wall:** | COMING SOON |
-| **Unresponsive:**   | COMING SOON |
-| **Freezing/Lag:**   | COMING SOON |
+| **Invisible Wall:** COMING SOON | COMING SOON |
+| **Unresponsive:**   COMING SOON | COMING SOON |
+| **Freezing/Lag:**   COMING SOON | COMING SOON |
 
 
 
