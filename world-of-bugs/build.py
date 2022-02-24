@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-    Build all of the unity environments. Environment builds are placed in worldofbugs/builds. Building requires unity editor version 2019.4.25f1 and the unity mlagents plugin, for details see https://github.com/Unity-Technologies/ml-agents
+    Build all of the unity environments. Environment builds are placed in worldofbugs/builds. 
+    Building requires unity editor version 2019.4.25f1 and the unity mlagents plugin, 
+    for details see https://github.com/Unity-Technologies/ml-agents
+
+    On linux, the unity image can be installed using unityhub with the following command:
+    './UnityHub.AppImage unityhub://2019.4.25f1/01a0494af254'
+
     Created on 06-10-2021 14:45:22
 """
 __author__ = "Benedict Wilkins"
@@ -43,5 +49,3 @@ if err is not None:
     if len(err) > 0:
         print(err)
 print("DONE.")
-
-#  /home/ben/Documents/repos/unity/editors/2019.4.25f1/Editor/Unity
