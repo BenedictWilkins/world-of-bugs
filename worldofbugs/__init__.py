@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
     Created on 05-10-2021 14:59:29
-
-    [Description]
 """
 __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"

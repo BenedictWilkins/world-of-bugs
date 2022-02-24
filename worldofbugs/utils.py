@@ -26,7 +26,6 @@ class ObservationUnwrap(gym.ObservationWrapper):
     def observation(self, obs):
         return obs[0]
 
-
 # use side channels?
 # https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Python-API.md#interacting-with-a-unity-environment
 def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3, time_scale=1.0, log_folder=None, debug=True): 
@@ -49,6 +48,7 @@ def get_unity_environments():
     path = os.path.split(__file__)[0]
     path = os.path.join(path, UNITY_BUILDS_DIR)
     path = os.path.abspath(path)
+    print(path)
     environments = []
     info = []
     for dir in glob.glob(os.path.join(path, "*")):
@@ -62,12 +62,12 @@ def get_unity_environments():
     return environments, info
 
 def _get_unity_environment_info(env_id):
-    envs, infos = get_unity_environments()
     try:
+        envs, infos = get_unity_environments()
         env_indx = envs.index(env_id)
         ex_path = infos[env_indx]
         return env_id, ex_path
-    except IndexError:
+    except ValueError:
         raise FileNotFoundError(f"Failed to find environment: {env_id}. Avaliable environments include: {envs}")
 
 if __name__ == "__main__":

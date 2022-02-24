@@ -163,8 +163,6 @@ class BuggedUnityGymEnvironment(SingleAgentUnityGymEnvironment):
         info = {k:v[0] for k,v in zip(self.sensors, steps.obs)}
         state = info['observation'] 
         del info['observation']
-
-
         action = info.get('info', [action])[0] # if the policy used is a unity policy, this is important. Otherwise, there is not difference here.
         return state, action, reward, info
 

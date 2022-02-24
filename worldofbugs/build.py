@@ -5,10 +5,11 @@
     Building requires unity editor version 2019.4.25f1 and the unity mlagents plugin, 
     for details see https://github.com/Unity-Technologies/ml-agents
 
-    On linux, the unity image can be installed using unityhub with the following command:
+    On linux, the correct unity image can be installed using unityhub, or with the following command:
     './UnityHub.AppImage unityhub://2019.4.25f1/01a0494af254'
 
-    Created on 06-10-2021 14:45:22
+    Alternatively, you can download builds from https://www.kaggle.com/benedictwilkinsai/world-of-bugs
+    All builds should be placed in the worldofbugs/builds directory so that they can be found by `worldofbugs.utils.make`
 """
 __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
