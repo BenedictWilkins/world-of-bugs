@@ -1,5 +1,9 @@
 # Builds (use build.cs to build the scenes)
 builds/
+dataset/
+
+*.tar.hz
+*.tar
 
 *.mp4
 *.pt
