@@ -35,9 +35,6 @@ project_path = os.path.split(__file__)[0]
 project_path = os.path.join(project_path, "..", UNITY_PROJECT_DIR)
 project_path = os.path.abspath(project_path)
 
-# run the build command
-# TODO batch mode? 
-#command = f"{args.path} -batchmode -quit -projectpath {project_path} -executeMethod Build.Start" 
 command = f"{args.path} -projectpath {project_path} -executeMethod Build.Start" 
 print(f"BUILDING UNITY SCENES USING COMMAND: {command}")
 proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)

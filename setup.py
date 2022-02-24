@@ -9,6 +9,8 @@ __status__ = "Development"
 
 from setuptools import setup, find_packages
 
+# last successful build versions  gym-unity-0.28.0 mlagents-envs-0.28.0
+
 setup(name='worldofbugs',
       version='0.0.1',
       description='',
@@ -18,5 +20,3 @@ setup(name='worldofbugs',
       packages=find_packages(),
       install_requires=['numpy', 'gymu', 'gym_unity'],
       zip_safe=False)
-
-
