@@ -1,13 +1,27 @@
 # WorldOfBugs
 
-World of Bugs is a test plaform for Automated Bug Detection (ABD) research.
+World of Bugs is a test plaform for Automated Bug Detection (ABD) research. 
 
-## Datasets
+### Documentation
+
+LINKS COMING SOON
+
+### Datasets
 
 Datasets have been created using our test environment, a pre-built version can be found [here](https://www.kaggle.com/benedictwilkinsai/world-of-bugs).
 
 * Training data is available for download [here](https://www.kaggle.com/benedictwilkinsai/world-of-bugs-normal) and [here](TODO)
 * Test data is avaliable for download [here](https://www.kaggle.com/benedictwilkinsai/world-of-bugs-test)
+
+### Experiments
+
+Experiments on the initial version of the test environment (World-v1) can be found in [this](https://github.com/BenedictWilkins/world-of-bugs-experiments) repository.
+
+### Paper
+
+LINKS COMING SOON
+
+
 
 ## Bug Zoo
 
