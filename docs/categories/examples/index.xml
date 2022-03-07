@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>World of Bugs – Examples</title>
-    <link>/world-of-bugs/categories/examples/</link>
+    <link>/categories/examples/</link>
     <description>Recent content in Examples on World of Bugs</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 05 Jan 2017 00:00:00 +0000</lastBuildDate>
     
-	  <atom:link href="/world-of-bugs/categories/examples/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/categories/examples/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Getting Started</title>
-      <link>/world-of-bugs/docs/getting-started/</link>
+      <link>/docs/getting-started/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/world-of-bugs/docs/getting-started/</guid>
+      <guid>/docs/getting-started/</guid>
       <description>
         
         
@@ -54,10 +54,10 @@
     
     <item>
       <title>Docs: Example Page</title>
-      <link>/world-of-bugs/docs/getting-started/example-page/</link>
+      <link>/docs/getting-started/example-page/</link>
       <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/world-of-bugs/docs/getting-started/example-page/</guid>
+      <guid>/docs/getting-started/example-page/</guid>
       <description>
         
         

@@ -1,21 +1,18 @@
 {
-  "name": "tech-doc-hugo",
+  "name": "world-of-bugs",
   "version": "0.0.1",
-  "description": "Hugo theme for technical documentation.",
+  "description": "",
   "main": "none.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google/docsy-example.git"
+    "url": "git+https://github.com/BenedictWilkins/world-of-bugs.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/google/docsy-example/issues"
-  },
-  "homepage": "https://github.com/google/docsy-example#readme",
+  "homepage": "https://benedictwilkins.github.io/world-of-bugs/",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "postcss": "^8.3.7",
