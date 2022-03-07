@@ -1,37 +1,41 @@
 ---
-categories: ["Examples", "Placeholders"]
-tags: ["test","docs"] 
-title: "Getting Started"
-linkTitle: "Getting Started"
+title: "Quick Start Guide"
+linkTitle: "Quick Start Guide"
 weight: 2
-description: >
-  What does your user need to know to try your project?
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+1. Clone the github repository: 
 
-Information in this section helps your user try your project themselves.
+```git clone https://github.com/BenedictWilkins/world-of-bugs.git```
 
-* What do your users need to do to start using your project? This could include downloading/installation instructions, including any prerequisites or system requirements.
+2. While in the same directory, install with: 
+   
+  ```python -m pip install world-of-bugs```
 
-* Introductory “Hello World” example, if appropriate. More complex tutorials should live in the Tutorials section.
+3. Download the latest build for your system [here](https://github.com/BenedictWilkins/world-of-bugs/releases/tag/Release).
 
-Consider using the headings below for your getting started page. You can delete any that are not applicable to your project.
+4. Extract the build files to a directory of your choice, for example `~/Downloads/builds/Standalone-Linux-World-v1`.
 
-## Prerequisites
+5. To run with the default build settings:
 
-Are there any system requirements for using your project? What languages are supported (if any)? Do users need to already have any software or tools installed?
+{{< card-code header="MyScript.py" lang="Python">}}import worldofbugs
 
-## Installation
+# add downloaded builds to path
+worldofbugs.utils.BuildResolver.path += "~/Downloads/builds/"
+print(worldofbugs.utils.BuildResolver.get_builds()) # sanity check, list all avaliable environments
 
-Where can your user find your project code? How can they install it (binaries, installable package, build from source)? Are there multiple options/versions they can install and how should they choose the right one for them?
+# make the environment
+env = worldofbugs.utils.make('World-v1') 
 
-## Setup
+env.reset()
+for i in range(1000): # advance simulation 1000 steps
+  env.step(env.action_space.sample()) # take a random action
+  env.render() #render the game screen, requires pygame installation
+{{< /card-code  >}}
 
-Is there any initial setup users need to do after installation to try your project?
+If everything worked correctly you should see a printout like: 
 
-## Try it out!
-
-Can your users test their installation, for example by running a command or deploying a Hello World example?
+``` 
+>>> [~/Downloads/builds/Standalone-Linux-World-v1/World-v1.x86_64]
+``` 
+and if you have pygame installed (`pip install pygame`) something like the following: 

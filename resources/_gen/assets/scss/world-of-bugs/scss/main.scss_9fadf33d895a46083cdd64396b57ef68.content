@@ -13473,7 +13473,7 @@ readers do not read off random characters that represent icons */
   z-index: 22; }
 
 .td-content .highlight {
-  margin: 2rem 0;
+  margin: 0 0;
   padding: 0; }
   .td-content .highlight pre {
     margin: 0;
