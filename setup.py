@@ -18,5 +18,5 @@ setup(name='worldofbugs',
       author='Benedict Wilkins',
       author_email='benrjw@gmail.com',
       packages=find_packages(),
-      install_requires=['numpy', 'gymu', 'gym_unity'],
+      install_requires=['numpy', 'gymu', 'gym_unity', 'kaggle'],
       zip_safe=False)
