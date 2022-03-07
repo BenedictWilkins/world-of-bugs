@@ -3,24 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/world-of-bugs/docs/overview/</loc>
-    <lastmod>2022-03-07T11:10:42+00:00</lastmod>
+    <lastmod>2022-03-07T16:03:52+00:00</lastmod>
   </url><url>
     <loc>/world-of-bugs/docs/getting-started/</loc>
-    <lastmod>2022-03-07T11:10:42+00:00</lastmod>
+    <lastmod>2022-03-07T19:03:05+00:00</lastmod>
   </url><url>
     <loc>/world-of-bugs/docs/examples/</loc>
     <lastmod>2022-03-07T11:10:42+00:00</lastmod>
   </url><url>
     <loc>/world-of-bugs/docs/reference/</loc>
-    <lastmod>2022-03-07T11:10:42+00:00</lastmod>
-  </url><url>
-    <loc>/world-of-bugs/docs/</loc>
-    <lastmod>2022-03-07T11:10:42+00:00</lastmod>
+    <lastmod>2022-03-07T16:03:52+00:00</lastmod>
   </url><url>
     <loc>/world-of-bugs/docs/reference/parameter-reference/</loc>
     <lastmod>2022-03-07T11:10:42+00:00</lastmod>
   </url><url>
+    <loc>/world-of-bugs/docs/examples/dataset/</loc>
+    <lastmod>2022-03-07T19:03:05+00:00</lastmod>
+  </url><url>
     <loc>/world-of-bugs/categories/</loc>
+  </url><url>
+    <loc>/world-of-bugs/docs/</loc>
+    <lastmod>2022-03-07T19:03:05+00:00</lastmod>
   </url><url>
     <loc>/world-of-bugs/search/</loc>
     <lastmod>2022-03-07T11:10:42+00:00</lastmod>
@@ -28,6 +31,6 @@
     <loc>/world-of-bugs/tags/</loc>
   </url><url>
     <loc>/world-of-bugs/</loc>
-    <lastmod>2022-03-07T11:52:05+00:00</lastmod>
+    <lastmod>2022-03-07T16:03:52+00:00</lastmod>
   </url>
 </urlset>
