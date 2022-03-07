@@ -12,7 +12,11 @@ import worldofbugs
 # if you have unity open 
 # env = worldofbugs.utils.make(None)
 
-# if you have built World-v1 or downloaded a build from https://www.kaggle.com/benedictwilkinsai/world-of-bugs
+# add downloaded builds to path
+# worldofbugs.utils.BuildResolver.path += "/home/ben/Downloads/builds/"
+# print(worldofbugs.utils.BuildResolver.get_builds()) # list all avaliable environments
+
+# if you have built World-v1 or downloaded a build
 env = worldofbugs.utils.make('World-v1') 
 
 env.reset()

@@ -7,9 +7,9 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
-from . import utils
+from .utils import _utils
 from . import dataset
 from . import sidechannel
 from . import environment
 
-from .utils import make
+from .utils._utils import make
