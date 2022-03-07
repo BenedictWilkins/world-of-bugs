@@ -1,4 +1,4 @@
-<div class="card" style="margin:0;">
+<div class="card" style="margin-bottom: 1rem;">
     {{ $lang := "" }}
     {{ with $.Get "lang" }}
       {{ $lang = $.Get "lang" }}
@@ -12,11 +12,10 @@
         {{- $.Get "header" | markdownify -}}
       </div>
     {{end}}
-    <div class="card-body code p-l0 m-0" style="margin:0;">
+    <div class="card-body code">
         {{ with $.Inner }}
             {{- highlight $.Inner $lang $highlight -}}
-        {{ end }}
-               
+        {{ end }}  
     </div>
   </div>
   
