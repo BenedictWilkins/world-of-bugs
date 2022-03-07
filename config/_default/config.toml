@@ -1,5 +1,6 @@
 baseURL = "/"
 title = "World of Bugs"
+publishDir = "docs"
 
 # Language settings
 contentDir = "content/en"
