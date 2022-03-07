@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>World of Bugs – sample</title>
-    <link>/tags/sample/</link>
+    <link>/world-of-bugs/tags/sample/</link>
     <description>Recent content in sample on World of Bugs</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 05 Jan 2017 00:00:00 +0000</lastBuildDate>
     
-	  <atom:link href="/tags/sample/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/world-of-bugs/tags/sample/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -16,10 +16,10 @@
     
     <item>
       <title>Docs: Example Page</title>
-      <link>/docs/getting-started/example-page/</link>
+      <link>/world-of-bugs/docs/getting-started/example-page/</link>
       <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/docs/getting-started/example-page/</guid>
+      <guid>/world-of-bugs/docs/getting-started/example-page/</guid>
       <description>
         
         

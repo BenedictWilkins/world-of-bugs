@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "/world-of-bugs"
 title = "World of Bugs"
 publishDir = "docs"
 
