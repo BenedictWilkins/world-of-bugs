@@ -1,6 +1,7 @@
 # Builds (use build.cs to build the scenes)
 builds/
 dataset/
+test/ 
 
 *.tar.hz
 *.tar

@@ -16,10 +16,8 @@ import pathlib
 import glob
 import gym
 
-from gym_unity.envs import UnityToGymWrapper
-from mlagents_envs.environment import UnityEnvironment
 
-from ..environment import BuggedUnityEnvironment, BuggedUnityGymEnvironment
+from ..environment import UnityEnvironment, WOBEnvironment
 
 __all__ = ('make', 'BuildResolver')
 
@@ -32,7 +30,7 @@ def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3,
         assert build.name == env_id
     else:
         ex_path = None # USE THE UNITY EDITOR
-    env = BuggedUnityEnvironment(file_name=ex_path, 
+    env = UnityEnvironment(file_name=ex_path, 
                                     worker_id=worker, 
                                     log_folder=log_folder, 
                                     display_height=display_height, 
@@ -40,7 +38,7 @@ def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3,
                                     quality_level=quality_level, 
                                     time_scale=time_scale, 
                                     debug=debug)
-    env = BuggedUnityGymEnvironment(env)
+    env = WOBEnvironment(env)
     return env
 
 class _UnityBuildResolver:
@@ -96,7 +94,6 @@ class BuildPath:
 
     @property
     def name(self):
-        print(self._path.stem)
         return self._path.stem
 
     def __repr__(self):

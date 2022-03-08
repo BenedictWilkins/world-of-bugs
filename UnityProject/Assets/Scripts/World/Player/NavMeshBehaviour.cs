@@ -96,7 +96,6 @@ public class NavMeshBehaviour : Behaviour {
             // move forward
             _actionsOut[0] = 1;
         }
-        
         Debug.DrawLine(player.transform.position, player.transform.position + direction, Color.blue, dt);
         Debug.DrawLine(player.transform.position, player.transform.position + player.transform.forward, Color.green, dt);
     }
@@ -108,13 +107,8 @@ public class NavMeshBehaviour : Behaviour {
             Heuristic(actionBuffers);
             //Debug.Log($"B:{actionBuffers.DiscreteActions[0]}"); 
         }
-        foreach (int a in actionBuffers.DiscreteActions) {
-            actions[a](this); // perform the action
-            action = a; // save the action to be part of the observation meta data
-            // Debug.Log($"{a} {StepCount}");
-        }
         isHeuristic = false;
-
+        base.OnActionReceived(actionBuffers);
     }
 
     void Update() {

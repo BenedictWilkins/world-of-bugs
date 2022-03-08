@@ -13,14 +13,16 @@ import worldofbugs
 # env = worldofbugs.utils.make(None)
 
 # add downloaded builds to path
-# worldofbugs.utils.BuildResolver.path += "/home/ben/Downloads/builds/"
-# print(worldofbugs.utils.BuildResolver.get_builds()) # list all avaliable environments
+worldofbugs.utils.BuildResolver.path = ["/home/ben/Downloads/builds/"]
+print(worldofbugs.utils.BuildResolver.get_builds()) # list all avaliable environments
 
 # if you have built World-v1 or downloaded a build
-env = worldofbugs.utils.make('World-v1') 
+env = worldofbugs.utils.make("World-v1") 
+print(env.observation_space.shape)
 
 env.reset()
-for i in range(1000):
+for i in range(50):
    env.step(env.action_space.sample())
    env.render() # requires pygame
+   env._renderer.record(f"./test/record/{i}.png")
 

@@ -19,7 +19,6 @@ namespace Unity.MLAgents.Sensors {
             name = _name;
             p_position = behaviour.Player.transform.position;
             p_rotation = behaviour.Player.transform.rotation.eulerAngles;
-
         }
 
         public int Write(ObservationWriter writer) {
