@@ -5,8 +5,8 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 
 namespace WorldOfBugs { 
-    public class HeuristicIdentity : Heuristic {
-        public override void Decide(in ActionBuffers buffer) {
+    public class HeuristicIdentity : HeuristicComponent {
+        public override void Heuristic(in ActionBuffers buffer) {
             //Debug.Log("HEURISTIC!");
         }
     }

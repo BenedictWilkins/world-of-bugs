@@ -19,13 +19,26 @@ public class BugOptionDrawer : PropertyDrawer
         EditorGUI.indentLevel = 0;
 
         // Calculate rects
-        float bugRectWidth = position.width - 40;
+        float bugRectWidth = position.width - position.height;
         var bugRect = new Rect(position.x, position.y, bugRectWidth, position.height);
-        var enabledRect = new Rect(position.x + bugRectWidth + 10, position.y, 40, position.height);
+        var enabledRect = new Rect(position.x + bugRectWidth + 5, position.y, position.height, position.height);
 
         // Draw fields - pass GUIContent.none to each so they are drawn without labels
-        EditorGUI.PropertyField(bugRect, property.FindPropertyRelative("bug"), GUIContent.none);
-        EditorGUI.PropertyField(enabledRect, property.FindPropertyRelative("enabled"), GUIContent.none);
+        SerializedProperty bugProperty = property.FindPropertyRelative("_bug");
+        EditorGUI.PropertyField(bugRect, bugProperty, GUIContent.none);
+        
+        GameObject go = ((MonoBehaviour)bugProperty.objectReferenceValue).gameObject;
+        EditorGUI.BeginChangeCheck();
+        bool enabled = EditorGUI.Toggle(enabledRect, go.activeInHierarchy);
+        if (EditorGUI.EndChangeCheck()) {
+            go.SetActive(enabled);
+        }
+
+
+        //EditorGUI.PropertyField(enabledRect, prop, GUIContent.none);
+
+
+
 
         // Set indent back to what it was
         EditorGUI.indentLevel = indent;

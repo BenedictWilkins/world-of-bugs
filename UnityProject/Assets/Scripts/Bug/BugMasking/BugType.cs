@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class BugType {
 
-     public enum Group { 
+    public enum Group { 
         Null,
         Visual,
         Logical,
@@ -23,7 +23,8 @@ public class BugType {
     public BugType(Color32 _type, Group _group) { 
         this.type = _type; 
         this.group = _group;
-        BugType.BugTypes.Add(this); }
+        BugType.BugTypes.Add(this); 
+    }
     
     public override int GetHashCode() {
         return type.GetHashCode();

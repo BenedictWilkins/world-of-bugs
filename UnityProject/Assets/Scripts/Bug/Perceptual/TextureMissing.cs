@@ -34,7 +34,7 @@ public class TextureMissing : Bug {
             material.SetTexture("_MainTex", _texture);
             material.SetColor("_Color", _color);
             BugTag tag = GetComponent<BugTag>();
-            tag.Untag(_missing);
+            tag?.Untag(_missing);
             _missing = null;
         }  
     }
