@@ -8,10 +8,17 @@ __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
 from pprint import pprint
-import worldofbugs as wob
+import time
+from worldofbugs.environment._base import UnityEnvironment
 
 
+env = UnityEnvironment()
+env.enable_bug("TextureMissing")
+env.reset()
+print(list(env.behavior_specs.keys()))
 
-info = wob.utils.BuildResolver.get_unity_environments()
+#name = next(iter(env.behavior_specs.keys()))
+#pprint(name)
 
-pprint(info)
+
+#decision_steps, terminal_steps = env.get_steps(name)

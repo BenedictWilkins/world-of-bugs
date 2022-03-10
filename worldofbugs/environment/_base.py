@@ -70,11 +70,11 @@ class UnityEnvironment(MLAgentUnityEnvironment):
                          **kwargs)
 
     def enable_bug(self, bug):
-        msg = f"{bug}:{True}"
+        msg = f"Bugs.{bug}.enabled:{True}"
         self.config_channel.write(str(msg))
 
     def disable_bug(self, bug):
-        msg = f"{bug}:{False}"
+        msg = f"Bugs.{bug}.enabled:{False}"
         self.config_channel.write(str(msg))
 
     def set_player_behaviour(self, behaviour):

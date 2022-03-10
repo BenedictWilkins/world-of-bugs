@@ -10,8 +10,7 @@ public class GeometryClipping : Bug {
 
     void Awake() {
         // back face bugs (if we can see inside geometry, show it!)
-        BugTag tag = GetComponent<BugTag>();
-        Shader.SetGlobalColor("_BackFaceColor", (Color)tag.bugType);
+        Shader.SetGlobalColor("_BackFaceColor", (Color)bugType);
     }
 
     public override void OnEnable() {
@@ -28,7 +27,5 @@ public class GeometryClipping : Bug {
         }
     }
      
-    public override bool InView(Camera camera) { 
-        return false;
-    }
+
 }

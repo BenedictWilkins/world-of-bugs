@@ -12,7 +12,7 @@ public class BoundaryHole : Bug {
     private GameObject _go; // disable colldier on this game object
 
     void Awake() {
-        _player.CameraBugMask.backgroundColor = GetComponent<BugTag>().bugType;
+        _player.CameraBugMask.backgroundColor = bugType;
     }
 
     public override void OnEnable() {
@@ -36,7 +36,4 @@ public class BoundaryHole : Bug {
         }
     }
 
-    public override bool InView(Camera camera) {
-        return false;
-    }
 }

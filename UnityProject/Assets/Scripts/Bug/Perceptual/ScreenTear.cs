@@ -77,10 +77,6 @@ public class ScreenTear : Bug {
         }
     }
 
-    public override bool InView(Camera camera) { 
-        return false; // TODO
-    }
-
     public class ScreenTearPost : MonoBehaviour {
         
         public bool _enable = true;
@@ -97,7 +93,7 @@ public class ScreenTear : Bug {
             get { return _bug.n; }
         }
         public Color BugType {
-            get { return _bug.gameObject.GetComponent<BugTag>().bugType; }
+            get { return _bug.bugType; }
         }
 
         protected ScreenTear _bug;

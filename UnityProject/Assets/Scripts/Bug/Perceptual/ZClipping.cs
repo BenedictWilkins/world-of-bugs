@@ -18,6 +18,7 @@ public class ZClipping : Bug {
     protected int _oldlayer = -1;
 
     void Awake() {
+        tag = BUGTAG; 
         layer = LayerMask.NameToLayer(LAYERTAG);
         if (layer < 0) {
             // if this happens something has gone very wrong.. probably the zfighting camera prefab is also broken...
@@ -33,7 +34,6 @@ public class ZClipping : Bug {
         foreach (Camera c in zCamera.GetComponentsInChildren<Camera>()) {
             _MakeZCamera(c);
         }
-        GetComponent<BugTag>().bugTag = BUGTAG;
     }
     
     protected void _MakeZCamera(Camera camera) {
@@ -45,7 +45,6 @@ public class ZClipping : Bug {
     }
 
     public override void OnEnable() {
-        BugTag tag = GetComponent<BugTag>();
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
@@ -53,29 +52,19 @@ public class ZClipping : Bug {
         _fighter = children[i].gameObject;
         _oldlayer = _fighter.layer;
         _fighter.layer = layer;
-        tag.Tag(_fighter);
+        Tag(_fighter);
     }
 
     public override void OnDisable() {
         if (_fighter != null) {
             Material material = _fighter.GetComponent<Renderer>().material;
-            BugTag tag = GetComponent<BugTag>();
-            tag.Untag(_fighter);
+            Untag(_fighter);
             _fighter.layer = _oldlayer;
             _fighter = null;
         }
     }
 
-    public override bool InView(Camera camera) { 
-        if (gameObject.activeSelf) {
-            BugTag tag = GetComponent<BugTag>(); 
-            int[] mask = BugMask.Instance.Mask(camera); 
-            // Compare the mask with my bug type...
-            bool result = mask.Contains((int) tag.bugType);
-            return result;
-        }
-        return false;
-    }
+    
 
     private void ShowLayer(Camera camera, int layer) {
         camera.cullingMask |= 1 << layer;

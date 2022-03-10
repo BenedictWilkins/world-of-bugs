@@ -14,7 +14,6 @@ public class TextureMissing : Bug {
     protected Color _color;
 
     public override void OnEnable() {
-        BugTag tag = GetComponent<BugTag>();
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
@@ -25,7 +24,7 @@ public class TextureMissing : Bug {
         _color = material.GetColor("_Color");
         material.SetTexture("_MainTex", missingTexture);
         material.SetColor("_Color", color);
-        tag.Tag(_missing);
+        Tag(_missing);
     }
 
     public override void OnDisable() {
@@ -33,20 +32,8 @@ public class TextureMissing : Bug {
             Material material = _missing.GetComponent<Renderer>().material;
             material.SetTexture("_MainTex", _texture);
             material.SetColor("_Color", _color);
-            BugTag tag = GetComponent<BugTag>();
-            tag?.Untag(_missing);
+            Untag(_missing);
             _missing = null;
         }  
-    }
-
-    public override bool InView(Camera camera) { 
-        if (gameObject.activeSelf) {
-            BugTag tag = GetComponent<BugTag>(); 
-            int[] mask = BugMask.Instance.Mask(camera); 
-            // Compare the mask with my bug type...
-            bool result = mask.Contains((int) tag.bugType);
-            return result;
-        }
-        return false;
     }
 }

@@ -16,7 +16,6 @@ public class GeometryCorruption : Bug {
     protected GameObject _go;
 
     public override void OnEnable() {
-        BugTag tag = GetComponent<BugTag>();
         // find a suitable game object...
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
@@ -30,7 +29,7 @@ public class GeometryCorruption : Bug {
         renderer.shadowCastingMode = ShadowCastingMode.Off;
 
         Corrupt();
-        tag.Tag(_go);
+        Tag(_go);
     }
 
     public override void OnDisable() {
@@ -58,8 +57,8 @@ public class GeometryCorruption : Bug {
         if (_go != null) {
             Mesh mesh = _go.GetComponent<MeshFilter>().mesh;
             mesh.vertices = vertices; // reset the verticies...
-            BugTag tag = GetComponent<BugTag>();
-            tag.Untag(_go);
+           
+            Untag(_go);
             Renderer renderer = _go.GetComponent<Renderer>();
             renderer.shadowCastingMode = shadowMode;
         }
@@ -68,12 +67,4 @@ public class GeometryCorruption : Bug {
     public Vector3 RandomVector3() {
         return 2f * new Vector3(UnityEngine.Random.value, UnityEngine.Random.value,UnityEngine.Random.value) - Vector3.one; 
     }
-
-
-
-    public override bool InView(Camera camera) { 
-        // TODO
-        return false;
-    }
-
 }

@@ -23,9 +23,8 @@ public class CameraClipping : Bug {
         // when close to an object the view will clip inside
         _oldclip = _camera.nearClipPlane;
         _camera.nearClipPlane = clip;
-        BugTag tag = GetComponent<BugTag>();
         Shader.SetGlobalFloat("_CameraNearClip", clip);
-        Shader.SetGlobalColor("_CameraClipColor", (Color)tag.bugType);
+        Shader.SetGlobalColor("_CameraClipColor", (Color)bugType);
     }
 
     public override void OnDisable() {
@@ -36,18 +35,4 @@ public class CameraClipping : Bug {
     void OnDestroy() {
         OnDisable();
     }
-
-    public override bool InView(Camera camera) { 
-        if (gameObject.activeSelf) {
-            BugTag tag = GetComponent<BugTag>(); 
-            int[] mask = BugMask.Instance.Mask(camera); 
-            // Compare the mask with my bug type...
-            bool result = mask.Contains((int) tag.bugType);
-            return result;
-        }
-        return false;
-    }
-
-
-
 }

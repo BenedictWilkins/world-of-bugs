@@ -134,7 +134,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 57023685}
-  - component: {fileID: 57023687}
   - component: {fileID: 57023686}
   m_Layer: 0
   m_Name: Bug - BoundaryHole
@@ -155,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &57023686
 MonoBehaviour:
@@ -166,27 +165,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 57023684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 606bb8708a8bef989b28b0cb14e021a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4278255560
-    group: 2
-  bugTag: Bug
---- !u!114 &57023687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 57023684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bb24d03cda96eabb0a0f3968c7d42b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _player: {fileID: 6968890744919861843}
+  level: {fileID: 329198144}
 --- !u!1 &65883144 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2435341970837401404, guid: bdd92f2ff01c9a97f85d0b952dcb714e,
@@ -203,7 +191,6 @@ GameObject:
   m_Component:
   - component: {fileID: 67275757}
   - component: {fileID: 67275755}
-  - component: {fileID: 67275756}
   m_Layer: 0
   m_Name: Bug - ScreenTear
   m_TagString: Untagged
@@ -220,27 +207,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 67275754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e961e45eff706f87a450ca07fee92bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d9567d3c39a57f768981bfe9ed1be27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &67275756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67275754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4294901880
-    group: 1
-  bugTag: Bug
+  _cameraRenderTexture: {fileID: 8400000, guid: 7e944b76f5da55d308a18069485266d4,
+    type: 2}
+  _bugMaskRenderTexture: {fileID: 8400000, guid: cb0f69f72f83b07b399aa14a9d41163c,
+    type: 2}
+  n: 4
+  deltaRange: {x: 0, y: 4}
+  TearMinMax: {x: 0.2, y: 0.6}
+  random: 1
 --- !u!4 &67275757
 Transform:
   m_ObjectHideFlags: 0
@@ -253,7 +235,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &115390034
 GameObject:
@@ -265,7 +247,6 @@ GameObject:
   m_Component:
   - component: {fileID: 115390035}
   - component: {fileID: 115390036}
-  - component: {fileID: 115390037}
   m_Layer: 0
   m_Name: Bug - GeometryClipping
   m_TagString: Untagged
@@ -285,7 +266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &115390036
 MonoBehaviour:
@@ -296,27 +277,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 115390034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c20c917ac170d7bf59a33f54b54adbe1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f6b607cce8bdb3da80471f76073cfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &115390037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115390034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
-      rgba: 16744448
-    group: 2
-  bugTag: Bug
+      rgba: 4294934528
+  level: {fileID: 1064858188}
 --- !u!1 &185156697
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +296,6 @@ GameObject:
   m_Component:
   - component: {fileID: 185156700}
   - component: {fileID: 185156698}
-  - component: {fileID: 185156699}
   m_Layer: 0
   m_Name: Bug - TextureCorrupt
   m_TagString: Untagged
@@ -344,27 +312,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 185156697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1894974376210499c9b462184e78fba6, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a4cddfc40223f25936eac4cfb30866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &185156699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185156697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4278221055
-    group: 1
-  bugTag: Bug
+  level: {fileID: 329198144}
+  uvcomplexity: 0.2
 --- !u!4 &185156700
 Transform:
   m_ObjectHideFlags: 0
@@ -377,15 +334,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &329198144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2435341970565925236, guid: bdd92f2ff01c9a97f85d0b952dcb714e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2435341970826175284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &329198146 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2435341970565925238, guid: bdd92f2ff01c9a97f85d0b952dcb714e,
     type: 3}
   m_PrefabInstance: {fileID: 2435341970826175284}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 329198144}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
@@ -431,7 +394,6 @@ GameObject:
   m_Component:
   - component: {fileID: 400907312}
   - component: {fileID: 400907313}
-  - component: {fileID: 400907314}
   m_Layer: 0
   m_Name: Bug - CameraClipping
   m_TagString: Untagged
@@ -451,7 +413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &400907313
 MonoBehaviour:
@@ -462,27 +424,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 400907311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5f62ae7a013ec744a31192c1c0d293d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1892687aa1effa4c4a2ab5358190d151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &400907314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400907311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4278255360
-    group: 1
-  bugTag: Bug
+  player: {fileID: 6968890744919861843}
+  clip: 1
 --- !u!1 &517195454
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +466,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6968890744919861843}
   bugs:
+  - _bug: {fileID: 799085450}
+  - _bug: {fileID: 57023686}
+  - _bug: {fileID: 400907313}
+  - _bug: {fileID: 115390036}
+  - _bug: {fileID: 556801286}
+  - _bug: {fileID: 67275755}
+  - _bug: {fileID: 185156698}
   - _bug: {fileID: 670918511}
+  - _bug: {fileID: 1228090950}
+  - _bug: {fileID: 1835508188}
 --- !u!4 &517195456
 Transform:
   m_ObjectHideFlags: 0
@@ -527,16 +487,16 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 670918509}
-  - {fileID: 1835508190}
-  - {fileID: 1228090949}
-  - {fileID: 400907312}
   - {fileID: 799085449}
-  - {fileID: 185156700}
-  - {fileID: 67275757}
-  - {fileID: 556801285}
   - {fileID: 57023685}
+  - {fileID: 400907312}
+  - {fileID: 556801285}
   - {fileID: 115390035}
+  - {fileID: 67275757}
+  - {fileID: 185156700}
+  - {fileID: 670918509}
+  - {fileID: 1228090949}
+  - {fileID: 1835508190}
   - {fileID: 383798688}
   - {fileID: 1525576806}
   - {fileID: 618084232}
@@ -565,7 +525,6 @@ GameObject:
   m_Component:
   - component: {fileID: 556801285}
   - component: {fileID: 556801286}
-  - component: {fileID: 556801287}
   m_Layer: 0
   m_Name: Bug - GeometryCorruption
   m_TagString: Untagged
@@ -585,7 +544,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &556801286
 MonoBehaviour:
@@ -596,27 +555,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 556801284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73e238c44f44a23b8bc25526ce641cee, type: 3}
+  m_Script: {fileID: 11500000, guid: d8dafb89eac1bf6aba90f236fc640e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &556801287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556801284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4294967295
-    group: 1
-  bugTag: Bug
+  power: 3
+  _static: 0
+  level: {fileID: 329198144}
 --- !u!1 &618084231
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &670918511
 MonoBehaviour:
@@ -690,6 +639,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5e7197ada9997c7b9f618f2126e2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bugTag: Bug
+  bugType:
+    type:
+      serializedVersion: 2
+      rgba: 4278190335
   level: {fileID: 65883144}
   missingTexture: {fileID: 2800000, guid: e405320abea9cc45996194a7c5ba72c1, type: 3}
   color: {r: 1, g: 0, b: 1, a: 1}
@@ -795,7 +749,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 799085449}
-  - component: {fileID: 799085451}
   - component: {fileID: 799085450}
   m_Layer: 0
   m_Name: Bug - BlackScreen
@@ -803,7 +756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &799085449
 Transform:
   m_ObjectHideFlags: 0
@@ -816,7 +769,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &799085450
 MonoBehaviour:
@@ -827,27 +780,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 799085448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 210590942547ed7b3ab092c76b697386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4294967040
-    group: 1
-  bugTag: Bug
---- !u!114 &799085451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  _cameraRenderTexture: {fileID: 8400000, guid: 7e944b76f5da55d308a18069485266d4,
+    type: 2}
+  _bugMaskRenderTexture: {fileID: 8400000, guid: cb0f69f72f83b07b399aa14a9d41163c,
+    type: 2}
+  frameRange: {x: 0.069603465, y: 0.1}
+  deltaRange: {x: 4, y: 6}
+--- !u!1 &1064858188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2435341971180081528, guid: bdd92f2ff01c9a97f85d0b952dcb714e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2435341970826175284}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799085448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f741c7d88bc5d5049cd0191ded883ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1228090948
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +809,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1228090949}
-  - component: {fileID: 1228090951}
   - component: {fileID: 1228090950}
   m_Layer: 0
   m_Name: Bug - ZClipping
@@ -878,7 +829,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1228090950
 MonoBehaviour:
@@ -889,27 +840,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1228090948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 64c00d95ce204925886940d188956d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4278255615
-    group: 1
-  bugTag: Bug
---- !u!114 &1228090951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228090948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aa6f1e22217551848ba3cdd2b4be902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  level: {fileID: 329198144}
+  camera: {fileID: 3907196143342652101}
 --- !u!1 &1525576805
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +890,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1835508190}
   - component: {fileID: 1835508188}
-  - component: {fileID: 1835508189}
   m_Layer: 0
   m_Name: Bug - ZFighting
   m_TagString: Untagged
@@ -967,27 +906,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835508187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa0ca6ff30aec0f58de4aca0b566bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c9cdb8215d2ccad6925743efed4e10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bugTag: Bug
   bugType:
     type:
       serializedVersion: 2
       rgba: 4294910976
-    group: 1
-  bugTag: Bug
---- !u!114 &1835508189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835508187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db06424e34932adf7bdc51f922b6b508, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  original: {fileID: 329198144}
 --- !u!4 &1835508190
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,7 +927,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 517195456}
-  m_RootOrder: 1
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2435341970826175284
 PrefabInstance:
@@ -1335,13 +1262,13 @@ GameObject:
   - component: {fileID: 6968890744919861842}
   - component: {fileID: 6968890744919861843}
   - component: {fileID: 6968890744919861839}
+  - component: {fileID: 6968890744919861847}
   - component: {fileID: 6968890744919861841}
   - component: {fileID: 6968890744919861840}
   - component: {fileID: 6968890744919861838}
   - component: {fileID: 6968890744919861845}
   - component: {fileID: 6968890744919861846}
   - component: {fileID: 6968890744919861844}
-  - component: {fileID: 6968890744919861847}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1486,7 +1413,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968890744919861837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27e891fadcd90c312bac62611d0e6c2e, type: 3}
   m_Name: 
@@ -1498,7 +1425,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968890744919861837}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f785b0200110f2dd693074c9be558e11, type: 3}
   m_Name: 
@@ -1516,7 +1443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Actuator-1
-  Hueristic: {fileID: 6968890744919861845}
+  Hueristic: {fileID: 6968890744919861846}
 --- !u!33 &6968890744919861879
 MeshFilter:
   m_ObjectHideFlags: 0

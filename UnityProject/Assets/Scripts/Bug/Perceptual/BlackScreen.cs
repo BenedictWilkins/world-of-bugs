@@ -30,7 +30,7 @@ public class BlackScreen : Bug {
         
         cameras = CameraExtensions.GetCamerasByRenderTexture(_bugMaskRenderTexture);
         fillScreens[1] = cameras[0].gameObject.AddComponent<FillScreen>();
-        fillScreens[1].color = (Color) gameObject.GetComponent<BugTag>().bugType;
+        fillScreens[1].color = (Color) bugType;
         StartCoroutine("EnableDisable");
     }
 
@@ -58,11 +58,6 @@ public class BlackScreen : Bug {
                 fs._enabled = false;
         } 
     }
-
-    public override bool InView(Camera camera) { 
-        return false;
-    }
-
    
 
     public class FillScreen : MonoBehaviour {

@@ -17,8 +17,6 @@ public class ZFighting : Bug {
     public void Awake() {
         clone = Instantiate(original);
         clone.transform.parent = gameObject.transform;
-
-        BugTag tag = GetComponent<BugTag>();
         Transform[] children = gameObject.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
 
@@ -27,7 +25,7 @@ public class ZFighting : Bug {
             Vector3 ls = child.localScale;
             child.localScale = new Vector3(-ls.x, ls.y, ls.z);
             // tag children for rendering with the BugMask.
-            tag.Tag(child.gameObject);
+            Tag(child.gameObject);
             // we only want to render the game object, all other components should be disabled
             foreach (Behaviour c in child.GetComponents<Behaviour>()) {
                 c.enabled = false;
@@ -58,9 +56,8 @@ public class ZFighting : Bug {
 
         children = original.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null).ToArray();
-        BugTag tag = GetComponent<BugTag>();
         taggedOriginal = children[i].gameObject;
-        tag.Tag(taggedOriginal);
+        Tag(taggedOriginal);
     }
 
     public override void OnDisable() {
@@ -71,19 +68,6 @@ public class ZFighting : Bug {
                 c.gameObject.SetActive(false);
             }
         }
-        BugTag tag = GetComponent<BugTag>();
-        tag.Untag(taggedOriginal);
-    }
-
-    public override bool InView(Camera camera) { 
-        if (gameObject.activeSelf) {
-             // shouldnt call this too often its a bit expensive? 
-            BugTag tag = GetComponent<BugTag>(); 
-            int[] mask = BugMask.Instance.Mask(camera); 
-            // Compare the mask with my bug type...
-            bool result = mask.Contains((int) tag.bugType);
-            return result;
-        }
-        return false;
+        Untag(taggedOriginal);
     }
 }

@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
-[System.Serializable]
-public class BugTag : MonoBehaviour {  
-
+public abstract class Bug : MonoBehaviour {
+    
     [SerializeField]
-    public BugType bugType; 
     public string bugTag = "Bug";
-
+    [SerializeField] 
+    public BugType bugType; 
+    
     public void Tag(GameObject go) {
         Material material = go.GetComponent<Renderer>().material;
         material.SetOverrideTag("RenderType", bugTag);
@@ -19,6 +17,12 @@ public class BugTag : MonoBehaviour {
     public void Untag(GameObject go) {
         Material material = go.GetComponent<Renderer>().material;
         material.SetOverrideTag("RenderType", "");
-        //material.SetColor("_BugType", (Color32) bugType);
     }
+
+    public abstract void OnEnable();
+    public abstract void OnDisable();
+
+   
 }
+
+

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
+
+// attach to a the masking camera to use the the given shader
 [ExecuteInEditMode]
 public class BugMaskReplacementShader : MonoBehaviour {
 
@@ -13,7 +13,6 @@ public class BugMaskReplacementShader : MonoBehaviour {
         _camera = GetComponent<Camera>();
         _camera.SetReplacementShader(maskShader, "RenderType");
     }
-
 
     void OnDestroy() {
         _camera.ResetReplacementShader();

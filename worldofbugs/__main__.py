@@ -13,7 +13,7 @@ import worldofbugs
 # env = worldofbugs.utils.make(None)
 
 # add downloaded builds to path
-worldofbugs.utils.BuildResolver.path = ["/home/ben/Downloads/builds/"]
+# worldofbugs.utils.BuildResolver.path = ["/home/ben/Downloads/builds/"]
 print(worldofbugs.utils.BuildResolver.get_builds()) # list all avaliable environments
 
 # if you have built World-v1 or downloaded a build

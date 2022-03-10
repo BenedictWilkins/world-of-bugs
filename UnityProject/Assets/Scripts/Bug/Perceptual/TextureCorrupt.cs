@@ -14,7 +14,6 @@ public class TextureCorrupt : Bug {
     protected Vector2[] _uv;
 
     public override void OnEnable() {
-        BugTag tag = GetComponent<BugTag>();
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
@@ -28,7 +27,7 @@ public class TextureCorrupt : Bug {
         float m = Mathf.Max(Mathf.Max(size.x, size.y), size.z);
         material.mainTextureOffset = new Vector2(_GetRandom() * m, _GetRandom() * m);
         mesh.uv = RandomUV(mesh); 
-        tag.Tag(_go);
+        Tag(_go);
     }
 
     private float _GetRandom() {
@@ -60,20 +59,9 @@ public class TextureCorrupt : Bug {
             Mesh mesh = _go.GetComponent<MeshFilter>().mesh;
             material.mainTextureOffset = _textureOffset;
             mesh.uv = _uv;
-            BugTag tag = GetComponent<BugTag>();
-            tag.Untag(_go);
+       
+            Untag(_go);
             _go = null;
         }  
-    }
-
-    public override bool InView(Camera camera) { 
-        if (gameObject.activeSelf) {
-            BugTag tag = GetComponent<BugTag>(); 
-            int[] mask = BugMask.Instance.Mask(camera); 
-            // Compare the mask with my bug type...
-            bool result = mask.Contains((int) tag.bugType);
-            return result;
-        }
-        return false;
     }
 }
