@@ -39,7 +39,7 @@ If everything worked correctly you should see a printout like:
 
 and if you have pygame installed (`pip install pygame`) something like the following should appear in your pygame window.
 
-<img src="/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
+<img src="img/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
 You may also notice that a small Unity window popped up, unfortunately this is required to ensure the agent's observations are correctly processed by GPU, see [here](https://answers.unity.com/questions/1672109/native-texture-pointer-returns-0-in-headless-build.html) for details.
 
@@ -54,7 +54,7 @@ To avoid issues, install Unity version 2020.3.25f1 which can be found in the [un
 
 Once installed, locate the `UnityProject` folder in your WOB root directory, add it as a new project in UnityHub and open it in the editor.
 
-<img src="/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
+<img src="img/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
 
 To connect to the editor, run the following script and then press the play button in the editor window.
@@ -71,12 +71,12 @@ for i in range(1000): # advance simulation 1000 steps
 
 You should see the agent (white sphere) start to move around the level in the scene view, or a message like the one below in the game view.
 
-<img src="/NoCamerasRendering.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
+<img src="img/NoCamerasRendering.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
 By default, the game view is not rendered as no cameras are in use -- all of the observation data is going to the agent via RenderTextures. To look through the eyes of the agent, go to `Window -> Preview -> RenderTextureCameraPreview`.
 
 
-<img src="/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
+<img src="img/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
 The game view can be safely closed in favour of this new view. 
 

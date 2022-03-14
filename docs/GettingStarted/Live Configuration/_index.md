@@ -1,4 +1,4 @@
-An environment can be configured using the [WOB environment API](TODO). 
+An environment can be configured using the [WOB environment API](COMING SOON). 
 
 #### Configuring Bugs
 
@@ -16,9 +16,10 @@ Setting the agents behaviour will enable heuristic mode. In this mode, actions w
 
 ### Advanced
 
-
-
+MORE INFO COMING SOON
 
 ## Logging
 
 By default all messages logged with Unity's default logging system, `Debug.Log` are also displayed in the Python console. 
+
+MORE INFO COMING SOON
