@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://example.com/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Developing%20Worlds/Agents/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Developing%20Worlds/Bugs/Perceptual/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Examples/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Examples/World-v1/Overview/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Getting%20started/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Getting%20started/Live%20Configuration/_index/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/Overview/_index/</loc>
-         <lastmod>2022-03-11</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://example.com/Reference/_index/</loc>
-         <lastmod>2022-03-11</lastmod>
+         <loc>None</loc>
+         <lastmod>2022-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
