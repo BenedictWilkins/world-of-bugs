@@ -77,7 +77,7 @@ class UnityEnvironment(MLAgentUnityEnvironment):
         msg = f"Bugs.{bug}.enabled:{False}"
         self.config_channel.write(str(msg))
 
-    def set_player_behaviour(self, behaviour):
+    def set_agent_behaviour(self, behaviour):
         msg = f"{behaviour}:{True}"
         self.config_channel.write(str(msg))
         self.reset() # reset the environment and ignore the result...

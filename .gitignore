@@ -2,6 +2,7 @@
 builds/
 dataset/
 test/ 
+tmp/
 
 *.tar.hz
 *.tar

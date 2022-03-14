@@ -1,0 +1,10 @@
+site_name: World of Bugs
+theme: 
+    name: readthedocs
+plugins:
+    - search
+    - awesome-pages:
+        collapse_single_pages: true
+    # - autolinks
+    - section-index
+    # - literate-nav

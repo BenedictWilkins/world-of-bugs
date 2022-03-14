@@ -36,7 +36,7 @@ class UnityGymEnvironment(gym.Env):
         # inherit some methods from the wrapped environment
         setattr(self, self._env.enable_bug.__name__, self._env.enable_bug)
         setattr(self, self._env.disable_bug.__name__, self._env.disable_bug)
-        setattr(self, self._env.set_player_behaviour.__name__, self._env.set_player_behaviour)
+        setattr(self, self._env.set_agent_behaviour.__name__, self._env.set_agent_behaviour)
 
         # TAKEN FROM UnityToGymWrapper
         self._env.reset() # reset the environment so that the info below becomes avaliable
