@@ -1,3 +1,0 @@
-# Reference
-
-API REFERENCE COMING SOON

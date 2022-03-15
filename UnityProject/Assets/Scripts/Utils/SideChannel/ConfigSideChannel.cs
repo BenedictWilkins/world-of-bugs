@@ -31,8 +31,6 @@ namespace WorldOfBugs {
         protected Controller controller;
         protected ConfigAPI configAPI;
 
-       
-
         public ConfigSideChannel(Controller _controller) {
             // GUID is needed by python to communicate with this channel...
             ChannelId = new Guid("621f0a70-4f87-11ea-a6bf-784f4387d1f7");
