@@ -17,10 +17,17 @@ from gym import spaces
 from types import SimpleNamespace
 
 from gym_unity.envs import UnityGymException
+from prettytable import DEFAULT
 
 from ._base import UnityEnvironment
 from ._action import ActionHandler
 from ._observation import ObservationHandler
+
+from ..utils import WorldOfBugsException
+
+DEFAULT_OBSERVATION_KEY = 'Observation' # used to unpack the agents observations, everything else goes into 'info'
+DEFAULT_ACTION_KEY = 'Action'
+DEFAULT_MASK_KEY = 'Mask'
 
 __all__ = ("UnityGymEnvironment", "WOBEnvironment")
 
@@ -63,7 +70,7 @@ class UnityGymEnvironment(gym.Env):
 
     def step(self, action):
         if self._data.done:
-            raise UnityGymException("Attempted to call step when the environment is already done.")
+            raise WorldOfBugsException("Attempted to call step when the environment is already done.")
         action_tuple = self._action_handler.get_action_tuple(np.array([action]))
         self._env.set_actions(self.name, action_tuple)
         self._env.step()
@@ -86,12 +93,16 @@ class UnityGymEnvironment(gym.Env):
     def action_space(self):
         return self._action_handler.action_space
 
+
 class WOBEnvironment(UnityGymEnvironment):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, observation_key=DEFAULT_OBSERVATION_KEY, **kwargs):
         super().__init__(*args, **kwargs)
         self._renderer = None
-        assert 'observation' in self._observation_handler.sensors
+
+        if observation_key not in self._observation_handler.sensors:
+            raise WorldOfBugsException(f"Invalid observation key {observation_key}, valid observations include {self._observation_handler.sensors}")
+        self.observation_key = observation_key
 
         # there is lag at the begining of an episode, this is a hack to prevent issues with 
         # actions and observation lining up. This should be removed in favour of something less 
@@ -104,12 +115,11 @@ class WOBEnvironment(UnityGymEnvironment):
     def _collect(self, action, decision_steps, terminal_steps):
         steps = decision_steps if len(decision_steps) > 0 else terminal_steps
         reward = steps.reward[0] if steps.reward.shape[0] > 0 else 0. # sometimes reward is not defined
-        info = {k:v.squeeze(0) for k,v in zip(self._observation_handler.sensors, steps.obs)}
-        state = info['observation']
-        del info['observation']
-        print(action, info.get('info')[0])
-        action = info.get('info', [action])[0] # if the policy used is a unity policy, this is important.
-       
+        info = {k.split(":")[-1]:v.squeeze(0) for k,v in zip(self._observation_handler.sensors, steps.obs)}
+        state = info[self.observation_key]
+        del info[self.observation_key]
+        print(action, info[DEFAULT_ACTION_KEY])
+        action = info.get(DEFAULT_ACTION_KEY) # if the policy used is a unity policy, this is important.
         return state, action, reward, info
 
     def render(self):
@@ -120,7 +130,7 @@ class WOBEnvironment(UnityGymEnvironment):
     @property
     def observation_space(self):
         # get the observation_space for the observation sensor
-        return self._observation_handler['observation'] 
+        return self._observation_handler[self.observation_key] 
     
 class DebugRenderer:
 
@@ -141,7 +151,7 @@ class DebugRenderer:
                 self.close()
                 return
         # otherwise, render the current observation
-        obs = np.concatenate([self.env._data.state.transpose(1,0,2), self.env._data.info['bugmask'].transpose(1,0,2)], axis=0)
+        obs = np.concatenate([self.env._data.state.transpose(1,0,2), self.env._data.info[DEFAULT_MASK_KEY].transpose(1,0,2)], axis=0)
         obs = (obs * 255).astype(np.uint8)
         surf = self.pygame.Surface(obs.shape[:2])
         self.pygame.surfarray.blit_array(surf, obs)

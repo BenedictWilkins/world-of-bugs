@@ -11,12 +11,22 @@ from setuptools import setup, find_packages
 
 # last successful build versions  gym-unity-0.28.0 mlagents-envs-0.28.0
 
+GYM_NAMESPACE = "WOB"
+
 setup(name='worldofbugs',
-      version='0.0.1',
-      description='',
-      url='',
-      author='Benedict Wilkins',
-      author_email='benrjw@gmail.com',
-      packages=find_packages(),
-      install_requires=['numpy', 'gymu', 'gym_unity', 'kaggle'],
+        version='0.0.1',
+        description='',
+        url='',
+        author='Benedict Wilkins',
+        author_email='benrjw@gmail.com',
+        packages=find_packages(),
+        install_requires=[
+            #'gymu @ git+https://git@github.com/BenedictWilkins/gymu.git',
+            #'numpy', 'gym_unity', 'kaggle'
+        ],
+        entry_points={
+            "gym.envs": [
+                f"{GYM_NAMESPACE} = worldofbugs:register_entry_point"
+            ]
+        },
       zip_safe=False)

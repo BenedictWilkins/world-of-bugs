@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Sensors.Reflection;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 
@@ -21,9 +21,25 @@ namespace WorldOfBugs {
         protected Vector3 initialPosition;
         protected Vector3 initialRotation;
 
+        [Observable("Position")]
+        public Vector3 Position;
+        [Observable("Rotation")]
+        public Vector3 Rotation;
+        [Observable("Action")]
+        public int Action { 
+            get { return GetStoredActionBuffers().DiscreteActions[0]; }
+        }
+
+        public void FixedUpdate() { 
+            RequestDecision();
+        }
+       
+
         public void Awake() {
             initialPosition = gameObject.transform.localPosition;
             initialRotation = gameObject.transform.localEulerAngles;
+            gameObject.GetComponent<BehaviorParameters>().ObservableAttributeHandling = ObservableAttributeOptions.ExcludeInherited;
+            //UseHeuristic(python); // always start using this heuristic, another can be set in the python API.
         }
 
         public override void OnEpisodeBegin() {
@@ -31,8 +47,9 @@ namespace WorldOfBugs {
             //gameObject.transform.localEulerAngles = initialRotation; // new Vector3(0, UnityEngine.Random.value * 360, 0);
         }
 
-        public override void UseHeuristic(HeuristicComponent heuristic) {
-            
+        public override void UsePolicy(PolicyComponent policy) {
+            Debug.Log($"Using policy: {policy}");
+            GetComponent<World1Actuator>().Policy = policy;
         }
 
     }

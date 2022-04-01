@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
 using UnityEngine.AI;
 
 using Unity.MLAgents;
@@ -15,7 +14,7 @@ namespace WorldOfBugs {
         public RejectionSamplingException() : base("Maximum rejection sampling attempts reached, perhaps the walk radius is too large?") {}
     }
     
-    public class World1HeuristicNavMesh : HeuristicComponent {
+    public class World1HeuristicNavMesh : PolicyComponent {
         
         public static readonly int MAX_REJECTION_SAMPLE_ATTEMPTS = 100;
         [Tooltip("Navmesh surfaces, allows the navmesh to be updated at runtime.")]
@@ -48,7 +47,7 @@ namespace WorldOfBugs {
 
         // used to ensure heuristic updates are done properly with a decisionPeriod > 1
         private float time; 
-        private bool isHeuristic = false;
+        public override bool isHeuristic { get { return true; }}
 
         void Awake() {
             time = Time.time;
@@ -58,23 +57,29 @@ namespace WorldOfBugs {
         }
 
         void Start() {
+            //Debug.Log("NAVMESH START");
             path = new NavMeshPath();
             Update();
         }
         
-        public override void Heuristic(in ActionBuffers buffer) {  
+        public override void Heuristic(in ActionBuffers buffer) { 
+            if (path is null) {
+                Start(); 
+            }
             //Debug.Log("Decide...");
-            isHeuristic = true; // this heuristic was used to generate the action buffer...  
             float dt = Time.time - time; // estimated time between heuristic calls...
             time = Time.time;
             
             // none, forward, rotate_left, rotate_right
             var _buffer = buffer.DiscreteActions;
             _buffer[0] = 0; //default do nothing
-            Debug.Log($"Path Corners: {path.corners.Length}");
+            //Debug.Log($"Path: {path}");
+            //Debug.Log($"Path C: {path.corners}");
+            //Debug.Log($"Path Corners: {path.corners.Length}");
 
             if (path.corners.Length == 0) {
-                return; // there way not path found, just do nothing.
+                Debug.LogWarning($"{this} invalid path (empty).");
+                return; // no path found, just do nothing...? 
             }
 
             if (UnityEngine.Random.value < mistakeProb) {
@@ -101,7 +106,7 @@ namespace WorldOfBugs {
                 // move forward
                 _buffer[0] = 1;
             }
-            Debug.Log(_buffer[0]);
+            //Debug.Log(_buffer[0]);
             Debug.DrawLine(gameObject.transform.position, gameObject.transform.position + direction, Color.blue, dt);
             Debug.DrawLine(gameObject.transform.position, gameObject.transform.position + gameObject.transform.forward, Color.green, dt);
         }

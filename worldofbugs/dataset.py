@@ -10,8 +10,7 @@ __status__ = "Development"
 import pathlib
 import gymu
 
-from .utils._utils import make
-
+from .environment import make
 
 class WOBIterator(gymu.iterator):
 

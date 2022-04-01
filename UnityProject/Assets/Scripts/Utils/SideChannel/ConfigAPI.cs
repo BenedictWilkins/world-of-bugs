@@ -26,15 +26,16 @@ namespace WorldOfBugs {
             }
         }
 
-        public class HeuristicConfigurator : Configurator { 
+        public class PolicyConfigurator : Configurator { 
             public Agent Agent;
-            public HeuristicComponent Component;
+            public PolicyComponent Component;
 
             // API
             public string heuristic { 
                 get { throw new NotImplementedException(); } 
                 set { 
-                    // TODO
+                    bool v = Convert.ToBoolean(value); // turn on this heuristic behaviour.
+                    Agent.UsePolicy(Component);
                 }
             }
         }
@@ -44,10 +45,10 @@ namespace WorldOfBugs {
                 x => x.Bug.GetType().Name, 
                 x => new BugConfigurator() { Option = x }); } 
         }
-        public Dictionary<string, HeuristicConfigurator> Heuristics { 
-            get { return controller.agent.GetComponents<HeuristicComponent>().ToDictionary(
+        public Dictionary<string, PolicyConfigurator> Heuristics { 
+            get { return controller.agent.GetComponents<PolicyComponent>().ToDictionary(
                 x => x.GetType().Name, 
-                x => new HeuristicConfigurator() { Agent = controller.agent, Component = x });
+                x => new PolicyConfigurator() { Agent = controller.agent, Component = x });
             }
         }
 

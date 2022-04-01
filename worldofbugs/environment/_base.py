@@ -25,7 +25,6 @@ class UnityEnvironment(MLAgentUnityEnvironment):
         Wrapped UnityMLAgents environment. Adds some additional functionality with a 
         side channel to the game controller in Unity.
     """
-
     def __init__(self, 
             file_name = None,
             worker_id: int = 0,
@@ -78,7 +77,7 @@ class UnityEnvironment(MLAgentUnityEnvironment):
         self.config_channel.write(str(msg))
 
     def set_agent_behaviour(self, behaviour):
-        msg = f"{behaviour}:{True}"
+        msg = f"Heuristics.{behaviour}.heuristic:{True}"
         self.config_channel.write(str(msg))
         self.reset() # reset the environment and ignore the result...
 

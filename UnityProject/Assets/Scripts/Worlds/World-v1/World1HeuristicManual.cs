@@ -9,7 +9,9 @@ using Unity.MLAgents.Policies;
 
 namespace WorldOfBugs {
     
-    public class World1HeuristicManual : HeuristicComponent {
+    public class World1HeuristicManual : PolicyComponent {
+        
+        public override bool isHeuristic { get { return true; }}
 
         public override void Heuristic(in ActionBuffers buffer) {
             int leftright = (int) Mathf.Round(Input.GetAxis("Horizontal"));

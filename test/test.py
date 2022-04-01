@@ -8,17 +8,18 @@ __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
 from pprint import pprint
-import time
 from worldofbugs.environment._base import UnityEnvironment
 
-
 env = UnityEnvironment()
-env.enable_bug("TextureMissing")
+#env.enable_bug("TextureMissing")
+#env.set_agent_behaviour("World1HeuristicNavMesh")
 env.reset()
-print(list(env.behavior_specs.keys()))
 
-#name = next(iter(env.behavior_specs.keys()))
-#pprint(name)
+#print(list(env.behavior_specs.keys()))
 
-
-#decision_steps, terminal_steps = env.get_steps(name)
+name = next(iter(env.behavior_specs.keys()))
+for i in range(100):
+   print(i)
+   decision_steps, terminal_steps = env.get_steps(name)
+   #env.set_action_for_agent(name, 0, np.array())
+   #env.step()

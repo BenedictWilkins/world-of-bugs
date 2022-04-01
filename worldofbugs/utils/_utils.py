@@ -9,37 +9,24 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
+GYM_NAMESPACE = "WOB" # this is also in setup.py...
 
-from dataclasses import dataclass
 import os
 import pathlib
 import glob
-import gym
+import logging
+Logger = logging.getLogger("worldofbugs")
+_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+_channel = logging.StreamHandler()
+_channel.setFormatter(_formatter)
+_channel.setLevel(logging.DEBUG)
+Logger.setLevel(logging.DEBUG)
+Logger.addHandler(_channel)
 
+__all__ = ("WorldOfBugsException", "BuildResolver")
 
-from ..environment import UnityEnvironment, WOBEnvironment
-
-__all__ = ('make', 'BuildResolver')
-
-# use side channels?
-# https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Python-API.md#interacting-with-a-unity-environment
-def make(env_id, worker=0, display_width=84, display_height=84, quality_level=3, time_scale=1.0, log_folder=None, debug=True): 
-    if env_id is not None:
-        build = BuildResolver.get_build(env_id)
-        ex_path = build.path
-        assert build.name == env_id
-    else:
-        ex_path = None # USE THE UNITY EDITOR
-    env = UnityEnvironment(file_name=ex_path, 
-                                    worker_id=worker, 
-                                    log_folder=log_folder, 
-                                    display_height=display_height, 
-                                    display_width=display_width, 
-                                    quality_level=quality_level, 
-                                    time_scale=time_scale, 
-                                    debug=debug)
-    env = WOBEnvironment(env)
-    return env
+class WorldOfBugsException(Exception):
+    pass 
 
 class _UnityBuildResolver:
 
@@ -58,7 +45,8 @@ class _UnityBuildResolver:
     DEFAULT_UNITY_BUILD_EXT = ".x86_64" # TODO this is only for linux
 
     def __init__(self):
-        self.path = [str(pathlib.Path(".").resolve()), self.default_path]    
+        self.path = [str(pathlib.Path(".").resolve()), self.default_path]
+        self._builds = None 
 
     @property
     def default_path(self):
@@ -66,17 +54,25 @@ class _UnityBuildResolver:
         path = pathlib.Path(path, _UnityBuildResolver.DEFAULT_UNITY_BUILDS_DIR)
         return str(path.resolve())
 
-    def get_builds(self):
-        envs = []
-        for path in self.path:
-            envs.extend(_get_builds(path, _UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT))
-        return envs
+    @property
+    def builds(self):
+        if self._builds is None:
+            builds = []
+            for path in self.path:
+                builds.extend(_get_builds(path, _UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT))
+            self._builds = builds
+        return self._builds
 
     def get_build(self, env_id):
-        candidate_builds = [build for build in self.get_builds() if env_id == build.name]
+        if "/" in env_id: # WOB namespace was given...
+            env_id = "/".join(env_id.split("/")[1:])
+    
+        candidate_builds = [build for build in self.builds]
+      
+        
         if len(candidate_builds) > 0:
             return candidate_builds[0] # get the first one...
-        envs = [build.name for build in self.get_builds()]
+        envs = [build.name for build in self.builds]
         raise FileNotFoundError(f"Failed to find environment: {env_id}. Avaliable environments: {envs}")
 
 class BuildPath:
@@ -101,7 +97,8 @@ class BuildPath:
     
 def _get_builds(path, ext):
     environments = []
-    for p in glob.glob(os.path.join(path, "*")):
+    Logger.debug(f"SEARCH PATH: {path}")
+    for p in glob.glob(os.path.join(path, "**/*"), recursive=False):
         p = pathlib.Path(p)
         if p.is_dir():
             p = pathlib.Path(p, f"*{ext}")

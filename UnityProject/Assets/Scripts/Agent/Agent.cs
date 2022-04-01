@@ -11,7 +11,7 @@ namespace WorldOfBugs {
 
     public abstract class Agent : Unity.MLAgents.Agent { 
 
-        public abstract void UseHeuristic(HeuristicComponent heuristic);
-        
+        public abstract void UsePolicy(PolicyComponent policy);
+    
     }
 }

@@ -12,18 +12,19 @@ namespace WorldOfBugs {
     public class World1Actuator : ActuatorComponent {
        
         public string Name; 
-        public HeuristicComponent Hueristic;
+        public PolicyComponent Policy;
+
         public override ActionSpec ActionSpec { get { return ActionSpec.MakeDiscrete(4); } }
-        
+
         public override IActuator[] CreateActuators(){
             return new IActuator[] { new _World1Actuator(this) };
         }
     }
 
     public class _World1Actuator : IActuator {
-
+        
         private World1Actuator _component;
-        private HeuristicComponent _heuristic { get { return _component.Hueristic; }}
+        private PolicyComponent _policy { get { return _component.Policy; }}
 
         public string Name { get { return _component.Name; }}
         public ActionSpec ActionSpec { get { return _component.ActionSpec; } }
@@ -53,13 +54,18 @@ namespace WorldOfBugs {
         protected ActionMethod[] actions = new ActionMethod[] { none, forward, rotate_left, rotate_right };
 
         public void OnActionReceived(ActionBuffers buffer) {
-            foreach (int a in buffer.DiscreteActions) {
-                actions[a](_component.GetComponent<World1Agent>()); // perform the action
+            int _a = buffer.DiscreteActions[0];
+            if (_policy.isHeuristic) {
+                Heuristic(buffer);
             }
+            int action = buffer.DiscreteActions[0];
+            Debug.Log($"{_a} {action}");
+            actions[action](_component.GetComponent<World1Agent>()); // perform the action
         }
 
         public void Heuristic(in ActionBuffers buffer) {
-            _heuristic.Heuristic(buffer);
+            //Debug.Log("USE HEURISTIC");
+            _policy.Heuristic(buffer);
         }
 
         public void ResetData() {}
