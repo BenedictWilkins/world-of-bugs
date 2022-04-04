@@ -54,6 +54,10 @@
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Quick Start</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#getting-started-with-standalone-builds">Getting Started With Standalone Builds</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#build-search">Build Search</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -114,31 +118,43 @@
 <p>To run with the default build settings:</p>
 <pre><code class="language-python"># add downloaded builds to path
 worldofbugs.utils.BuildResolver.path += &quot;~/Downloads/builds/&quot;
-print(worldofbugs.utils.BuildResolver.get_builds()) # sanity check, list all avaliable environments
+print(worldofbugs.utils.BuildResolver.path)     # list all search paths
+print(worldofbugs.utils.BuildResolver.builds)   # list all avaliable environments
 
 # make the environment
-env = worldofbugs.utils.make('World-v1') 
+env = worldofbugs.make('WoB/World-v1') 
 
 env.reset()
 for i in range(1000): # advance simulation 1000 steps
   env.step(env.action_space.sample()) # take a random action
   env.render() #render the game screen, requires pygame installation
 </code></pre>
-<p>If everything worked correctly you should see a printout like: </p>
+<p>If everything worked correctly you should see a build printout like: </p>
 <p><code>[~/Downloads/builds/Standalone-Linux-World-v1/World-v1.x86_64]</code></p>
 <p>and if you have pygame installed (<code>pip install pygame</code>) something like the following should appear in your pygame window.</p>
 <p><img src="img/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
 <p>You may also notice that a small Unity window popped up, unfortunately this is required to ensure the agent's observations are correctly processed by GPU, see <a href="https://answers.unity.com/questions/1672109/native-texture-pointer-returns-0-in-headless-build.html">here</a> for details.</p>
+<h3 id="build-search">Build Search</h3>
+<p>When searching for builds the <code>BuildResolver</code> will search one directory deep. The typical directory structure should look something like the following:</p>
+<pre><code class="language-none">builds
+└── World-v1
+    ├── LinuxPlayer_s.debug
+    ├── UnityPlayer_s.debug
+    ├── UnityPlayer.so
+    ├── World-v1_Data
+    └── World-v1.x86_64
+</code></pre>
+<p>with <code>builds</code> being the directory added to <code>BuildResolver.path</code> as above. By default the current working directory and the <code>build</code> directory in the <code>worldofbugs</code> install directory will also be searched.</p>
 <hr />
 <h1 id="getting-started-with-unity">Getting Started with Unity</h1>
 <p>Rather than using a standalone build, it is also possible to connect directly to the Unity editor. This requires the WOB project to be open in unity.</p>
 <p>To avoid issues, install Unity version 2020.3.25f1 which can be found in the <a href="https://unity3d.com/get-unity/download/archive">unity download archive</a> using the latest version of <a href="https://unity3d.com/get-unity/download">UnityHub</a>. </p>
-<p>Once installed, locate the <code>UnityProject</code> folder in your WOB root directory, add it as a new project in UnityHub and open it in the editor.</p>
+<p>Once installed, locate the <code>UnityProject</code> folder in your <code>worldofbugs</code> install directory, add it as a new project in UnityHub and open it in the editor.</p>
 <p><img src="img/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
 <p>To connect to the editor, run the following script and then press the play button in the editor window.</p>
 <pre><code class="language-python">import worldofbugs
 # make the environment, None indicates we want to connect to the editor
-env = worldofbugs.utils.make(None) 
+env = worldofbugs.make(None) 
 
 env.reset()
 for i in range(1000): # advance simulation 1000 steps
@@ -146,7 +162,7 @@ for i in range(1000): # advance simulation 1000 steps
 </code></pre>
 <p>You should see the agent (white sphere) start to move around the level in the scene view, or a message like the one below in the game view.</p>
 <p><img src="img/NoCamerasRendering.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
-<p>By default, the game view is not rendered as no cameras are in use -- all of the observation data is going to the agent via RenderTextures. To look through the eyes of the agent, go to <code>Window -&gt; Preview -&gt; RenderTextureCameraPreview</code>.</p>
+<p>By default, the game view is not rendered as no cameras are in use. To look through the eyes of the agent, in the Unity editor go to <code>Window -&gt; Preview -&gt; RenderTextureCameraPreview</code>.</p>
 <p><img src="img/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
 <p>The game view can be safely closed in favour of this new view. </p>
 <hr />
