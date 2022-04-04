@@ -1,11 +1,16 @@
 site_name: World of Bugs
 theme: 
-    name: readthedocs
-    navigation_depth: 10
+    name: material
+    features:
+    - navigation.indexes
+    - navigation.sections
+    #- navigation.expand
+    #- navigation.tabs
+    #- toc.integrate
+  
 plugins:
-    - search
+    #- search
     - awesome-pages:
-        collapse_single_pages: true
     # - autolinks
     # - section-index
     # - literate-nav

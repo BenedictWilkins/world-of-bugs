@@ -35,7 +35,7 @@ The second facet to the problem of ABD is that of bug identification. When a hum
 
 <img src="imgs/the-witcher-3-roach.png"  width=80% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
-The waters become a murky around this point. We might formally say that a human tester has a specification that they work from, that explicitly states "horses don't do handstands". But for people who have worked in game dev, we know this isn't the case. 
+The waters become a murky around this point. We might formally say that a human tester has a specification that they work from that explicitly states "horses don't do handstands", but this just isn't the case. 
 
 
 TO BE CONTINUED...

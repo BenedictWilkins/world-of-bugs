@@ -1,10 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-    Created on 05-10-2021 14:40:48
-
-    [Description]
-"""
 __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
@@ -67,11 +62,11 @@ class _PathList:
         return str(self)
 
 class _UnityBuildResolver:
-
     """ Resolves paths for unity environment builds. Default search order:
 
         Current working directory
         <WOB-INSTALL-DIR>/builds/
+        <USER-DEFINED-DIR> ...
         
         Additional paths can be added by modifying the `path` variable, for example:
 
@@ -125,7 +120,6 @@ class _UnityBuildResolver:
             self._builds.extend(_get_builds(path, _UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT))
     
     def _update(self, path):
-        print("UPDATE")
         self._builds.extend(_get_builds(path, _UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT))
 
 

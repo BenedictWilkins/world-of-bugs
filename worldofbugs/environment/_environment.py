@@ -139,7 +139,7 @@ class DebugRenderer:
         try:
             import pygame
         except:
-            raise ImportError("To visualise a WOB environment the pygame package is required. It can be installed with `pip install pygame`, alternatively the you might consider running the environment from within the Unity editor.")
+            raise ImportError("To visualise a WOB environment the pygame package is required. It can be installed with `pip install pygame`, alternatively the you might consider running the environment with Unity editor.")
         self.pygame = pygame
         self.pygame.init()
         self.display_size = display_size

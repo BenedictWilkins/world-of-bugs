@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """ 
-   Created on 08-03-2022
+   Actions require special handing when working with `mlagents_envs`, this module contains some utilties to do this.
 """
 __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
@@ -12,9 +12,22 @@ import gym
 
 from gym_unity.envs import UnityGymException, ActionTuple, ActionFlattener
 
+from mlagents_envs.base_env import ActionSpec
+
 __all__ = ("ActionHandler", "DiscreteActionHandler", "ContinuousActionHandler")
 
-def ActionHandler(action_spec):
+def ActionHandler(action_spec : ActionSpec):
+    """ Alias for _ActionHandler, creates the correct handler for the given action_spec.
+
+    Args:
+        action_spec (ActionSpec): action specification (see mlagent_envs).
+
+    Raises:
+        UnityGymException: If the action spec is invalid
+
+    Returns:
+        _ActionHandler: handler for the given ActionSpec
+    """
     if action_spec.is_continuous():
         return ContinuousActionHandler(action_spec)
     elif action_spec.is_discrete():
@@ -23,15 +36,20 @@ def ActionHandler(action_spec):
         raise UnityGymException("This gym wrapper does not provide explicit support for both discrete and continuous actions.")
     
 class _ActionHandler: # Attempt to streamline actions sent/received from unity. Why is branching even a thing!
-
     def get_action_tuple(self, actions):
         raise NotImplementedError()
 
 # TODO support both discrete and continuous actions...
 
 class ContinuousActionHandler(_ActionHandler):
+    """ Handler for continuous actions. """
 
     def __init__(self, action_spec):
+        """ Constructor.
+
+        Args:
+            action_spec (ActionSpec): action specification (see mlagent_envs).
+        """
         self.action_spec = action_spec
         self.action_size = self.action_spec.continuous_size
         high = np.array([1] * self.action_spec.continuous_size)
@@ -41,8 +59,14 @@ class ContinuousActionHandler(_ActionHandler):
         return ActionTuple(continuous=actions) # simple!
 
 class DiscreteActionHandler(_ActionHandler): 
+    """ Handler for discrete actions. """
 
     def __init__(self, action_spec):
+        """ Constructor.
+
+        Args:
+            action_spec (ActionSpec): action specification (see mlagent_envs).
+        """
         self.action_spec = action_spec
         # always flatten action space? 
         self.action_size = self.action_spec.discrete_size

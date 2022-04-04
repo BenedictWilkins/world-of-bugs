@@ -9,7 +9,11 @@ __status__ = "Development"
 
 from setuptools import setup, find_packages
 
-# last successful build versions  gym-unity-0.28.0 mlagents-envs-0.28.0
+
+# last successful build versions:
+# gym-unity-0.28.0 
+# mlagents-envs-0.28.0
+# unity 2020.3.25f1
 
 GYM_NAMESPACE = "WOB"
 
@@ -26,7 +30,7 @@ setup(name='worldofbugs',
         ],
         entry_points={
             "gym.envs": [
-                f"{GYM_NAMESPACE} = worldofbugs:register_entry_point"
+                f"{GYM_NAMESPACE} = worldofbugs:_register_entry_point"
             ]
         },
       zip_safe=False)
