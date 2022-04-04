@@ -91,24 +91,3 @@ By default, the game view is not rendered as no cameras are in use. To look thro
 <img src="/GettingStarted/img/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
 The game view can be safely closed in favour of this new view. 
-
-----------
-
-# Configuration
-
-`worldofbugs` provides an API for configuring certain aspects of the environment at runtime. The API code can be found [here](#TODO)
-
-# Configuring Bugs
-
-The two key methods here are:
-
-
-
-
-
-
-# Configuring Behaviours
-
-
-
-
