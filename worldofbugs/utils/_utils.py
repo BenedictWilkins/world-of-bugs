@@ -28,6 +28,44 @@ __all__ = ("WorldOfBugsException", "BuildResolver")
 class WorldOfBugsException(Exception):
     pass 
 
+class _PathList:
+
+    def __init__(self, *args, add_callback=None):
+        for x in args:
+            assert isinstance(x, (str, pathlib.Path, pathlib.PurePath))
+        self.paths = [pathlib.Path(x).expanduser().resolve().absolute() for x in args]
+        self.add_callback = add_callback
+
+    def __getitem__(self, i):
+        return  self.paths[i]
+
+    def __iter__(self):
+        yield from self.paths
+
+    def __add__(self, x):
+        assert isinstance(x, (str, pathlib.Path, pathlib.PurePath))
+        x = pathlib.Path(x).expanduser().resolve().absolute()
+        self.paths += [x]
+        return self
+
+    def __iadd__(self, x):
+        assert isinstance(x, (str, pathlib.Path, pathlib.PurePath))
+        x = pathlib.Path(x).expanduser().resolve().absolute()
+        self.paths += [x]
+        return self
+    
+    def append(self, x):
+        assert isinstance(x, (str, pathlib.Path, pathlib.PurePath))
+        x = pathlib.Path(x).expanduser().resolve().absolute()
+        self.paths.append(x)
+        self.add_callback(x)
+
+    def __str__(self):
+        return str([str(x) for x  in self.paths])
+    
+    def __repr__(self):
+        return str(self)
+
 class _UnityBuildResolver:
 
     """ Resolves paths for unity environment builds. Default search order:
@@ -45,8 +83,20 @@ class _UnityBuildResolver:
     DEFAULT_UNITY_BUILD_EXT = ".x86_64" # TODO this is only for linux
 
     def __init__(self):
-        self.path = [str(pathlib.Path(".").resolve()), self.default_path]
-        self._builds = None 
+        self._builds = None
+        self._path = _PathList(
+            str(pathlib.Path(".").resolve()), 
+            self.default_path,
+            add_callback=self._update)
+
+    @property
+    def path(self):
+        return self._path
+
+    @path.setter
+    def path(self, path):
+        self._path = _PathList(*path, add_callback=self._update)
+        self.update_builds()
 
     @property
     def default_path(self):
@@ -57,23 +107,27 @@ class _UnityBuildResolver:
     @property
     def builds(self):
         if self._builds is None:
-            builds = []
-            for path in self.path:
-                builds.extend(_get_builds(path, _UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT))
-            self._builds = builds
+            self.update_builds()
         return self._builds
 
     def get_build(self, env_id):
         if "/" in env_id: # WOB namespace was given...
             env_id = "/".join(env_id.split("/")[1:])
-    
         candidate_builds = [build for build in self.builds]
-      
-        
         if len(candidate_builds) > 0:
             return candidate_builds[0] # get the first one...
         envs = [build.name for build in self.builds]
         raise FileNotFoundError(f"Failed to find environment: {env_id}. Avaliable environments: {envs}")
+
+    def update_builds(self):
+        self._builds = []
+        for path in self.path:
+            self._builds.extend(_get_builds(path, _UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT))
+    
+    def _update(self, path):
+        print("UPDATE")
+        self._builds.extend(_get_builds(path, _UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT))
+
 
 class BuildPath:
 
@@ -97,10 +151,11 @@ class BuildPath:
     
 def _get_builds(path, ext):
     environments = []
-    Logger.debug(f"SEARCH PATH: {path}")
-    for p in glob.glob(os.path.join(path, "**/*"), recursive=False):
+    Logger.debug(f"Seaching: {path} ...")
+    for p in glob.glob(os.path.join(path, "*"), recursive=False):
         p = pathlib.Path(p)
         if p.is_dir():
+            #Logger.debug(f"Searching directory: {p} ...")
             p = pathlib.Path(p, f"*{ext}")
             unity_build = glob.glob(str(p))
             if len(unity_build) > 0:

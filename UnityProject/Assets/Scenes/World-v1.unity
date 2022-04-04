@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968890744919861837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b972e0103c3c1acdf81f2a93536c6c66, type: 3}
   m_Name: 
@@ -1367,7 +1367,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968890744919861837}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f387947b09afced8161084b62251b1, type: 3}
   m_Name: 
@@ -1404,7 +1404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Actuator-1
-  Policy: {fileID: 6968890744919861842}
+  Policy: {fileID: 6968890744919861844}
 --- !u!33 &6968890744919861879
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -11,8 +11,6 @@ from pprint import pprint
 from worldofbugs.environment._base import UnityEnvironment
 
 env = UnityEnvironment()
-#env.enable_bug("TextureMissing")
-#env.set_agent_behaviour("World1HeuristicNavMesh")
 env.reset()
 
 #print(list(env.behavior_specs.keys()))

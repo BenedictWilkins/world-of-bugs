@@ -10,14 +10,17 @@ __status__ = "Development"
 import worldofbugs
 
 # if you have unity open 
-# env = worldofbugs.utils.make(None)
+env = worldofbugs.make(None)
 
 # add downloaded builds to path
-# worldofbugs.utils.BuildResolver.path = ["/home/ben/Downloads/builds/"]
-print("ENVS", worldofbugs.utils.BuildResolver.builds) # list all avaliable environments
+worldofbugs.utils.BuildResolver.path += "~/Downloads/builds/"
+print(worldofbugs.utils.BuildResolver.path)     # list all search paths
+print(worldofbugs.utils.BuildResolver.builds)   # list all avaliable environments
 # if you have built World-v1 or downloaded a build
-env = worldofbugs.make(None) 
+#env = worldofbugs.make("WoB/World-v1") 
 
+
+"""
 env.set_agent_behaviour("World1HeuristicNavMesh")
 
 env.reset()
@@ -34,3 +37,4 @@ for i in range(100):
    env.step(env.action_space.sample())
    env.render() # requires pygame
    #env._renderer.record(f"./tmp/record/{i}.png")
+"""
