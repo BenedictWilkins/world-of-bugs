@@ -15,20 +15,25 @@ public class CameraClipping : Bug {
     
     void Awake() {
         _camera = player.CameraMain;
+        Debug.Log(_camera.nearClipPlane);
+        _oldclip = _camera.nearClipPlane;
         OnDisable();
     }
 
     public override void OnEnable() {
         // set the near clipping plan to be farther away
         // when close to an object the view will clip inside
-        _oldclip = _camera.nearClipPlane;
+       
         _camera.nearClipPlane = clip;
         Shader.SetGlobalFloat("_CameraNearClip", clip);
         Shader.SetGlobalColor("_CameraClipColor", (Color)bugType);
     }
 
     public override void OnDisable() {
-        Shader.SetGlobalFloat("_CameraNearClip", 0.01f);
+        if (_camera != null) {
+            _camera.nearClipPlane = _oldclip;
+        }
+        Shader.SetGlobalFloat("_CameraNearClip", _oldclip);
         Shader.SetGlobalColor("_CameraClipColor", transparent);
     }
 

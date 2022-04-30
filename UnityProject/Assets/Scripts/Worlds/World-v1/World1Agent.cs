@@ -10,6 +10,8 @@ using Unity.MLAgents.Policies;
 namespace WorldOfBugs {
 
     public class World1Agent : WorldOfBugs.AgentFirstPerson { 
+        
+        public static readonly int RESET_Y = -5;
 
         [Tooltip("Movement speed in units/second")]
         public float MovementSpeed = 2;
@@ -32,6 +34,9 @@ namespace WorldOfBugs {
 
         public void FixedUpdate() { 
             RequestDecision();
+            if (transform.position.y < RESET_Y) {
+                EndEpisode();
+            }
         }
        
 
