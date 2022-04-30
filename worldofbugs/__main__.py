@@ -14,14 +14,18 @@ import worldofbugs
 
 # add downloaded builds to path
 #worldofbugs.utils.BuildResolver.path += "~/Downloads/builds/"
-print(worldofbugs.utils.BuildResolver.path)     # list all search paths
-print(worldofbugs.utils.BuildResolver.builds)   # list all avaliable environments
+#print(worldofbugs.utils.BuildResolver.path)     # list all search paths
+#print(worldofbugs.utils.BuildResolver.builds)   # list all avaliable environments
 # if you have built World-v1 or downloaded a build
-env = worldofbugs.make("WOB/World-v1") 
-env.set_agent_behaviour("Blah")
 
+
+env = worldofbugs.make("WOB/World-v1", debug=False) 
+#env.set_agent_behaviour("Blah")
+
+"""
 env.reset()
 for i in range(100):
    state, *_ = env.step(env.action_space.sample())
    print(state.shape)
    env.render() # requires pygame
+"""

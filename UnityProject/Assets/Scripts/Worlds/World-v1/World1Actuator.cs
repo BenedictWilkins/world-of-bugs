@@ -59,7 +59,7 @@ namespace WorldOfBugs {
                 Heuristic(buffer);
             }
             int action = buffer.DiscreteActions[0];
-            Debug.Log($"{_a} {action}");
+            // Debug.Log($"{_a} {action}");
             actions[action](_component.GetComponent<World1Agent>()); // perform the action
         }
 

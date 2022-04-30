@@ -17,6 +17,9 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
+
+""" DEPRECATED: TODO update to match v1.0
+
 import argparse
 import os
 import subprocess
@@ -43,3 +46,4 @@ if err is not None:
     if len(err) > 0:
         print(err)
 print("DONE.")
+"""

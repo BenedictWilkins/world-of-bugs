@@ -14,11 +14,11 @@ Logger = logging.getLogger("worldofbugs")
 _formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 _channel = logging.StreamHandler()
 _channel.setFormatter(_formatter)
-_channel.setLevel(logging.DEBUG)
-Logger.setLevel(logging.DEBUG)
+_channel.setLevel(logging.INFO)
+Logger.setLevel(logging.INFO)
 Logger.addHandler(_channel)
 
-__all__ = ("WorldOfBugsException", "BuildResolver")
+__all__ = ("WorldOfBugsException", "BuildResolver", "Logger")
 
 class WorldOfBugsException(Exception):
     pass 
@@ -134,12 +134,16 @@ class BuildPath:
 
     @property
     def version(self):
-        pass 
+        return self.env_id.split("_")[-1]
 
     @property
     def name(self):
-        return self._path.stem
+        return self.env_id.split("_")[0]
 
+    @property
+    def env_id(self):
+        return str(self._path.stem)
+        
     def __repr__(self):
         return self.path
     

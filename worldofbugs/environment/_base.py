@@ -9,7 +9,7 @@ __status__ = "Development"
 
 import numpy as np
 from gym import spaces
-
+from sys import stdout
 from typing import List, Optional
 
 from mlagents_envs.side_channel.side_channel import SideChannel
@@ -19,6 +19,9 @@ from mlagents_envs.environment import UnityEnvironment as MLAgentUnityEnvironmen
 from .sidechannel import UnityLogChannel, UnityConfigChannel
 
 __all__ = ("UnityEnvironment", )
+
+class _DevnullStream:
+    def write(self, *_): pass
 
 class UnityEnvironment(MLAgentUnityEnvironment):
     """ 
@@ -52,9 +55,10 @@ class UnityEnvironment(MLAgentUnityEnvironment):
         self.config_channel = UnityConfigChannel() # custom config side channel used to enable bugs/change agent behaviours
         side_channels.append(self.config_channel)
 
-        if debug: # enables logs from unity to appear in python stdout.
-            log_channel = UnityLogChannel()
-            side_channels.append(log_channel)
+        stream = stdout if debug else _DevnullStream()
+        log_channel = UnityLogChannel(stream)
+        
+        side_channels.append(log_channel)
         if seed is None:
             seed = np.random.randint(0, 1e8) # set up environment with a random seed
         super().__init__(file_name = file_name, 

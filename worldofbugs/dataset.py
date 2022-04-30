@@ -7,6 +7,10 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
+"""
+
+DEPRECATED: TODO update to match v1.0
+
 import pathlib
 import gymu
 
@@ -49,3 +53,4 @@ def dataset(path, env_id, policy='navmesh', mode=gymu.mode.sardi, max_episode_le
     for i in range(num_episodes):
         gymu.data.write_episode(iter, pathlib.Path(path, f"ep-{str(i).zfill(zfill)}"))
 
+"""

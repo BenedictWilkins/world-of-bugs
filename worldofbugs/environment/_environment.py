@@ -106,7 +106,7 @@ class WOBEnvironment(UnityGymEnvironment):
 
         # there is lag at the begining of an episode, this is a hack to prevent issues with 
         # actions and observation lining up. This should be removed in favour of something less 
-        # "hacky" in the future, probably implemented at the unity side.
+        # "hacky" in the future, probably implemented at the unity side. TODO
         self.reset()
         for i in range(50):
             self.step(0)
@@ -118,7 +118,7 @@ class WOBEnvironment(UnityGymEnvironment):
         info = {k.split(":")[-1]:v.squeeze(0) for k,v in zip(self._observation_handler.sensors, steps.obs)}
         state = info[self.observation_key]
         del info[self.observation_key]
-        print(action, info[DEFAULT_ACTION_KEY])
+        #print(action, info[DEFAULT_ACTION_KEY])
         action = info.get(DEFAULT_ACTION_KEY) # if the policy used is a unity policy, this is important.
         return state, action, reward, info
 

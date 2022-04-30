@@ -69,6 +69,9 @@ namespace WorldOfBugs {
             //Debug.Log("Decide...");
             float dt = Time.time - time; // estimated time between heuristic calls...
             time = Time.time;
+            if (dt == 0) {
+                return; // ??? sometimes this happens...
+            }
             
             // none, forward, rotate_left, rotate_right
             var _buffer = buffer.DiscreteActions;
@@ -97,6 +100,7 @@ namespace WorldOfBugs {
             
             if (Mathf.Abs(angle) > Mathf.Abs(rangle)) {
                 // should rotate
+                // Debug.Log($"{angle} {rangle} {dt} {Time.deltaTime}");
                 if (angle < 0) {
                     _buffer[0] = 2;
                 } else if (angle > 0) {

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - BugMaskCamera
+  - ZBug
   layers:
   - Default
   - TransparentFX

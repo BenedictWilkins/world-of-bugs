@@ -9,7 +9,7 @@ public class ZClipping : Bug {
     public static readonly string BUGTAG = "ZBug";
 
     public GameObject level;
-    public GameObject camera;
+    public GameObject mainCamera;
 
     protected GameObject zCamera;
     protected int layer = -1;
@@ -18,19 +18,19 @@ public class ZClipping : Bug {
     protected int _oldlayer = -1;
 
     void Awake() {
-        tag = BUGTAG; 
+        bugTag = BUGTAG; 
         layer = LayerMask.NameToLayer(LAYERTAG);
         if (layer < 0) {
-            // if this happens something has gone very wrong.. probably the zfighting camera prefab is also broken...
+            // if this happens something has gone very wrong.. probably the zfighting mainCamera prefab is also broken...
             throw new KeyNotFoundException($"\"{ZClipping.LAYERTAG}\" must be a layer, please add it to enable the ZFighting bug.");
         }
-        foreach (Camera c in camera.GetComponentsInChildren<Camera>()) {
+        foreach (Camera c in mainCamera.GetComponentsInChildren<Camera>()) {
             HideLayer(c, layer); // hide the zfighting layer if its not already hidden...
         }
         zCamera = new GameObject($"{LAYERTAG}Camera");
         Camera _zCamera = zCamera.AddComponent<Camera>();
-        _zCamera.CopyFrom(camera.GetComponent<Camera>());
-        zCamera.transform.parent = camera.transform;
+        _zCamera.CopyFrom(mainCamera.GetComponent<Camera>());
+        zCamera.transform.parent = mainCamera.transform;
         foreach (Camera c in zCamera.GetComponentsInChildren<Camera>()) {
             _MakeZCamera(c);
         }
@@ -63,8 +63,6 @@ public class ZClipping : Bug {
             _fighter = null;
         }
     }
-
-    
 
     private void ShowLayer(Camera camera, int layer) {
         camera.cullingMask |= 1 << layer;

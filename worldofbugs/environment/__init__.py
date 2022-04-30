@@ -7,13 +7,22 @@ __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
 
-
 from ._observation import *
 from ._action import *
 from ._base import *
 from ._environment import *
 
+ENVIRONMENT_NAMESPACE = "WOB"
+
 __all__ = ('make',)
+
+def all():
+   """ Find all worldofbugs environments that have been registered with gym.
+   Returns:
+       List[EnvSpec]: environments
+   """
+   from gym.envs import registry
+   return [x for x  in registry.all() if x.namespace == ENVIRONMENT_NAMESPACE] 
 
 def make(env_id : str , worker : int = 0, time_scale : float = 1.0, 
                log_folder : str = None, debug : bool = True): 

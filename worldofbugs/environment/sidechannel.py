@@ -10,14 +10,18 @@ __status__ = "Development"
 
 from mlagents_envs.side_channel.side_channel import SideChannel, IncomingMessage, OutgoingMessage
 import uuid
+import sys
+
+
 
 class UnityLogChannel(SideChannel):
     """ Logging SideChannel, reads log messages from Unity and prints them to stdout."""
-    def __init__(self):
+    def __init__(self, stream=sys.stdout):
         super().__init__(uuid.UUID("c601d1fe-b487-454e-a6b3-b7305d884442")) # share unique channel ID
-
+        self.stream = stream
+        
     def on_message_received(self, msg):
-        print(msg.read_string())
+        self.stream.write(msg.read_string())
 
 class UnityConfigChannel(SideChannel):
     """ Configuration SideChannels, sends config information to a Unity environment. For API details see: [TODO]()"""
