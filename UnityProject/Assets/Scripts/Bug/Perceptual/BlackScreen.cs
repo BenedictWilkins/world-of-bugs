@@ -6,22 +6,30 @@ using GD.MinMaxSlider;
 
 public class BlackScreen : Bug {
     
-    [Tooltip("Camera RenderTexture to apply the blackscreen to.")]
-    public RenderTexture _cameraRenderTexture;
-    [Tooltip("Bug Mask RenderTexture that will label black screen.")]
-    public RenderTexture _bugMaskRenderTexture;
+    // TODO support a list of cameras + colours to fill
+    [SerializeField, Tooltip("Camera RenderTexture to apply the blackscreen to.")]
+    private RenderTexture _cameraRenderTexture;
+    [SerializeField, Tooltip("Bug Mask RenderTexture that will label black screen.")]
+    private RenderTexture _bugMaskRenderTexture;
     
-    [MinMaxSlider(0.01f, 0.1f), Tooltip("Number of seconds to remain black.")]
+    [MinMaxSlider(0.01f, 0.1f), Tooltip("Number of seconds to fill the screen black.")]
     public Vector2 frameRange = new Vector2(0.01f, 0.05f);
 
-    [MinMaxSlider(0f,10f)]
-    public Vector2 deltaRange = new Vector2(0.1f, 1f);
-
-    protected bool _enabled = false;
+    [MinMaxSlider(0f,10f), Tooltip("Number of seconds to flicker.")]
+    public Vector2 flickerRange = new Vector2(0.1f, 1f);
 
     protected FillScreen[] fillScreens;
 
+    protected IEnumerator FlickerToggerCoroutine;
+    protected IEnumerator FillScreenTogglerCoroutine;
+
     void Awake() { 
+        FlickerToggerCoroutine = FlickerTogger();
+        FillScreenTogglerCoroutine = FillScreenToggler();
+    }
+
+    public override void OnEnable() {
+        // TODO support multiple cameras? 
         fillScreens = new FillScreen[2];
         Camera[] cameras = null;
         cameras = CameraExtensions.GetCamerasByRenderTexture(_cameraRenderTexture);
@@ -30,39 +38,46 @@ public class BlackScreen : Bug {
         
         cameras = CameraExtensions.GetCamerasByRenderTexture(_bugMaskRenderTexture);
         fillScreens[1] = cameras[0].gameObject.AddComponent<FillScreen>();
+
         fillScreens[1].color = (Color) bugType;
-        StartCoroutine("EnableDisable");
+        StartCoroutine(FlickerToggerCoroutine);
     }
 
-    public override void OnDisable() {}
-    public override void OnEnable() {}
+    public override void OnDisable() {
+        StopCoroutine(FlickerToggerCoroutine);
+        StopCoroutine(FillScreenTogglerCoroutine);
+        foreach (FillScreen fs in fillScreens) {
+            Destroy(fs);
+        }
+    }
 
-    IEnumerator EnableDisable() {
+    protected IEnumerator FlickerTogger() {
+        bool _enabled = false;
         while (true) {
             _enabled = ! _enabled;
             if (_enabled) { 
-                StartCoroutine("toggler");
+                StartCoroutine(FillScreenTogglerCoroutine);
+            } else {
+                StopCoroutine(FillScreenTogglerCoroutine);
+                foreach (FillScreen fs in fillScreens) {
+                    fs.enabled = false;
+                }
             }
-            yield return new WaitForSeconds(UnityEngine.Random.Range(deltaRange.x, deltaRange.y));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(flickerRange.x, flickerRange.y));
         }
     }
 
-    IEnumerator toggler() {
-        while(_enabled) {
+    protected IEnumerator FillScreenToggler() {
+        while(true) {
             foreach (FillScreen fs in fillScreens) {
-                fs._enabled = ! fs._enabled;
+                fs.enabled = !fs.enabled;
             }
             yield return new WaitForSeconds(UnityEngine.Random.Range(frameRange.x, frameRange.y));
         }
-        foreach (FillScreen fs in fillScreens) {
-                fs._enabled = false;
-        } 
     }
    
-
     public class FillScreen : MonoBehaviour {
-        [HideInInspector]
-        public bool _enabled = false;
+
         [HideInInspector]
         public Color color {
             get { return _color;}
@@ -79,14 +94,17 @@ public class BlackScreen : Bug {
 
         [HideInInspector]
         public RenderTexture renderTexture;
-        
+
+        public void Awake() {
+            enabled = false;
+        }
+
         public void OnRenderImage(RenderTexture src, RenderTexture dst) {
-            if (_enabled) {
+            if (enabled) {
                 Graphics.Blit(_solid, dst);
             }  else {
                 Graphics.Blit(src, dst);
             } 
-            
         }
     }
 }

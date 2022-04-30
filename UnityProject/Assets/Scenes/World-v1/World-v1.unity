@@ -743,7 +743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &799085449
 Transform:
   m_ObjectHideFlags: 0
@@ -780,7 +780,7 @@ MonoBehaviour:
   _bugMaskRenderTexture: {fileID: 8400000, guid: cb0f69f72f83b07b399aa14a9d41163c,
     type: 2}
   frameRange: {x: 0.069603465, y: 0.1}
-  deltaRange: {x: 4, y: 6}
+  flickerRange: {x: 2, y: 5}
 --- !u!1 &1064858188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2945227364690560513, guid: 4505806242522b15d829394e218c3508,
