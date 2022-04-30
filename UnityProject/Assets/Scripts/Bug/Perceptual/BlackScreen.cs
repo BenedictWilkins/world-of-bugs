@@ -13,10 +13,10 @@ public class BlackScreen : Bug {
     private RenderTexture _bugMaskRenderTexture;
     
     [MinMaxSlider(0.01f, 0.1f), Tooltip("Number of seconds to fill the screen black.")]
-    public Vector2 frameRange = new Vector2(0.01f, 0.05f);
+    public Vector2 frameRange = new Vector2(0.05f, 0.1f);
 
     [MinMaxSlider(0f,10f), Tooltip("Number of seconds to flicker.")]
-    public Vector2 flickerRange = new Vector2(0.1f, 1f);
+    public Vector2 flickerRange = new Vector2(2f, 5f);
 
     protected FillScreen[] fillScreens;
 

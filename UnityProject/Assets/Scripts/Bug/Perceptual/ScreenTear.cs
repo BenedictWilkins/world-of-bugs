@@ -8,10 +8,10 @@ using GD.MinMaxSlider;
 
 public class ScreenTear : Bug {
 
-    [Tooltip("Camera RenderTexture to apply the screen tear to.")]
-    public RenderTexture _cameraRenderTexture;
-    [Tooltip("Bug Mask RenderTexture that will label the tear.")]
-    public RenderTexture _bugMaskRenderTexture;
+    [SerializeField, Tooltip("Camera RenderTexture to apply the screen tear to.")]
+    private RenderTexture _cameraRenderTexture;
+    [SerializeField, Tooltip("Bug Mask RenderTexture that will label the tear.")]
+    private RenderTexture _bugMaskRenderTexture;
 
     [Range(1,8), Tooltip("Number of frames to tear into, the effect will be more pronounced with larger n.")]
     public int n = 1;
@@ -23,7 +23,6 @@ public class ScreenTear : Bug {
     private Vector2 TearMinMax = new Vector2(0.2f, 0.3f);
     [Tooltip("Whether to randomly modify the tear coordinates.")]
     public bool random = true;
-
 
     protected float TearMin { 
         get { return TearMinMax.x; }
@@ -41,46 +40,59 @@ public class ScreenTear : Bug {
     protected ScreenTearPost cameraPostEffect;
     protected ScreenTearPost bugMaskCameraPostEffect;
 
+    private IEnumerator TearTogglerCoroutine;
+
+    private Camera mainCamera;
+    private Camera bugMaskCamera;
+
+    private CameraHistory cameraHistory;
+
     void Awake() {
+        TearTogglerCoroutine = TearToggler();
+        
         Camera[] cameras = CameraExtensions.GetCamerasByRenderTexture(_cameraRenderTexture);
-        Camera _camera = cameras[0];
+        mainCamera = cameras[0];
 
         cameras = CameraExtensions.GetCamerasByRenderTexture(_bugMaskRenderTexture);
-        Camera _bugMaskCamera = cameras[0];
+        bugMaskCamera = cameras[0];
 
-
-        // find cameras, add various components for on post render
-        // TODO this camera history should be static somewhere!!! when introducing freezing, this will be important.
-        CameraHistory history = _camera.gameObject.AddComponent<CameraHistory>();
-        history.n = n;
-
-        cameraPostEffect = _camera.gameObject.AddComponent<ScreenTearPostCamera>();
-        cameraPostEffect.Initialise(this, history);
-
-        bugMaskCameraPostEffect = _bugMaskCamera.gameObject.AddComponent<ScreenTearPostBugMaskCamera>();
-        bugMaskCameraPostEffect.Initialise(this, history);   
-        StartCoroutine("EnableDisable");
+        cameraHistory = mainCamera.gameObject.GetComponent<CameraHistory>();
+        if (cameraHistory == null) {
+            cameraHistory = mainCamera.gameObject.AddComponent<CameraHistory>();
+        } else {
+            Debug.LogWarning("TODO revist this code, CameraHistory should probably be static...");
+        }
+        cameraHistory.n = n; // TODO be careful...
     }
 
-    public override void OnDisable() {}
-    public override void OnEnable() {}
+    public override void OnDisable() {
+        StopCoroutine(TearTogglerCoroutine);
+        Destroy(cameraPostEffect);
+        Destroy(bugMaskCameraPostEffect);
+    }
 
-    IEnumerator EnableDisable() {
+    public override void OnEnable() {
+        cameraPostEffect = mainCamera.gameObject.AddComponent<ScreenTearPostCamera>();
+        cameraPostEffect.Initialise(this, cameraHistory);
+        bugMaskCameraPostEffect = bugMaskCamera.gameObject.AddComponent<ScreenTearPostBugMaskCamera>();
+        bugMaskCameraPostEffect.Initialise(this, cameraHistory);  
+        StartCoroutine(TearTogglerCoroutine);
+    }
+
+    IEnumerator TearToggler() {
         while (true) {
             if (random) {    
                 TearMin = UnityEngine.Random.Range(0f, 0.9f);
                 TearMax = Mathf.Min(TearMin + UnityEngine.Random.Range(0.1f, 0.7f), 1f);
             }
-            cameraPostEffect._enable = ! cameraPostEffect._enable;
-            bugMaskCameraPostEffect._enable = ! bugMaskCameraPostEffect._enable;
+            cameraPostEffect.enabled = ! cameraPostEffect.enabled;
+            bugMaskCameraPostEffect.enabled = ! bugMaskCameraPostEffect.enabled;
             yield return new WaitForSeconds(UnityEngine.Random.Range(deltaRange.x, deltaRange.y));
         }
     }
 
     public class ScreenTearPost : MonoBehaviour {
         
-        public bool _enable = true;
-
         public float TearMin {
             get { return _bug.TearMinMax.x; }
             set { _material.SetFloat("_TearMin", value); }
@@ -117,7 +129,7 @@ public class ScreenTear : Bug {
         }
 
         void OnRenderImage(RenderTexture src, RenderTexture dst) {
-            if (_enable && Time.frameCount > 10 + n) {
+            if (enabled && Time.frameCount > 10 + n) {
                 _material.SetTexture("_TearTex", _history[n-1]);
                 //_material.SetTexture("_MainTex", src);
                 Graphics.Blit(src, dst, _material);
@@ -138,10 +150,9 @@ public class ScreenTear : Bug {
         }
 
         void OnRenderImage(RenderTexture src, RenderTexture dst) {
-            if (_enable && Time.frameCount > 10 + n) {
+            if (enabled && Time.frameCount > 10 + n) {
                 _material.SetTexture("_CameraTex", _history[0]); // current rendering of the main camera
                 _material.SetTexture("_TearTex", _history[n-1]); // previous rendering of main camera
-  
                 Graphics.Blit(src, dst, _material);
             } else {
                 Graphics.Blit(src, dst);
