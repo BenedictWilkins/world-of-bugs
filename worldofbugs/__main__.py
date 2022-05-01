@@ -22,10 +22,8 @@ import worldofbugs
 env = worldofbugs.make("WOB/World-v1", debug=False) 
 #env.set_agent_behaviour("Blah")
 
-"""
 env.reset()
 for i in range(100):
    state, *_ = env.step(env.action_space.sample())
    print(state.shape)
    env.render() # requires pygame
-"""
