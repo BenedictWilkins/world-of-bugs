@@ -30,7 +30,7 @@ Submitted to [COG 2022](https://ieee-cog.org/2022/) awaiting peer-review.
 
 Citation:
 ```
-@article{wilkins_learning_2022,
+@article{Wilkins2022,
 	title = {Learning to Identify Perceptual Bugs in 3D Video Games},
 	url = {http://arxiv.org/abs/2202.12884},
 	journaltitle = {{arXiv}:2202.12884 [cs]},
