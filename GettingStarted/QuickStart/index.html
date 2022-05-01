@@ -680,8 +680,8 @@ for i in range(1000): # advance simulation 1000 steps
 <p>If everything worked correctly you should see a build printout like: </p>
 <p><code>[~/Downloads/builds/Standalone-Linux-World-v1/World-v1.x86_64]</code></p>
 <p>and if you have pygame installed (<code>pip install pygame</code>) something like the following should appear in your pygame window.</p>
-<p><img src="imgs/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
-<p>You may also notice that a small Unity window popped up, unfortunately this is required to ensure the agent's observations are correctly processed by GPU, see <a href="https://answers.unity.com/questions/1672109/native-texture-pointer-returns-0-in-headless-build.html">here</a> for details.</p>
+<p><img src="/imgs/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
+<p>You may also notice that a small Unity window popped up, unfortunately this is required to ensure the agent's observations are correctly rendered, see <a href="https://answers.unity.com/questions/1672109/native-texture-pointer-returns-0-in-headless-build.html">here</a> for details.</p>
 <h3 id="build-search">Build Search</h3>
 <p>When searching for builds the <code>BuildResolver</code> will search one directory deep. The typical directory structure should look something like the following:</p>
 <pre><code class="language-none">builds
@@ -698,7 +698,7 @@ for i in range(1000): # advance simulation 1000 steps
 <p>Rather than using a standalone build, it is also possible to connect directly to the Unity editor. This requires the WOB project to be open in unity.</p>
 <p>To avoid issues, install Unity version 2020.3.25f1 which can be found in the <a href="https://unity3d.com/get-unity/download/archive">unity download archive</a> using the latest version of <a href="https://unity3d.com/get-unity/download">UnityHub</a>. </p>
 <p>Once installed, locate the <code>UnityProject</code> folder in your <code>worldofbugs</code> install directory, add it as a new project in UnityHub and open it in the editor.</p>
-<p><img src="imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
+<p><img src="/imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
 <p>To connect to the editor, run the following script and then press the play button in the editor window.</p>
 <pre><code class="language-python">import worldofbugs
 # make the environment, None indicates we want to connect to the editor
@@ -709,9 +709,9 @@ for i in range(1000): # advance simulation 1000 steps
   env.step(env.action_space.sample()) # take a random action, this will happen in the editor
 </code></pre>
 <p>You should see the agent (white sphere) start to move around the level in the scene view, or a message like the one below in the game view.</p>
-<p><img src="imgs/NoCamerasRendering.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
+<p><img src="/imgs/NoCamerasRendering.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
 <p>By default, the game view is not rendered as no cameras are in use. To look through the eyes of the agent, in the Unity editor go to <code>Window -&gt; Preview -&gt; RenderTextureCameraPreview</code>.</p>
-<p><img src="imgs/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
+<p><img src="/imgs/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
 <p>The game view can be safely closed in favour of this new view. </p>
 
               
