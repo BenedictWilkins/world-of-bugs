@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class ZClipping : Bug {
-
+public class ZClipping : Bug { 
+    
     public static readonly string LAYERTAG = "ZClipping";
     public static readonly string BUGTAG = "ZBug";
 

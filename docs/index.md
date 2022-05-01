@@ -25,9 +25,9 @@ Perhaps unsurprisingly developing game playing agents can be very difficult. Gam
 <img src="imgs/Atari.gif"  width=50% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
 
-In the majority of research into automated game playing, an agent has a goal, usually to win. In the Atari 2600 example, the goal is specified using a reward that is derived from the in-game score. For ABD however, what is the goal? and more importantly, how should it be specified? At a high level, the goal is to explore the game to find bugs. The agent should have good _coverage_, meaning that it should explore as much of the game as possible, visit all the areas, complete all the levels, fight all the enemies etc. We might think of the agent as the most eager completionist. Not only does it want to find all the collectables, but also see everything there is to see. In this sense, the agent is a game player of the most hardcore variety. 
+In the majority of research into automated game playing an agent has a goal, usually to win. In the Atari 2600 example, the goal is specified using a reward that is derived from the in-game score. For ABD, what is the goal? how should it be specified? At a high level, the goal is to explore the game to find bugs. The agent should have good _coverage_, meaning that it should explore as much of the game as possible, visit all the areas, complete all the levels, fight all the enemies etc. We might think of the ABD agent as the most eager completionist. Not only does it want to find all the collectables, but also see everything there is to see. In this sense, the agent is a game player of the most hardcore variety. 
 
-The question of how to specify the goal of such an agent is an open one. Placing this question aside for a moment in favour of a more immediate problem, how is an agent to know that is has encountered a bug on its travels through its favourite game? This is the problem of bug identification. 
+The question of how to specify the goal of such an agent is an open one. Placing this question aside for a moment in favour of a more immediate problem, how is an agent to know that is has encountered a bug on its travels through its favourite game? This is the problem of **bug identification**. 
 
 ## Automated Bug Identification
 
@@ -35,7 +35,8 @@ The second facet to the problem of ABD is that of bug identification. When a hum
 
 <img src="imgs/the-witcher-3-roach.png"  width=80% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
-The waters become a murky around this point. We might formally say that a human tester has a specification that they work from that explicitly states "horses don't do handstands", but this just isn't the case. 
+The waters become a murky around this point. We might formally say that a human tester has a specification that they work from that explicitly states "horses don't do handstands", but this just isn't the case. In reality human testers use their vast experience both in-game and in the real world, along with a high-level description of the __intended behaviour__ of the game to decide wether the horse is behaving correctly. The high level description is not an exhaustive list of every interaction possible, and is written in plain language with all its vagaries.  
 
+How then might an agent go about identifying bugs in its experience? 
 
 TO BE CONTINUED...

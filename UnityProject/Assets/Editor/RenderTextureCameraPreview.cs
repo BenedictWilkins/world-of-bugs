@@ -28,11 +28,13 @@ class RenderTextureCameraPreview : EditorWindow {
     }
 
     void OnGUI() {
-
-        if (cameras.Length == 0 || cameras[0] == null) {
+        if (cameras.Length == 0) {
             OnEnable(); // something happened and the cameras were destroyed, find them again!
         }
         for (int i = 0; i < cameras.Length; i++) {
+            if (cameras[i] == null) {
+                OnEnable();
+            }
             RenderTexture tex = cameras[i].targetTexture;
             // Debug.Log($"{tex.width} {tex.height} {tex}");
             GUI.DrawTexture(GetBounds(i, tex.width / tex.height), tex);   

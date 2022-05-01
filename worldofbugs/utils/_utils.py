@@ -95,7 +95,7 @@ class _UnityBuildResolver:
 
     @property
     def default_path(self):
-        path = pathlib.Path(__file__).parent.parent # package realtive...
+        path = pathlib.Path(__file__).parent.parent # package relative...
         path = pathlib.Path(path, _UnityBuildResolver.DEFAULT_UNITY_BUILDS_DIR)
         return str(path.resolve())
 
