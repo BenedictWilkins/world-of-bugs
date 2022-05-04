@@ -738,7 +738,8 @@
 <li>The agents model was wrong, it needs to be updated.</li>
 <li>The world was was wrong, it needs to be updated.</li>
 </ol>
-<p>The question now is, how to distinguish between case 1 and case 2? </p>
+<p>The question now is, how to distinguish between case 1 and case 2? This is an open issue, but it is clear that the agent needs some additional information that it cannot learn just by playing the game. For the human tester, this information is in the broader development and design context - the intended behaviour. This information can come in the form of (Inductive Bias)[https://en.wikipedia.org/wiki/Inductive_bias] where certain assumptions about the statistical properties or features of bugs can inform the agent. Inductive biases are akin to special 'meta'-rules that are subtly encoded into the learning algorithm.</p>
+<p>Another approach that is currently being explored is a kind of human-in-the-loop learning, where the agent poses questions to a human tester/designer about the intended behaviour when its expectations are not met. </p>
 <h2 id="human-tester-vs-machine-tester">Human Tester vs Machine Tester</h2>
 <p>If ABD is successfully implemented as part of a testing toolkit it promises to save many hours of manual work, primarily those sunk into game playing and produce games that have been tested more thorough and therefore (hopefully) contain less bugs. The main advantages of using software agents for testing relate to coverage. Coverage is an important metric that determines how much of the game has been tested, in general software terms this equates to the proportion of code paths were checked for issues. ABD have some distinct advantages over human game testers:</p>
 <ul>
