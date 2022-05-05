@@ -1,3 +1,5 @@
+.vscode
+
 # Builds (use build.cs to build the scenes)
 builds/
 dataset/
