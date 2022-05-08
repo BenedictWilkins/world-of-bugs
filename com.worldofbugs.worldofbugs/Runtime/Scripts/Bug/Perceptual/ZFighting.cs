@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+namespace WorldOfBugs {
+
+
 public class ZFighting : Bug { 
 
     public GameObject original;
@@ -70,4 +73,6 @@ public class ZFighting : Bug {
         }
         Untag(taggedOriginal);
     }
+}
+
 }

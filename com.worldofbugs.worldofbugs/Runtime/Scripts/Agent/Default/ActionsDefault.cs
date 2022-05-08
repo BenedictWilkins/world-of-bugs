@@ -15,68 +15,54 @@ using Unity.MLAgents.Policies;
 namespace WorldOfBugs { 
 
     [Serializable]
-    public class ActionsDefault : Actions<AgentDefault> {
+    public class ActionsDefault {
 
         // TODO would be nice not to have to add each boolean value, just define a bunch of static methods...? 
 
-        public bool None = false;
-        public bool Forward = false;
-        public bool Left = false;
-        public bool Right = false;
-        public bool Backward = false;
+        public static void none(GameObject instance) {} // does nothing
 
-        public bool RotateUp = false;
-        public bool RotateLeft = false;
-        public bool RotateRight = false;
-        public bool RotateDown = false;
-
-        public bool Interact = false;
-        public bool Jump = false;
-
-        public static void none(AgentDefault instance) {} // does nothing
-
-        public static void forward(AgentDefault instance) {
-            move(instance, instance.gameObject.transform.forward);
+        public static void forward(GameObject instance, float movementspeed) {
+            move(instance, instance.transform.forward, movementspeed);
         }
 
-        public static void left(AgentDefault instance) {
-            move(instance, -instance.gameObject.transform.right);
+        public static void left(GameObject instance, float movementspeed) {
+            move(instance, -instance.transform.right, movementspeed);
         }
 
-        public static void right(AgentDefault instance) {
-            move(instance, instance.gameObject.transform.right);
+        public static void right(GameObject instance, float movementspeed) {
+            move(instance, instance.transform.right, movementspeed);
         }
 
-        public static void backward(AgentDefault instance) {
-            move(instance, -instance.gameObject.transform.forward);
+        public static void backward(GameObject instance, float movementspeed) {
+            move(instance, instance.transform.forward, movementspeed);
         }
 
-        public static void move(AgentDefault instance, Vector3 direction) {
-            Vector3 movement = direction * Time.deltaTime * instance.MovementSpeed;
-            instance.gameObject.transform.Translate(movement, Space.World); // TODO change this to move position?
+        public static void move(GameObject instance, Vector3 direction, float movementspeed) {
+            Vector3 movement = direction * Time.deltaTime * movementspeed;
+            instance.transform.Translate(movement, Space.World); // TODO change this to move position?
         }
 
-        public static void rotateup(AgentDefault instance) {
-            instance.gameObject.transform.Rotate(new Vector3(-1 * Time.deltaTime * instance.AngularSpeed, 0, 0));
+        public static void rotateup(GameObject instance, float angularspeed) {
+            instance.transform.Rotate(new Vector3(-1 * Time.deltaTime * angularspeed, 0, 0));
         }
 
-        public static void rotateleft(AgentDefault instance) {
-            instance.gameObject.transform.Rotate(new Vector3(0, -1 * Time.deltaTime * instance.AngularSpeed, 0));
+        public static void rotateleft(GameObject instance,  float angularspeed) {
+            instance.transform.Rotate(new Vector3(0, -1 * Time.deltaTime * angularspeed, 0));
         }
 
-        public static void rotateright(AgentDefault instance) {
-            instance.gameObject.transform.Rotate(new Vector3(0, 1 * Time.deltaTime * instance.AngularSpeed, 0));
+        public static void rotateright(GameObject instance, float angularspeed) {
+            instance.transform.Rotate(new Vector3(0, 1 * Time.deltaTime * angularspeed, 0));
         }
 
-        public static void rotatedown(AgentDefault instance) {
-            instance.gameObject.transform.Rotate(new Vector3(1 * Time.deltaTime * instance.AngularSpeed, 0, 0));
+        public static void rotatedown(GameObject instance, float angularspeed) {
+            instance.transform.Rotate(new Vector3(1 * Time.deltaTime * angularspeed, 0, 0));
         }
 
-        public static void interact(AgentDefault instance) {
-            Interactable.Interact(instance.InteractableCollider);
+        public static void interact(GameObject instance) {
+            //Interactable.Interact(InteractableCollider);
         }
 
-        public static void jump(AgentDefault instance) {
+        public static void jump(GameObject instance) {
             // TODO
         }
     }

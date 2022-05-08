@@ -1,7 +1,8 @@
 {
-    "name": "worldofbugs.worldofbugs.Editor",
+    "name": "WorldOfBugs.Editor",
     "references": [
-        "worldofbugs.worldofbugs"
+        "WorldOfBugs",
+        "NavMeshComponents.Editor"
     ],
     "includePlatforms": [
         "Editor"

@@ -10,7 +10,7 @@ __status__ = "Development"
 import worldofbugs
 
 # if you have unity open 
-# env = worldofbugs.make(None)
+env = worldofbugs.make(None)
 
 # add downloaded builds to path
 #worldofbugs.utils.BuildResolver.path += "~/Downloads/builds/"
@@ -19,13 +19,13 @@ import worldofbugs
 # if you have built World-v1 or downloaded a build
 
 
-env = worldofbugs.make("WOB/World-v1", debug=False) 
+#env = worldofbugs.make("WOB/World-v1", debug=False) 
 #env.set_agent_behaviour("Blah")
 
-"""
+
 env.reset()
-for i in range(100):
-   state, *_ = env.step(env.action_space.sample())
-   print(state.shape)
+for i in range(1000):
+   action = env.action_space.sample()
+   state, reward, done, info = env.step(action)
+   print(action, info['Action'], info['Position'], info['Rotation'])
    env.render() # requires pygame
-"""

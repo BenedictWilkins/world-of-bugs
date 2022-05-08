@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+namespace WorldOfBugs {
+
+
 public class TextureCorrupt : Bug {
 
     public GameObject level;
@@ -64,4 +67,5 @@ public class TextureCorrupt : Bug {
             _go = null;
         }  
     }
+}
 }

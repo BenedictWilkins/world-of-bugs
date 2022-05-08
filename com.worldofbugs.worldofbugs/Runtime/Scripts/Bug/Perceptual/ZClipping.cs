@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+namespace WorldOfBugs {
+
 public class ZClipping : Bug { 
     
     public static readonly string LAYERTAG = "ZClipping";
@@ -74,3 +76,5 @@ public class ZClipping : Bug {
 }
 
 
+    
+}

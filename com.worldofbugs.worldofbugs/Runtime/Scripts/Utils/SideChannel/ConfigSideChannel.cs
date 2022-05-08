@@ -42,15 +42,6 @@ namespace WorldOfBugs {
             ConfigMessage config = new ConfigMessage(msg.ReadString());
             configAPI.Resolve(config); // set the value in the message
         }
-
-        protected bool ConfigureBugOption(string name, bool enable) {
-            // enable/disable bugs
-            Controller.BugOption option = Array.Find(controller.bugs, x => x.Bug.GetType().Name.Equals(name));
-            if (option != null) {
-                option.enabled = enable;
-            }
-            return option != null;        
-        }
     }
 
         

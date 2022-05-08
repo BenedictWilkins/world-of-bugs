@@ -18,7 +18,6 @@ namespace WorldOfBugs {
         [SerializeField]
         private Collider _interactableCollider;
         public Collider InteractableCollider { get { return _interactableCollider; } }
-        
         [Tooltip("Movement speed in units/second")]
         public float MovementSpeed = 2f;
         [Tooltip("Angular speed in degrees/second")]
@@ -26,18 +25,20 @@ namespace WorldOfBugs {
         [Tooltip("Radius of this agent")]
         public float Radius = 1f;
 
-        protected Vector3 initialPosition;
-        protected Vector3 initialRotation;
-
         [Observable("Position")]
-        public Vector3 Position;
+        public Vector3 Position { get { return gameObject.transform.position; }}
         [Observable("Rotation")]
-        public Vector3 Rotation;
+        public Vector3 Rotation { get { return gameObject.transform.eulerAngles; }}
         [Observable("Action")]
         public int Action { 
             get { return GetStoredActionBuffers().DiscreteActions[0]; }
         }
 
+        public string[] ActionMeanings { get { return ActionAttribute.ActionMeanings(this);} }
+        
+        protected Vector3 initialPosition;
+        protected Vector3 initialRotation;
+        
         public new void FixedUpdate() { 
             RequestDecision();
             if (transform.position.y < RESET_Y) {
@@ -48,8 +49,9 @@ namespace WorldOfBugs {
         public void Awake() {
             initialPosition = gameObject.transform.localPosition;
             initialRotation = gameObject.transform.localEulerAngles;
-            gameObject.GetComponent<BehaviorParameters>().ObservableAttributeHandling = ObservableAttributeOptions.ExcludeInherited;
-            //UseHeuristic(python); // always start using this heuristic, another can be set in the python API.
+            if (_heuristic != null) {
+                _heuristic.enabled = true;
+            }
         }
 
         public override void OnEpisodeBegin() {

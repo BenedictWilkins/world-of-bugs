@@ -6,12 +6,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+
+
 class RenderTextureCameraPreview : EditorWindow {
 
-    // internal
     private Camera[] cameras;
-    private int n;
-    private int m;
 
     [MenuItem ("Window/Preview/RenderTextureCameraPreview")]
     public static void ShowWindow() {
@@ -23,27 +22,29 @@ class RenderTextureCameraPreview : EditorWindow {
 
     void OnEnable() {
         cameras = Array.FindAll(Camera.allCameras, x => x.targetTexture != null).ToArray();
-        if (cameras.Length > 0) {
-             n = (int) Mathf.Ceil(Mathf.Sqrt(cameras.Length));
-            m = (cameras.Length % n) + 1;
-        }
     }
 
     void OnGUI() {
-        if (cameras.Length == 0) {
+        if (cameras?.Length == 0) {
             OnEnable(); // something happened and the cameras were destroyed, find them again!
         }
+        // TODO this doesnt render properly if cameras.Length > 2...
         for (int i = 0; i < cameras.Length; i++) {
-            if (cameras[i] == null) {
+            if (cameras[i] != null) {
+                RenderTexture tex = cameras[i].targetTexture;
+                Rect bounds = GetBounds(i, tex.width / tex.height);
+                //Debug.Log($"{i} {bounds}");
+                GUI.DrawTexture(bounds, tex);   
+            } else {
                 OnEnable();
             }
-            RenderTexture tex = cameras[i].targetTexture;
-            // Debug.Log($"{tex.width} {tex.height} {tex}");
-            GUI.DrawTexture(GetBounds(i, tex.width / tex.height), tex);   
         }
     }
 
     Rect GetBounds(int index, float aspect) {
+        int n = (int) Mathf.Ceil(Mathf.Sqrt(cameras.Length));
+        int m = (cameras.Length % n) + 1;
+
         int nn = n;
         int mm = m;
         // flip vertical/horizontal layout

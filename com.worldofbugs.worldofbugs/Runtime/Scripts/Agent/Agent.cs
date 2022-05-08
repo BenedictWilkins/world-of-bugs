@@ -13,8 +13,8 @@ namespace WorldOfBugs {
     public abstract class Agent : Unity.MLAgents.Agent { 
         
         [SerializeField]
-        protected PolicyComponent _policy;
-        public PolicyComponent Policy { get { return _policy; } set { _policy = value;}}
+        internal protected HeuristicComponent _heuristic;
+        
 
         public new void OnEnable() {
             // unfortunately there is no way to create and add an actuator directly (see LazyInitialize/Initialize/InitializeActuators in MLAgents.Agent)
@@ -25,13 +25,13 @@ namespace WorldOfBugs {
             base.OnEnable();
         }
 
-        public void FixedUpdate() { 
+        public void FixedUpdate() {
             RequestDecision();
         }
 
         public override void Heuristic(in ActionBuffers buffer) {
-            Debug.Log("Heuristic");
-            Policy.Heuristic(buffer);
+            //Debug.Log("Heuristic");
+            _heuristic?.Heuristic(buffer);
         }
     }
 

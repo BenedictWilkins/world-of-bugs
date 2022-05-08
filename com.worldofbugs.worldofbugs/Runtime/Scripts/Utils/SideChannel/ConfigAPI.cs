@@ -17,38 +17,38 @@ namespace WorldOfBugs {
         public abstract class Configurator {} 
 
         public class BugConfigurator : Configurator { 
-            public Controller.BugOption Option;
-
-            // API
+            public Bug Bug;
+            // public API to enable a bug
             public string enabled { 
                 get { throw new NotImplementedException(); } 
-                set { Option.enabled = Convert.ToBoolean(value); Debug.Log($"VALUE SET {value}"); }
+                set { Bug.enabled = Convert.ToBoolean(value); Debug.Log($"VALUE SET {value}"); }
             }
         }
 
         public class PolicyConfigurator : Configurator { 
             public Agent Agent;
-            public PolicyComponent Component;
+            public HeuristicComponent Heuristic;
 
-            // API
+            // public API to set the current heuristic
             public string heuristic { 
                 get { throw new NotImplementedException(); } 
                 set { 
                     bool v = Convert.ToBoolean(value); // turn on this heuristic behaviour.
-                    Agent.Policy = Component;
+                    Agent._heuristic = Heuristic;
                 }
             }
         }
 
         public Dictionary<string, BugConfigurator> Bugs { 
-            get { return controller.bugs.ToDictionary(
-                x => x.Bug.GetType().Name, 
-                x => new BugConfigurator() { Option = x }); } 
+            get { return controller.Bugs.ToDictionary(
+                x => x.GetType().Name, 
+                x => new BugConfigurator() { Bug = x }); } 
         }
         public Dictionary<string, PolicyConfigurator> Heuristics { 
-            get { return controller.agent.GetComponents<PolicyComponent>().ToDictionary(
+            // TODO support multiple agents...
+            get { return controller.Agents[0].GetComponents<HeuristicComponent>().ToDictionary(
                 x => x.GetType().Name, 
-                x => new PolicyConfigurator() { Agent = controller.agent, Component = x });
+                x => new PolicyConfigurator() { Agent = controller.Agents[0], Heuristic = x });
             }
         }
 

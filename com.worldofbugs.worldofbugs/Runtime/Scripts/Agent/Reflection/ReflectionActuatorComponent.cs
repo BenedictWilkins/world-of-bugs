@@ -50,7 +50,7 @@ namespace WorldOfBugs {
 
         public void OnActionReceived(ActionBuffers buffer) { // executes discrete actions first, then continuous actions. continuous actions are executed in order of specification
             for (int i = 0; i < buffer.DiscreteActions.Length; i++) {
-                Debug.Log($"Discrete Action: {buffer.DiscreteActions[i]}");
+                //Debug.Log($"Discrete Action: {buffer.DiscreteActions[i]}");
                 _discrete_action_methods[buffer.DiscreteActions[i]]();
             }
             for (int i = 0; i < buffer.ContinuousActions.Length; i++) {

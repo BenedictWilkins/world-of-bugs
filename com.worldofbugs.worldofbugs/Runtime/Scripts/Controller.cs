@@ -10,10 +10,13 @@ using Unity.MLAgents.SideChannels;
 
 using WorldOfBugs;
 
-
+[ExecuteInEditMode]
 public class Controller : MonoBehaviour {
     
-    [Serializable]
+    
+
+
+    /* [Serializable]
     public class BugOption { 
 
         public Bug _bug;
@@ -21,20 +24,24 @@ public class Controller : MonoBehaviour {
             get { return _bug; }
             set { _bug = value; enabled = false; }
         }
+
+        public BugOption(Bug bug) {
+            _bug = bug;
+        }
         
         public bool enabled { 
             get { return Bug.gameObject.activeInHierarchy; } 
             set { Debug.Log($"{Bug} {Bug?.gameObject}"); Bug.gameObject.SetActive(value); }
         }
-    }
+    } */
 
-    [NotNull]
-    public WorldOfBugs.Agent agent; 
-    public BugOption[] bugs;
+    [NotNull, NotEmpty]
+    public WorldOfBugs.Agent[] Agents; 
+
+    public Bug[] Bugs { get {  return GetComponents<Bug>().ToArray(); }} 
 
     private ConfigSideChannel configChannel;
     private LogSideChannel logChannel;
-
     
     void Awake() {
         // configuration side channel
@@ -46,11 +53,13 @@ public class Controller : MonoBehaviour {
         SideChannelManager.RegisterSideChannel(logChannel);
         Application.logMessageReceived += logChannel.LogDebug;
     }
+    
+   
 
     void Start() {
         if (!Application.isEditor) { // all bugs are turned off initially.
-            foreach (BugOption option in bugs) {
-                option.enabled = false;
+            foreach (Bug bug in Bugs) {
+                bug.enabled = false;
             }
         }
     }
@@ -67,15 +76,11 @@ public class Controller : MonoBehaviour {
     public void OnEpisodeBegin() {
         // renable bugs
         // Debug.Log($"RESTART {System.Diagnostics.Process.GetCurrentProcess().Id}");
-        foreach (BugOption option in bugs) {
+        foreach (Bug option in Bugs) {
             if (option.enabled) { // re-enable all bugs 
                 option.enabled = false;
                 option.enabled = true;
             }
         }
     }
-
-   
-
-    
 }
