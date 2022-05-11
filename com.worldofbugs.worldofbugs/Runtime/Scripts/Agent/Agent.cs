@@ -15,6 +15,8 @@ namespace WorldOfBugs {
         [SerializeField]
         internal protected HeuristicComponent _heuristic;
         
+        [HideInInspector]
+        public IReset[] Resets;
 
         public new void OnEnable() {
             // unfortunately there is no way to create and add an actuator directly (see LazyInitialize/Initialize/InitializeActuators in MLAgents.Agent)
@@ -22,10 +24,16 @@ namespace WorldOfBugs {
                 ReflectionActuatorComponent actuator = gameObject.AddComponent<ReflectionActuatorComponent>();
                 actuator.Initialize(this);
             }
+            Resets = GetComponents<IReset>();
             base.OnEnable();
         }
 
         public void FixedUpdate() {
+            foreach (IReset reset in Resets) {
+                if (reset.ShouldReset(gameObject)) {
+                    EndEpisode();
+                }
+            }
             RequestDecision();
         }
 

@@ -20,9 +20,7 @@ namespace WorldOfBugs.Editor {
         public override void OnInspectorGUI() {
             serializedObject.Update();
             Controller controller = ((MonoBehaviour)serializedObject.targetObject).GetComponent<Controller>();
-  
             EditorGUILayout.PropertyField(Agents);
-            
             bugs_expanded = EditorGUILayout.Foldout(bugs_expanded, "Bugs", true);
             if (bugs_expanded) {
                 ShowBugs(controller);

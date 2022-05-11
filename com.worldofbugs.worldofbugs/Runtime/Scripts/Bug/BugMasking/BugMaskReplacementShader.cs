@@ -22,7 +22,9 @@ namespace WorldOfBugs {
         }
 
         void OnDestroy() {
-            Camera.ResetReplacementShader();
+            if (Camera != null) {
+                Camera.ResetReplacementShader();
+            }
         }
     }
 }

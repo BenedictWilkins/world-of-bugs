@@ -56,7 +56,7 @@ Using the vast amount of observations collected as the agent plays the game, it 
 1. The agents model was wrong, it needs to be updated.
 2. The world was was wrong, it needs to be updated.
 
-The question now is, how to distinguish between case 1 and case 2? This is an open issue, but it is clear that the agent needs some additional information that it cannot learn just by playing the game. For the human tester, this information is in the broader development and design context - the intended behaviour. This information can come in the form of (Inductive Bias)[https://en.wikipedia.org/wiki/Inductive_bias] where certain assumptions about the statistical properties or features of bugs can inform the agent. Inductive biases are akin to special 'meta'-rules that are subtly encoded into the learning algorithm.
+The question now is, how to distinguish between case 1 and case 2? This is an open issue, but it is clear that the agent needs some additional information that it cannot learn just by playing the game. For the human tester, this information is in the broader development and design context - the intended behaviour. This information can come in the form of [Inductive Bias](https://en.wikipedia.org/wiki/Inductive_bias) where certain assumptions about the statistical properties or features of bugs can inform the agent. Inductive biases are akin to special 'meta'-rules that are subtly encoded into the learning algorithm.
 
 Another approach that is currently being explored is a kind of human-in-the-loop learning, where the agent poses questions to a human tester/designer about the intended behaviour when its expectations are not met. 
 
@@ -78,5 +78,5 @@ This looks great on paper - more coverage = less bugs, but human testers still t
 The above constitute some of the most challenging open problems in ABD and in AI more broadly. The aim of the World of Bugs platform is to empower researchers to begin tackling some of the associated problems and develop more sophisticated ABD agents.
 
 
-[Get Started with World of Bugs](../GettingStarted/QuickStart){ .md-button }
+[Get Started with World of Bugs](GettingStarted/QuickStart){ .md-button }
 {style=text-align:center}

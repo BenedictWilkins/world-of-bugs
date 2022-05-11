@@ -66,7 +66,10 @@ public class Controller : MonoBehaviour {
 
     public void OnDestroy() {
         // Deregister the Debug.Log callback
-        Application.logMessageReceived -= logChannel.LogDebug;
+        try { 
+            Application.logMessageReceived -= logChannel.LogDebug;
+        } catch { } // this probably means it wasnt set up in the first place... forgiveness :) 
+       
         if (Academy.IsInitialized) {
             SideChannelManager.UnregisterSideChannel(configChannel);
             SideChannelManager.UnregisterSideChannel(logChannel);

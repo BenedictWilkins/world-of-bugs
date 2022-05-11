@@ -14,8 +14,6 @@ public class CubeBehaviour : MonoBehaviour {
     public Vector3 MovementAngleOffset = Vector3.zero;
     public float MovementSpeed = 10;
 
-    
-
     protected Vector3 InitialPosition;
 
     void OnEnable() {

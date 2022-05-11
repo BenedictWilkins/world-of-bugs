@@ -13,8 +13,6 @@ namespace WorldOfBugs {
 
     public abstract class AgentDefault : AgentFirstPerson {
         
-        public static readonly int RESET_Y = -5;
-        
         [SerializeField]
         private Collider _interactableCollider;
         public Collider InteractableCollider { get { return _interactableCollider; } }
@@ -39,13 +37,6 @@ namespace WorldOfBugs {
         protected Vector3 initialPosition;
         protected Vector3 initialRotation;
         
-        public new void FixedUpdate() { 
-            RequestDecision();
-            if (transform.position.y < RESET_Y) {
-                EndEpisode();
-            }
-        }
-       
         public void Awake() {
             initialPosition = gameObject.transform.localPosition;
             initialRotation = gameObject.transform.localEulerAngles;

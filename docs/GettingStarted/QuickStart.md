@@ -62,11 +62,15 @@ with `builds` being the directory added to `BuildResolver.path` as above. By def
 
 ## Getting Started with Unity
 
+!!! failure
+    
+    WOB is now available as a unity package and should be used as such. These instructions will be updated shortly.
+
 Rather than using a standalone build, it is also possible to connect directly to the Unity editor. This requires the WOB project to be open in unity.
 
 To avoid issues, install Unity version 2020.3.25f1 which can be found in the [unity download archive](https://unity3d.com/get-unity/download/archive) using the latest version of [UnityHub](https://unity3d.com/get-unity/download). 
 
-Once installed, locate the `UnityProject` folder in your `worldofbugs` install directory, add it as a new project in UnityHub and open it in the editor. **TODO this needs updating, now that WOB is a Unity Package!**
+Once installed, locate the `UnityProject` folder in your `worldofbugs` install directory, add it as a new project in UnityHub and open it in the editor. 
 
 <img src="../imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 

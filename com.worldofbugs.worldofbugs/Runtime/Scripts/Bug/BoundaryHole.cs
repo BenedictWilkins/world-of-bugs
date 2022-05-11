@@ -14,7 +14,7 @@ public class BoundaryHole : Bug {
     private GameObject _go; // disable collider on this game object
 
     void Awake() {
-        BugMaskCamera.backgroundColor = bugType;
+        //BugMaskCamera.backgroundColor = bugType; instead ensure the global skybox bug is working...
     }
 
     public override void OnEnable() {

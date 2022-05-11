@@ -1,14 +1,22 @@
 # Live Configuration
 
-`worldofbugs` environment supports live configuration. Bugs can be configured at runtime via a simple API, outlined below.
+`worldofbugs` environment supports live configuration. Bugs can be configured at runtime via a simple Python API, outlined below.
 
 ## Configuring Bugs
 
-A bug can be enabled using the `enable_bug` method, for example: `env.enable_bug("MissingTexture")`
+A bug can be enabled using the `enable_bug` method, for example: 
 
-A bug can be disabled using the `disable_bug` method, for example: `env.disable_bug("TextureCorruption")`
+```
+env.enable_bug("MissingTexture")
+```
 
-Bugs names a derived from their type name as it appears in Unity. A full list of bugs can be found [here](../../Developing Worlds/Bugs.md). It is up to the environment which bugs it implements, so not all environments will implement all bugs.
+A bug can be disabled using the `disable_bug` method, for example: 
+
+```
+env.disable_bug("MissingTexture")
+```
+
+Bugs names a derived from their type name as it appears in Unity. A full list of bugs can be found [here](../../BugZoo.md). It is up to the environment which bugs it implements, so not all environments will implement all bugs.
 
 ## Configuring Agent Behaviour
 

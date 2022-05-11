@@ -1,4 +1,6 @@
 site_name: World of Bugs
+site_url: "https://benedictwilkins.github.io/world-of-bugs/"
+
 theme: 
     name: material
     features:
