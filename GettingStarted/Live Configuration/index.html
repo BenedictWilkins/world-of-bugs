@@ -162,7 +162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../BugsZoo/" class="md-nav__link">
+      <a href="../../BugZoo/" class="md-nav__link">
         Bug Zoo
       </a>
     </li>
@@ -620,7 +620,7 @@
 <p>A bug can be disabled using the <code>disable_bug</code> method, for example: </p>
 <div class="highlight"><pre><span></span><code>env.disable_bug(&quot;MissingTexture&quot;)
 </code></pre></div>
-<p>Bugs names a derived from their type name as it appears in Unity. A full list of bugs can be found <a href="../../Developing Worlds/Bugs.md">here</a>. It is up to the environment which bugs it implements, so not all environments will implement all bugs.</p>
+<p>Bugs names a derived from their type name as it appears in Unity. A full list of bugs can be found <a href="../../BugZoo/">here</a>. It is up to the environment which bugs it implements, so not all environments will implement all bugs.</p>
 <h2 id="configuring-agent-behaviour"><a class="toclink" href="#configuring-agent-behaviour">Configuring Agent Behaviour</a></h2>
 <p>An agents behaviour can be changed using the <code>set_agent_behaviour</code>, for example: <code>env.set_agent_behaviour("PolicyPython")</code>. </p>
 <p>Setting the behaviour to <code>"PolicyPython"</code> will enable the current python policy, the agent will take actions received via <code>env.step</code>. Otherwise, a heuristic behaviour defined in unity will be used and any python actions wil be ignored. The actual action taken can be retrieved by inspecting <code>info</code> returned by <code>env.step</code> as follows:</p>
