@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://benedictwilkins.github.io/world-of-bugs/Examples/World-v1/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
@@ -582,9 +584,92 @@
                 
 
 
-<h1 id="world-v1">World-v1</h1>
-<p>World-v1 is an example environment build with WOB, it was used to perform initial experiments in <a href="https://arxiv.org/abs/2202.12884">this paper</a>.</p>
-<p>DETAILS COMING SOON</p>
+<h1 id="world-v1"><a class="toclink" href="#world-v1">World-v1</a></h1>
+<p>World-v1 is a simple environment that has been built to test approaches to the bug identification problem. Exploration is trivial as the agent is situated in a small static room containing two cubes. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Video</label><label for="__tabbed_1_2">Action Space</label><label for="__tabbed_1_3">Observation Space</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Demo of the built-in navigation agent exploring and uncovering various bugs.</p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/UZbD8SivkAA?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe> </p>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th align="left">Action</th>
+<th align="left">Index</th>
+<th align="left">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>IDLE</code></td>
+<td align="left">0</td>
+<td align="left">Discrete</td>
+<td align="left">Does nothing.</td>
+</tr>
+<tr>
+<td align="left"><code>FORWARD</code></td>
+<td align="left">1</td>
+<td align="left">Discrete</td>
+<td align="left">Moves the agent in the facing direction.</td>
+</tr>
+<tr>
+<td align="left"><code>ROTATE_LEFT</code></td>
+<td align="left">2</td>
+<td align="left">Discrete</td>
+<td align="left">Turns the agent left.</td>
+</tr>
+<tr>
+<td align="left"><code>ROTATE_RIGHT</code></td>
+<td align="left">3</td>
+<td align="left">Discrete</td>
+<td align="left">Turns the agent right.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Observation</code></td>
+<td><code>(3,84,84) float</code></td>
+<td>First person view of the environment.</td>
+</tr>
+<tr>
+<td><code>Mask</code></td>
+<td><code>(3,84,84) float</code></td>
+<td>Masked first person view of the environment highlighting bugged regions.</td>
+</tr>
+<tr>
+<td><code>Position</code></td>
+<td><code>(3,) float</code></td>
+<td>Position of the agent.</td>
+</tr>
+<tr>
+<td><code>Rotation</code></td>
+<td><code>(3,) float</code></td>
+<td>Rotation of the agent.</td>
+</tr>
+<tr>
+<td><code>Action</code></td>
+<td><code>(1,) float</code></td>
+<td>The most recent action taken by the agent.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 
               
             </article>

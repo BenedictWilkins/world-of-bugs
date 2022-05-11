@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Developing%20Worlds/Agents/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Developing%20Worlds/Bugs/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Examples/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Examples/World-v1/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/GettingStarted/QuickStart/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/GettingStarted/Live%20Configuration/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/0_Build/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/1_Environment/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/2_Environment.sidechannel/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-05-04</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/3_Utils/</loc>
+         <lastmod>2022-05-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

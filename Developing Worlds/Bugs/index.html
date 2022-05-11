@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://benedictwilkins.github.io/world-of-bugs/Developing%20Worlds/Bugs/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
@@ -321,13 +323,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#unresponsive" class="md-nav__link">
-    Unresponsive
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#freezing" class="md-nav__link">
     Freezing
   </a>
@@ -335,8 +330,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#high-velocity" class="md-nav__link">
-    High Velocity
+  <a href="#unresponsive" class="md-nav__link">
+    Unresponsive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-force" class="md-nav__link">
+    High Force
   </a>
   
 </li>
@@ -783,13 +785,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#unresponsive" class="md-nav__link">
-    Unresponsive
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#freezing" class="md-nav__link">
     Freezing
   </a>
@@ -797,8 +792,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#high-velocity" class="md-nav__link">
-    High Velocity
+  <a href="#unresponsive" class="md-nav__link">
+    Unresponsive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-force" class="md-nav__link">
+    High Force
   </a>
   
 </li>
@@ -824,73 +826,232 @@
                 
 
 
-<h1 id="bugs">Bugs</h1>
+<h1 id="bugs"><a class="toclink" href="#bugs">Bugs</a></h1>
 <p>Below is a list of the bugs currently implemented in WOB, the list is growing!</p>
 <hr />
-<h3 id="boundary-hole">Boundary Hole</h3>
-<p>A specific kind of Geometry Clipping bug in which the player falls through the terrain due to gravity, or is able to walk out of the bounds of play. <em>Implementation</em>: Disable the collision box of a boundary object/terrain. </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Oyj74pRgu4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="boundary-hole"><a class="toclink" href="#boundary-hole">Boundary Hole</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Description</label><label for="__tabbed_1_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A specific kind of Geometry Clipping bug in which the player falls through the terrain due to gravity, or is able to walk out of the bounds of play.</p>
+</div>
+<div class="tabbed-block">
+<p>Disable the collision box of a boundary object/terrain. </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Oyj74pRgu4g?playlist=Oyj74pRgu4g&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="black-screen">Black Screen</h3>
-<p>A black screen usually happens when there is an issue with the rendering pipeline, leading to a screen that is black (nothing is rendered). <em>Implementation</em>: Render a black texture to the screen in a post processing step. </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DQxEkIaTG5A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="black-screen"><a class="toclink" href="#black-screen">Black Screen</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Description</label><label for="__tabbed_2_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A black screen usually happens when there is an issue with the rendering pipeline, leading to a screen that is black (nothing is rendered).</p>
+</div>
+<div class="tabbed-block">
+<p>Render a black texture to the screen in a post processing step. </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DQxEkIaTG5A?playlist=DQxEkIaTG5A&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="camera-clipping">Camera Clipping</h3>
-<p>For efficiency reasons, rendering pipelines cull geometry that is out of view. Cameras are a useful abstraction that are used by many engines to describe what can be seen on screen, the cameras view frustum is used to cull unseen geometry. If this frustum is too small, some geometry that should be rendered is not. In the example below, the near clipping plane has been set too far away from the player. At certain view points, when close to an object some of its geometry is culled leading to the “see through” effect seen below. In some circumstances this bug allows players to see into areas they shouldn't be able to (looking through walls/floors). This bug may only manifest itself with certain objects, particularly ones that have an odd shape (non-convex or pointy) and so it may not be immediately obvious to a developer that there is an issue. <em>Implementation</em>: Modify the near clipping plane.  </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8FDb3p0PjTA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="camera-clipping"><a class="toclink" href="#camera-clipping">Camera Clipping</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Description</label><label for="__tabbed_3_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>For efficiency reasons, rendering pipelines cull geometry that is out of view. Cameras are a useful abstraction that are used by many engines to describe what can be seen on screen, the cameras view frustum is used to cull unseen geometry. If this frustum is too small, some geometry that should be rendered is not. In the example below, the near clipping plane has been set too far away from the player. At certain view points, when close to an object some of its geometry is culled leading to the “see through” effect seen below. In some circumstances this bug allows players to see into areas they shouldn't be able to (looking through walls/floors). This bug may only manifest itself with certain objects, particularly ones that have an odd shape (non-convex or pointy) and so it may not be immediately obvious to a developer that there is an issue.</p>
+</div>
+<div class="tabbed-block">
+<p>Modify the near clipping plane.  </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8FDb3p0PjTA?playlist=8FDb3p0PjTA&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="geometry-clipping">Geometry Clipping</h3>
-<p>A bug that manifests in a visually similar way to camera clipping, but has a different cause. If collisions between the player and an object are not computed correctly, the player may be able walk inside the object and so is able to see inside it. Note: similar collision based bugs between two (non-player) objects, or <em>ghost objects</em> also manifest visually, this has not been explored in our work but would be an interesting case to study. <em>Implementation</em>: Disable the collision box of an object. </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4O3iNgFN-OA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="geometry-clipping"><a class="toclink" href="#geometry-clipping">Geometry Clipping</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Description</label><label for="__tabbed_4_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A bug that manifests in a visually similar way to camera clipping, but has a different cause. If collisions between the player and an object are not computed correctly, the player may be able walk inside the object and so is able to see inside it. Note: similar collision based bugs between two (non-player) objects, or <em>ghost objects</em> also manifest visually, this has not been explored in our work but would be an interesting case to study.</p>
+</div>
+<div class="tabbed-block">
+<p>Disable the collision box of an object. </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4O3iNgFN-OA?playlist=4O3iNgFN-OA&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="geometry-corruption">Geometry Corruption</h3>
-<p>Similarly to Texture Corruption, object geometry can also become corrupted. A geometry is corrupted when some of its vertices are incorrectly placed relative to the other vertices. They tend to happen during animations that depend on physics with flexible/dynamic geometries, but can also happen with static geometry (although this is less common). <em>Implementation</em>: randomly modifies the vertex positions of a chosen game object geometry over time.  </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MWep9tcnwzc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="geometry-corruption"><a class="toclink" href="#geometry-corruption">Geometry Corruption</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Description</label><label for="__tabbed_5_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Similarly to Texture Corruption, object geometry can also become corrupted. A geometry is corrupted when some of its vertices are incorrectly placed relative to the other vertices. They tend to happen during animations that depend on physics with flexible/dynamic geometries, but can also happen with static geometry (although this is less common).</p>
+</div>
+<div class="tabbed-block">
+<p>Randomly modifies the vertex positions of a chosen game object geometry over time.  </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MWep9tcnwzc?playlist=MWep9tcnwzc&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="screen-tear">Screen Tear</h3>
-<p>Screen tearing happens when a monitors refresh rate doesn't match the GPU frame rate. This leads to information multiple frames being rendered to the screen as a single frame, leading to a tearing effect. Although typically a hardware problem, it represents an interesting and often subtle visual issue. <em>Implementation</em>: Record previous frames and render them embedded in the current frame.  </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/laYDOshnd7k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="screen-tear"><a class="toclink" href="#screen-tear">Screen Tear</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Description</label><label for="__tabbed_6_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Screen tearing happens when a monitors refresh rate doesn't match the GPU frame rate. This leads to information multiple frames being rendered to the screen as a single frame, leading to a tearing effect. Although typically a hardware problem, it represents an interesting and often subtle visual issue.</p>
+</div>
+<div class="tabbed-block">
+<p>Record previous frames and render them embedded in the current frame.  </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/laYDOshnd7k?playlist=laYDOshnd7k&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="texture-corruption">Texture Corruption</h3>
-<p>A texture may render incorrectly/become corrupt for various reasons, for example, when texture offsets incorrectly set, the UV map is incorrect or as a result of shader related issues. Similar effects may also be due to lighting problems, for example if the vertex normals are incorrectly set.  <em>Implementation:</em> the UV map/offsets are modified to corrupt the texture. </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HhBr9_5GLEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="texture-corruption"><a class="toclink" href="#texture-corruption">Texture Corruption</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Description</label><label for="__tabbed_7_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A texture may render incorrectly/become corrupt for various reasons, for example, when texture offsets incorrectly set, the UV map is incorrect or as a result of shader related issues. Similar effects may also be due to lighting problems, for example if the vertex normals are incorrectly set.  </p>
+</div>
+<div class="tabbed-block">
+<p>The UV map/offsets are modified to corrupt the texture. </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HhBr9_5GLEY?playlist=HhBr9_5GLEY&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="texture-missing">Texture Missing</h3>
-<p>When a texture is missing from an object, which may happen if a developer forgets to set the texture, its missing/inaccessible in the file system or otherwise, the shader responsible for rendering the texture will typically resort to rendering the object it in one colour (typically bright pink) or resort to a default texture. <em>Implementation</em>: remove the texture from a chosen game object.  </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Z1BB4bf1mC0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="texture-missing"><a class="toclink" href="#texture-missing">Texture Missing</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Description</label><label for="__tabbed_8_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>When a texture is missing from an object, which may happen if a developer forgets to set the texture, its missing/inaccessible in the file system or otherwise, the shader responsible for rendering the texture will typically resort to rendering the object it in one colour (typically bright pink) or resort to a default texture.</p>
+</div>
+<div class="tabbed-block">
+<p>Remove the texture from a chosen game object.  </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Z1BB4bf1mC0?playlist=Z1BB4bf1mC0&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="z-clipping">Z-Clipping</h3>
-<p>Rendering pipelines often have layers, layers contain geometry to be rendered and are queued and rendered in order. Pixels in the layers rendered subsequently are replaced or are blended with pixels in previous layers. If an object geometry is placed in the wrong layer, it may be rendered on top of others leading to some strange spatial effects (which may or may not be desirable). <em>Implementation</em>: places a chosen game object in a layer that is always rendered last.  </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5kPJbN8A7m4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="z-clipping"><a class="toclink" href="#z-clipping">Z-Clipping</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Description</label><label for="__tabbed_9_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Rendering pipelines often have layers, layers contain geometry to be rendered and are queued and rendered in order. Pixels in the layers rendered subsequently are replaced or are blended with pixels in previous layers. If an object geometry is placed in the wrong layer, it may be rendered on top of others leading to some strange spatial effects (which may or may not be desirable).</p>
+</div>
+<div class="tabbed-block">
+<p>Places a chosen game object in a layer that is always rendered last.  </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5kPJbN8A7m4?playlist=5kPJbN8A7m4&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="z-fighting">Z-Fighting</h3>
-<p>Z-Fighting happens when two surfaces have the same depth (z). The renderer/shader does not know which to show first and this results in a mixing of textures from the two surfaces. A flickering effect may also occur during when the players view shifts. <em>Implementation</em>: copies a game object, modifies its texture and places it exactly at the position of the original. </p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/l6c3GmiNqYU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2 id="z-fighting"><a class="toclink" href="#z-fighting">Z-Fighting</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Description</label><label for="__tabbed_10_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Z-Fighting happens when two surfaces have the same depth (z). The renderer/shader does not know which to show first and this results in a mixing of textures from the two surfaces. A flickering effect may also occur during when the players view shifts.</p>
+</div>
+<div class="tabbed-block">
+<p>Copies a game object, modifies its texture and places it exactly at the position of the original. </p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l6c3GmiNqYU?playlist=l6c3GmiNqYU&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
-<h3 id="invisible-wall">Invisible Wall</h3>
-<p>COMING SOON </p>
+<h2 id="invisible-wall"><a class="toclink" href="#invisible-wall">Invisible Wall</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>This feature is in development</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Description</label><label for="__tabbed_11_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A wall that the player cannot see but cannot move through. Sometimes these are added to stop the player going out of bounds, but this can break immersion. It may also happen unintentionally if some geometry is not correctly rendered or as part of a broken game mechanic.</p>
+</div>
+<div class="tabbed-block">
+<p>Add an invisible object in the scene somewhere it isn't supposed to be.</p>
+</div>
+</div>
+</div>
 <hr />
-<h3 id="unresponsive">Unresponsive</h3>
-<p>COMING SOON  </p>
+<h2 id="freezing"><a class="toclink" href="#freezing">Freezing</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>This feature is in development</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Description</label><label for="__tabbed_12_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Everything freezes for some period of time. Sometimes the game may recover and "skip time" or resume normally. </p>
+</div>
+<div class="tabbed-block">
+<p>If skip time, a frame can be re-rendered to the screen for the period, otherwise all relevant scripts need to be disabled.</p>
+</div>
+</div>
+</div>
 <hr />
-<h3 id="freezing">Freezing</h3>
-<p>COMING SOON</p>
+<h2 id="unresponsive"><a class="toclink" href="#unresponsive">Unresponsive</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>This feature is in development</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">Description</label><label for="__tabbed_13_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The player can no longer take any action. Similar to a <a href="#freezing">Freezing</a> but only the player character is stuck.</p>
+</div>
+<div class="tabbed-block">
+<p>Disable the player controller, each action becomes 'none'. </p>
+</div>
+</div>
+</div>
 <hr />
-<h3 id="high-velocity">High Velocity</h3>
-<p>COMING SOON</p>
+<h2 id="high-force"><a class="toclink" href="#high-force">High Force</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>This feature is in development</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:3"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><input id="__tabbed_14_3" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">Description</label><label for="__tabbed_14_2">Implementation</label><label for="__tabbed_14_3">Example</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>An object in the scene suddenly has a large force applied to it causing it shoot across the screen. This can also happen to he player character cause it to fly into the sky or off in some random direction. This most commonly happens when an dynamic (physics based) object gets trapped between two non-physics based objects, or if the time delta in the physics engine is to large. </p>
+</div>
+<div class="tabbed-block">
+<p>Squash an object between too static objects, or randomly apply a large force to the object/player.</p>
+</div>
+<div class="tabbed-block">
+<p><figure markdown>
+<img alt="" lazyload="true" src="../imgs/skyrim-high-force.jpg" width="300" />
+<figcaption>Example of high force bug in the game Skyrim.</figcaption>
+</figure></p>
+</div>
+</div>
+</div>
 <hr />
-<h3 id="floating-objects">Floating Objects</h3>
-<p>COMING SOON</p>
+<h2 id="floating-objects"><a class="toclink" href="#floating-objects">Floating Objects</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>This feature is in development</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">Description</label><label for="__tabbed_15_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A</p>
+</div>
+<div class="tabbed-block"></div>
+</div>
+</div>
 <hr />
 
               

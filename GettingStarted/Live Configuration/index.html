@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://benedictwilkins.github.io/world-of-bugs/GettingStarted/Live%20Configuration/">
+      
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
@@ -610,27 +612,27 @@
                 
 
 
-<h1 id="live-configuration">Live Configuration</h1>
+<h1 id="live-configuration"><a class="toclink" href="#live-configuration">Live Configuration</a></h1>
 <p><code>worldofbugs</code> environment supports live configuration. Bugs can be configured at runtime via a simple API, outlined below.</p>
-<h2 id="configuring-bugs">Configuring Bugs</h2>
+<h2 id="configuring-bugs"><a class="toclink" href="#configuring-bugs">Configuring Bugs</a></h2>
 <p>A bug can be enabled using the <code>enable_bug</code> method, for example: <code>env.enable_bug("MissingTexture")</code></p>
 <p>A bug can be disabled using the <code>disable_bug</code> method, for example: <code>env.disable_bug("TextureCorruption")</code></p>
 <p>Bugs names a derived from their type name as it appears in Unity. A full list of bugs can be found <a href="../../Developing%20Worlds/Bugs/">here</a>. It is up to the environment which bugs it implements, so not all environments will implement all bugs.</p>
-<h2 id="configuring-agent-behaviour">Configuring Agent Behaviour</h2>
+<h2 id="configuring-agent-behaviour"><a class="toclink" href="#configuring-agent-behaviour">Configuring Agent Behaviour</a></h2>
 <p>An agents behaviour can be changed using the <code>set_agent_behaviour</code>, for example: <code>env.set_agent_behaviour("PolicyPython")</code>. </p>
 <p>Setting the behaviour to <code>"PolicyPython"</code> will enable the current python policy, the agent will take actions received via <code>env.step</code>. Otherwise, a heuristic behaviour defined in unity will be used and any python actions wil be ignored. The actual action taken can be retrieved by inspecting <code>info</code> returned by <code>env.step</code> as follows:</p>
-<pre><code class="language-python">    state, reward, done, info = env.step(0)
-    info['Action']
-</code></pre>
+<div class="highlight"><pre><span></span><code>    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;Action&#39;</span><span class="p">]</span>
+</code></pre></div>
 <p>Again, it is up to the environment (and in particular the agent) to define which heuristic behaviours are available. Standard behaviours include: </p>
 <ul>
 <li><code>"PolicyPython"</code> - use the python behaviour as described above.</li>
 <li><code>"&lt;ENV_NAME&gt;HeuristicManual"</code> - use keyboard/mouse input.</li>
 <li><code>"&lt;ENV_NAME&gt;HeuristicNavMesh"</code> - use Unity's NavMesh system.</li>
 </ul>
-<h2 id="advanced">Advanced</h2>
+<h2 id="advanced"><a class="toclink" href="#advanced">Advanced</a></h2>
 <p>MORE INFO COMING SOON</p>
-<h2 id="logging">Logging</h2>
+<h2 id="logging"><a class="toclink" href="#logging">Logging</a></h2>
 <p>By default all messages logged with Unity's default logging system, <code>Debug.Log</code> are also displayed in the Python console. This can be configured when an environment is created by specifying <code>debug = True</code>, i.e. <code>worldofbugs.make("World-v1", debug=True)</code>.</p>
 
               
