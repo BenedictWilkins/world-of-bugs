@@ -669,6 +669,10 @@
 </code></pre></div>
 <p>Bug names a derived from their type name as it appears in Unity. A full list of bugs can be found <a href="../../BugZoo/">here</a>. It is up to the environment which bugs it implements, so not all environments will implement all bugs.</p>
 <h2 id="configuring-agent-behaviour"><a class="toclink" href="#configuring-agent-behaviour">Configuring Agent Behaviour</a></h2>
+<div class="admonition todo">
+<p class="admonition-title">Todo</p>
+<p>this is now out of date and will be updated soon.</p>
+</div>
 <p>An agent's behaviour can be changed using the <code>set_agent_behaviour</code>, for example: <code>env.set_agent_behaviour("PolicyPython")</code>. </p>
 <p>Setting the behaviour to <code>"PolicyPython"</code> will enable the current python policy, the agent will take actions received via <code>env.step</code>. Otherwise, a heuristic behaviour defined in unity will be used, any python actions will be ignored. The actual action taken can be retrieved by inspecting <code>info</code> returned by <code>env.step</code> as follows:</p>
 <div class="highlight"><pre><span></span><code>    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
