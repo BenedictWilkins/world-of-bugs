@@ -16,6 +16,8 @@ from mlagents_envs.side_channel.side_channel import SideChannel
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
 from mlagents_envs.environment import UnityEnvironment as MLAgentUnityEnvironment
 
+from gym_unity.envs import ActionTuple
+
 from .sidechannel import UnityLogChannel, UnityConfigChannel
 
 __all__ = ("UnityEnvironment", )
@@ -71,6 +73,13 @@ class UnityEnvironment(MLAgentUnityEnvironment):
                          side_channels = side_channels,
                          log_folder = log_folder,
                          **kwargs)
+
+    def set_empty(self, behavior_name) -> None: # should be used in place of set_action if using a c# heuristic instead...
+        self._assert_behavior_exists(behavior_name)
+        if behavior_name not in self._env_state:
+            return
+        print("empty...")
+        self._env_actions[behavior_name] = ActionTuple()
 
     def enable_bug(self, bug):
         msg = f"Bugs.{bug}.enabled:{True}"

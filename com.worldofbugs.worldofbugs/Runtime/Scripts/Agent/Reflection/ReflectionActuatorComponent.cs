@@ -48,7 +48,14 @@ namespace WorldOfBugs {
             _heuristic = heuristic;
          }
 
-        public void OnActionReceived(ActionBuffers buffer) { // executes discrete actions first, then continuous actions. continuous actions are executed in order of specification
+        public void OnActionReceived(ActionBuffers buffer) { // executes discrete actions first, then continuous actions. continuous actions are executed in order of specification 
+            //Debug.Log(string.Join(",", buffer.DiscreteActions));
+            Debug.Log(buffer.DiscreteActions.Length);
+
+            if (buffer.DiscreteActions.Length + buffer.ContinuousActions.Length == 0) {
+                Heuristic(buffer);
+            }
+            
             for (int i = 0; i < buffer.DiscreteActions.Length; i++) {
                 //Debug.Log($"Discrete Action: {buffer.DiscreteActions[i]}");
                 _discrete_action_methods[buffer.DiscreteActions[i]]();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using WorldOfBugs;
 
@@ -10,9 +11,10 @@ public class Platform : MonoBehaviour {
     public Vector3 MovementAngleOffset = Vector3.zero;
     public float MovementSpeed = 10;
     public bool IgnoreGravity = false; // ignore gravity?
-
+    public BoxCollider triggerCollider;
+    
     protected Vector3 InitialPosition;
-    protected BoxCollider triggerCollider;
+    
     
     protected HashSet<Collider> OnPlatform = new HashSet<Collider>();
     protected float time = 0f;
@@ -24,10 +26,18 @@ public class Platform : MonoBehaviour {
         }
     }
 
+    public bool IsOnPlatform(GameObject go) {
+        return go.GetComponents<Collider>().Select(x => OnPlatform.Contains(x)).Any();
+    }
+
+    public Collider[] GetOnPlatform() {
+        return OnPlatform.ToArray();
+    }
+
     protected virtual void InitializeTriggerCollider() {
         triggerCollider = gameObject.AddComponent<BoxCollider>(GetComponent<BoxCollider>());
         triggerCollider.isTrigger = true;
-        float yscale = 1.05f;
+        float yscale = 1.1f;
         Vector3 size = triggerCollider.size;
         Vector3 center = triggerCollider.center;
         size.Scale(new Vector3(1f,yscale,1f));

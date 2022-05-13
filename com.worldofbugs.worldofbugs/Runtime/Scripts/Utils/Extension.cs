@@ -68,8 +68,13 @@ namespace WorldOfBugs {
     }
 
     public static class GameObjectExtensions {
+        
         public static T AddComponent<T>(this GameObject go, T component) where T : Component {
             return go.AddComponent<T>().Clone(component) as T;
+        }
+
+        public static GameObject GetChildWithName(this GameObject go, string name) {
+            return go.transform.Find(name)?.gameObject;
         }
     }
 

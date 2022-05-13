@@ -38,8 +38,7 @@ namespace WorldOfBugs {
         }
 
         public override void Heuristic(in ActionBuffers buffer) {
-            //Debug.Log("Heuristic");
-            _heuristic?.Heuristic(buffer);
+            _heuristic.Heuristic(buffer);
         }
     }
 

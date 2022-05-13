@@ -28,13 +28,17 @@ namespace WorldOfBugs {
         
         private static System.Random _random = new System.Random();
         
-        public static GameObject[] GetLeafChildGameObjectsWithComponent<T>(GameObject parent, int n) {
-            Transform[] children = parent.transform.GetComponentsInChildren<Transform>(true);
-            children = Array.FindAll(children, x => x.GetComponent<T>() != null); // leaf children
-            if (n < 0) {
-                n = children.Length;
-            }
+        public static GameObject[] GetLeafChildGameObjectsWithComponent<T>(GameObject parent, int n) where T : Component {
+            T[] children = parent.transform.GetComponentsInChildren<T>(true);
+            //children = Array.FindAll(children, x => x.GetComponent<T>() != null); // leaf children
+            if (n < 0) { n = children.Length; }
             return children.OrderBy(x => _random.Next()).Take(n).Select(x => x.gameObject).ToArray();
+        }
+
+        public static GameObject[] GetLeafChildGameObjectsWithComponent<T>(GameObject parent) where T : Component {
+            T[] children = parent.transform.GetComponentsInChildren<T>(true);
+            //children = Array.FindAll(children, x => x.GetComponent<T>() != null); // leaf children
+            return children.OrderBy(x => _random.Next()).Select(x => x.gameObject).ToArray();
         }
     }
 

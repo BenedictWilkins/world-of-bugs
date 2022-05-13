@@ -1,6 +1,6 @@
 # Quick Start
 
-Clone the github repository: 
+Clone the GitHub repository: 
 
 `git clone https://github.com/BenedictWilkins/world-of-bugs.git`
 
@@ -37,7 +37,7 @@ If everything worked correctly you should see a build printout like:
 
 `[~/Downloads/builds/Standalone-Linux-World-v1/World-v1.x86_64]`
 
-and if you have pygame installed (`pip install pygame`) something like the following should appear in your pygame window.
+If you have `pygame` installed (`pip install pygame`) something like the following should appear in your `pygame` window.
 
 <img src="../imgs/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> 
 
@@ -56,7 +56,7 @@ builds
     ├── World-v1_Data
     └── World-v1.x86_64
 ```
-with `builds` being the directory added to `BuildResolver.path` as above. By default the current working directory and the `build` directory in the `worldofbugs` install directory will also be searched.
+`builds` being the directory added to `BuildResolver.path` as above. By default, the current working directory and the `build` directory in the `worldofbugs` install directory will also be searched.
 
 ----------- 
 

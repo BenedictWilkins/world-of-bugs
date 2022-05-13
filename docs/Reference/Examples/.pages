@@ -1,0 +1,6 @@
+nav:
+    - index.md
+    - 'World-v1.md'
+    - 'World-v2.md'
+    - 'GettingStuck-v0.md'
+    - 'Maze-v0.md'

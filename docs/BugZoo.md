@@ -40,7 +40,7 @@ Below is a list of the bugs currently implemented in WOB, the list is growing!
 
 ## Geometry Clipping
 === "Description"
-    A bug that manifests in a visually similar way to camera clipping, but has a different cause. If collisions between the player and an object are not computed correctly, the player may be able walk inside the object and so is able to see inside it. Note: similar collision based bugs between two (non-player) objects, or _ghost objects_ also manifest visually, this has not been explored in our work but would be an interesting case to study.
+    A bug that manifests in a visually similar way to camera clipping, but has a different cause. If collisions between the player and an object are not computed correctly, the player may be able to walk inside the object and so is able to see inside it. Note: similar collision based bugs between two (non-player) objects, or _ghost objects_ also manifest visually, this has not been explored in our work but would be an interesting case to study.
 === "Implementation"
     Disable the collision box of an object. 
 
@@ -159,7 +159,7 @@ Below is a list of the bugs currently implemented in WOB, the list is growing!
     This feature is in development
 
 === "Description"
-    The player can no longer take any action. Similar to a [Freezing](#freezing) but only the player character is stuck.
+    The player can no longer take any action. Similar to a [Freezing](#freezing) bug, however in this case only the player character is stuck.
    
 === "Implementation"
     Disable the player controller, each action becomes 'none'. 

@@ -21,7 +21,7 @@ namespace WorldOfBugs {
             // public API to enable a bug
             public string enabled { 
                 get { throw new NotImplementedException(); } 
-                set { Bug.enabled = Convert.ToBoolean(value); Debug.Log($"VALUE SET {value}"); }
+                set { Bug.enabled = Convert.ToBoolean(value); Debug.Log($"Bug {Bug.GetType().Name} enabled = {value}"); }
             }
         }
 
@@ -35,6 +35,7 @@ namespace WorldOfBugs {
                 set { 
                     bool v = Convert.ToBoolean(value); // turn on this heuristic behaviour.
                     Agent._heuristic = Heuristic;
+                    Debug.Log($"{Agent} is using Heuristic {Heuristic.GetType().Name}.");
                 }
             }
         }

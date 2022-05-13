@@ -56,6 +56,12 @@ class ContinuousActionHandler(_ActionHandler):
         self.action_space = gym.spaces.Box(-high, high, dtype=np.float32)
 
     def get_action_tuple(self, actions):
+        if actions is None:
+            return ActionTuple()
+        elif isinstance(actions, float):
+            actions = np.array([actions])
+        elif isinstance(actions, (list, tuple)):
+            actions = np.array(actions)
         return ActionTuple(continuous=actions) # simple!
 
 class DiscreteActionHandler(_ActionHandler): 
@@ -79,6 +85,13 @@ class DiscreteActionHandler(_ActionHandler):
             self.action_space = self._flattener.action_space
 
     def get_action_tuple(self, actions):
+        if actions is None:
+            return ActionTuple()
+        elif isinstance(actions, int):
+            actions = np.array([actions])
+        elif isinstance(actions, (list, tuple)):
+            actions = np.array(actions)
+
         if self._flattener is not None:
             # bit of a shame this needs to happen... probably just dont use branches in unity... why are they even there!
             actions = np.array([self._flattener.lookup_action(action) for action in actions])

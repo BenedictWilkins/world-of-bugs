@@ -68,11 +68,16 @@ class UnityGymEnvironment(gym.Env):
         state, _, _, info = self._collect(None, decision_steps, terminal_steps)
         return state, info
 
-    def step(self, action):
+    def step(self, action=None):
         if self._data.done:
             raise WorldOfBugsException("Attempted to call step when the environment is already done.")
-        action_tuple = self._action_handler.get_action_tuple(np.array([action]))
-        self._env.set_actions(self.name, action_tuple)
+        
+        if action is not None:
+            action_tuple = self._action_handler.get_action_tuple(action)
+            self._env.set_actions(self.name, action_tuple)
+        else:
+            self._env.set_empty(self.name)
+
         self._env.step()
         decision_steps, terminal_steps = self._env.get_steps(self.name)
 
