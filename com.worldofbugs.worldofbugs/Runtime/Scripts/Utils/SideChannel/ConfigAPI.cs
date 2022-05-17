@@ -34,7 +34,7 @@ namespace WorldOfBugs {
                 get { throw new NotImplementedException(); } 
                 set { 
                     bool v = Convert.ToBoolean(value); // turn on this heuristic behaviour.
-                    Agent._heuristic = Heuristic;
+                    Agent.SetHeuristic(Heuristic);
                     Debug.Log($"{Agent} is using Heuristic {Heuristic.GetType().Name}.");
                 }
             }

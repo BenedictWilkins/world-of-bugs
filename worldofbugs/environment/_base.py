@@ -78,7 +78,6 @@ class UnityEnvironment(MLAgentUnityEnvironment):
         self._assert_behavior_exists(behavior_name)
         if behavior_name not in self._env_state:
             return
-        print("empty...")
         self._env_actions[behavior_name] = ActionTuple()
 
     def enable_bug(self, bug):

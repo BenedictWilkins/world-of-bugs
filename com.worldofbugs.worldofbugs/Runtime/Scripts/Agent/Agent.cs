@@ -12,6 +12,7 @@ namespace WorldOfBugs {
 
     public abstract class Agent : Unity.MLAgents.Agent { 
         
+
         [SerializeField]
         internal protected HeuristicComponent _heuristic;
         
@@ -37,9 +38,20 @@ namespace WorldOfBugs {
             RequestDecision();
         }
 
-        public override void Heuristic(in ActionBuffers buffer) {
-            _heuristic.Heuristic(buffer);
+        public virtual void SetHeuristic(HeuristicComponent heuristic) {
+            if (_heuristic != null) {
+                _heuristic.enabled = false; _heuristic.enabled = false; 
+            }
+            _heuristic = heuristic;
+            _heuristic.enabled = true;
         }
+
+        public override sealed void Heuristic(in ActionBuffers buffer) {
+            if (_heuristic != null) {
+                _heuristic.Heuristic(buffer);
+            }
+        }
+            
     }
 
 }

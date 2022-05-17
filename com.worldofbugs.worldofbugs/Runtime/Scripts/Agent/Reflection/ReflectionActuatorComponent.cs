@@ -21,6 +21,7 @@ namespace WorldOfBugs {
         }
 
         public override IActuator[] CreateActuators() { // initialise must be called before hand...
+            Debug.Log("CREATE ACTUATORS");
             IActuator actuator = ActionAttribute.CreateActuator(_agent);
             if (actuator == null) {
                 Destroy(_agent.gameObject.GetComponent<ReflectionActuatorComponent>()); // this whole thing is just an annoying work around. Put the code in InitializeActuators in MLAgents package!
@@ -49,11 +50,12 @@ namespace WorldOfBugs {
          }
 
         public void OnActionReceived(ActionBuffers buffer) { // executes discrete actions first, then continuous actions. continuous actions are executed in order of specification 
-            //Debug.Log(string.Join(",", buffer.DiscreteActions));
-            Debug.Log(buffer.DiscreteActions.Length);
-
-            if (buffer.DiscreteActions.Length + buffer.ContinuousActions.Length == 0) {
-                Heuristic(buffer);
+            // Debug.Log(string.Join(",", buffer.DiscreteActions));
+            // Debug.Log($"{buffer.DiscreteActions.Length} {buffer.DiscreteActions[0]}");
+            
+            // This is the key line that allows a heuristic to be used while in Python, if another actuator is used things will break...
+            if (_heuristic != null) {
+                Heuristic(buffer); // use the heuristic, it is up to the agent to either replace the action or leave it.
             }
             
             for (int i = 0; i < buffer.DiscreteActions.Length; i++) {

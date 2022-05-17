@@ -37,7 +37,7 @@ public class ZFighting : Bug {
                 if (!(component is Transform || component is Renderer || component is MeshFilter)) {
                     Destroy(component);
                 } else { 
-                    Debug.Log("??");
+                    //Debug.Log("??");
                 }
             }
         

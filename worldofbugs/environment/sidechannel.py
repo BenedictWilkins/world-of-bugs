@@ -21,7 +21,9 @@ class UnityLogChannel(SideChannel):
         self.stream = stream
         
     def on_message_received(self, msg):
-        self.stream.write(msg.read_string())
+        msg = msg.read_string()
+        msg = msg if msg.endswith("\n") else msg + "\n"
+        self.stream.write(msg)
 
 class UnityConfigChannel(SideChannel):
     """ Configuration SideChannels, sends config information to a Unity environment. For API details see: [TODO]()"""
