@@ -11,10 +11,15 @@ namespace WorldOfBugs.LookingAround {
 
 
 
-        protected Vector3 _lookat = new Vector3(1,1,1);
+        protected Vector3 _lookat;
         protected Vector3 LookAt {
-            get { return _lookat.normalized; }
-            set { _lookat = value; _lookat.y = 0;}
+            get { return _lookat; }
+            set { _lookat = value;}
+        }
+
+        void Awake() {
+            LookAt = RandomPoint();
+            Debug.Log(LookAt);
         }
 
         protected float DAngle { get { 
@@ -33,11 +38,6 @@ namespace WorldOfBugs.LookingAround {
         // the actual doing nothing prob discounting the chance that both vertical and horizontal actions will be 0
         public float DoNothingProb { get { return _DoNothingProb - (HorizontalDoNothingProb * VerticalDoNothingProb); }}
         
-        public void OnEnable() {
-        LookAt = Random.insideUnitCircle;
-        }
-        
-
         public override void Heuristic(in ActionBuffers buffer) {
             var _buffer = buffer.ContinuousActions;
             if (Random.Range(0f,1f) < DoNothingProb) {
@@ -50,7 +50,8 @@ namespace WorldOfBugs.LookingAround {
             
             if (Random.Range(0f,1f) > HorizontalDoNothingProb) {
                 while (Mathf.Abs(DAngle) < 1) {
-                    LookAt = Random.insideUnitCircle;
+                    LookAt = RandomPoint();
+                    Debug.Log(LookAt);
                 }
                 //Debug.Log(DAngle);
                 _buffer[1] = Mathf.Sign(DAngle);   
@@ -71,6 +72,12 @@ namespace WorldOfBugs.LookingAround {
                 Gizmos.color = Color.red;
                 Gizmos.DrawSphere(LookAt, .3f);
             }
+        }
+
+        protected Vector3 RandomPoint(){
+            float rad = UnityEngine.Random.Range(LookAroundAgent.HMIN, LookAroundAgent.HMAX) * Mathf.Deg2Rad;
+            Vector3 position = new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad));
+            return position; //gameObject.transform.TransformPoint(position);
         }
 
     }

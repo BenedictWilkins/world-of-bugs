@@ -13,6 +13,8 @@ namespace WorldOfBugs.LookingAround {
     /// </summary>
     public class LookAroundAgent : WorldOfBugs.AgentDefault {
         
+        public static readonly float HMIN = 90f, HMAX = 270f;
+
         [Observable("Action")]
         public new Vector2 Action { 
             get { 
@@ -41,7 +43,7 @@ namespace WorldOfBugs.LookingAround {
 
            
             Vector3 rotation = transform.localEulerAngles;
-            Debug.Log(rotation);
+            //Debug.Log(rotation);
             //rotation.y = (rotation.y + 180f) % 360f;
             rotation.y = Mathf.Clamp(rotation.y, 90f, 270f);
             //rotation.y += 180f;
