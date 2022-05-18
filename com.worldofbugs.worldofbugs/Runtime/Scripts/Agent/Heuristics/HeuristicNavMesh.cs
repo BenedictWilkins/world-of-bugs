@@ -131,7 +131,7 @@ namespace WorldOfBugs {
             float angle = Vector3.SignedAngle(gameObject.transform.forward, direction, Vector3.up);
             float rangle = Mathf.Sign(angle) * dt * AngularSpeed; 
             
-            if (Mathf.Abs(angle) > Mathf.Abs(rangle)) {
+            if (Mathf.Abs(angle) > Mathf.Abs(rangle)) { 
                 // should rotate
                 // Debug.Log($"{angle} {rangle} {dt} {Time.deltaTime}");
                 if (angle < 0) {

@@ -19,7 +19,7 @@ env = worldofbugs.make(None, debug=True)
 # if you have built World-v1 or downloaded a build
 
 #env = worldofbugs.make("WOB/World-v1", debug=False) 
-env.set_agent_behaviour("HeuristicNavMesh")
+#env.set_agent_behaviour("HeuristicManual")
 
 #env.enable_bug("PlatformStuck")
 #env.enable_bug("PlatformStuckUnder")
@@ -27,8 +27,8 @@ env.set_agent_behaviour("HeuristicNavMesh")
 env.reset()
 
 for i in range(1000):
-   action = env.action_space.sample()
+   action = env.action_space.sample() * 2 
    state, reward, done, info = env.step()
    
-   print(action, info['Action'], info['Position'], info['Rotation'])
+   print(action, info['Action'], info['Rotation'])
    env.render() # requires pygame

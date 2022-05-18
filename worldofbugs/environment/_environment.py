@@ -72,11 +72,8 @@ class UnityGymEnvironment(gym.Env):
         if self._data.done:
             raise WorldOfBugsException("Attempted to call step when the environment is already done.")
         
-        if action is not None:
-            action_tuple = self._action_handler.get_action_tuple(action)
-            self._env.set_actions(self.name, action_tuple)
-        else:
-            self._env.set_empty(self.name)
+        action_tuple = self._action_handler.get_action_tuple(action)
+        self._env.set_actions(self.name, action_tuple)
 
         self._env.step()
         decision_steps, terminal_steps = self._env.get_steps(self.name)
@@ -114,7 +111,7 @@ class WOBEnvironment(UnityGymEnvironment):
         # "hacky" in the future, probably implemented at the unity side. TODO
         self.reset()
         for i in range(50):
-            self.step(0)
+            self.step(None)
         self.reset()
         
     def _collect(self, action, decision_steps, terminal_steps):

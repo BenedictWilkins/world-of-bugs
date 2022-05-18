@@ -50,6 +50,7 @@ class ContinuousActionHandler(_ActionHandler):
         Args:
             action_spec (ActionSpec): action specification (see mlagent_envs).
         """
+        self.num_agents = 1 # TODO multiagent? 
         self.action_spec = action_spec
         self.action_size = self.action_spec.continuous_size
         high = np.array([1] * self.action_spec.continuous_size)
@@ -57,11 +58,13 @@ class ContinuousActionHandler(_ActionHandler):
 
     def get_action_tuple(self, actions):
         if actions is None:
-            return ActionTuple()
+            return ActionTuple(np.zeros((self.num_agents, self.action_size)))
         elif isinstance(actions, float):
             actions = np.array([actions])
         elif isinstance(actions, (list, tuple)):
             actions = np.array(actions)
+        if len(actions.shape) == 1: 
+            actions = actions[np.newaxis,:]
         return ActionTuple(continuous=actions) # simple!
 
 class DiscreteActionHandler(_ActionHandler): 
@@ -86,7 +89,7 @@ class DiscreteActionHandler(_ActionHandler):
 
     def get_action_tuple(self, actions):
         if actions is None:
-            return ActionTuple()
+            return ActionTuple() # ?? TODO
         elif isinstance(actions, int):
             actions = np.array([actions])
         elif isinstance(actions, (list, tuple)):

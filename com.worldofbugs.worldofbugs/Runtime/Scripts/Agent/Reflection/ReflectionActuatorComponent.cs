@@ -36,8 +36,14 @@ namespace WorldOfBugs {
         public string Name { get { return "ReflectionActuator"; }}
 
         // TODO currently limited to a single branch for discrete actions... why are discrete and continuous actions not treated equally??
+    
+        public ActionSpec ActionSpec { get { 
+            int[] branches = new int[] { _discrete_action_methods.Length };
+            if (_discrete_action_methods.Length == 0) { 
+                branches = null; 
+                }
 
-        public ActionSpec ActionSpec { get { return new ActionSpec(_continuous_action_methods.Length, new int[] { _discrete_action_methods.Length }); }}
+            return new ActionSpec(_continuous_action_methods.Length, branches); }}
         
         private Action<float>[] _continuous_action_methods;
         private Action[] _discrete_action_methods;
@@ -57,12 +63,14 @@ namespace WorldOfBugs {
             if (_heuristic != null) {
                 Heuristic(buffer); // use the heuristic, it is up to the agent to either replace the action or leave it.
             }
-            
+
+           
             for (int i = 0; i < buffer.DiscreteActions.Length; i++) {
                 //Debug.Log($"Discrete Action: {buffer.DiscreteActions[i]}");
                 _discrete_action_methods[buffer.DiscreteActions[i]]();
             }
             for (int i = 0; i < buffer.ContinuousActions.Length; i++) {
+                //Debug.Log(string.Join(",", buffer.ContinuousActions.Select(x => $"{x}")));
                 _continuous_action_methods[i](buffer.ContinuousActions[i]);
             }
         }

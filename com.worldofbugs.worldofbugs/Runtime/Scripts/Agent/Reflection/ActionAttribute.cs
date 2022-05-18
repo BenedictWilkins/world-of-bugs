@@ -45,6 +45,7 @@ namespace WorldOfBugs {
         static Tuple<Action[], Action<float>[]> ResolveActionAttributes(Unity.MLAgents.Agent agent) {
             Action[] discrete = GetDelegateMethods<Action>(agent);
             Action<float>[] continuous = GetDelegateMethods<Action<float>>(agent);
+
             return new Tuple<Action[], Action<float>[]>(discrete, continuous);
         }
 

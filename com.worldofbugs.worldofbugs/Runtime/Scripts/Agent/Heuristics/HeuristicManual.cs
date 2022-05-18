@@ -17,8 +17,6 @@ namespace WorldOfBugs {
         protected static string[] REQUIRED_ACTION_MEANINGS = new string[] { "none", "forward", "rotateleft", "rotateright" };
         protected string[] actionmeanings; 
 
-        protected delegate bool GetPlayerInput(); // TODO
-
         public override void Heuristic(in ActionBuffers buffer) {
             int leftright = (int) Mathf.Round(Input.GetAxis("Horizontal"));
             int forwardback = (int) Mathf.Round(Input.GetAxis("Vertical"));
