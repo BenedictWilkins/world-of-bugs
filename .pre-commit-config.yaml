@@ -10,6 +10,8 @@ repos:
         #exclude : '(isort\.cfg|*.(\.svg))' # some weird conflict that is never resolved...
     -   id: trailing-whitespace
 
+# python tests / linting etc
+
 - repo: https://github.com/pycqa/isort
   rev: 5.10.1
   hooks:
@@ -27,9 +29,17 @@ repos:
 
 - repo: local
   hooks:
-    - id: lint
+    - id: lint # python linting
       name: lint
       entry: python test/lint.py
       language: system
       pass_filenames: false
       log_file: logs/lint.log
+
+    - id: astyle # c-sharp code formatting
+      name: astyle
+      entry: bash test/astyle.sh
+      language: system
+      pass_filenames: false
+      log_file: logs/astyle.log
+
