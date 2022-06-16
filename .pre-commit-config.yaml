@@ -6,7 +6,8 @@ repos:
     hooks:
     -   id: check-yaml
     -   id: end-of-file-fixer
-        exclude : '(isort\.cfg)' # some weird conflict that is never resolved...
+        files : .*(\.py|\.cs)
+        #exclude : '(isort\.cfg|*.(\.svg))' # some weird conflict that is never resolved...
     -   id: trailing-whitespace
 
 - repo: https://github.com/pycqa/isort
@@ -26,8 +27,9 @@ repos:
 
 - repo: local
   hooks:
-    - id: pylint
-      name: pylint
-      entry: pylint
+    - id: lint
+      name: lint
+      entry: python test/lint.py
       language: system
-      types: [python]
+      pass_filenames: false
+      log_file: logs/lint.log
