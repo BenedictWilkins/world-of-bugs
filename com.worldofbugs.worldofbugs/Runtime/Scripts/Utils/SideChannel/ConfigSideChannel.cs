@@ -22,8 +22,14 @@ namespace WorldOfBugs {
             Attribute = _data[0];
             Value = _data[1];
         }
-        public string Attribute { get; set; }
-        public string Value { get; set; }
+        public string Attribute {
+            get;
+            set;
+        }
+        public string Value {
+            get;
+            set;
+        }
     }
 
     public class ConfigSideChannel : SideChannel {

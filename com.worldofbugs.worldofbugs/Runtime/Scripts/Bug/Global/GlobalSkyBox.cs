@@ -34,7 +34,8 @@ namespace WorldOfBugs {
         public override void OnEnable() {
             ModifiedCameras = new List<CameraProperties>();
             Camera[] cameras = CameraExtensions.GetBugMaskCamera();
-            foreach (Camera camera in cameras) {
+
+            foreach(Camera camera in cameras) {
                 ModifiedCameras.Add(new CameraProperties(camera));
                 camera.backgroundColor = bugType;
                 camera.clearFlags = CameraClearFlags.SolidColor;
@@ -42,7 +43,7 @@ namespace WorldOfBugs {
         }
 
         public override void OnDisable() {
-            foreach (CameraProperties properties in ModifiedCameras) {
+            foreach(CameraProperties properties in ModifiedCameras) {
                 properties.Reset();
             }
         }

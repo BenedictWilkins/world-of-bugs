@@ -9,7 +9,7 @@ public class CameraMono : MonoBehaviour {
     public bool mono = false;
 
     void OnRenderImage(RenderTexture src, RenderTexture dst) {
-        if (mono) {
+        if(mono) {
             Graphics.Blit(src, dst, _material);
         } else {
             Graphics.Blit(src, dst);

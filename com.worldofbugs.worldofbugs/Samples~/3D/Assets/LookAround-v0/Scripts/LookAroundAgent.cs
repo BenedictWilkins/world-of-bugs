@@ -25,23 +25,26 @@ namespace WorldOfBugs.LookingAround {
         }
 
         [Observable("Rotation")]
-        public new Vector3 Rotation { get { return gameObject.transform.eulerAngles; }}
+        public new Vector3 Rotation {
+            get {
+                return gameObject.transform.eulerAngles;
+            }
+        }
 
         [Action]
         public void vertical(float angle) {
-            transform.Rotate (new Vector3 (angle, 0, 0)); //up-down
+            transform.Rotate(new Vector3(angle, 0, 0));   //up-down
             Vector3 rotation = transform.localEulerAngles;
             // clamp angle, yes this is a bit weird... just dont rotate the agent out of this range :)
             rotation.x = (rotation.x + 180f) % 360f;
             rotation.x = Mathf.Clamp(rotation.x, 135f, 225f);
             rotation.x += 180f;
             transform.localEulerAngles = rotation;
-
         }
 
         [Action]
         public void horizontal(float angle) {
-            transform.Rotate(new Vector3(0, angle, 0),Space.World); //Left-right
+            transform.Rotate(new Vector3(0, angle, 0), Space.World); //Left-right
             Vector3 rotation = transform.localEulerAngles;
             //Debug.Log(rotation);
             //rotation.y = (rotation.y + 180f) % 360f;

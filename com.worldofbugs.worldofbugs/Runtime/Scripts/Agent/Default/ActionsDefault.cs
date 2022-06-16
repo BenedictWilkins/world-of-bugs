@@ -39,7 +39,8 @@ namespace WorldOfBugs {
 
         public static void move(GameObject instance, Vector3 direction, float movementspeed) {
             Vector3 movement = direction * Time.deltaTime * movementspeed;
-            instance.transform.Translate(movement, Space.World); // TODO change this to move position?
+            instance.transform.Translate(movement,
+                                         Space.World); // TODO change this to move position?
         }
 
         public static void rotateup(GameObject instance, float angularspeed) {

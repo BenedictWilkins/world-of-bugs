@@ -12,7 +12,7 @@ namespace WorldOfBugs {
     /// </summary>
     public class GlobalCameraClipping : Bug {
 
-        public static readonly Color TRANSPARENT = new Color(0,0,0,0);
+        public static readonly Color TRANSPARENT = new Color(0, 0, 0, 0);
 
         public override void OnEnable() {
             Camera[] cameras = CameraExtensions.GetObservationCameras();

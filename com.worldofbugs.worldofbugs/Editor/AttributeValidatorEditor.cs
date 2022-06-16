@@ -17,79 +17,76 @@ namespace WorldOfBugs.Editor {
 
         private bool shouldShowErrors = true;
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             fields = GetAllFields(target.GetType());
-            useDefaultInspector = fields.All(f => f.GetCustomAttributes(typeof(ValidationAttribute), true).Length == 0);
+            useDefaultInspector = fields.All(f => f.GetCustomAttributes(typeof(ValidationAttribute),
+                                             true).Length == 0);
         }
 
-        public override void OnInspectorGUI()
-        {
-            if (useDefaultInspector)
-            {
+        public override void OnInspectorGUI() {
+            if(useDefaultInspector) {
                 base.OnInspectorGUI();
                 return;
             }
 
             this.serializedObject.Update();
 
-            foreach (var f in fields)
-            {
+            foreach(var f in fields) {
                 ValidateField(f);
             }
 
             shouldShowErrors = this.serializedObject.ApplyModifiedProperties();
         }
 
-        private void ValidateField(FieldInfo field)
-        {
+        private void ValidateField(FieldInfo field) {
             var prop = GetSerializedProperty(field);
-            if (prop == null)
+
+            if(prop == null) {
                 return;
+            }
 
             object[] atts = field.GetCustomAttributes(typeof(ValidationAttribute), true);
-            foreach (var att in atts)
-            {
+
+            foreach(var att in atts) {
                 ValidateAttribute(att as ValidationAttribute, field);
             }
 
             DrawProperty(prop);
         }
 
-        private void DrawProperty(SerializedProperty prop)
-        {
+        private void DrawProperty(SerializedProperty prop) {
             EditorGUILayout.PropertyField(prop, true);
         }
 
-        private void ValidateAttribute(ValidationAttribute attribute, FieldInfo field)
-        {
-            if (!attribute.Validate(field, this.target))
-            {
+        private void ValidateAttribute(ValidationAttribute attribute, FieldInfo field) {
+            if(!attribute.Validate(field, this.target)) {
                 EditorGUILayout.HelpBox(attribute.ErrorMessage, MessageType.Error, true);
-                if (shouldShowErrors)
+
+                if(shouldShowErrors) {
                     ShowError(attribute.ErrorMessage, this.target);
+                }
             }
         }
 
-        private SerializedProperty GetSerializedProperty(FieldInfo field)
-        {
+        private SerializedProperty GetSerializedProperty(FieldInfo field) {
             // Do not display properties marked with HideInInspector attribute
             object[] hideAtts = field.GetCustomAttributes(typeof(HideInInspector), true);
-            if (hideAtts.Length > 0)
+
+            if(hideAtts.Length > 0) {
                 return null;
+            }
 
             return this.serializedObject.FindProperty(field.Name);
         }
 
-        public static IEnumerable<FieldInfo> GetAllFields(Type t)
-        {
-            if (t == null)
+        public static IEnumerable<FieldInfo> GetAllFields(Type t) {
+            if(t == null) {
                 return Enumerable.Empty<FieldInfo>();
+            }
 
             BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic |
-                                BindingFlags.Static | BindingFlags.Instance  |
-                                BindingFlags.DeclaredOnly;
-
+                                 BindingFlags.Static | BindingFlags.Instance  |
+                                 BindingFlags.DeclaredOnly;
             return t.GetFields(flags).Concat(GetAllFields(t.BaseType));
         }
 
@@ -98,20 +95,19 @@ namespace WorldOfBugs.Editor {
         }
 
         [UnityEditor.Callbacks.DidReloadScripts]
-        private static void OnScriptReload()
-        {
+        private static void OnScriptReload() {
             MonoBehaviour[] behaviours = MonoBehaviour.FindObjectsOfType<MonoBehaviour>();
-            foreach(var b in behaviours)
-            {
+
+            foreach(var b in behaviours) {
                 var fields = GetAllFields(b.GetType());
-                foreach(var f in fields)
-                {
+
+                foreach(var f in fields) {
                     var atts = f.GetCustomAttributes(typeof(ValidationAttribute), true);
-                    foreach(var a in atts)
-                    {
+
+                    foreach(var a in atts) {
                         var vatt = a as ValidationAttribute;
-                        if(!vatt.Validate(f, b))
-                        {
+
+                        if(!vatt.Validate(f, b)) {
                             Debug.Log(vatt.ErrorMessage);
                             ShowError(vatt.ErrorMessage, b);
                         }

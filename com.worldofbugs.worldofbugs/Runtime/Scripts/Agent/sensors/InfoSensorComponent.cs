@@ -19,14 +19,18 @@ namespace WorldOfBugs {
         [SerializeField, FormerlySerializedAs("sensorName")]
         string m_SensorName = "info";
 
-        public string SensorName
-        {
-            get { return m_SensorName; }
-            set { m_SensorName = value; }
+        public string SensorName {
+            get {
+                return m_SensorName;
+            }
+            set {
+                m_SensorName = value;
+            }
         }
 
         public override ISensor[] CreateSensors() {
-            ISensor sensor = Activator.CreateInstance(InfoSensorType, new object[] { gameObject.GetComponent<Agent>(), m_SensorName}) as ISensor;
+            ISensor sensor = Activator.CreateInstance(InfoSensorType, new object[] { gameObject.GetComponent<Agent>(), m_SensorName})
+                             as ISensor;
             return new ISensor[] { sensor };
         }
     }

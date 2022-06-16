@@ -2,11 +2,11 @@
 
 namespace WorldOfBugs {
 
-    /* <summary>
+    /*  <summary>
         Attach a replacement shader to the bug masking camera.
 
         NOTE:because setting shader properties requires a global call (Shader.SetGlobal...), things might go wrong up if multiple agents are in use ...s
-    </summary> */
+        </summary> */
     [ExecuteInEditMode]
     public class BugMaskReplacementShader : MonoBehaviour {
 
@@ -14,7 +14,11 @@ namespace WorldOfBugs {
         public Shader MaskShader;
         [Tooltip("Camera to render masked view of the environment.")]
         public Camera Camera;
-        public RenderTexture MaskTexture { get { return Camera.targetTexture; }}
+        public RenderTexture MaskTexture {
+            get {
+                return Camera.targetTexture;
+            }
+        }
 
         void Awake() {
             Camera = GetComponent<Camera>();
@@ -22,7 +26,7 @@ namespace WorldOfBugs {
         }
 
         void OnDestroy() {
-            if (Camera != null) {
+            if(Camera != null) {
                 Camera.ResetReplacementShader();
             }
         }

@@ -12,7 +12,7 @@ public class PlatformStuckUnder : Bug {
     protected Collider UnderCollider;
 
     public void Awake() {
-        foreach (GameObject go in GetLeafChildGameObjectsWithComponent<Renderer>(PitBottom)) {
+        foreach(GameObject go in GetLeafChildGameObjectsWithComponent<Renderer>(PitBottom)) {
             Tag(go);
         }
     }
@@ -22,7 +22,7 @@ public class PlatformStuckUnder : Bug {
     }
 
     public override void OnDisable() {
-        if (UnderCollider != null) {
+        if(UnderCollider != null) {
             UnderCollider.enabled = true;
         }
     }
@@ -30,7 +30,8 @@ public class PlatformStuckUnder : Bug {
 # if UNITY_EDITOR
     public void OnValidate() {
         if(Platform.GetChildWithName("Under") == null) {
-            Debug.LogError("Platform requires child GameObject with name 'Under' whose collider prevents the player from moving underneath.", Platform);
+            Debug.LogError("Platform requires child GameObject with name 'Under' whose collider prevents the player from moving underneath.",
+                           Platform);
         }
     }
 # endif

@@ -15,7 +15,11 @@ namespace WorldOfBugs {
 
         [SerializeField]
         private Collider _interactableCollider;
-        public Collider InteractableCollider { get { return _interactableCollider; } }
+        public Collider InteractableCollider {
+            get {
+                return _interactableCollider;
+            }
+        }
         [Tooltip("Movement speed in units/second")]
         public float MovementSpeed = 2f;
         [Tooltip("Angular speed in degrees/second")]
@@ -24,15 +28,29 @@ namespace WorldOfBugs {
         public float Radius = 1f;
 
         [Observable("Position")]
-        public Vector3 Position { get { return gameObject.transform.position; }}
+        public Vector3 Position {
+            get {
+                return gameObject.transform.position;
+            }
+        }
         [Observable("Rotation")]
-        public Vector3 Rotation { get { return gameObject.transform.eulerAngles; }}
+        public Vector3 Rotation {
+            get {
+                return gameObject.transform.eulerAngles;
+            }
+        }
         [Observable("Action")]
         public int Action {
-            get { return GetStoredActionBuffers().DiscreteActions[0]; }
+            get {
+                return GetStoredActionBuffers().DiscreteActions[0];
+            }
         }
 
-        public string[] ActionMeanings { get { return ActionAttribute.ActionMeanings(this);} }
+        public string[] ActionMeanings {
+            get {
+                return ActionAttribute.ActionMeanings(this);
+            }
+        }
 
         protected Vector3 initialPosition;
         protected Vector3 initialRotation;
@@ -40,7 +58,8 @@ namespace WorldOfBugs {
         public void Awake() {
             initialPosition = gameObject.transform.localPosition;
             initialRotation = gameObject.transform.localEulerAngles;
-            if (_heuristic != null) {
+
+            if(_heuristic != null) {
                 _heuristic.enabled = true;
             }
         }

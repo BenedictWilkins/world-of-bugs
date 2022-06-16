@@ -16,21 +16,21 @@ public class PlatformStuck : Bug {
     public override void OnEnable() {
         //UnderCollider = Platform.GetChildWithName("Under")?.GetComponent<Collider>();
         //UnderCollider.enabled = false;
-
         PlatformScript = Platform.GetComponent<Platform>();
     }
 
     public override void OnDisable() {
         //UnderCollider.enabled = false;
-        if (Platform != null) {
+        if(Platform != null) {
             Untag(Platform);
         }
+
         BugActive = true;
     }
 
     public void Update() {
         // check if the agent is in the put and cant get out...?
-        if (!BugActive && !PlatformScript.enabled) { // the platform has stopped
+        if(!BugActive && !PlatformScript.enabled) {  // the platform has stopped
             Tag(Platform);
             BugActive = true;
         }

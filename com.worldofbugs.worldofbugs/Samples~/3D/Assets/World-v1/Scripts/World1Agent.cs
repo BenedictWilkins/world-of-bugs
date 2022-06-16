@@ -16,7 +16,8 @@ namespace WorldOfBugs {
         [Action]
         public void forward() {
             Vector3 movement = gameObject.transform.forward * Time.deltaTime * MovementSpeed;
-            gameObject.transform.Translate(movement, Space.World); // TODO change this to move position?
+            gameObject.transform.Translate(movement,
+                                           Space.World); // TODO change this to move position?
         }
 
         [Action]

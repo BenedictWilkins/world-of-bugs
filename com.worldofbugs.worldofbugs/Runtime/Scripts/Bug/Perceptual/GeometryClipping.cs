@@ -18,19 +18,21 @@ namespace WorldOfBugs {
         public override void OnEnable() {
             // TODO the bugType should be used to render the backsides of specific objects this color -- rather than rely on the global backside...?
             _gos = GetLeafChildGameObjectsWithComponent<Collider>(Scene, n);
-            foreach (GameObject go in _gos) {
-                foreach (Collider collider in go.GetComponents<Collider>()) {
+
+            foreach(GameObject go in _gos) {
+                foreach(Collider collider in go.GetComponents<Collider>()) {
                     collider.enabled = false;
                 }
             }
         }
 
         public override void OnDisable() {
-            if (_gos != null) {
-                foreach (GameObject go in _gos) {
-                    if (go != null) {
-                        foreach (Collider collider in go.GetComponents<Collider>()) {
-                            collider.enabled = true; // TODO should probably save the state of collider on disable...
+            if(_gos != null) {
+                foreach(GameObject go in _gos) {
+                    if(go != null) {
+                        foreach(Collider collider in go.GetComponents<Collider>()) {
+                            collider.enabled =
+                                true; // TODO should probably save the state of collider on disable...
                         }
                     }
                 }

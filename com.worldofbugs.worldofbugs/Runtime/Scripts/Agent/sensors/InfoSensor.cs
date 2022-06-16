@@ -8,7 +8,9 @@ namespace WorldOfBugs {
 
     public abstract class InfoSensor : ISensor {
 
-        public abstract int Size { get; }
+        public abstract int Size {
+            get;
+        }
 
         protected Agent Agent;
         protected string Name;
@@ -30,8 +32,10 @@ namespace WorldOfBugs {
 
         public void Update() {
             perception = Perceive();
-            if (perception.Count != Size) {
-                throw new WorldOfBugsException($"Perception vector contains {perception.Count} elements, but should contain {Size} according to ObservationSpec.");
+
+            if(perception.Count != Size) {
+                throw new WorldOfBugsException(
+                    $"Perception vector contains {perception.Count} elements, but should contain {Size} according to ObservationSpec.");
             }
         }
 
@@ -39,7 +43,7 @@ namespace WorldOfBugs {
             return ObservationSpec.Vector(Size);
         }
 
-        public string GetName(){
+        public string GetName() {
             return Name;
         }
 

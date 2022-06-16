@@ -15,7 +15,7 @@ namespace WorldOfBugs {
         [MinMaxSlider(0.01f, 0.1f), Tooltip("Number of seconds to fill the screen black.")]
         public Vector2 frameRange = new Vector2(0.05f, 0.1f);
 
-        [MinMaxSlider(0f,10f), Tooltip("Number of seconds to flicker.")]
+        [MinMaxSlider(0f, 10f), Tooltip("Number of seconds to flicker.")]
         public Vector2 flickerRange = new Vector2(2f, 5f);
 
         protected FillScreen[] fillScreens;
@@ -34,11 +34,9 @@ namespace WorldOfBugs {
             Camera[] cameras = null;
             cameras = CameraExtensions.GetCamerasByRenderTexture(_cameraRenderTexture);
             fillScreens[0] = cameras[0].gameObject.AddComponent<FillScreen>();
-            fillScreens[0].color = new Color(0f,0f,0f,1f);
-
+            fillScreens[0].color = new Color(0f, 0f, 0f, 1f);
             cameras = CameraExtensions.GetCamerasByRenderTexture(_bugMaskRenderTexture);
             fillScreens[1] = cameras[0].gameObject.AddComponent<FillScreen>();
-
             fillScreens[1].color = (Color) bugType;
             StartCoroutine(FlickerToggerCoroutine);
         }
@@ -46,32 +44,39 @@ namespace WorldOfBugs {
         public override void OnDisable() {
             StopCoroutine(FlickerToggerCoroutine);
             StopCoroutine(FillScreenTogglerCoroutine);
-            foreach (FillScreen fs in fillScreens) {
+
+            foreach(FillScreen fs in fillScreens) {
                 Destroy(fs);
             }
         }
 
         protected IEnumerator FlickerTogger() {
             bool _enabled = false;
-            while (true) {
+
+            while(true) {
                 _enabled = ! _enabled;
-                if (_enabled) {
+
+                if(_enabled) {
                     StartCoroutine(FillScreenTogglerCoroutine);
                 } else {
                     StopCoroutine(FillScreenTogglerCoroutine);
-                    foreach (FillScreen fs in fillScreens) {
+
+                    foreach(FillScreen fs in fillScreens) {
                         fs.enabled = false;
                     }
                 }
-                yield return new WaitForSeconds(UnityEngine.Random.Range(flickerRange.x, flickerRange.y));
+
+                yield return new WaitForSeconds(UnityEngine.Random.Range(flickerRange.x,
+                                                flickerRange.y));
             }
         }
 
         protected IEnumerator FillScreenToggler() {
             while(true) {
-                foreach (FillScreen fs in fillScreens) {
+                foreach(FillScreen fs in fillScreens) {
                     fs.enabled = !fs.enabled;
                 }
+
                 yield return new WaitForSeconds(UnityEngine.Random.Range(frameRange.x, frameRange.y));
             }
         }
@@ -80,10 +85,12 @@ namespace WorldOfBugs {
 
             [HideInInspector]
             public Color color {
-                get { return _color;}
+                get {
+                    return _color;
+                }
                 set {
                     _color = value;
-                    _solid = new Texture2D(1,1); // dont need a massive texture, let uv handle that!
+                    _solid = new Texture2D(1, 1); // dont need a massive texture, let uv handle that!
                     _solid.SetPixels(new Color[] { value });
                     _solid.Apply();
                 }
@@ -100,7 +107,7 @@ namespace WorldOfBugs {
             }
 
             public void OnRenderImage(RenderTexture src, RenderTexture dst) {
-                if (enabled) {
+                if(enabled) {
                     Graphics.Blit(_solid, dst);
                 }  else {
                     Graphics.Blit(src, dst);

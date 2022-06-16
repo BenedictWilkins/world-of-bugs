@@ -21,33 +21,38 @@ namespace WorldOfBugs {
 
         public new void OnEnable() {
             // unfortunately there is no way to create and add an actuator directly (see LazyInitialize/Initialize/InitializeActuators in MLAgents.Agent)
-            if (GetComponent<ReflectionActuatorComponent>() == null) {
-                ReflectionActuatorComponent actuator = gameObject.AddComponent<ReflectionActuatorComponent>();
+            if(GetComponent<ReflectionActuatorComponent>() == null) {
+                ReflectionActuatorComponent actuator =
+                    gameObject.AddComponent<ReflectionActuatorComponent>();
                 actuator.Initialize(this);
             }
+
             Resets = GetComponents<IReset>();
             base.OnEnable();
         }
 
         public void FixedUpdate() {
-            foreach (IReset reset in Resets) {
-                if (reset.ShouldReset(gameObject)) {
+            foreach(IReset reset in Resets) {
+                if(reset.ShouldReset(gameObject)) {
                     EndEpisode();
                 }
             }
+
             RequestDecision();
         }
 
         public virtual void SetHeuristic(HeuristicComponent heuristic) {
-            if (_heuristic != null) {
-                _heuristic.enabled = false; _heuristic.enabled = false;
+            if(_heuristic != null) {
+                _heuristic.enabled = false;
+                _heuristic.enabled = false;
             }
+
             _heuristic = heuristic;
             _heuristic.enabled = true;
         }
 
         public override sealed void Heuristic(in ActionBuffers buffer) {
-            if (_heuristic != null) {
+            if(_heuristic != null) {
                 _heuristic.Heuristic(buffer);
             }
         }

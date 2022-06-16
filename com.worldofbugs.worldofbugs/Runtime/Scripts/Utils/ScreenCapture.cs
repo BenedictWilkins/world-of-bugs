@@ -12,17 +12,18 @@ public class ScreenCapture : MonoBehaviour {
     public string fileName = "screen";
 
     void Awake() {
-        foreach (int display in displays) {
+        foreach(int display in displays) {
             string path = $"{Application.dataPath}/Captures/display{display+1}";
-            if (!Directory.Exists(path)) {
+
+            if(!Directory.Exists(path)) {
                 Directory.CreateDirectory(path);
             }
         }
     }
 
     void LateUpdate() {
-        if (Input.GetKeyDown(screenshotKey)) {
-            foreach (int display in displays) {
+        if(Input.GetKeyDown(screenshotKey)) {
+            foreach(int display in displays) {
                 ScreenShot(display);
             }
         }
@@ -32,7 +33,8 @@ public class ScreenCapture : MonoBehaviour {
         Texture2D image = ScreenCapture.Capture(Screen.width, Screen.height, display);
         byte[] bytes = image.EncodeToPNG();
         Destroy(image);
-        string path = $"{Application.dataPath}/Captures/display{display+1}/{fileName}({count}).png";
+        string path =
+            $"{Application.dataPath}/Captures/display{display+1}/{fileName}({count}).png";
         File.WriteAllBytes(path, bytes);
         count++;
         Debug.Log($"Saved Screen Capture: {path}");
@@ -41,12 +43,13 @@ public class ScreenCapture : MonoBehaviour {
     public static Texture2D Capture(int width, int height, int display) {
         List<Camera> cameras = new List<Camera>(Camera.allCameras);
         cameras = cameras.FindAll(x => x.targetDisplay == display).ToList();
-        cameras.Sort((c1,c2) => (int)c1.depth - (int)c2.depth);
+        cameras.Sort((c1, c2) => (int)c1.depth - (int)c2.depth);
         RenderTexture renderTexture = new RenderTexture(width, height, 24);
         RenderTexture.active = renderTexture;
-        foreach (Camera camera in cameras) {
+
+        foreach(Camera camera in cameras) {
             // dont capture cameras that are already rendering to a target texture...
-            if (camera.enabled && camera.targetTexture == null) {
+            if(camera.enabled && camera.targetTexture == null) {
                 //float fov = camera.fov;
                 camera.targetTexture = renderTexture;
                 camera.Render();

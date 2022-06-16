@@ -12,28 +12,38 @@ namespace WorldOfBugs {
         [SerializeField, Tooltip("Bug Mask RenderTexture that will label the tear.")]
         private RenderTexture _bugMaskRenderTexture;
 
-        [Range(1,8), Tooltip("Number of frames to tear into, the effect will be more pronounced with larger n.")]
+        [Range(1, 8),
+         Tooltip("Number of frames to tear into, the effect will be more pronounced with larger n.")]
         public int n = 1;
 
-        [MinMaxSlider(0f,10f)]
+        [MinMaxSlider(0f, 10f)]
         public Vector2 deltaRange = new Vector2(0.1f, 1f);
 
-        [SerializeField, MinMaxSlider(0f, 1f), Tooltip("Y position of the top/bottom of the tear.")]
+        [SerializeField, MinMaxSlider(0f, 1f),
+         Tooltip("Y position of the top/bottom of the tear.")]
         private Vector2 TearMinMax = new Vector2(0.2f, 0.3f);
         [Tooltip("Whether to randomly modify the tear coordinates.")]
         public bool random = true;
 
         protected float TearMin {
-            get { return TearMinMax.x; }
-            set { TearMinMax.x = value;
+            get {
+                return TearMinMax.x;
+            }
+            set {
+                TearMinMax.x = value;
                 cameraPostEffect.TearMin = value;
-                bugMaskCameraPostEffect.TearMin = value; }
+                bugMaskCameraPostEffect.TearMin = value;
+            }
         }
         protected float TearMax {
-            get { return TearMinMax.y; }
-            set { TearMinMax.y = value;
+            get {
+                return TearMinMax.y;
+            }
+            set {
+                TearMinMax.y = value;
                 cameraPostEffect.TearMax = value;
-                bugMaskCameraPostEffect.TearMax = value; }
+                bugMaskCameraPostEffect.TearMax = value;
+            }
         }
 
         protected ScreenTearPost cameraPostEffect;
@@ -48,19 +58,18 @@ namespace WorldOfBugs {
 
         void Awake() {
             TearTogglerCoroutine = TearToggler();
-
             Camera[] cameras = CameraExtensions.GetCamerasByRenderTexture(_cameraRenderTexture);
             mainCamera = cameras[0];
-
             cameras = CameraExtensions.GetCamerasByRenderTexture(_bugMaskRenderTexture);
             bugMaskCamera = cameras[0];
-
             cameraHistory = mainCamera.gameObject.GetComponent<CameraHistory>();
-            if (cameraHistory == null) {
+
+            if(cameraHistory == null) {
                 cameraHistory = mainCamera.gameObject.AddComponent<CameraHistory>();
             } else {
                 Debug.LogWarning("TODO revist this code, CameraHistory should probably be static...");
             }
+
             cameraHistory.n = n; // TODO be careful...
         }
 
@@ -73,17 +82,19 @@ namespace WorldOfBugs {
         public override void OnEnable() {
             cameraPostEffect = mainCamera.gameObject.AddComponent<ScreenTearPostCamera>();
             cameraPostEffect.Initialise(this, cameraHistory);
-            bugMaskCameraPostEffect = bugMaskCamera.gameObject.AddComponent<ScreenTearPostBugMaskCamera>();
+            bugMaskCameraPostEffect =
+                bugMaskCamera.gameObject.AddComponent<ScreenTearPostBugMaskCamera>();
             bugMaskCameraPostEffect.Initialise(this, cameraHistory);
             StartCoroutine(TearTogglerCoroutine);
         }
 
         IEnumerator TearToggler() {
-            while (true) {
-                if (random) {
+            while(true) {
+                if(random) {
                     TearMin = UnityEngine.Random.Range(0f, 0.9f);
                     TearMax = Mathf.Min(TearMin + UnityEngine.Random.Range(0.1f, 0.7f), 1f);
                 }
+
                 cameraPostEffect.enabled = ! cameraPostEffect.enabled;
                 bugMaskCameraPostEffect.enabled = ! bugMaskCameraPostEffect.enabled;
                 yield return new WaitForSeconds(UnityEngine.Random.Range(deltaRange.x, deltaRange.y));
@@ -93,18 +104,30 @@ namespace WorldOfBugs {
         public class ScreenTearPost : MonoBehaviour {
 
             public float TearMin {
-                get { return _bug.TearMinMax.x; }
-                set { _material.SetFloat("_TearMin", value); }
+                get {
+                    return _bug.TearMinMax.x;
+                }
+                set {
+                    _material.SetFloat("_TearMin", value);
+                }
             }
             public float TearMax {
-                get { return _bug.TearMinMax.y; }
-                set { _material.SetFloat("_TearMax", value); }
+                get {
+                    return _bug.TearMinMax.y;
+                }
+                set {
+                    _material.SetFloat("_TearMax", value);
+                }
             }
             public int n {
-                get { return _bug.n; }
+                get {
+                    return _bug.n;
+                }
             }
             public Color BugType {
-                get { return _bug.bugType; }
+                get {
+                    return _bug.bugType;
+                }
             }
 
             protected ScreenTear _bug;
@@ -112,7 +135,7 @@ namespace WorldOfBugs {
             protected CameraHistory _history;
 
             public void Initialise(ScreenTear bug, CameraHistory history) {
-                if (_bug == null) {
+                if(_bug == null) {
                     _bug = bug;
                     _history = history;
                     TearMin = _bug.TearMinMax.x;
@@ -128,8 +151,8 @@ namespace WorldOfBugs {
             }
 
             void OnRenderImage(RenderTexture src, RenderTexture dst) {
-                if (enabled && Time.frameCount > 10 + n) {
-                    _material.SetTexture("_TearTex", _history[n-1]);
+                if(enabled && Time.frameCount > 10 + n) {
+                    _material.SetTexture("_TearTex", _history[n - 1]);
                     //_material.SetTexture("_MainTex", src);
                     Graphics.Blit(src, dst, _material);
                 } else {
@@ -149,9 +172,9 @@ namespace WorldOfBugs {
             }
 
             void OnRenderImage(RenderTexture src, RenderTexture dst) {
-                if (enabled && Time.frameCount > 10 + n) {
+                if(enabled && Time.frameCount > 10 + n) {
                     _material.SetTexture("_CameraTex", _history[0]); // current rendering of the main camera
-                    _material.SetTexture("_TearTex", _history[n-1]); // previous rendering of main camera
+                    _material.SetTexture("_TearTex", _history[n - 1]); // previous rendering of main camera
                     Graphics.Blit(src, dst, _material);
                 } else {
                     Graphics.Blit(src, dst);

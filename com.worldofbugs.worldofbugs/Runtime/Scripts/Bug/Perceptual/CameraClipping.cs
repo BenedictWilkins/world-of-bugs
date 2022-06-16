@@ -18,17 +18,20 @@ public class CameraClipping : Bug {
         // when close to an object the view will clip inside
         Cameras = CameraExtensions.GetObservationCameras();
         OldNearClipPlane = Cameras.Select(x => x.nearClipPlane).ToArray();
-        foreach (Camera camera in Cameras) {
+
+        foreach(Camera camera in Cameras) {
             camera.nearClipPlane = NearClipPlane;
         }
+
         // TODO set camera material _CameraNearClip rather than global?
         Shader.SetGlobalFloat("_CameraNearClip", NearClipPlane);
     }
 
     public override void OnDisable() {
-        for (int i = 0; i < Cameras.Length; i++) {
+        for(int i = 0; i < Cameras.Length; i++) {
             Cameras[i].nearClipPlane = OldNearClipPlane[i];
         }
+
         // TODO on per camera basis with materials...
         Shader.SetGlobalFloat("_CameraNearClip", OldNearClipPlane[0]);
     }

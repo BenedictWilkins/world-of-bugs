@@ -22,7 +22,8 @@ namespace WorldOfBugs {
             return type.GetHashCode();
         }
 
-        public static implicit operator int(BugType b) => 0xFFFF * b.type.r + 0xFF * b.type.g + b.type.b;
+        public static implicit operator int(BugType b) => 0xFFFF * b.type.r + 0xFF * b.type.g +
+        b.type.b;
         public static implicit operator Color32(BugType b) => b.type;
         public static implicit operator Color(BugType b) => (Color)b.type;
         public static explicit operator BugType(Color32 c) => new BugType(c);

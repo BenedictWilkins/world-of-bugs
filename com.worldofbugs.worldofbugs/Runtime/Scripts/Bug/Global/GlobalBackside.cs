@@ -9,7 +9,7 @@ namespace WorldOfBugs {
 
     public class GlobalBackside : Bug {
 
-        public static readonly Color TRANSPARENT = new Color(0,0,0,0);
+        public static readonly Color TRANSPARENT = new Color(0, 0, 0, 0);
 
         public override void OnEnable() {
             Camera[] cameras = CameraExtensions.GetObservationCameras();

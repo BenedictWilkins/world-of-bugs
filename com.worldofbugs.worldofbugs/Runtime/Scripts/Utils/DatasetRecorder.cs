@@ -13,24 +13,30 @@ public class DatasetRecorder : MonoBehaviour {
     public KeyCode screenshotKey = KeyCode.F9;
     private int fileCount = 0;
 
-    public string path { get {
-        string path = $"{Application.dataPath}/Captures/Preview/";
-        if (!Directory.Exists(path)) {
-            Directory.CreateDirectory(path);
+    public string path {
+        get {
+            string path = $"{Application.dataPath}/Captures/Preview/";
+
+            if(!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+
+            return path;
         }
-        return path;
-    }}
+    }
 
 
 
     void Capture() {
         string _count = count.ToString("000000");
         string _episode = episode.ToString("0000");
-        foreach (Camera camera in cameras) {
+
+        foreach(Camera camera in cameras) {
             string filename = $"{camera.gameObject.name}-{_count}.png";
             //string path = $"{path}/{_episode}/{filename}";
             //Debug.Log(path);
         }
+
         // TODO log agents actions aswell!
     }
 

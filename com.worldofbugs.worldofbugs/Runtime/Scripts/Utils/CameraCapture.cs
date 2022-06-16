@@ -19,12 +19,11 @@ public class CameraCapture : MonoBehaviour {
     }
 
     void OnPostRender() {
-        if (capture) {
+        if(capture) {
             RenderTexture renderTexture = Camera.targetTexture;
             Texture2D image = new Texture2D(renderTexture.width, renderTexture.height);
             image.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             image.Apply();
-
             byte[] bytes = image.EncodeToPNG();
             Destroy(image);
             //string path = $"{Application.dataPath}/Captures/{fileName}({count}).png";

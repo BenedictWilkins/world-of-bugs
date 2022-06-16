@@ -29,16 +29,19 @@ public class GettingStuck2DAgent : MonoBehaviour  { //Agent {
         float v = Input.GetAxisRaw("Vertical");
         Debug.Log($"{h}, {v}");
         position = transform.position;
-        if (h != 0f) {
+
+        if(h != 0f) {
             position += Time.deltaTime * Speed * new Vector3(h, 0, 0);
             Renderer.flipX = !Convert.ToBoolean((h + 1) / 2);
         }
-        if (v != 0f) {
-            position += Time.deltaTime * Speed * new Vector3(0, v, 0);
 
+        if(v != 0f) {
+            position += Time.deltaTime * Speed * new Vector3(0, v, 0);
         }
+
         Debug.Log(position);
-        transform.position = Vector3.MoveTowards(transform.position, position, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, position,
+                             Speed * Time.deltaTime);
         //transform.position = new Vector3(position[0] % CellSize, position[1] % CellSize, position[2] % CellSize);
     }
 }

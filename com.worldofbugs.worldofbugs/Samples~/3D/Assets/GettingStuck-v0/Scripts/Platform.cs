@@ -21,7 +21,8 @@ public class Platform : MonoBehaviour {
 
     void Awake() {
         InitialPosition = transform.position;
-        if (triggerCollider == null) {
+
+        if(triggerCollider == null) {
             InitializeTriggerCollider();
         }
     }
@@ -40,7 +41,7 @@ public class Platform : MonoBehaviour {
         float yscale = 1.1f;
         Vector3 size = triggerCollider.size;
         Vector3 center = triggerCollider.center;
-        size.Scale(new Vector3(1f,yscale,1f));
+        size.Scale(new Vector3(1f, yscale, 1f));
         center += (size - triggerCollider.size) / 2;
         triggerCollider.size = size;
         triggerCollider.center = center;
@@ -51,15 +52,15 @@ public class Platform : MonoBehaviour {
         Vector3 motion = Sin((Vector3.one * MovementSpeed * time) + MovementAngleOffset);
         motion.Scale(MovementExtent);
         Vector3 newPosition = InitialPosition + motion;
-
         // used to update the position of the player
         Vector3 dPosition = newPosition - transform.position;
         // TODO support different gravity directions ? :)
         dPosition.y *= Convert.ToSingle((Mathf.Sign(dPosition.y) > 0) || IgnoreGravity);
 
-        foreach (Collider collider in OnPlatform) {
+        foreach(Collider collider in OnPlatform) {
             //Vector3.MoveTowards(collider.gameObject.transform.position, gameObject.transform.position);
-            collider.gameObject.transform.position = collider.gameObject.transform.position + dPosition;
+            collider.gameObject.transform.position = collider.gameObject.transform.position +
+                    dPosition;
         }
 
         transform.position = newPosition;

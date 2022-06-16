@@ -16,7 +16,11 @@ public class Controller : MonoBehaviour {
     [NotNull, NotEmpty]
     public WorldOfBugs.Agent[] Agents;
 
-    public Bug[] Bugs { get {  return GetComponents<Bug>().ToArray(); }}
+    public Bug[] Bugs {
+        get {
+            return GetComponents<Bug>().ToArray();
+        }
+    }
 
     private ConfigSideChannel configChannel;
     private LogSideChannel logChannel;
@@ -25,7 +29,6 @@ public class Controller : MonoBehaviour {
         // configuration side channel
         configChannel = new ConfigSideChannel(this);
         SideChannelManager.RegisterSideChannel(configChannel);
-
         // logging side channel
         logChannel = new LogSideChannel();
         SideChannelManager.RegisterSideChannel(logChannel);
@@ -35,13 +38,13 @@ public class Controller : MonoBehaviour {
 
 
     void Start() {
-        if (!Application.isEditor) {
+        if(!Application.isEditor) {
             //foreach (WorldOfBugs.Agent agent in Agents) {
             //    agent.SetHeuristic(null); // all heuristics
             //}
 
             // all bugs are turned off initially.
-            foreach (Bug bug in Bugs) {
+            foreach(Bug bug in Bugs) {
                 bug.enabled = false;
             }
         }
@@ -53,7 +56,7 @@ public class Controller : MonoBehaviour {
             Application.logMessageReceived -= logChannel.LogDebug;
         } catch { } // this probably means it wasnt set up in the first place... forgiveness :)
 
-        if (Academy.IsInitialized) {
+        if(Academy.IsInitialized) {
             SideChannelManager.UnregisterSideChannel(configChannel);
             SideChannelManager.UnregisterSideChannel(logChannel);
         }
@@ -62,8 +65,8 @@ public class Controller : MonoBehaviour {
     public void OnEpisodeBegin() {
         // renable bugs
         // Debug.Log($"RESTART {System.Diagnostics.Process.GetCurrentProcess().Id}");
-        foreach (Bug option in Bugs) {
-            if (option.enabled) { // re-enable all bugs
+        foreach(Bug option in Bugs) {
+            if(option.enabled) {  // re-enable all bugs
                 option.enabled = false;
                 option.enabled = true;
             }

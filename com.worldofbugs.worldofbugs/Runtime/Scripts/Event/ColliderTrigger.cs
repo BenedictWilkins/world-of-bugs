@@ -14,18 +14,16 @@ namespace WorldOfBugs {
         public UnityEvent OnExit;
 
         public void OnEnable() {
-
         }
 
         public void OnTriggerEnter(Collider collider) {
-
-            if (enabled && Array.Exists(Triggers, x => x == collider)) {
+            if(enabled && Array.Exists(Triggers, x => x == collider)) {
                 OnEnter.Invoke();
             }
         }
 
         public void OnTriggerExit(Collider collider) {
-            if (enabled && Array.Exists(Triggers, x => x == collider)) {
+            if(enabled && Array.Exists(Triggers, x => x == collider)) {
                 OnExit.Invoke();
             }
         }
