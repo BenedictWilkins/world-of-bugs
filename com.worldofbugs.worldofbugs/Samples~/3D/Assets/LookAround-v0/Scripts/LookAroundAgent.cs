@@ -19,6 +19,7 @@ namespace WorldOfBugs.LookingAround {
         public new Vector2 Action { 
             get { 
                 var buffer = GetStoredActionBuffers().ContinuousActions;
+                Debug.Log(new Vector2(buffer[0], buffer[1]));
                 return new Vector2(buffer[0], buffer[1]); //; 
             }
         }
@@ -35,13 +36,12 @@ namespace WorldOfBugs.LookingAround {
             rotation.x = Mathf.Clamp(rotation.x, 135f, 225f);
             rotation.x += 180f;
             transform.localEulerAngles = rotation;
+            
         }
 
         [Action]
         public void horizontal(float angle) {
             transform.Rotate(new Vector3(0, angle, 0),Space.World); //Left-right
-
-           
             Vector3 rotation = transform.localEulerAngles;
             //Debug.Log(rotation);
             //rotation.y = (rotation.y + 180f) % 360f;
@@ -49,6 +49,5 @@ namespace WorldOfBugs.LookingAround {
             //rotation.y += 180f;
             transform.localEulerAngles = rotation;
         }
-
     }
 }

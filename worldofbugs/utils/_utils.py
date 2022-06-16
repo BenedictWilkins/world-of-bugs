@@ -9,14 +9,7 @@ GYM_NAMESPACE = "WOB" # this is also in setup.py...
 import os
 import pathlib
 import glob
-import logging
-Logger = logging.getLogger("worldofbugs")
-_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-_channel = logging.StreamHandler()
-_channel.setFormatter(_formatter)
-_channel.setLevel(logging.INFO)
-Logger.setLevel(logging.INFO)
-Logger.addHandler(_channel)
+from loguru import logger as Logger
 
 __all__ = ("WorldOfBugsException", "BuildResolver", "Logger")
 

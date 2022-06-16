@@ -19,7 +19,7 @@ namespace WorldOfBugs.LookingAround {
 
         void Awake() {
             LookAt = RandomPoint();
-            Debug.Log(LookAt);
+            //Debug.Log(LookAt);
         }
 
         protected float DAngle { get { 

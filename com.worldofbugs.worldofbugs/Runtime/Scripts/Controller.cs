@@ -13,28 +13,6 @@ using WorldOfBugs;
 [ExecuteInEditMode]
 public class Controller : MonoBehaviour {
     
-    
-
-
-    /* [Serializable]
-    public class BugOption { 
-
-        public Bug _bug;
-        public Bug Bug {
-            get { return _bug; }
-            set { _bug = value; enabled = false; }
-        }
-
-        public BugOption(Bug bug) {
-            _bug = bug;
-        }
-        
-        public bool enabled { 
-            get { return Bug.gameObject.activeInHierarchy; } 
-            set { Debug.Log($"{Bug} {Bug?.gameObject}"); Bug.gameObject.SetActive(value); }
-        }
-    } */
-
     [NotNull, NotEmpty]
     public WorldOfBugs.Agent[] Agents; 
 
@@ -57,7 +35,12 @@ public class Controller : MonoBehaviour {
    
 
     void Start() {
-        if (!Application.isEditor) { // all bugs are turned off initially.
+        if (!Application.isEditor) { 
+            //foreach (WorldOfBugs.Agent agent in Agents) {
+            //    agent.SetHeuristic(null); // all heuristics
+            //}
+            
+            // all bugs are turned off initially.
             foreach (Bug bug in Bugs) {
                 bug.enabled = false;
             }

@@ -25,8 +25,11 @@ setup(name='worldofbugs',
         author_email='benrjw@gmail.com',
         packages=find_packages(),
         install_requires=[
-            #'gymu @ git+https://git@github.com/BenedictWilkins/gymu.git',
-            #'numpy', 'gym_unity', 'kaggle'
+            "gym>=0.2.0",
+            "gym-unity==0.28.0",
+            "omegaconf",
+            "loguru",
+            "numpy",
         ],
         entry_points={
             "gym.envs": [

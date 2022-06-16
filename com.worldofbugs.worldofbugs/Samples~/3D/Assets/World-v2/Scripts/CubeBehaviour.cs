@@ -22,7 +22,7 @@ namespace WorldOfBugs.LookingAround {
             InitialPosition = transform.position;
         }
 
-        void Update() {
+        void FixedUpdate() {
             transform.RotateAround(transform.position, AngularAxis, AngularSpeed * Time.deltaTime);
             Vector3 motion = Sin((Vector3.one * MovementSpeed * Time.time) + MovementAngleOffset);
             motion.Scale(MovementExtent);

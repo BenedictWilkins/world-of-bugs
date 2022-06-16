@@ -110,7 +110,7 @@ class WOBEnvironment(UnityGymEnvironment):
         # actions and observation lining up. This should be removed in favour of something less 
         # "hacky" in the future, probably implemented at the unity side. TODO
         self.reset()
-        for i in range(50):
+        for i in range(100):
             self.step(None)
         self.reset()
         

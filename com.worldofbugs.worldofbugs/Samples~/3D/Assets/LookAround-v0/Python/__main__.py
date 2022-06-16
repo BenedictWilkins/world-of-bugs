@@ -13,8 +13,7 @@ import numpy as np
 # if you have unity open 
 env = worldofbugs.make(None, debug=True)
  
-#env.set_agent_behaviour("HeuristicManual")
-
+env.set_agent_behaviour("HeuristicRandom")
 env.reset()
 
 for i in range(1000):
