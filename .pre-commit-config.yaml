@@ -6,7 +6,7 @@ repos:
     hooks:
     -   id: check-yaml
     -   id: end-of-file-fixer
-        exclude : '(isort\.cfg)'
+        exclude : '(isort\.cfg)' # some weird conflict that is never resolved...
     -   id: trailing-whitespace
 
 - repo: https://github.com/pycqa/isort
