@@ -30,7 +30,7 @@ class UnityLogChannel(SideChannel):
 
 
 class UnityConfigChannel(SideChannel):
-    """Configuration SideChannels, sends config information to a Unity environment. For API details see: [TODO]()"""
+    """Configuration SideChannels, sends config information to a Unity environment."""
 
     def __init__(self):
         super().__init__(uuid.UUID("621f0a70-4f87-11ea-a6bf-784f4387d1f7"))

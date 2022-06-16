@@ -1,14 +1,28 @@
-# Environment
+# environment
 
 <a id="worldofbugs.environment"></a>
 
-## Module worldofbugs.environment
+## Module environment
 
 The world of bugs environment API. For most usecases [`make`](#worldofbugs.environment.make) is sufficient.
 
+<a id="worldofbugs.environment.all_registered"></a>
+
+### all\_registered
+
+```python
+def all_registered()
+```
+
+Find all worldofbugs environments that have been registered with gym.
+
+**Returns**:
+
+- `List[EnvSpec]` - environments
+
 <a id="worldofbugs.environment.make"></a>
 
-### worldofbugs.environment.make
+### make
 
 ```python
 def make(env_id: str,
@@ -22,7 +36,7 @@ Make a `worldofbugs` environment. This is different from the default `gym.make` 
 
 **Arguments**:
 
-- `env_id` _str_ - unique environment ID, follows the `gym` format e.g. `WoB/World-v1`. A value of `None` will attempt to connect to a Unity Editor instance.
+- `env_id` _str_ - unique environment ID, follows the `gym` format e.g. `WOB/World-v1`. A value of `None` will attempt to connect to a Unity Editor instance.
 - `worker` _int, optional_ - Worker process to run the environment. This allows multiple environments to run in parallel. Defaults to 0.
 - `time_scale` _float, optional_ - Simulation speed. WARNING: this can break the game physics, only change if you know what you are doing. Defaults to 1.0.
 - `log_folder` _str, optional_ - directoy to log to. Defaults to None.
@@ -32,3 +46,4 @@ Make a `worldofbugs` environment. This is different from the default `gym.make` 
 **Returns**:
 
 - `gym.Env` - the `worldofbugs` environment.
+
