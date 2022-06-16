@@ -25,7 +25,7 @@ final_score = results.linter.stats.global_note
 thresholds = {2: "red", 4: "orange", 6: "yellow", 10: "green"}
 
 badge = anybadge.Badge("pylint", round(final_score, 2), thresholds=thresholds)
-badge.write_badge(f"{test_path}/pylint.svg", overwrite=True)
+badge.write_badge(f"{test_path}/badge/pylint.svg", overwrite=True)
 
 if final_score < LINT_THRESHOLD:
     print("------------------------------------------------------------------")

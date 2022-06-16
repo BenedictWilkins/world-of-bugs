@@ -1,0 +1,1 @@
+astyle ../com.worldofbugs.worldofbugs/*.cs --style=attach -s4 -f -p -xg -U -xe -j -xp -xC88 -xL
