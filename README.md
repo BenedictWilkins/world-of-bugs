@@ -1,5 +1,6 @@
 
 [![Pylint](test/badge/pylint.svg)](https://github.com/PyCQA/pylint)
+[![Code style: astyle](test/badge/astyle.svg)](http://astyle.sourceforge.net)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 # WorldOfBugs
