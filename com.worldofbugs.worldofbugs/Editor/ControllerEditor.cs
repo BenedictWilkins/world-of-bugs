@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace WorldOfBugs.Editor { 
+namespace WorldOfBugs.Editor {
 
     [CustomEditor(typeof(Controller))]
     public class ControllerEditor : UnityEditor.Editor {
@@ -14,7 +14,7 @@ namespace WorldOfBugs.Editor {
         private bool bugs_expanded = true;
 
         void OnEnable() {
-            Agents = serializedObject.FindProperty("Agents");  
+            Agents = serializedObject.FindProperty("Agents");
         }
 
         public override void OnInspectorGUI() {
@@ -27,7 +27,7 @@ namespace WorldOfBugs.Editor {
             }
             EditorGUILayout.EndFoldoutHeaderGroup();
         }
-   
+
         internal void ShowBugs(Controller controller) {
             EditorGUILayout.BeginVertical();
             foreach (Bug bug in controller.Bugs) {
@@ -35,10 +35,10 @@ namespace WorldOfBugs.Editor {
                 option.Initialize(bug);
                 SerializedObject obj = new UnityEditor.SerializedObject(option);
                 SerializedProperty prop = obj.FindProperty("Bug");
-                
+
                 GUILayout.BeginHorizontal();
                 EditorGUI.BeginChangeCheck();
-                bool enabled = EditorGUILayout.Toggle(bug.enabled,  GUILayout.Width(20));  
+                bool enabled = EditorGUILayout.Toggle(bug.enabled,  GUILayout.Width(20));
                 if (EditorGUI.EndChangeCheck()) {
                     bug.enabled = enabled;
                 }

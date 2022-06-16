@@ -11,13 +11,13 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 
 namespace WorldOfBugs {
-    
+
     public class RejectionSamplingException : WorldOfBugsException {
         public RejectionSamplingException() : base("Maximum rejection sampling attempts reached, perhaps the walk radius is too large?") {}
     }
-    
+
     public class HeuristicNavMesh : HeuristicComponent {
-        
+
         public static readonly int MAX_REJECTION_SAMPLE_ATTEMPTS = 100;
         [Tooltip("Navmesh surfaces, allows the navmesh to be updated at runtime.")]
         public NavMeshSurface[] surfaces;
@@ -27,14 +27,14 @@ namespace WorldOfBugs {
         [SerializeField, Tooltip("Angular Speed of the associated agent.")]
         protected float _angularSpeed = 40f;
 
-        public float Radius { 
+        public float Radius {
             get {
                 float? agent_Radius = GetComponent<AgentDefault>()?.Radius;
                 _radius = agent_Radius.GetValueOrDefault();
                 return _radius;
             }
         }
-        public float AngularSpeed { 
+        public float AngularSpeed {
             get {
                 float? agent_AngularSpeed = GetComponent<AgentDefault>()?.AngularSpeed;
                 _angularSpeed = agent_AngularSpeed.GetValueOrDefault();
@@ -50,8 +50,8 @@ namespace WorldOfBugs {
         [RangeAttribute(0f,180f), Tooltip("Angle +/- from forward direction to sample next target point.")]
         public float sampleAngle = 60;
         [RangeAttribute(1f, 180f), Tooltip("Amount to increment the sample angle upon failing to find a valid target point.")]
-        public float sampleAngleIncrement = 5; 
-        
+        public float sampleAngleIncrement = 5;
+
         //private Unity.MLAgents.Agent player { get { return GetComponent<Unity.MLAgents.Agent>(); }}
 
         //private Transform transform { get { return gameObject.transform; } }
@@ -62,14 +62,14 @@ namespace WorldOfBugs {
         protected NavMeshPath path;
         protected Vector3 nextPosition { get { return path.corners[1]; }}
         protected Vector3 goalPosition { get { return path.corners[path.corners.Length-1]; }}
-        
-        protected bool IsOnNavMesh { get { 
+
+        protected bool IsOnNavMesh { get {
             NavMeshHit hit;
             return NavMesh.SamplePosition(currentPosition, out hit, Radius, NavMesh.AllAreas);
         }}
 
         // used to ensure heuristic updates are done properly with a decisionPeriod > 1
-        private float time; 
+        private float time;
         //private float _previous_angle;
 
         protected string[] action_meanings;
@@ -94,10 +94,10 @@ namespace WorldOfBugs {
             path = new NavMeshPath();
             Update();
         }
-        
-        public override void Heuristic(in ActionBuffers buffer) { 
+
+        public override void Heuristic(in ActionBuffers buffer) {
             if (path is null) {
-                Start(); 
+                Start();
             }
             //Debug.Log("Decide...");
             float dt = Time.time - time; // estimated time between heuristic calls...
@@ -105,7 +105,7 @@ namespace WorldOfBugs {
             if (dt == 0) {
                 return; // ??? sometimes this happens...
             }
-            
+
             // none, forward, rotate_left, rotate_right
             var _buffer = buffer.DiscreteActions;
             _buffer[0] = Array.IndexOf(action_meanings, required_actions[0]); //default do nothing
@@ -115,7 +115,7 @@ namespace WorldOfBugs {
 
             if (path.corners.Length == 0) {
                 Debug.LogWarning($"{this} invalid path (empty), on navmesh? {IsOnNavMesh}");
-                return; // no path found, just do nothing...? 
+                return; // no path found, just do nothing...?
             }
 
             if (UnityEngine.Random.value < mistakeProb) {
@@ -123,15 +123,15 @@ namespace WorldOfBugs {
                 _buffer[0] = UnityEngine.Random.Range(0,3);
                 return;
             }
-            
+
             // check should rotate
             Vector3 position = gameObject.transform.position;
             position.y = nextPosition.y; // rotation will happen in the xz plane
             Vector3 direction = (nextPosition - position).normalized;
             float angle = Vector3.SignedAngle(gameObject.transform.forward, direction, Vector3.up);
-            float rangle = Mathf.Sign(angle) * dt * AngularSpeed; 
-            
-            if (Mathf.Abs(angle) > Mathf.Abs(rangle)) { 
+            float rangle = Mathf.Sign(angle) * dt * AngularSpeed;
+
+            if (Mathf.Abs(angle) > Mathf.Abs(rangle)) {
                 // should rotate
                 // Debug.Log($"{angle} {rangle} {dt} {Time.deltaTime}");
                 if (angle < 0) {
@@ -205,4 +205,3 @@ namespace WorldOfBugs {
         }
     }
 }
-

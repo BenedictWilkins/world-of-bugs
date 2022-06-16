@@ -34,7 +34,7 @@ class RenderTextureCameraPreview : EditorWindow {
                 RenderTexture tex = cameras[i].targetTexture;
                 Rect bounds = GetBounds(i, tex.width / tex.height);
                 //Debug.Log($"{i} {bounds}");
-                GUI.DrawTexture(bounds, tex);   
+                GUI.DrawTexture(bounds, tex);
             } else {
                 OnEnable();
             }
@@ -68,7 +68,7 @@ class RenderTextureCameraPreview : EditorWindow {
         return new Rect(x, y, wa, ha);
     }
 
- 
+
 
 
 

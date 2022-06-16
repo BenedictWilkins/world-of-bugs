@@ -4,7 +4,7 @@
     Properties {
         _MainTex("Texture", 2D) = "white" {}
         _TearTex("TearTexture", 2D) = "black" {}
-    } 
+    }
 
     SubShader {
 		Pass {
@@ -19,7 +19,7 @@
             };
 
             struct v2f {
-                
+
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
@@ -45,4 +45,3 @@
 		}
 	}
 }
-

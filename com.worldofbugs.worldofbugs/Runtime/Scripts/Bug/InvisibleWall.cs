@@ -8,11 +8,11 @@ public class InvisibleWall : MonoBehaviour {
     private Bounds bounds;
 
     void Start() {
-        Bounds bounds = CreateBoundingBox(level); 
+        Bounds bounds = CreateBoundingBox(level);
     }
 
     void Update() {
-        
+
     }
 
     public static Vector3 RandomPointInBounds(Bounds bounds) {
@@ -36,5 +36,5 @@ public class InvisibleWall : MonoBehaviour {
         return bounds;
     }
 
-    
+
 }

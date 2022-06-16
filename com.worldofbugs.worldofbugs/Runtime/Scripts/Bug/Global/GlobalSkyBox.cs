@@ -12,15 +12,15 @@ namespace WorldOfBugs {
     public class GlobalSkyBox : Bug {
 
 
-        // TODO similar thing are done else where, just use reflection for it? 
+        // TODO similar thing are done else where, just use reflection for it?
         private struct CameraProperties {
             Camera camera;
             Color backgroundColor;
-            CameraClearFlags clearFlags; 
+            CameraClearFlags clearFlags;
             public CameraProperties(Camera _camera) {
                 camera = _camera;
-                backgroundColor = _camera.backgroundColor; 
-                clearFlags = _camera.clearFlags; 
+                backgroundColor = _camera.backgroundColor;
+                clearFlags = _camera.clearFlags;
             }
 
             public void Reset() {

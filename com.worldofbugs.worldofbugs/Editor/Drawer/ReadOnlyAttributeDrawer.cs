@@ -5,7 +5,7 @@ namespace WorldOfBugs.Editor {
 
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyAttributeDrawer : PropertyDrawer {
-        
+
         public override float GetPropertyHeight(SerializedProperty property,GUIContent label){
             return EditorGUI.GetPropertyHeight(property, label, true);
         }

@@ -35,7 +35,7 @@ public class GettingStuck2DAgent : MonoBehaviour  { //Agent {
         }
         if (v != 0f) {
             position += Time.deltaTime * Speed * new Vector3(0, v, 0);
-         
+
         }
         Debug.Log(position);
         transform.position = Vector3.MoveTowards(transform.position, position, Speed * Time.deltaTime);

@@ -12,15 +12,15 @@ namespace WorldOfBugs.LookingAround {
     /// Agent that uses two continuous actions.
     /// </summary>
     public class LookAroundAgent : WorldOfBugs.AgentDefault {
-        
+
         public static readonly float HMIN = 90f, HMAX = 270f;
 
         [Observable("Action")]
-        public new Vector2 Action { 
-            get { 
+        public new Vector2 Action {
+            get {
                 var buffer = GetStoredActionBuffers().ContinuousActions;
                 Debug.Log(new Vector2(buffer[0], buffer[1]));
-                return new Vector2(buffer[0], buffer[1]); //; 
+                return new Vector2(buffer[0], buffer[1]); //;
             }
         }
 
@@ -36,7 +36,7 @@ namespace WorldOfBugs.LookingAround {
             rotation.x = Mathf.Clamp(rotation.x, 135f, 225f);
             rotation.x += 180f;
             transform.localEulerAngles = rotation;
-            
+
         }
 
         [Action]

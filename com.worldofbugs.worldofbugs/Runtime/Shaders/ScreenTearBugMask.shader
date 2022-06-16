@@ -11,7 +11,7 @@
 
         _TearMin("TearMin", Float) = 0.1
         _TearMax("TearMax", Float) = 0.5
-    } 
+    }
 
     SubShader {
 		Pass {
@@ -26,7 +26,7 @@
             };
 
             struct v2f {
-                
+
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
@@ -50,11 +50,11 @@
                 float4 col1 = tex2D(_TearTex, i.uv);
                 float4 col2 = tex2D(_CameraTex, i.uv);
                 float4 col3 = tex2D(_MainTex, i.uv);
-                
-                float tmax = step(i.uv.y, _TearMax); // <= 
-                float tmin = step(_TearMin, i.uv.y); // <= 
-                
-                
+
+                float tmax = step(i.uv.y, _TearMax); // <=
+                float tmin = step(_TearMin, i.uv.y); // <=
+
+
                 // compare the current and previous frames from the main camera
                 float4 c = abs(col1 - col2);
                 float s = c[0] + c[1] + c[2];
@@ -71,6 +71,5 @@
 		}
 
 	}
-   
-}
 
+}

@@ -27,9 +27,8 @@ Make a `worldofbugs` environment. This is different from the default `gym.make` 
 - `time_scale` _float, optional_ - Simulation speed. WARNING: this can break the game physics, only change if you know what you are doing. Defaults to 1.0.
 - `log_folder` _str, optional_ - directoy to log to. Defaults to None.
 - `debug` _bool, optional_ - Get logging messages from unity program and write them to Python stdout. Defaults to True.
-  
+
 
 **Returns**:
 
 - `gym.Env` - the `worldofbugs` environment.
-

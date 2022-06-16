@@ -6,13 +6,13 @@ using System.Linq;
 using WorldOfBugs;
 
 public class CameraClipping : Bug {
-    
+
     [Tooltip("Set the new near clipping plane for all observation cameras, this may induce clipping issues.")]
     public float NearClipPlane;
-    
+
     protected Camera[] Cameras;
     protected float[] OldNearClipPlane;
-   
+
     public override void OnEnable() {
         // set the near clipping plan to be farther away
         // when close to an object the view will clip inside
@@ -21,7 +21,7 @@ public class CameraClipping : Bug {
         foreach (Camera camera in Cameras) {
             camera.nearClipPlane = NearClipPlane;
         }
-        // TODO set camera material _CameraNearClip rather than global? 
+        // TODO set camera material _CameraNearClip rather than global?
         Shader.SetGlobalFloat("_CameraNearClip", NearClipPlane);
     }
 

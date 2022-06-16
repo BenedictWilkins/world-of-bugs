@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
 namespace WorldOfBugs {
-    
+
     /* <summary>
         Attach a replacement shader to the bug masking camera.
-        
+
         NOTE:because setting shader properties requires a global call (Shader.SetGlobal...), things might go wrong up if multiple agents are in use ...s
     </summary> */
     [ExecuteInEditMode]

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace WorldOfBugs.Editor {
     [CustomPropertyDrawer(typeof(RestrictAttribute))]
     public class RestrictAttributeDrawer : PropertyDrawer {
-        
+
         public override float GetPropertyHeight(SerializedProperty property,GUIContent label){
             return EditorGUI.GetPropertyHeight(property, label, true);
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 using _Debug = UnityEngine.Debug;
 
 namespace WorldOfBugs {
-    
+
     class DEPLogger {
 
         public void Log(string msg) {

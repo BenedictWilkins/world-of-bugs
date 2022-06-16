@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 
 namespace WorldOfBugs {
-    
+
     public static class CameraExtensions {
 
         public static readonly string CAMERA_TAG_OBSERVATION = "MainCamera"; // unity default
@@ -25,7 +25,7 @@ namespace WorldOfBugs {
 
         /* TODO
         public static (Camera,Camera)[] GetCameras() {
-            
+
             Debug.Log(string.Join(",", GetObservationCameras().Select(c => c.gameObject.tag)));
             Debug.Log(string.Join(",", GetBugMaskCamera().Select(c => c.gameObject.tag)));
 
@@ -39,7 +39,7 @@ namespace WorldOfBugs {
             return join;
         } */
 
-       
+
 
         public static Camera[] GetCamerasByRenderTexture(RenderTexture texture) {
             Camera[] cameras = Array.FindAll(Camera.allCameras, x => x.targetTexture == texture);
@@ -68,7 +68,7 @@ namespace WorldOfBugs {
     }
 
     public static class GameObjectExtensions {
-        
+
         public static T AddComponent<T>(this GameObject go, T component) where T : Component {
             return go.AddComponent<T>().Clone(component) as T;
         }

@@ -22,7 +22,7 @@ namespace WorldOfBugs.LookingAround {
             //Debug.Log(LookAt);
         }
 
-        protected float DAngle { get { 
+        protected float DAngle { get {
             Vector3 position = gameObject.transform.position;
             Vector3 forward = gameObject.transform.forward;
             position.y = 0; // rotation will happen in the xz plane
@@ -37,7 +37,7 @@ namespace WorldOfBugs.LookingAround {
         public float VerticalDoNothingProb = 0.2f;
         // the actual doing nothing prob discounting the chance that both vertical and horizontal actions will be 0
         public float DoNothingProb { get { return _DoNothingProb - (HorizontalDoNothingProb * VerticalDoNothingProb); }}
-        
+
         public override void Heuristic(in ActionBuffers buffer) {
             var _buffer = buffer.ContinuousActions;
             if (Random.Range(0f,1f) < DoNothingProb) {
@@ -47,25 +47,25 @@ namespace WorldOfBugs.LookingAround {
             }
 
             //Debug.Log(DAngle);
-            
+
             if (Random.Range(0f,1f) > HorizontalDoNothingProb) {
                 while (Mathf.Abs(DAngle) < 1) {
                     LookAt = RandomPoint();
                     Debug.Log(LookAt);
                 }
                 //Debug.Log(DAngle);
-                _buffer[1] = Mathf.Sign(DAngle);   
+                _buffer[1] = Mathf.Sign(DAngle);
             } else {
                 _buffer[1] = 0f;
             }
 
             if (Random.Range(0f,1f) > HorizontalDoNothingProb) {
-                _buffer[0] = Mathf.Sign(Random.Range(-1f,1f)); 
+                _buffer[0] = Mathf.Sign(Random.Range(-1f,1f));
             } else {
                 _buffer[0] = 0f;
             }
             //Debug.Log($"{_buffer[0]},{_buffer[1]}");
-        } 
+        }
 
         void OnDrawGizmos() {
             if (enabled) {

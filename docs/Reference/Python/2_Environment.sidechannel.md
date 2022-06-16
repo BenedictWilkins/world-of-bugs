@@ -26,4 +26,3 @@ class UnityConfigChannel(SideChannel)
 ```
 
 Configuration SideChannels, sends config information to a Unity environment. For API details see: [TODO]()
-

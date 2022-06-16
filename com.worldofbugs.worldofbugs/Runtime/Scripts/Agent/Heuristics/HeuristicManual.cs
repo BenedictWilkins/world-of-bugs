@@ -11,11 +11,11 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 
 namespace WorldOfBugs {
-    
+
     public class HeuristicManual : HeuristicComponent {
 
         protected static string[] REQUIRED_ACTION_MEANINGS = new string[] { "none", "forward", "rotateleft", "rotateright" };
-        protected string[] actionmeanings; 
+        protected string[] actionmeanings;
 
         public override void Heuristic(in ActionBuffers buffer) {
             int leftright = (int) Mathf.Round(Input.GetAxis("Horizontal"));
@@ -30,7 +30,7 @@ namespace WorldOfBugs {
                 _buffer[0] = 2; // rotate left
             } else if (leftright > 0) {
                 _buffer[0] = 3; //rotate right
-            }  
+            }
         }
 
         public void OnEnable() {
@@ -42,6 +42,6 @@ namespace WorldOfBugs {
                 string actual_actions = string.Join(",", am);
                 throw new WorldOfBugsException($"Invalid actions [{actual_actions}] for Heuristic {this.GetType().Name}, requires {required_actions}");
             }
-        }        
+        }
     }
 }

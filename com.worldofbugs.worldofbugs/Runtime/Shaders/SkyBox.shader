@@ -41,13 +41,13 @@ Shader "Bug/SkyBox"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			half4 _Color;
 			float _Clip;
 
 			fixed4 frag (v2f i) : SV_Target {
 				float c = max(i.vertex.y * _Clip, 0.1);
-				
+
 				return fixed4(c, c, c, 1);
 			}
 			ENDCG

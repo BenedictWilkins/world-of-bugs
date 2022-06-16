@@ -9,10 +9,10 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors.Reflection;
 
-namespace WorldOfBugs { 
+namespace WorldOfBugs {
 
     public abstract class AgentDefault : AgentFirstPerson {
-        
+
         [SerializeField]
         private Collider _interactableCollider;
         public Collider InteractableCollider { get { return _interactableCollider; } }
@@ -28,15 +28,15 @@ namespace WorldOfBugs {
         [Observable("Rotation")]
         public Vector3 Rotation { get { return gameObject.transform.eulerAngles; }}
         [Observable("Action")]
-        public int Action { 
+        public int Action {
             get { return GetStoredActionBuffers().DiscreteActions[0]; }
         }
 
         public string[] ActionMeanings { get { return ActionAttribute.ActionMeanings(this);} }
-        
+
         protected Vector3 initialPosition;
         protected Vector3 initialRotation;
-        
+
         public void Awake() {
             initialPosition = gameObject.transform.localPosition;
             initialRotation = gameObject.transform.localEulerAngles;

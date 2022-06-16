@@ -1,16 +1,16 @@
 site_name: World of Bugs
 site_url: "https://benedictwilkins.github.io/world-of-bugs/"
 
-theme: 
+theme:
     name: material
     features:
     - navigation.indexes
     - navigation.sections
-    
+
     #- navigation.expand
     #- navigation.tabs
     #- toc.integrate
-  
+
 plugins:
     #- search
     - awesome-pages:
@@ -25,9 +25,7 @@ markdown_extensions:
     - attr_list
     - pymdownx.superfences
     - pymdownx.tabbed:
-        alternate_style: true 
+        alternate_style: true
     - admonition
     - pymdownx.details
     - tables
-
-       

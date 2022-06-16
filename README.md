@@ -1,6 +1,6 @@
 # WorldOfBugs
 
-World of Bugs is a test plaform for Automated Bug Detection (ABD) research. 
+World of Bugs is a test plaform for Automated Bug Detection (ABD) research.
 
 ### Documentation
 

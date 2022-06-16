@@ -12,12 +12,12 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 
-namespace WorldOfBugs { 
+namespace WorldOfBugs {
 
     [Serializable]
     public class ActionsDefault {
 
-        // TODO would be nice not to have to add each boolean value, just define a bunch of static methods...? 
+        // TODO would be nice not to have to add each boolean value, just define a bunch of static methods...?
 
         public static void none(GameObject instance) {} // does nothing
 

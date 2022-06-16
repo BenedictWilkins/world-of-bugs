@@ -9,10 +9,10 @@ using TypeReferences; // External
 
 namespace WorldOfBugs {
 
-    // TODO protection level of MenuGroup bugged...? write an issue for this? 
+    // TODO protection level of MenuGroup bugged...? write an issue for this?
     [AddComponentMenu("ML Agents/Info Sensor", 0)]
     public class InfoSensorComponent : SensorComponent {
-        
+
         [Inherits(typeof(ISensor))]
         public TypeReference InfoSensorType;
 

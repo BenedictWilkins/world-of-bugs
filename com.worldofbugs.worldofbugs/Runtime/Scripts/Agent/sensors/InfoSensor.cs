@@ -7,7 +7,7 @@ using Unity.MLAgents.Sensors;
 namespace WorldOfBugs {
 
     public abstract class InfoSensor : ISensor {
-        
+
         public abstract int Size { get; }
 
         protected Agent Agent;
@@ -22,21 +22,21 @@ namespace WorldOfBugs {
 
         public abstract List<float> Perceive();
         public abstract void Reset();
- 
+
         public int Write(ObservationWriter writer) {
-            writer.AddList(perception); 
+            writer.AddList(perception);
             return Size;
         }
 
-        public void Update() { 
+        public void Update() {
             perception = Perceive();
-            if (perception.Count != Size) { 
+            if (perception.Count != Size) {
                 throw new WorldOfBugsException($"Perception vector contains {perception.Count} elements, but should contain {Size} according to ObservationSpec.");
             }
         }
 
         public ObservationSpec GetObservationSpec() {
-            return ObservationSpec.Vector(Size); 
+            return ObservationSpec.Vector(Size);
         }
 
         public string GetName(){
@@ -59,7 +59,6 @@ namespace WorldOfBugs {
             return new CompressionSpec(SensorCompressionType.None);
         }
 
-        
+
     }
 }
-

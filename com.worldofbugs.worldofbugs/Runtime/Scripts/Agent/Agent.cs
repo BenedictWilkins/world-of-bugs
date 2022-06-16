@@ -8,14 +8,14 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors.Reflection;
 
-namespace WorldOfBugs { 
+namespace WorldOfBugs {
 
-    public abstract class Agent : Unity.MLAgents.Agent { 
-        
+    public abstract class Agent : Unity.MLAgents.Agent {
+
 
         [SerializeField]
         internal protected HeuristicComponent _heuristic;
-        
+
         [HideInInspector]
         public IReset[] Resets;
 
@@ -40,7 +40,7 @@ namespace WorldOfBugs {
 
         public virtual void SetHeuristic(HeuristicComponent heuristic) {
             if (_heuristic != null) {
-                _heuristic.enabled = false; _heuristic.enabled = false; 
+                _heuristic.enabled = false; _heuristic.enabled = false;
             }
             _heuristic = heuristic;
             _heuristic.enabled = true;
@@ -51,7 +51,7 @@ namespace WorldOfBugs {
                 _heuristic.Heuristic(buffer);
             }
         }
-            
+
     }
 
 }

@@ -37,15 +37,14 @@ namespace WorldOfBugs {
             controller = _controller;
             configAPI = new ConfigAPI(controller);
         }
-       
+
         protected override void OnMessageReceived(IncomingMessage msg) {
             ConfigMessage config = new ConfigMessage(msg.ReadString());
             configAPI.Resolve(config); // set the value in the message
         }
     }
 
-        
-    
+
+
 
 }
- 

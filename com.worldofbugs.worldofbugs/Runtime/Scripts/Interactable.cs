@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public abstract class Interactable : MonoBehaviour { 
+public abstract class Interactable : MonoBehaviour {
 
     protected class Interactor {
         public event Action<Collider> interact;
@@ -15,7 +15,7 @@ public abstract class Interactable : MonoBehaviour {
     }
 
     protected static Dictionary<Collider, Interactor> Interactors = new Dictionary<Collider, Interactor>();
-   
+
     public static void Interact(Collider collider) {
         if (Interactors.ContainsKey(collider)) {
             // Interactors[collider](collider);
@@ -27,9 +27,9 @@ public abstract class Interactable : MonoBehaviour {
     public static void Register(Collider collider) {
         Interactors.Add(collider, new Interactor());
     }
-    
+
     public abstract void OnInteract(Collider collider);
-    
+
     public void Awake() {
         Collider[] triggers = GetComponents<Collider>();
         if (triggers.Any(x => x.isTrigger)) {
@@ -42,7 +42,7 @@ public abstract class Interactable : MonoBehaviour {
         if (Interactors.ContainsKey(other)) {
             Interactors[other].interact += OnInteract;
         }
-    }   
+    }
 
     public void OnTriggerExit(Collider other) {
         if (Interactors.ContainsKey(other)) {

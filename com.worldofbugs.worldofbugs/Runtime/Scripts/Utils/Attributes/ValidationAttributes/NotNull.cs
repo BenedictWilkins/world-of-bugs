@@ -11,7 +11,7 @@ namespace WorldOfBugs {
 
         public override string ErrorMessage { get { return error; } }
         private string error = string.Empty;
-    
+
         public override bool Validate(System.Reflection.FieldInfo field,  UnityEngine.Object instance) {
             bool isValid;
             MonoBehaviour mb = instance as MonoBehaviour;

@@ -16,10 +16,10 @@ namespace WorldOfBugs.Editor {
 
             //PrefixLabel returns the rect of the right part of the control. It leaves out the label section. We don't have to worry about it. Nice!
             Rect controlRect = EditorGUI.PrefixLabel(position, label);
-            
+
             Rect[] splittedRect = SplitRect(controlRect,3);
 
-            if(propertyType == SerializedPropertyType.Vector2){ 
+            if(propertyType == SerializedPropertyType.Vector2){
 
                 EditorGUI.BeginChangeCheck();
 
@@ -76,7 +76,7 @@ namespace WorldOfBugs.Editor {
                     property.vector2IntValue = vector;
                 }
 
-            } 
+            }
 
         }
 
@@ -88,7 +88,7 @@ namespace WorldOfBugs.Editor {
             for(int i = 0; i < n; i++){
 
                 rects[i] = new Rect(rectToSplit.position.x + (i * rectToSplit.width / n), rectToSplit.position.y, rectToSplit.width / n, rectToSplit.height);
-            
+
             }
 
             int padding = (int)rects[0].width - 40;
@@ -101,12 +101,12 @@ namespace WorldOfBugs.Editor {
             rects[1].width += padding * 2;
 
             rects[2].x += padding + space;
-            
+
 
             return rects;
 
         }
-        
-    } 
+
+    }
 
 }

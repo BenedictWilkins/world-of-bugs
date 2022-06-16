@@ -26,7 +26,7 @@ public class ScreenCapture : MonoBehaviour {
                 ScreenShot(display);
             }
         }
-    }  
+    }
 
     public void ScreenShot(int display) {
         Texture2D image = ScreenCapture.Capture(Screen.width, Screen.height, display);
@@ -43,7 +43,7 @@ public class ScreenCapture : MonoBehaviour {
         cameras = cameras.FindAll(x => x.targetDisplay == display).ToList();
         cameras.Sort((c1,c2) => (int)c1.depth - (int)c2.depth);
         RenderTexture renderTexture = new RenderTexture(width, height, 24);
-        RenderTexture.active = renderTexture;  
+        RenderTexture.active = renderTexture;
         foreach (Camera camera in cameras) {
             // dont capture cameras that are already rendering to a target texture...
             if (camera.enabled && camera.targetTexture == null) {
@@ -54,7 +54,7 @@ public class ScreenCapture : MonoBehaviour {
                 //camera.fov = fov;
             }
         }
- 
+
         Texture2D result = new Texture2D(width, height, TextureFormat.ARGB32, false);
         result.ReadPixels(new Rect(0.0f, 0.0f, width, height), 0, 0, false);
         result.Apply();
@@ -63,5 +63,5 @@ public class ScreenCapture : MonoBehaviour {
         return result;
     }
 
- 
+
 }

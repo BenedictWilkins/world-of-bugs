@@ -42,7 +42,7 @@ Shader "Hidden/Show Depth"
 				o.depth = -mul(UNITY_MATRIX_MV, v.vertex).z *_ProjectionParams.w;
 				return o;
 			}
-			
+
 			half4 _Color;
 
 			fixed4 frag (v2f i) : SV_Target
@@ -88,7 +88,7 @@ Shader "Hidden/Show Depth"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			half4 _Color;
 
 			fixed4 frag (v2f i) : SV_Target

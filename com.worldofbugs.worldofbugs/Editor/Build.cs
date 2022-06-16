@@ -20,7 +20,7 @@ public class Build: MonoBehaviour
         var scenesGUIDs = AssetDatabase.FindAssets("t:Scene").ToList();
         var scenesPaths = scenesGUIDs.Select(AssetDatabase.GUIDToAssetPath);
         var sceneInfo = scenesPaths.Select(GetSceneInfo);
-        
+
         // info (path, name)
         foreach (string[] info in sceneInfo) {
             // Debug.Log(info[0]);

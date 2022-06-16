@@ -12,6 +12,6 @@ namespace WorldOfBugs.LookingAround {
             var _buffer = buffer.ContinuousActions;
             _buffer[0] = Input.GetAxisRaw("Vertical");
             _buffer[1] = Input.GetAxisRaw("Horizontal");
-        } 
+        }
     }
 }

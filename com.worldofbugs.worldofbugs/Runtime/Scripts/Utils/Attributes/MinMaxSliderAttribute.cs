@@ -12,5 +12,5 @@ namespace WorldOfBugs {
             this.min = min;
             this.max = max;
         }
-    }  
+    }
 }

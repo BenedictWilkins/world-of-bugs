@@ -4,13 +4,13 @@
 
 ## Configuring Bugs
 
-A bug can be enabled using the `enable_bug` method, for example: 
+A bug can be enabled using the `enable_bug` method, for example:
 
 ```
 env.enable_bug("MissingTexture")
 ```
 
-A bug can be disabled using the `disable_bug` method, for example: 
+A bug can be disabled using the `disable_bug` method, for example:
 
 ```
 env.disable_bug("MissingTexture")
@@ -23,7 +23,7 @@ Bug names a derived from their type name as it appears in Unity. A full list of 
 !!! todo
     this is now out of date and will be updated soon.
 
-An agent's behaviour can be changed using the `set_agent_behaviour`, for example: `env.set_agent_behaviour("PolicyPython")`. 
+An agent's behaviour can be changed using the `set_agent_behaviour`, for example: `env.set_agent_behaviour("PolicyPython")`.
 
 Setting the behaviour to `"PolicyPython"` will enable the current python policy, the agent will take actions received via `env.step`. Otherwise, a heuristic behaviour defined in unity will be used, any python actions will be ignored. The actual action taken can be retrieved by inspecting `info` returned by `env.step` as follows:
 
@@ -32,7 +32,7 @@ Setting the behaviour to `"PolicyPython"` will enable the current python policy,
     info['Action']
 ```
 
-Again, it is up to the environment (and in particular the agent) to define which heuristic behaviours are available. Standard behaviours include: 
+Again, it is up to the environment (and in particular the agent) to define which heuristic behaviours are available. Standard behaviours include:
 
 * `"PolicyPython"` - use the python behaviour as described above.
 * `"<ENV_NAME>HeuristicManual"` - use keyboard/mouse input.

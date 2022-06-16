@@ -1,7 +1,7 @@
 
-div.rounded-corners {     
+div.rounded-corners {
     height: 150px;
-    width: 150px; 
+    width: 150px;
     border-radius: 90%;
     overflow: hidden;
 }

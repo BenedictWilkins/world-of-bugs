@@ -25,10 +25,10 @@ public class HeuristicComponentDrawer : PropertyDrawer {
         GameObject go = ((MonoBehaviour)property.serializedObject.targetObject).gameObject;
         HeuristicComponent[] choices = go.GetComponents<HeuristicComponent>();
         string[] s_choices = new string[] { "None" }.Concat(choices.Select(x => x.GetType().Name)).ToArray();
-        
+
         // find current choice index
         int _choice = Array.FindIndex(choices, x => x == property.objectReferenceValue) + 1;
-    
+
         EditorGUI.BeginChangeCheck();
 
         _choice = EditorGUI.Popup(position, _choice, s_choices);
@@ -51,6 +51,6 @@ public class HeuristicComponentDrawer : PropertyDrawer {
 
         EditorGUI.EndProperty();
 
-        
+
     }
 }

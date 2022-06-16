@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using WorldOfBugs; 
+using WorldOfBugs;
 
 
 public class PlatformStuckUnder : Bug {
@@ -18,7 +18,7 @@ public class PlatformStuckUnder : Bug {
     }
     public override void OnEnable() {
         UnderCollider = Platform.GetChildWithName("Under")?.GetComponent<Collider>();
-        UnderCollider.enabled = false;  
+        UnderCollider.enabled = false;
     }
 
     public override void OnDisable() {
@@ -27,7 +27,7 @@ public class PlatformStuckUnder : Bug {
         }
     }
 
-# if UNITY_EDITOR 
+# if UNITY_EDITOR
     public void OnValidate() {
         if(Platform.GetChildWithName("Under") == null) {
             Debug.LogError("Platform requires child GameObject with name 'Under' whose collider prevents the player from moving underneath.", Platform);

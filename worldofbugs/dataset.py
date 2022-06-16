@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-""" 
+"""
     "# MKDOCS IGNORE MODULE"
 """
 __author__ = "Benedict Wilkins"
@@ -21,7 +21,7 @@ class WOBIterator(gymu.iterator):
     def __init__(self, env, policy=None, mode=gymu.mode.sardi, max_length=5000):
         env = make(env)
         if isinstance(policy, str):
-            env.set_player_behaviour(policy) # passing 
+            env.set_player_behaviour(policy) # passing
             policy = lambda x : 0 # stub if using a unity policy
             if 'action' in mode.keys():
                 assert 'info' in mode.keys() # if using a unity policy, info is required to get action data

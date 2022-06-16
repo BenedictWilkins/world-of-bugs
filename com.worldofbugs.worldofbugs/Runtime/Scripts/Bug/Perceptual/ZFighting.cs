@@ -6,17 +6,17 @@ using System.Linq;
 namespace WorldOfBugs {
 
 
-public class ZFighting : Bug { 
+public class ZFighting : Bug {
 
     public GameObject Scene;
 
     // unfortunately it is not enough just to tag the cloned object, the label is not correctly rendered after build
     // the main and bug mask cameras render differently (probably a platform specific shader thing...) they treat the z-order differently? so the mask is incorrect.
-    // as a work around, we just mask the whole game object... this will lead to some false positives, if it happens that the original object is displayed only. 
+    // as a work around, we just mask the whole game object... this will lead to some false positives, if it happens that the original object is displayed only.
     // but this is better than miss labelling True positives.
     private static System.Random _random = new System.Random();
     private GameObject[] originals;
-    private GameObject[] clones; 
+    private GameObject[] clones;
 
     public int n;
 
@@ -36,14 +36,14 @@ public class ZFighting : Bug {
             foreach (Component component in clone.GetComponents<Component>()) {
                 if (!(component is Transform || component is Renderer || component is MeshFilter)) {
                     Destroy(component);
-                } else { 
+                } else {
                     //Debug.Log("??");
                 }
             }
-        
+
     }
 
-        /* 
+        /*
         foreach (Transform child in children) {
             // invert all the textures, this will cause some z-fighting if the game object is placed exactly on a duplicate.
             Vector3 ls = child.localScale;
@@ -71,7 +71,7 @@ public class ZFighting : Bug {
         }
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null).ToArray();
         // randomly choose a child to activate
-        int i = UnityEngine.Random.Range(0, children.Length); 
+        int i = UnityEngine.Random.Range(0, children.Length);
         Transform child = children[i];
         while (child != this.transform) {
             child.gameObject.SetActive(true);
@@ -85,7 +85,7 @@ public class ZFighting : Bug {
     }
 
     public override void OnDisable() {
-        // TODO disable all children? 
+        // TODO disable all children?
         Transform[] children = gameObject.transform.GetComponentsInChildren<Transform>(true);
         foreach (Transform c in children) {
             if (c != gameObject.transform) { // dont turn yourself off again...

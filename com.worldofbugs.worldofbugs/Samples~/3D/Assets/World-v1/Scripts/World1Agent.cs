@@ -8,8 +8,8 @@ using WorldOfBugs;
 namespace WorldOfBugs {
 
     public class World1Agent : WorldOfBugs.AgentDefault {
-        
-        
+
+
         [Action]
         public void none() {} // does nothing
 

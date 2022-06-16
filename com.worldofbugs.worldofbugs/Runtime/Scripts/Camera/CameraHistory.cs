@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraHistory : MonoBehaviour {
-    
+
     public float delta = 0.01f;
 
     private int _n = 1;
@@ -17,12 +17,12 @@ public class CameraHistory : MonoBehaviour {
 
     public int n {
         get { return _n; }
-        set { _n = Mathf.Max(_n, value); 
+        set { _n = Mathf.Max(_n, value);
             if (_n > Length) {
                 RenderTexture[] _pt = new RenderTexture[_n];
                 for (int i = 0; i < _previousTextures.Length; i++) {
                     _pt[i] = _previousTextures[i];
-                } 
+                }
                 for (int i = _previousTextures.Length; i < _pt.Length; i++) {
                     _pt[i] = new RenderTexture(_camera.targetTexture);
                 }
@@ -34,7 +34,7 @@ public class CameraHistory : MonoBehaviour {
     public RenderTexture this[int index] {
         get {
             //Debug.Log($"{n} {index} {(n + _ptindex - index) % n}");
-            if (index >= n) 
+            if (index >= n)
                 throw new IndexOutOfRangeException();
             return _previousTextures[(n + _ptindex - index) % n];
         }
@@ -55,7 +55,7 @@ public class CameraHistory : MonoBehaviour {
             _ptime = Time.time;
             _ptindex = (_ptindex +  1) % n;
             // save this frame for use in the history, note that this history is dependant on delta, but is independant of the application framerate.
-            Graphics.Blit(src, _previousTextures[_ptindex]); 
+            Graphics.Blit(src, _previousTextures[_ptindex]);
         }
     }
 

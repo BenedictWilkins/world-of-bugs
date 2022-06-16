@@ -3,7 +3,7 @@
 
     Properties {
         _MainTex("Texture", 2D) = "white" {}
-    } 
+    }
 
     SubShader {
 		Pass {
@@ -17,7 +17,7 @@
             };
 
             struct v2f {
-                
+
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
@@ -35,7 +35,7 @@
                 float4 col = tex2D(_MainTex, i.uv);
                 // hide pixels that have alpha < 1
                 // these are typically on the edge
-                col = floor(col[3]) * col; 
+                col = floor(col[3]) * col;
                 col[3] = 1; // set alpha to 1
                 return col;
             }

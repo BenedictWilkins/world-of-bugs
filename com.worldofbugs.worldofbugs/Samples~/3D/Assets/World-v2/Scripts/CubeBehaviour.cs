@@ -10,7 +10,7 @@ namespace WorldOfBugs.LookingAround {
         public Vector3 AngularAxis = Vector3.up;
         public float AngularSpeed = 0;
         [Space(10)]
-        
+
         [Header("Movement")]
         public Vector3 MovementExtent = Vector3.up * 2;
         public Vector3 MovementAngleOffset = Vector3.zero;

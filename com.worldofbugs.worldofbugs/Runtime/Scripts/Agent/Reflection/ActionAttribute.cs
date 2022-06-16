@@ -11,10 +11,10 @@ using Unity.MLAgents.Actuators;
 namespace WorldOfBugs {
 
     [System.AttributeUsage(
-        System.AttributeTargets.Method,  
-        AllowMultiple = false)] 
+        System.AttributeTargets.Method,
+        AllowMultiple = false)]
     public class ActionAttribute : System.Attribute {
-        
+
         public ActionAttribute() {}
 
         public static IActuator CreateActuator(Unity.MLAgents.Agent agent) {
@@ -37,7 +37,7 @@ namespace WorldOfBugs {
             return action_methods.Where(x => IsMethodCompatibleWithDelegate<D>(x)).ToArray();
         }
 
-        static D[] GetDelegateMethods<D>(Unity.MLAgents.Agent agent) where D : System.Delegate { 
+        static D[] GetDelegateMethods<D>(Unity.MLAgents.Agent agent) where D : System.Delegate {
             MethodInfo[] methods = GetMethodInfo<D>(agent);
             return methods.Select(m => (D) Delegate.CreateDelegate(typeof(D), agent, m, true)).ToArray();
         }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace WorldOfBugs {
-    
+
     public class BugMask : MonoBehaviour {
 
         public static BugMask _instance;
@@ -22,13 +22,13 @@ namespace WorldOfBugs {
             public int[] mask;
             public int frame;
         }
-        
+
         protected Dictionary<int, MaskData> _masks = new Dictionary<int, MaskData>(); // map from RenderTexture GUID to pixel array (mask)
-        
+
         public int[] Mask(Camera camera) {
             BugMaskReplacementShader replacementShader = camera.gameObject.GetComponent<BugMaskReplacementShader>();
             RenderTexture _renderTexture = replacementShader.MaskTexture;
-        
+
             if (_renderTexture == null) {
                 throw new NullReferenceException("Camera does not contain a RenderTexture.");
             }

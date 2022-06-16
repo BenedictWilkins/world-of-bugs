@@ -9,26 +9,26 @@ __status__ = "Development"
 
 import worldofbugs
 
-# if you have unity open 
+# if you have unity open
 env = worldofbugs.make(None, debug=True)
 
 # add downloaded builds to path
-#worldofbugs.utils.BuildResolver.path += "~/Downloads/builds/"
-#print(worldofbugs.utils.BuildResolver.path)     # list all search paths
-#print(worldofbugs.utils.BuildResolver.builds)   # list all avaliable environments
+# worldofbugs.utils.BuildResolver.path += "~/Downloads/builds/"
+# print(worldofbugs.utils.BuildResolver.path)     # list all search paths
+# print(worldofbugs.utils.BuildResolver.builds)   # list all avaliable environments
 # if you have built World-v1 or downloaded a build
 
-#env = worldofbugs.make("WOB/World-v1", debug=False) 
-#env.set_agent_behaviour("HeuristicManual")
+# env = worldofbugs.make("WOB/World-v1", debug=False)
+# env.set_agent_behaviour("HeuristicManual")
 
-#env.enable_bug("PlatformStuck")
-#env.enable_bug("PlatformStuckUnder")
+# env.enable_bug("PlatformStuck")
+# env.enable_bug("PlatformStuckUnder")
 
 env.reset()
 
 for i in range(1000):
-   action = env.action_space.sample() * 2 
-   state, reward, done, info = env.step()
-   
-   print(action, info['Action'], info['Rotation'])
-   env.render() # requires pygame
+    action = env.action_space.sample() * 2
+    state, reward, done, info = env.step()
+
+    print(action, info["Action"], info["Rotation"])
+    env.render()  # requires pygame

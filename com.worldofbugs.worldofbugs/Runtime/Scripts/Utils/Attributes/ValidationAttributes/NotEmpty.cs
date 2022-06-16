@@ -13,7 +13,7 @@ namespace WorldOfBugs {
 
         public override string ErrorMessage { get { return error; } }
         private string error = string.Empty;
-    
+
         public override bool Validate(System.Reflection.FieldInfo field,  UnityEngine.Object instance) {
             MonoBehaviour mb = instance as MonoBehaviour;
             error = $"Property '{field.Name}' on GameObject '{mb.name}' cannot be empty";

@@ -13,7 +13,7 @@ Shader "ShowBug"
 		Tags {
 			"RenderType"="Opaque"
 		}
-		ZTest LEqual 
+		ZTest LEqual
 		Cull Off
 		ZWrite On
 		ColorMask RGB
@@ -38,7 +38,7 @@ Shader "ShowBug"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			fixed4 frag (v2f i) : SV_Target {
 				return fixed4(0, 0, 0, 1) ;
 			}
@@ -46,7 +46,7 @@ Shader "ShowBug"
 		}
 
 		// second pass is checking for camera clipping...
-		Pass { 
+		Pass {
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -70,10 +70,10 @@ Shader "ShowBug"
 			}
 
 			half4 _CameraClipColor;
-			float _CameraNearClip; 
+			float _CameraNearClip;
 
 			fixed4 frag (v2f i) : SV_Target {
-				if (i.depth > _CameraNearClip) { 
+				if (i.depth > _CameraNearClip) {
 					return fixed4(0, 0, 0, 1) ;
 				}
 				return _CameraClipColor;
@@ -82,9 +82,9 @@ Shader "ShowBug"
 		}
 
 		// Render the inside of any object (if we can see inside, we have clipped through the geometry)
-		Pass { 
+		Pass {
 			Cull Front
-			
+
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -120,7 +120,7 @@ Shader "ShowBug"
 		Tags {
 			"RenderType"="Bug"
 		}
-		//ZTest LEqual 
+		//ZTest LEqual
 		ZWrite On
 		ColorMask RGB
 
@@ -144,7 +144,7 @@ Shader "ShowBug"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			half4 _BugType;
 
 			fixed4 frag (v2f i) : SV_Target {
@@ -154,16 +154,16 @@ Shader "ShowBug"
 		}
 	}
 
-	
+
 	SubShader {
 		Tags {
 			"RenderType"="ZBug"
-			"Queue"="Geometry+1" 
+			"Queue"="Geometry+1"
 		}
 
-		ZWrite Off // TODO remove? 
+		ZWrite Off // TODO remove?
 		ColorMask RGB
-		
+
 
 		Pass {
 
@@ -189,7 +189,7 @@ Shader "ShowBug"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			half4 _BugType;
 
 			fixed4 frag (v2f i) : SV_Target {
@@ -201,7 +201,7 @@ Shader "ShowBug"
 		Pass {
 
 			ZTest Less
-			
+
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -221,7 +221,7 @@ Shader "ShowBug"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			half4 _BugType;
 
 			fixed4 frag (v2f i) : SV_Target {

@@ -23,15 +23,15 @@ namespace WorldOfBugs {
         [Tooltip("Whether to randomly modify the tear coordinates.")]
         public bool random = true;
 
-        protected float TearMin { 
+        protected float TearMin {
             get { return TearMinMax.x; }
-            set { TearMinMax.x = value; 
+            set { TearMinMax.x = value;
                 cameraPostEffect.TearMin = value;
                 bugMaskCameraPostEffect.TearMin = value; }
         }
         protected float TearMax {
             get { return TearMinMax.y; }
-            set { TearMinMax.y = value; 
+            set { TearMinMax.y = value;
                 cameraPostEffect.TearMax = value;
                 bugMaskCameraPostEffect.TearMax = value; }
         }
@@ -48,7 +48,7 @@ namespace WorldOfBugs {
 
         void Awake() {
             TearTogglerCoroutine = TearToggler();
-            
+
             Camera[] cameras = CameraExtensions.GetCamerasByRenderTexture(_cameraRenderTexture);
             mainCamera = cameras[0];
 
@@ -74,13 +74,13 @@ namespace WorldOfBugs {
             cameraPostEffect = mainCamera.gameObject.AddComponent<ScreenTearPostCamera>();
             cameraPostEffect.Initialise(this, cameraHistory);
             bugMaskCameraPostEffect = bugMaskCamera.gameObject.AddComponent<ScreenTearPostBugMaskCamera>();
-            bugMaskCameraPostEffect.Initialise(this, cameraHistory);  
+            bugMaskCameraPostEffect.Initialise(this, cameraHistory);
             StartCoroutine(TearTogglerCoroutine);
         }
 
         IEnumerator TearToggler() {
             while (true) {
-                if (random) {    
+                if (random) {
                     TearMin = UnityEngine.Random.Range(0f, 0.9f);
                     TearMax = Mathf.Min(TearMin + UnityEngine.Random.Range(0.1f, 0.7f), 1f);
                 }
@@ -91,7 +91,7 @@ namespace WorldOfBugs {
         }
 
         public class ScreenTearPost : MonoBehaviour {
-            
+
             public float TearMin {
                 get { return _bug.TearMinMax.x; }
                 set { _material.SetFloat("_TearMin", value); }
@@ -111,8 +111,8 @@ namespace WorldOfBugs {
             protected Material _material;
             protected CameraHistory _history;
 
-            public void Initialise(ScreenTear bug, CameraHistory history) { 
-                if (_bug == null) { 
+            public void Initialise(ScreenTear bug, CameraHistory history) {
+                if (_bug == null) {
                     _bug = bug;
                     _history = history;
                     TearMin = _bug.TearMinMax.x;
@@ -123,7 +123,7 @@ namespace WorldOfBugs {
 
         public class ScreenTearPostCamera : ScreenTearPost {
 
-            void Awake() { 
+            void Awake() {
                 _material = new Material(Shader.Find("Bug/ScreenTear"));
             }
 
@@ -140,7 +140,7 @@ namespace WorldOfBugs {
 
         public class ScreenTearPostBugMaskCamera : ScreenTearPost {
 
-            void Awake() { 
+            void Awake() {
                 _material = new Material(Shader.Find("Bug/ScreenTearBugMask"));
             }
 

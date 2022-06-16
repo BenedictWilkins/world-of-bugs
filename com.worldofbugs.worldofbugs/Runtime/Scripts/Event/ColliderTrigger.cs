@@ -7,7 +7,7 @@ namespace WorldOfBugs {
 
     [RequireComponent(typeof(Collider))]
     public class ColliderTrigger : MonoBehaviour {
-        
+
         public Collider[] Triggers;
 
         public UnityEvent OnEnter;
@@ -18,11 +18,11 @@ namespace WorldOfBugs {
         }
 
         public void OnTriggerEnter(Collider collider) {
-            
+
             if (enabled && Array.Exists(Triggers, x => x == collider)) {
                 OnEnter.Invoke();
             }
-        }   
+        }
 
         public void OnTriggerExit(Collider collider) {
             if (enabled && Array.Exists(Triggers, x => x == collider)) {

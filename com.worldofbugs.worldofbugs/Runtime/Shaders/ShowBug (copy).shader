@@ -34,7 +34,7 @@ Shader "ShowBug"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			fixed4 frag (v2f i) : SV_Target {
 				return fixed4(0, 0, 0, 1) ;
 			}
@@ -69,7 +69,7 @@ Shader "ShowBug"
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				return o;
 			}
-			
+
 			half4 _BugType;
 
 			fixed4 frag (v2f i) : SV_Target {
@@ -79,5 +79,5 @@ Shader "ShowBug"
 		}
 	}
 
-	
+
 }

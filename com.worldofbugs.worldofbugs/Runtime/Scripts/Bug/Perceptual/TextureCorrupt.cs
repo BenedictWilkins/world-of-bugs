@@ -20,16 +20,16 @@ public class TextureCorrupt : Bug {
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
-        int i = UnityEngine.Random.Range(0, children.Length); 
+        int i = UnityEngine.Random.Range(0, children.Length);
         _go = children[i].gameObject;
         Material material = _go.GetComponent<Renderer>().material;
         Mesh mesh = _go.GetComponent<MeshFilter>().mesh;
-        _textureOffset = material.mainTextureOffset; 
+        _textureOffset = material.mainTextureOffset;
         _uv = mesh.uv;
         Vector3 size  = mesh.bounds.size;
         float m = Mathf.Max(Mathf.Max(size.x, size.y), size.z);
         material.mainTextureOffset = new Vector2(_GetRandom() * m, _GetRandom() * m);
-        mesh.uv = RandomUV(mesh); 
+        mesh.uv = RandomUV(mesh);
         Tag(_go);
     }
 
@@ -62,10 +62,10 @@ public class TextureCorrupt : Bug {
             Mesh mesh = _go.GetComponent<MeshFilter>().mesh;
             material.mainTextureOffset = _textureOffset;
             mesh.uv = _uv;
-       
+
             Untag(_go);
             _go = null;
-        }  
+        }
     }
 }
 }

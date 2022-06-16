@@ -6,16 +6,16 @@ using UnityEngine;
 using WorldOfBugs;
 
 public class Platform : MonoBehaviour {
-   
+
     public Vector3 MovementExtent = Vector3.up * 2;
     public Vector3 MovementAngleOffset = Vector3.zero;
     public float MovementSpeed = 10;
     public bool IgnoreGravity = false; // ignore gravity?
     public BoxCollider triggerCollider;
-    
+
     protected Vector3 InitialPosition;
-    
-    
+
+
     protected HashSet<Collider> OnPlatform = new HashSet<Collider>();
     protected float time = 0f;
 
@@ -51,7 +51,7 @@ public class Platform : MonoBehaviour {
         Vector3 motion = Sin((Vector3.one * MovementSpeed * time) + MovementAngleOffset);
         motion.Scale(MovementExtent);
         Vector3 newPosition = InitialPosition + motion;
-        
+
         // used to update the position of the player
         Vector3 dPosition = newPosition - transform.position;
         // TODO support different gravity directions ? :)
@@ -61,7 +61,7 @@ public class Platform : MonoBehaviour {
             //Vector3.MoveTowards(collider.gameObject.transform.position, gameObject.transform.position);
             collider.gameObject.transform.position = collider.gameObject.transform.position + dPosition;
         }
-        
+
         transform.position = newPosition;
     }
 

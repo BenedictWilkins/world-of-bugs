@@ -5,8 +5,8 @@ using System.Linq;
 
 namespace WorldOfBugs {
 
-public class ZClipping : Bug { 
-    
+public class ZClipping : Bug {
+
     public static readonly string LAYERTAG = "ZClipping";
     public static readonly string BUGTAG = "ZBug";
 
@@ -20,7 +20,7 @@ public class ZClipping : Bug {
     protected int _oldlayer = -1;
 
     void Awake() {
-        bugTag = BUGTAG; 
+        bugTag = BUGTAG;
         layer = LayerMask.NameToLayer(LAYERTAG);
         if (layer < 0) {
             // if this happens something has gone very wrong.. probably the zfighting mainCamera prefab is also broken...
@@ -37,12 +37,12 @@ public class ZClipping : Bug {
             _MakeZCamera(c);
         }
     }
-    
+
     protected void _MakeZCamera(Camera camera) {
         // set up zcamera properties
         camera.cullingMask = 0; // hide all layers
         ShowLayer(camera, layer); // show only the zfighting layer
-        camera.clearFlags = CameraClearFlags.Depth; 
+        camera.clearFlags = CameraClearFlags.Depth;
         camera.depth = camera.depth + 1;
     }
 
@@ -50,7 +50,7 @@ public class ZClipping : Bug {
         // get children of the given game object (level)
         Transform[] children = level.transform.GetComponentsInChildren<Transform>(true);
         children = Array.FindAll(children, x => x.GetComponent<Renderer>() != null); // leaf children
-        int i = UnityEngine.Random.Range(0, children.Length); 
+        int i = UnityEngine.Random.Range(0, children.Length);
         _fighter = children[i].gameObject;
         _oldlayer = _fighter.layer;
         _fighter.layer = layer;
@@ -76,5 +76,5 @@ public class ZClipping : Bug {
 }
 
 
-    
+
 }

@@ -13,11 +13,11 @@ namespace WorldOfBugs {
         [SerializeField]
         public Color32 type;
 
-        public BugType(Color32 _type) { 
-            this.type = _type; 
-            BugType.BugTypes.Add(this); 
+        public BugType(Color32 _type) {
+            this.type = _type;
+            BugType.BugTypes.Add(this);
         }
-        
+
         public override int GetHashCode() {
             return type.GetHashCode();
         }
@@ -28,7 +28,7 @@ namespace WorldOfBugs {
         public static explicit operator BugType(Color32 c) => new BugType(c);
 
 
-    
+
     }
 
 }
