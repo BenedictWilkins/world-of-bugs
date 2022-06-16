@@ -1,3 +1,4 @@
+#!/bin/sh
 ASTYLE=$(which astyle)
 if [ $? -ne 0 ]; then
 	echo "astyle not installed, it can be installed with sudo apt-get install astyle or downloaded from http://astyle.sourceforge.net/"
