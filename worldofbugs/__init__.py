@@ -11,18 +11,3 @@ from . import dataset, environment, utils
 from .environment import all_registered, make
 
 __all__ = ("environment", "utils", "dataset", "make", "all_registered")
-
-
-def _register_entry_point():  # entry point hook for openai gym
-    """Entry point for OpenAI gym."""
-    from gym.envs import register
-
-    from .utils import BuildResolver, Logger
-
-    for build in BuildResolver.builds:
-        Logger.debug(f"FOUND BUILD: 'WOB/{build.env_id}' at '{build.path}'")
-        register(
-            id=build.env_id,
-            entry_point="worldofbugs:make",
-            kwargs=dict(env_id=build.env_id),
-        )

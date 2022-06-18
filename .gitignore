@@ -1,3 +1,4 @@
+logs/
 .vscode
 
 # Builds (use build.cs to build the scenes)

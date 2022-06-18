@@ -25,12 +25,14 @@ setup(
     author_email="benrjw@gmail.com",
     packages=find_packages(),
     install_requires=[
-        "gym>=0.2.0",
-        "gym-unity==0.28.0",
+        "gym>=0.21.0",
+        "gym_unity",
         "omegaconf",
         "loguru",
         "numpy",
     ],
-    entry_points={"gym.envs": [f"{GYM_NAMESPACE} = worldofbugs:_register_entry_point"]},
+    entry_points={
+        "gym.envs": [f"{GYM_NAMESPACE} = worldofbugs._entry_point:register_entry_point"]
+    },
     zip_safe=False,
 )

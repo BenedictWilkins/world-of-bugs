@@ -88,7 +88,7 @@ class UnityBuildResolver:
     """
 
     DEFAULT_UNITY_BUILDS_DIR = "builds"
-    DEFAULT_UNITY_BUILD_EXT = ".x86_64"  # TODO this is only for linux
+    # DEFAULT_UNITY_BUILD_EXT = ".x86_64"  # TODO this is only for linux
 
     def __init__(self):
         self._builds = None
@@ -160,14 +160,10 @@ class UnityBuildResolver:
         """Update the list of builds given search paths."""
         self._builds = []
         for path in self._search_paths:
-            self._builds.extend(
-                _get_builds(path, UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT)
-            )
+            self._builds.extend(_get_builds(path))
 
     def _update(self, path):
-        self._builds.extend(
-            _get_builds(path, UnityBuildResolver.DEFAULT_UNITY_BUILD_EXT)
-        )
+        self._builds.extend(_get_builds(path))
 
 
 class BuildPath:
@@ -217,19 +213,26 @@ class BuildPath:
         return self.__repr__()
 
 
-def _get_builds(path, ext):
-    environments = []
-    Logger.debug(f"Seaching: {path} ...")
-    for p in glob.glob(os.path.join(path, "*"), recursive=False):
-        p = pathlib.Path(p)
-        if p.is_dir():
-            # Logger.debug(f"Searching directory: {p} ...")
-            p = pathlib.Path(p, f"*{ext}")
-            unity_build = glob.glob(str(p))
-            if len(unity_build) > 0:
-                for env in unity_build:
-                    environments.append(BuildPath(env))
-    return environments
+def _get_builds(path):
+    def find_in(directory, x):
+        return glob.glob(str(pathlib.Path(directory, x)), recursive=False)
+
+    builds = []
+    path = pathlib.Path(path, "*")
+    # Logger.debug(f"Seaching: {path}")
+    for dir in [
+        pathlib.Path(p)
+        for p in glob.glob(str(path), recursive=True)
+        if pathlib.Path(p).is_dir()
+    ]:
+        data = find_in(
+            dir, dir.name + "_Data"
+        )  # data directory was found, this is probably a build directory
+        if len(data) == 1:
+            candidate = find_in(dir, dir.name) + find_in(dir, dir.name + ".*")
+            if len(candidate) == 1:
+                builds.append(BuildPath(candidate[0]))
+    return builds
 
 
 BuildResolver = UnityBuildResolver()

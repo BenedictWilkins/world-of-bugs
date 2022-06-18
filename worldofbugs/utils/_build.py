@@ -57,7 +57,7 @@ args.project = str(pathlib.Path(args.project).expanduser().resolve())
 
 command = f"{args.editor} -projectpath {args.project} -executeMethod Build.Start"
 
-logger.debug(f"BUILDING USING COMMAND: {command}")  # TODO use Logger
+logger.debug(f"BUILDING USING COMMAND: {command}")
 
 proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
 (out, err) = proc.communicate()

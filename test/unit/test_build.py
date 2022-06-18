@@ -1,21 +1,35 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-   Try running `worldofbugs` with its default settings. Requires a build (e.g. `WoB/World-v1`) which can be found [here](https://github.com/BenedictWilkins/world-of-bugs/releases). See [GettingStarted](../GettingStarted/index.md) for details.
+   Created on 16-06-2022
 """
 __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
+
+import unittest
+
 import gym
+from loguru import logger
 
 import worldofbugs
+from worldofbugs.utils import BuildResolver
 
-gym.make("WOB/World-v1")
 
-# import worldofbugs
+class Test(unittest.TestCase):
+    def test_build_resolver(self):
+        builds = BuildResolver.builds
+        logger.debug(f"FOUND BUILDS: {builds}")
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+"""
+import worldofbugs
 
 # if you have unity open
-# env = worldofbugs.make("WOB/world-v1", debug=True)
+env = worldofbugs.make(None, debug=True)
 
 # add downloaded builds to path
 # worldofbugs.utils.BuildResolver.path += "~/Downloads/builds/"
@@ -28,7 +42,7 @@ gym.make("WOB/World-v1")
 
 # env.enable_bug("PlatformStuck")
 # env.enable_bug("PlatformStuckUnder")
-"""
+
 env.reset()
 
 for i in range(1000):
