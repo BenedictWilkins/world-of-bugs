@@ -38,8 +38,15 @@ repos:
 
     - id: astyle # c-sharp code formatting
       name: astyle
-      entry: bash test/astyle.sh
+      entry: bash test/scripts/astyle.sh
       language: system
       pass_filenames: false
       log_file: logs/astyle.log
+
+    - id : unit-test
+      name : unit-test
+      entry : coverage run -m unittest discover -s test/unit -v
+      language: system
+      pass_filenames: false
+      log_file : logs/unit-test.log
 

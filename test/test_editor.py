@@ -13,6 +13,7 @@ import subprocess
 
 from omegaconf import OmegaConf
 
+"""
 PATH_BASE = str(pathlib.Path(__file__).parent.parent.parent)  # root repo directory
 PATH_BASE_TEST = str(pathlib.Path(PATH_BASE, "test"))
 DEFAULT_CONFIG_FILE = str(
@@ -42,3 +43,4 @@ while True:
     if not line:
         break
     print(line.rstrip())
+"""

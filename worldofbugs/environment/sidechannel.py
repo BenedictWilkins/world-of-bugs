@@ -28,6 +28,11 @@ class UnityLogChannel(SideChannel):
         msg = msg if msg.endswith("\n") else msg + "\n"
         self.stream.write(msg)
 
+    def write(self, *args, **kwargs):
+        raise NotImplementedError(
+            "Log channel is meant for receiving and logging messages from WOB environments, not for sending messages."
+        )
+
 
 class UnityConfigChannel(SideChannel):
     """Configuration SideChannels, sends config information to a Unity environment."""

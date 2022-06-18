@@ -5,30 +5,33 @@
 __author__ = "Benedict Wilkins"
 __email__ = "benrjw@gmail.com"
 __status__ = "Development"
-PACKAGE_NAME = "worldofbugs"
 
-import pathlib
-import sys
+if __name__ == "__main__":
 
-import anybadge
-from pylint.lint import Run
+    import pathlib
+    import sys
 
-LINT_THRESHOLD = 8
-PACKAGE_NAME = "worldofbugs"
+    import anybadge
+    from pylint.lint import Run
 
-path = str(pathlib.Path(pathlib.Path(__file__).parent.parent, PACKAGE_NAME).resolve())
-test_path = str(pathlib.Path(pathlib.Path(__file__).parent).resolve())
+    LINT_THRESHOLD = 8
+    PACKAGE_NAME = "worldofbugs"
 
-results = Run([path, test_path], do_exit=False)
-final_score = results.linter.stats.global_note
+    path = str(
+        pathlib.Path(pathlib.Path(__file__).parent.parent, PACKAGE_NAME).resolve()
+    )
+    test_path = str(pathlib.Path(pathlib.Path(__file__).parent).resolve())
 
-thresholds = {2: "red", 4: "orange", 6: "yellow", 10: "green"}
+    results = Run([path, test_path], do_exit=False)
+    final_score = results.linter.stats.global_note
 
-badge = anybadge.Badge("pylint", round(final_score, 2), thresholds=thresholds)
-badge.write_badge(f"{test_path}/badge/pylint.svg", overwrite=True)
+    thresholds = {2: "red", 4: "orange", 6: "yellow", 10: "green"}
 
-if final_score < LINT_THRESHOLD:
-    print("------------------------------------------------------------------")
-    print("Lint failed, please clean up your code!")
-    print("------------------------------------------------------------------")
-    sys.exit(-1)
+    badge = anybadge.Badge("pylint", round(final_score, 2), thresholds=thresholds)
+    badge.write_badge(f"{test_path}/badge/pylint.svg", overwrite=True)
+
+    if final_score < LINT_THRESHOLD:
+        print("------------------------------------------------------------------")
+        print("Lint failed, please clean up your code!")
+        print("------------------------------------------------------------------")
+        sys.exit(-1)

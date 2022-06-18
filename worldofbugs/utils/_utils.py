@@ -33,9 +33,13 @@ class PathList:
 
     def __init__(self, *args, add_callback=None):
         for x in args:
-            assert isinstance(x, (str, pathlib.Path, pathlib.PurePath))
+            if not isinstance(x, (str, pathlib.Path, pathlib.PurePath)):
+                raise ValueError(f"{x} of type {type(x)} is not a valid path.")
         self.paths = [pathlib.Path(x).expanduser().resolve().absolute() for x in args]
         self.add_callback = add_callback
+
+    def __len__(self):
+        return len(self.paths)
 
     def __getitem__(self, i):
         return self.paths[i]
@@ -184,23 +188,23 @@ class BuildPath:
 
     @property
     def version(self):
-        """Get environment version (<namespace>/<name>_<version>)
+        """Get environment version (<namespace>/<name>-<version>)
         Returns:
             str: environment version
         """
-        return self.env_id.rsplit("_", maxsplit=1)[-1]
+        return self.env_id.rsplit("-", maxsplit=1)[-1]
 
     @property
     def name(self):
-        """Get environment name (<namespace>/<name>_<version>)
+        """Get environment name (<namespace>/<name>-<version>)
         Returns:
             str: environment name
         """
-        return self.env_id.split("_", maxsplit=1)[0]
+        return self.env_id.split("-", maxsplit=1)[0]
 
     @property
     def env_id(self):
-        """Get environment id (<namespace>/<name>_<version>)
+        """Get environment id (<namespace>/<name>-<version>)
         Returns:
             str: environment id
         """

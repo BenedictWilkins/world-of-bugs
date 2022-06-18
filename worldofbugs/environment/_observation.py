@@ -22,7 +22,6 @@ class ObservationHandler:
         list_spaces = []
         self.sensors = []
         for spec in observation_specs:
-            print(spec)
             self.sensors.append(spec.name.split(":")[-1])
             list_spaces.append(
                 gym.spaces.Box(-np.inf, np.inf, dtype=np.float32, shape=spec.shape)
