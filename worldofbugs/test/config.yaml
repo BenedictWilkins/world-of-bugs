@@ -1,0 +1,14 @@
+# root path of this directory
+PATH : ...
+# path of the python package
+PYPI_PACKAGE_PATH : ...
+# name of the python package
+PYPI_PACKAGE_NAME : "worldofbugs"
+# version of the unity editor used to run tests
+UNITY_EDITOR_VERSION : 2020.3.29f1
+# this is the default directory setup used by UnityHub when installing an editor (on linux)
+UNITY_EDITOR_PATH : ~/Unity/Hub/Editor/${UNITY_EDITOR_VERSION}/Editor/Unity
+# unity project that contains tests? TODO this may be removed... tests are present in the unity package.
+UNITY_PROJECT_PATH : ${PATH}/com.worldofbugs.worldofbugs/Samples~/3D
+# failure threshold for pylint
+PYLINT_THRESHOLD : 8

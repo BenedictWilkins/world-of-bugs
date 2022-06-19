@@ -15,7 +15,7 @@ def register_entry_point():  # entry point hook for openai gym
     from .utils import BuildResolver, Logger
 
     for build in BuildResolver.builds:
-        Logger.debug(f"FOUND BUILD: 'WOB/{build.env_id}' at '{build.path}'")
+        # Logger.debug(f"FOUND BUILD: 'WOB/{build.env_id}' at '{build.path}'")
         register(
             id=build.env_id,
             entry_point="worldofbugs:make",

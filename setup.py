@@ -31,6 +31,7 @@ setup(
         "loguru",
         "numpy",
     ],
+    exclude=["worldofbugs.test"],
     entry_points={
         "gym.envs": [f"{GYM_NAMESPACE} = worldofbugs._entry_point:register_entry_point"]
     },

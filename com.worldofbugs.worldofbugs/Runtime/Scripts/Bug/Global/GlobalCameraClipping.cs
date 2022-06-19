@@ -8,7 +8,7 @@ using WorldOfBugs;
 namespace WorldOfBugs {
 
     /// <summary>
-    /// Sets up the bug mask renderer to render camera clipping issues. This is a non-specific "global" bug, it will happen whenever the associated camera clips through some geometry.
+    /// Sets up the bug mask renderer to render camera clipping issues. This is a "global" bug, it will happen whenever a camera clips through some geometry.
     /// </summary>
     public class GlobalCameraClipping : Bug {
 

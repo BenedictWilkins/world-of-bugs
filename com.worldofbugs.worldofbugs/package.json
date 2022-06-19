@@ -12,6 +12,7 @@
             "url" : "https://benedictwilkins.github.io/world-of-bugs/"
         },
     "dependencies": {
+        "com.unity.addressables": "1.18.19",
         "com.solidalloy.type-references": "2.1.0",
         "com.unity.ml-agents": "2.1.0-exp.1"
     }

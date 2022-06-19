@@ -7,25 +7,46 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 namespace WorldOfBugs {
 
+    /// <summary>
+    /// Extensions that are useful for the Camera class.
+    /// </summary>
     public static class CameraExtensions {
 
-        public static readonly string CAMERA_TAG_OBSERVATION = "MainCamera"; // unity default
+        public static readonly string CAMERA_TAG_OBSERVATION = "MainCamera";
         public static readonly string CAMERA_TAG_BUGMASK = "BugMaskCamera";
 
+        /// <summary>
+        /// Get all cameras that are used by agents to sense the environment.
+        /// </summary>
+        /// <returns>Observation cameras</returns>
         public static Camera[] GetObservationCameras() {
             return Camera.allCameras.Where(c => c.gameObject.CompareTag(
                                                CAMERA_TAG_OBSERVATION)).ToArray();
         }
-
+        /// <summary>
+        /// Get all cameras that render a mask over the agents observation.
+        /// </summary>
+        /// <returns>Bug mask cameras</returns>
         public static Camera[] GetBugMaskCamera() {
             return Camera.allCameras.Where(c => c.gameObject.CompareTag(
                                                CAMERA_TAG_BUGMASK)).ToArray();
         }
 
-        /*  TODO
+        /// <summary>
+        /// Get all cameras that use the same given <paramref name="texture"/>.
+        /// </summary>
+        /// <param name="texture">Shared RenderTexture</param>
+        /// <returns></returns>
+        public static Camera[] GetCamerasByRenderTexture(RenderTexture texture) {
+            Camera[] cameras = Array.FindAll(Camera.allCameras, x => x.targetTexture == texture);
+            // sort by depth, the camera that renders last is first
+            Array.Sort<Camera>(cameras, (x, y) => - x.depth.CompareTo(y.depth));
+            return cameras.ToArray();
+        }
+
+        /*  TODO Get pairs of cameras for each agent.. when multi-agent environments are supported?
             public static (Camera,Camera)[] GetCameras() {
 
             Debug.Log(string.Join(",", GetObservationCameras().Select(c => c.gameObject.tag)));
@@ -42,14 +63,6 @@ namespace WorldOfBugs {
             } */
 
 
-
-        public static Camera[] GetCamerasByRenderTexture(RenderTexture texture) {
-            Camera[] cameras = Array.FindAll(Camera.allCameras, x => x.targetTexture == texture);
-            Array.Sort<Camera>(cameras, (x,
-                                         y) => - x.depth.CompareTo(
-                                   y.depth)); // sort by depth, the camera that renders last is first
-            return cameras.ToArray();
-        }
     }
 
     public static class ColliderExtensions {

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 79669c9d609bbb039a63c6a576ee58d0
+  m_SerializeEntries:
+  - m_GUID: 55b72da3934ecf68dbaf986e696f5d39
+    m_Address: Packages/com.worldofbugs.worldofbugs/Tests/Runtime/Prefabs/MainCamera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 57a278df52935930c978324d41c1ca4d
+    m_Address: Packages/com.worldofbugs.worldofbugs/Tests/Runtime/Prefabs/BugMaskCamera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 6fd77ad2b7e6f4b2a9282685a1c6d406, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d841179ddc303f7048189cecc98225a7, type: 2}
+    - {fileID: 11400000, guid: 9abf6e824bc967026a76b20f463e0c95, type: 2}

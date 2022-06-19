@@ -1,0 +1,13 @@
+{
+    "name": "WorldOfBugs.Tests",
+    "references": [
+        "WorldOfBugs",
+        "Unity.Addressables",
+        "Unity.ResourceManager"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
