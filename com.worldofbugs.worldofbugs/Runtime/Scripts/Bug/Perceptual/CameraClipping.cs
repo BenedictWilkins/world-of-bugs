@@ -13,6 +13,9 @@ public class CameraClipping : Bug {
     protected Camera[] Cameras;
     protected float[] OldNearClipPlane;
 
+    public void Awake() {
+    }
+
     public override void OnEnable() {
         // set the near clipping plan to be farther away
         // when close to an object the view will clip inside
@@ -25,6 +28,16 @@ public class CameraClipping : Bug {
 
         // TODO set camera material _CameraNearClip rather than global?
         Shader.SetGlobalFloat("_CameraNearClip", NearClipPlane);
+        GlobalCameraClipping global = GetComponent<GlobalCameraClipping>();
+
+        if(global != null) {
+            global.enabled =
+                true; // generally the global camera clipping bug should be enabled anyway
+            global.bugType =
+                bugType; // TODO there could be issues if multiple bugs want to use render camera clipping issues...
+        } else {
+            throw new WorldOfBugsException("CameraClipping bug requires a GlobalCameraClipping component to correctly render its mask.");
+        }
     }
 
     public override void OnDisable() {
@@ -32,7 +45,7 @@ public class CameraClipping : Bug {
             Cameras[i].nearClipPlane = OldNearClipPlane[i];
         }
 
-        // TODO on per camera basis with materials...
+        // TODO on per camera basis with materials...?
         Shader.SetGlobalFloat("_CameraNearClip", OldNearClipPlane[0]);
     }
 }

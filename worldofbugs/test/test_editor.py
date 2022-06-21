@@ -11,36 +11,24 @@ import argparse
 import pathlib
 import subprocess
 
-from omegaconf import OmegaConf
+from worldofbugs.test.utils import get_test_config
 
-"""
-PATH_BASE = str(pathlib.Path(__file__).parent.parent.parent)  # root repo directory
-PATH_BASE_TEST = str(pathlib.Path(PATH_BASE, "test"))
-DEFAULT_CONFIG_FILE = str(
-    pathlib.Path(f"{PATH_BASE_TEST}/default_config.yaml").resolve()
-)
+TEST_CONFIG = get_test_config()
+import argparse
+
 parser = argparse.ArgumentParser()
-parser.add_argument("--config", type=str, default=DEFAULT_CONFIG_FILE)
-
+parser.add_argument("--scene", type=str, default="World-v1")
+parser.add_argument("--play", action="store_true", default=False)
 args = parser.parse_args()
-config = OmegaConf.load(args.config)
-OmegaConf.update(config, "PATH", PATH_BASE)
-OmegaConf.resolve(config)
 
-unity_editor_cmd = (
-    config["UNITY_EDITOR_PATH"] + " -projectpath " + config["PROJECT_PATH"]
-)
+cmd = f"{TEST_CONFIG.UNITY_EDITOR_PATH} -projectPath {TEST_CONFIG.UNITY_PROJECT_PATH} -executeMethod WorldOfBugs.Editor.SceneLoader.Main --scene {args.scene} --run {args.play}"
+
 proc = subprocess.Popen(
-    unity_editor_cmd,
+    cmd,
     stdout=subprocess.PIPE,
     shell=True,
     # preexec_fn=os.setsid,
     close_fds=True,
 )
 
-while True:
-    line = proc.stdout.readline()
-    if not line:
-        break
-    print(line.rstrip())
-"""
+proc.wait()

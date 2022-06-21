@@ -24,9 +24,8 @@ namespace WorldOfBugs {
             _agent = agent;
         }
 
-        public override IActuator[]
-        CreateActuators() { // initialise must be called before hand...
-            Debug.Log("CREATE ACTUATORS");
+        public override IActuator[] CreateActuators() {
+            // NOTE: Initialize must be called before hand...
             IActuator actuator = ActionAttribute.CreateActuator(_agent);
 
             if(actuator == null) {

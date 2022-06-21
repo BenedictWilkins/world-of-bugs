@@ -1,5 +1,5 @@
 
-![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
 [![Pylint](docs/_badge/pylint.svg)](https://github.com/PyCQA/pylint)
 [![Code style: astyle](docs/_badge/astyle.svg)](http://astyle.sourceforge.net)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)

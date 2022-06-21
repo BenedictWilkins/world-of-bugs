@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 6f79f0f3243bf70f1ac5b0c151c928df, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5dec03224f0399880a892d58abfb4fe4, type: 2}
   m_LightingSettings: {fileID: 1344551337}
 --- !u!196 &4
 NavMeshSettings:
@@ -137,6 +137,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a19c87d00c9552d4a03af82bff584d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &173891616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1781507075844599708, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
+  m_PrefabInstance: {fileID: 8651228012667946446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1ec833b1ee44308904ed044c509347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &517195454
@@ -397,7 +408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517195454}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 606bb8708a8bef989b28b0cb14e021a7, type: 3}
   m_Name: 
@@ -482,7 +493,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -810,15 +821,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1781507075844599708, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1781507075844599709, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
       propertyPath: _heuristic
       value: 
-      objectReference: {fileID: 8651228012667946447}
+      objectReference: {fileID: 173891616}
     - target: {fileID: 1781507075844599711, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1781507075844599711, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
       propertyPath: surfaces.Array.data[0]
@@ -834,14 +845,3 @@ PrefabInstance:
       objectReference: {fileID: 4800000, guid: 1696b9b71cf736da49a19e159773fc7a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
---- !u!114 &8651228012667946447 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1781507075844599711, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
-  m_PrefabInstance: {fileID: 8651228012667946446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e03f7876da0e2764694bf5c405ef0172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

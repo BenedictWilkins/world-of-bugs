@@ -64,9 +64,8 @@ namespace WorldOfBugs {
             }
         }
 
-        public override void OnEpisodeBegin() {
+        public override void Reset() {
             gameObject.transform.position = initialPosition;
-            //gameObject.transform.localEulerAngles = initialRotation; // new Vector3(0, UnityEngine.Random.value * 360, 0);
         }
     }
 }

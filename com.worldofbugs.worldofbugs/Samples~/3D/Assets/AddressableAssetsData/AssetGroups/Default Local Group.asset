@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Packages/com.worldofbugs.worldofbugs/Tests/Runtime/Prefabs/BugMaskCamera.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 81c8610c5f312a980b42fab1d3d4d900
+    m_Address: Assets/World-v1/Prefabs/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6fd77ad2b7e6f4b2a9282685a1c6d406, type: 2}
   m_SchemaSet:

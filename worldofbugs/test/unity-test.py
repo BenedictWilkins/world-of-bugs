@@ -21,6 +21,7 @@ TEST_PLATFORM = "playmode"
 
 
 def test():
+    # TODO check that the editor is not open, and that this actually succeeds!
     cmd = f"{TEST_CONFIG.UNITY_EDITOR_PATH} -runTests -batchmode -projectPath {TEST_CONFIG.UNITY_PROJECT_PATH} -testResults {TEST_RESULT_FILE} -testPlatform {TEST_PLATFORM}"
     proc = subprocess.Popen(
         cmd,
@@ -45,7 +46,12 @@ def format_result(suite, result, indent=0, verbose=2):
         file=result,
     )
     if verbose > 1:
-        for case in suite.get("test-case", []):
+        cases = suite.get("test-case", [])
+        if isinstance(cases, dict):
+            cases = [cases]
+        for case in cases:
+            from pprint import pprint
+
             header = f"{' ' * indent}- {case['@name']}"
             print(f"{header:<88} | {case['@result']} | ", file=result)
             if case["@result"] == "Failed":

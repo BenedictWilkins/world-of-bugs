@@ -19,6 +19,7 @@ namespace WorldOfBugs {
 
     public class HeuristicNavMesh : HeuristicComponent {
 
+
         public static readonly int MAX_REJECTION_SAMPLE_ATTEMPTS = 100;
         [Tooltip("Navmesh surfaces, allows the navmesh to be updated at runtime.")]
         public NavMeshSurface[] surfaces;
@@ -27,6 +28,11 @@ namespace WorldOfBugs {
         protected float _radius = 1f;
         [SerializeField, Tooltip("Angular Speed of the associated agent.")]
         protected float _angularSpeed = 40f;
+
+        // TODO add this ??
+        //[SerializeField, Tooltip("Maximum length of the path to the next point (in corners). Use this to prevent the agent taking very complex paths. ")]
+        //protected int _max_path_length = 5;
+
 
         public float Radius {
             get {
@@ -207,10 +213,10 @@ namespace WorldOfBugs {
                     Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
                 }
             } else {
-                // the agent is no longer on the nav mesh, stop trying to find new target points!
+                // the agent is no longer on the nav mesh, stop trying to find new target points! ...??
                 //Debug.Log("NOT ON NAVMESH");
-                path = new
-                NavMeshPath(); // create a new path, the previous one was probably bad so ditch it.
+                // create a new path, the previous one was probably bad so ditch it.
+                path = new NavMeshPath();
             }
         }
 

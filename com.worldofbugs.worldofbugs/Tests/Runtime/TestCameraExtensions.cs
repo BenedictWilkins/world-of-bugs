@@ -28,15 +28,16 @@ public class TestCameraExtensions {
     [Test]
     public void TestGetCameraMain() {
         Camera[] cameras = CameraExtensions.GetObservationCameras();
-        Assert.AreEqual(cameras.Length, 1);
-        Assert.AreSame(cameras[0], main_camera);
+        Debug.Log(cameras);
+        Assert.Greater(cameras.Length, 0);
+        Assert.Contains(main_camera, cameras);
     }
 
     [Test]
     public void TestGetCameraBugMask() {
         Camera[] cameras = CameraExtensions.GetBugMaskCamera();
-        Assert.AreEqual(cameras.Length, 1);
-        Assert.AreSame(cameras[0], bugmask_camera);
+        Assert.Greater(cameras.Length, 0);
+        Assert.Contains(bugmask_camera, cameras);
     }
 
     [Test]

@@ -151,7 +151,7 @@ class WOBEnvironment(UnityGymEnvironment):
         # This should be removed in favour of something less "hacky" in the future, probably implemented at the unity side.
         self.reset()
         for _ in range(100):
-            self.step(None)
+            self.step(0)
         self.reset()
 
     def _collect(self, action, decision_steps, terminal_steps):

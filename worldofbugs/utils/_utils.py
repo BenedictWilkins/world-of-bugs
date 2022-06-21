@@ -153,12 +153,14 @@ class UnityBuildResolver:
         if "/" in env_id:  # WOB namespace was given...
             env_id = "/".join(env_id.split("/")[1:])
         candidate_builds = list(self.builds)
-        if len(candidate_builds) > 0:
-            return candidate_builds[0]  # get the first one... TODO get all of them?
-        envs = [build.name for build in self.builds]
-        raise FileNotFoundError(
-            f"Failed to find environment: {env_id}. Avaliable environments: {envs}"
-        )
+        envs = [build.env_id for build in self.builds]
+        try:
+            indx = envs.index(env_id)  # TODO get the first one?
+            return candidate_builds[indx]
+        except:
+            raise FileNotFoundError(
+                f"Failed to find environment: {env_id}. Avaliable environments: {envs}"
+            )
 
     def update_builds(self):
         """Update the list of builds given search paths."""
@@ -224,11 +226,12 @@ def _get_builds(path):
     builds = []
     path = pathlib.Path(path, "*")
     # Logger.debug(f"Seaching: {path}")
-    for dir in [
+    paths = [
         pathlib.Path(p)
         for p in glob.glob(str(path), recursive=True)
         if pathlib.Path(p).is_dir()
-    ]:
+    ]
+    for dir in paths:
         data = find_in(
             dir, dir.name + "_Data"
         )  # data directory was found, this is probably a build directory

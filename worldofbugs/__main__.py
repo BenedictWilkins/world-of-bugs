@@ -10,7 +10,16 @@ import gym
 
 import worldofbugs
 
-gym.make("WOB/World-v1")
+env = worldofbugs.make(None, debug=True)
+
+env.reset()
+env.set_agent_behaviour("HeuristicManual")
+env.set_agent_behaviour("HeuristicNavMesh")
+for i in range(10000):
+    action = 1
+    state, reward, done, info = env.step(action)
+    print(info["Position"], reward, done)
+
 
 # import worldofbugs
 

@@ -10,6 +10,8 @@ namespace WorldOfBugs {
         public bool ShouldReset(GameObject agent) {
             return agent.transform.position.y < Y;
         }
+
+        public void Reset() {}
     }
 
 
