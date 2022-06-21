@@ -266,6 +266,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#invalid-information-access" class="md-nav__link">
+    Invalid Information Access
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#out-of-bounds" class="md-nav__link">
     Out of Bounds
   </a>
@@ -560,8 +567,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../Reference/Python/0_Build/" class="md-nav__link">
-        Build
+      <a href="../Reference/Python/0_build/" class="md-nav__link">
+        build
       </a>
     </li>
   
@@ -574,8 +581,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../Reference/Python/1_Environment/" class="md-nav__link">
-        Environment
+      <a href="../Reference/Python/1_environment/" class="md-nav__link">
+        environment
       </a>
     </li>
   
@@ -588,8 +595,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../Reference/Python/2_Environment.sidechannel/" class="md-nav__link">
-        Environment.sidechannel
+      <a href="../Reference/Python/2_environment.sidechannel/" class="md-nav__link">
+        environment.sidechannel
       </a>
     </li>
   
@@ -602,8 +609,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../Reference/Python/3_Utils/" class="md-nav__link">
-        Utils
+      <a href="../Reference/Python/3_utils/" class="md-nav__link">
+        utils
       </a>
     </li>
   
@@ -874,6 +881,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#invalid-information-access" class="md-nav__link">
+    Invalid Information Access
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#out-of-bounds" class="md-nav__link">
     Out of Bounds
   </a>
@@ -930,7 +944,7 @@
 
 
 <h1 id="bug-zoo"><a class="toclink" href="#bug-zoo">Bug Zoo</a></h1>
-<p>Below is a list of the bugs currently implemented in WOB, the list is growing! </p>
+<p>Below is a list of the bugs currently implemented in WOB, the list is growing!</p>
 <hr />
 <h2 id="boundary-hole"><a class="toclink" href="#boundary-hole">Boundary Hole</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Description</label><label for="__tabbed_1_2">Implementation</label></div>
@@ -939,7 +953,7 @@
 <p>A specific kind of Geometry Clipping bug in which the player falls through the terrain due to gravity, or is able to walk out of the bounds of play.</p>
 </div>
 <div class="tabbed-block">
-<p>Disable the collision box of a boundary object/terrain. </p>
+<p>Disable the collision box of a boundary object/terrain.</p>
 </div>
 </div>
 </div>
@@ -953,7 +967,7 @@
 <p>A black screen usually happens when there is an issue with the rendering pipeline, leading to a screen that is black (nothing is rendered).</p>
 </div>
 <div class="tabbed-block">
-<p>Render a black texture to the screen in a post processing step. </p>
+<p>Render a black texture to the screen in a post processing step.</p>
 </div>
 </div>
 </div>
@@ -967,7 +981,7 @@
 <p>For efficiency reasons, rendering pipelines cull geometry that is out of view. Cameras are a useful abstraction that are used by many engines to describe what can be seen on screen, the cameras view frustum is used to cull unseen geometry. If this frustum is too small, some geometry that should be rendered is not. In the example below, the near clipping plane has been set too far away from the player. At certain view points, when close to an object some of its geometry is culled leading to the “see through” effect seen below. In some circumstances this bug allows players to see into areas they shouldn't be able to (looking through walls/floors). This bug may only manifest itself with certain objects, particularly ones that have an odd shape (non-convex or pointy) and so it may not be immediately obvious to a developer that there is an issue.</p>
 </div>
 <div class="tabbed-block">
-<p>Modify the near clipping plane.  </p>
+<p>Modify the near clipping plane.</p>
 </div>
 </div>
 </div>
@@ -981,7 +995,7 @@
 <p>A bug that manifests in a visually similar way to camera clipping, but has a different cause. If collisions between the player and an object are not computed correctly, the player may be able to walk inside the object and so is able to see inside it. Note: similar collision based bugs between two (non-player) objects, or <em>ghost objects</em> also manifest visually, this has not been explored in our work but would be an interesting case to study.</p>
 </div>
 <div class="tabbed-block">
-<p>Disable the collision box of an object. </p>
+<p>Disable the collision box of an object.</p>
 </div>
 </div>
 </div>
@@ -995,7 +1009,7 @@
 <p>Similarly to Texture Corruption, object geometry can also become corrupted. A geometry is corrupted when some of its vertices are incorrectly placed relative to the other vertices. They tend to happen during animations that depend on physics with flexible/dynamic geometries, but can also happen with static geometry (although this is less common).</p>
 </div>
 <div class="tabbed-block">
-<p>Randomly modifies the vertex positions of a chosen game object geometry over time.  </p>
+<p>Randomly modifies the vertex positions of a chosen game object geometry over time.</p>
 </div>
 </div>
 </div>
@@ -1009,7 +1023,7 @@
 <p>Screen tearing happens when a monitors refresh rate doesn't match the GPU frame rate. This leads to information multiple frames being rendered to the screen as a single frame, leading to a tearing effect. Although typically a hardware problem, it represents an interesting and often subtle visual issue.</p>
 </div>
 <div class="tabbed-block">
-<p>Record previous frames and render them embedded in the current frame.  </p>
+<p>Record previous frames and render them embedded in the current frame.</p>
 </div>
 </div>
 </div>
@@ -1020,10 +1034,10 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Description</label><label for="__tabbed_7_2">Implementation</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>A texture may render incorrectly/become corrupt for various reasons, for example, when texture offsets incorrectly set, the UV map is incorrect or as a result of shader related issues. Similar effects may also be due to lighting problems, for example if the vertex normals are incorrectly set.  </p>
+<p>A texture may render incorrectly/become corrupt for various reasons, for example, when texture offsets incorrectly set, the UV map is incorrect or as a result of shader related issues. Similar effects may also be due to lighting problems, for example if the vertex normals are incorrectly set.</p>
 </div>
 <div class="tabbed-block">
-<p>The UV map/offsets are modified to corrupt the texture. </p>
+<p>The UV map/offsets are modified to corrupt the texture.</p>
 </div>
 </div>
 </div>
@@ -1037,7 +1051,7 @@
 <p>When a texture is missing from an object, which may happen if a developer forgets to set the texture, its missing/inaccessible in the file system or otherwise, the shader responsible for rendering the texture will typically resort to rendering the object it in one colour (typically bright pink) or resort to a default texture.</p>
 </div>
 <div class="tabbed-block">
-<p>Remove the texture from a chosen game object.  </p>
+<p>Remove the texture from a chosen game object.</p>
 </div>
 </div>
 </div>
@@ -1051,7 +1065,7 @@
 <p>Rendering pipelines often have layers, layers contain geometry to be rendered and are queued and rendered in order. Pixels in the layers rendered subsequently are replaced or are blended with pixels in previous layers. If an object geometry is placed in the wrong layer, it may be rendered on top of others leading to some strange spatial effects (which may or may not be desirable).</p>
 </div>
 <div class="tabbed-block">
-<p>Places a chosen game object in a layer that is always rendered last.  </p>
+<p>Places a chosen game object in a layer that is always rendered last.</p>
 </div>
 </div>
 </div>
@@ -1065,11 +1079,26 @@
 <p>Z-Fighting happens when two surfaces have the same depth (z). The renderer/shader does not know which to show first and this results in a mixing of textures from the two surfaces. A flickering effect may also occur during when the players view shifts.</p>
 </div>
 <div class="tabbed-block">
-<p>Copies a game object, modifies its texture and places it exactly at the position of the original. </p>
+<p>Copies a game object, modifies its texture and places it exactly at the position of the original.</p>
 </div>
 </div>
 </div>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l6c3GmiNqYU?playlist=l6c3GmiNqYU&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
+
+<hr />
+<p>https://youtu.be/akyIkBRZzOc</p>
+<h2 id="invalid-information-access"><a class="toclink" href="#invalid-information-access">Invalid Information Access</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Description</label><label for="__tabbed_11_2">Implementation</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A bug in which the player is able to obtain information that they would otherwise not have. The example shown</p>
+</div>
+<div class="tabbed-block">
+<p>There are many, camera clipping is one example (see video). Another might be the ability to access areas they should (e.g. on top of the walls of a maze). The bug mask should be tailored to support this kind of issue and is a crucial design decision when implementing new environments.</p>
+</div>
+</div>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/akyIkBRZzOc?playlist=akyIkBRZzOc&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
 <hr />
 <h2 id="out-of-bounds"><a class="toclink" href="#out-of-bounds">Out of Bounds</a></h2>
@@ -1077,7 +1106,7 @@
 <p class="admonition-title">Todo</p>
 <p>This feature is available but undocumented.</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Description</label><label for="__tabbed_11_2">Implementation</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Description</label><label for="__tabbed_12_2">Implementation</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>When a player can escape the playable area, accessing areas they shouldn't be able to access.</p>
@@ -1093,7 +1122,7 @@
 <p class="admonition-title">Todo</p>
 <p>This feature is in development</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Description</label><label for="__tabbed_12_2">Implementation</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">Description</label><label for="__tabbed_13_2">Implementation</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>A wall that the player cannot see but cannot move through. Sometimes these are added to stop the player going out of bounds, but this can break immersion. It may also happen unintentionally if some geometry is not correctly rendered or as part of a broken game mechanic.</p>
@@ -1109,10 +1138,10 @@
 <p class="admonition-title">Todo</p>
 <p>This feature is in development</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">Description</label><label for="__tabbed_13_2">Implementation</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">Description</label><label for="__tabbed_14_2">Implementation</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Everything freezes for some period of time. Sometimes the game may recover and "skip time" or resume normally. </p>
+<p>Everything freezes for some period of time. Sometimes the game may recover and "skip time" or resume normally.</p>
 </div>
 <div class="tabbed-block">
 <p>If skip time, a frame can be re-rendered to the screen for the period, otherwise all relevant scripts need to be disabled.</p>
@@ -1125,13 +1154,13 @@
 <p class="admonition-title">Todo</p>
 <p>This feature is in development</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">Description</label><label for="__tabbed_14_2">Implementation</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">Description</label><label for="__tabbed_15_2">Implementation</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The player can no longer take any action. Similar to a <a href="#freezing">Freezing</a> bug, however in this case only the player character is stuck.</p>
 </div>
 <div class="tabbed-block">
-<p>Disable the player controller, each action becomes 'none'. </p>
+<p>Disable the player controller, each action becomes 'none'.</p>
 </div>
 </div>
 </div>
@@ -1141,10 +1170,10 @@
 <p class="admonition-title">Todo</p>
 <p>This feature is in development</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="15:3"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><input id="__tabbed_15_3" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">Description</label><label for="__tabbed_15_2">Implementation</label><label for="__tabbed_15_3">Example</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:3"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><input id="__tabbed_16_3" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">Description</label><label for="__tabbed_16_2">Implementation</label><label for="__tabbed_16_3">Example</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>An object in the scene suddenly has a large force applied to it causing it shoot across the screen. This can also happen to he player character cause it to fly into the sky or off in some random direction. This most commonly happens when an dynamic (physics based) object gets trapped between two non-physics based objects, or if the time delta in the physics engine is to large. </p>
+<p>An object in the scene suddenly has a large force applied to it causing it shoot across the screen. This can also happen to he player character cause it to fly into the sky or off in some random direction. This most commonly happens when an dynamic (physics based) object gets trapped between two non-physics based objects, or if the time delta in the physics engine is to large.</p>
 </div>
 <div class="tabbed-block">
 <p>Squash an object between too static objects, or randomly apply a large force to the object/player.</p>
@@ -1163,7 +1192,7 @@
 <p class="admonition-title">Todo</p>
 <p>This feature is in development</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">Description</label><label for="__tabbed_16_2">Implementation</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="17:2"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><input id="__tabbed_17_2" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">Description</label><label for="__tabbed_17_2">Implementation</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>A</p>

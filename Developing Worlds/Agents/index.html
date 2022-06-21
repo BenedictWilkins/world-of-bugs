@@ -491,8 +491,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/0_Build/" class="md-nav__link">
-        Build
+      <a href="../../Reference/Python/0_build/" class="md-nav__link">
+        build
       </a>
     </li>
   
@@ -505,8 +505,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/1_Environment/" class="md-nav__link">
-        Environment
+      <a href="../../Reference/Python/1_environment/" class="md-nav__link">
+        environment
       </a>
     </li>
   
@@ -519,8 +519,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/2_Environment.sidechannel/" class="md-nav__link">
-        Environment.sidechannel
+      <a href="../../Reference/Python/2_environment.sidechannel/" class="md-nav__link">
+        environment.sidechannel
       </a>
     </li>
   
@@ -533,8 +533,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/3_Utils/" class="md-nav__link">
-        Utils
+      <a href="../../Reference/Python/3_utils/" class="md-nav__link">
+        utils
       </a>
     </li>
   
@@ -803,8 +803,8 @@
 <p>The bug mask camera - which renders a mask over this main camera showing where bugs are present if any.</p>
 </li>
 </ul>
-<p>Rather than rendering to the screen, each camera renders to a <code>RenderTexture</code>. The <code>RenderTexture</code> is used by the agent's <code>RenderTextureSensor</code>. </p>
-<p>In addition to the main and bug mask sensors, other sensors may be added to the agent. One straight forward way of doing this is via the <code>Observable</code> attribute. When properties are decorated with the attribute, their value will be retrieved as part of the agent's observation. </p>
+<p>Rather than rendering to the screen, each camera renders to a <code>RenderTexture</code>. The <code>RenderTexture</code> is used by the agent's <code>RenderTextureSensor</code>.</p>
+<p>In addition to the main and bug mask sensors, other sensors may be added to the agent. One straight forward way of doing this is via the <code>Observable</code> attribute. When properties are decorated with the attribute, their value will be retrieved as part of the agent's observation.</p>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyAgent</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">WorldOfBugs</span><span class="p">.</span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">    </span><span class="na">[Observable(&quot;Position&quot;)]</span><span class="w"></span>
@@ -817,17 +817,17 @@
 <p>The agents observations can be found in Python as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 
-<span class="n">observation</span> 
+<span class="n">observation</span>
 <span class="o">&gt;&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span> <span class="o">//</span> <span class="n">main</span> <span class="n">camera</span> <span class="n">view</span>
 
-<span class="n">info</span> 
-<span class="o">&gt;&gt;</span> <span class="n">Position</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span> <span class="o">//</span> <span class="n">position</span><span class="p">,</span> <span class="n">shape</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> 
+<span class="n">info</span>
+<span class="o">&gt;&gt;</span> <span class="n">Position</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span> <span class="o">//</span> <span class="n">position</span><span class="p">,</span> <span class="n">shape</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
 <span class="o">&gt;&gt;</span> <span class="n">Rotation</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span> <span class="o">//</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">shape</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
 <span class="o">&gt;&gt;</span> <span class="n">Mask</span> <span class="p">:</span>     <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span> <span class="o">//</span> <span class="n">bug</span> <span class="n">mask</span> <span class="n">view</span>
 </code></pre></div>
 <p>Observations other than the main camera observation are part of <code>info</code> to adhere to OpenAI gym's API guidelines.</p>
 <h2 id="actuators"><a class="toclink" href="#actuators">Actuators</a></h2>
-<p>The actions an agent can perform are usually defined as part of the agents <code>BehaviourParameters</code> (see ML-Agents documentation for details), however WOB provides a simpler mechanism using <code>ActionAttributes</code>. </p>
+<p>The actions an agent can perform are usually defined as part of the agents <code>BehaviourParameters</code> (see ML-Agents documentation for details), however WOB provides a simpler mechanism using <code>ActionAttributes</code>.</p>
 <p><code>Action</code> attribute is similar to <code>Observable</code> but decorates actions rather than observations. When defining a new <code>Agent</code> class, the <code>Action</code> attribute can be added to methods as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyAgent</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">WorldOfBugs</span><span class="p">.</span><span class="n">Agent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
@@ -851,13 +851,13 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>This will automatically configure the agent and define a discrete action space containing four actions. Actions are ordered by the appearance in the source file. Taking the action <code>forward</code> in Python corresponds to <code>env.step(1)</code>. </p>
+<p>This will automatically configure the agent and define a discrete action space containing four actions. Actions are ordered by the appearance in the source file. Taking the action <code>forward</code> in Python corresponds to <code>env.step(1)</code>.</p>
 <h2 id="behaviours-heuristics"><a class="toclink" href="#behaviours-heuristics">Behaviours &amp; Heuristics</a></h2>
-<p>Both Python and C# can be used to create agent behaviours. </p>
+<p>Both Python and C# can be used to create agent behaviours.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">C#</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>WOB uses OpenAI gym to interface with the environment, behaviours need only provide their actions to <code>env.step</code>. </p>
+<p>WOB uses OpenAI gym to interface with the environment, behaviours need only provide their actions to <code>env.step</code>.</p>
 </div>
 <div class="tabbed-block">
 <p>In C# a behaviour may be written as a heuristic, or using a neural network. To explore this further see the ML-Agents documentation.</p>
@@ -865,7 +865,7 @@
 </div>
 </div>
 <h3 id="gathering-observations-with-python"><a class="toclink" href="#gathering-observations-with-python">Gathering Observations with Python</a></h3>
-<p>Sometimes it is convenient to connect to an environment with the gym interface but to make use of a C# behaviour. ML-Agents does not currently support this, but it can be achieved by setting behaviours using the WOB API. The actions taken by the C# behaviour can be obtained by observing an agent property as follows: </p>
+<p>Sometimes it is convenient to connect to an environment with the gym interface but to make use of a C# behaviour. ML-Agents does not currently support this, but it can be achieved by setting behaviours using the WOB API. The actions taken by the C# behaviour can be obtained by observing an agent property as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="na">[Observable(&quot;Action&quot;)]</span><span class="w"></span>
 <span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">GetStoredActionBuffers</span><span class="p">().</span><span class="n">DiscreteActions</span><span class="p">[</span><span class="m">0</span><span class="p">];</span><span class="w"> </span><span class="p">}}</span><span class="w"></span>
 </code></pre></div>

@@ -477,8 +477,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/0_Build/" class="md-nav__link">
-        Build
+      <a href="../../Reference/Python/0_build/" class="md-nav__link">
+        build
       </a>
     </li>
   
@@ -491,8 +491,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/1_Environment/" class="md-nav__link">
-        Environment
+      <a href="../../Reference/Python/1_environment/" class="md-nav__link">
+        environment
       </a>
     </li>
   
@@ -505,8 +505,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/2_Environment.sidechannel/" class="md-nav__link">
-        Environment.sidechannel
+      <a href="../../Reference/Python/2_environment.sidechannel/" class="md-nav__link">
+        environment.sidechannel
       </a>
     </li>
   
@@ -519,8 +519,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Reference/Python/3_Utils/" class="md-nav__link">
-        Utils
+      <a href="../../Reference/Python/3_utils/" class="md-nav__link">
+        utils
       </a>
     </li>
   
@@ -762,9 +762,9 @@
 
 
 <h1 id="quick-start"><a class="toclink" href="#quick-start">Quick Start</a></h1>
-<p>Clone the GitHub repository: </p>
+<p>Clone the GitHub repository:</p>
 <p><code>git clone https://github.com/BenedictWilkins/world-of-bugs.git</code></p>
-<p>While in the same directory, install with: </p>
+<p>While in the same directory, install with:</p>
 <p><code>python -m pip install world-of-bugs</code></p>
 <p>From here there are two options: use a standalone build, or use the unity editor. If you want to use the unity editor, skip to the <a href="#getting-started-with-unity">next section</a>.</p>
 <h2 id="getting-started-with-standalone-builds"><a class="toclink" href="#getting-started-with-standalone-builds">Getting Started With Standalone Builds</a></h2>
@@ -777,17 +777,17 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">worldofbugs</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">BuildResolver</span><span class="o">.</span><span class="n">builds</span><span class="p">)</span>   <span class="c1"># list all avaliable environments</span>
 
 <span class="c1"># make the environment</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">worldofbugs</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;WOB/World-v1&#39;</span><span class="p">)</span> 
+<span class="n">env</span> <span class="o">=</span> <span class="n">worldofbugs</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;WOB/World-v1&#39;</span><span class="p">)</span>
 
 <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span> <span class="c1"># advance simulation 1000 steps</span>
   <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span> <span class="c1"># take a random action</span>
   <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span> <span class="c1">#render the game screen, requires pygame installation</span>
 </code></pre></div>
-<p>If everything worked correctly you should see a build printout like: </p>
+<p>If everything worked correctly you should see a build printout like:</p>
 <p><code>[~/Downloads/builds/Standalone-Linux-World-v1/World-v1.x86_64]</code></p>
 <p>If you have <code>pygame</code> installed (<code>pip install pygame</code>) something like the following should appear in your <code>pygame</code> window.</p>
-<p><img src="../imgs/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
+<p><img src="../imgs/pygame-example.gif" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
 <p>You may also notice that a small Unity window popped up, unfortunately this is required to ensure the agent's observations are correctly rendered, see <a href="https://answers.unity.com/questions/1672109/native-texture-pointer-returns-0-in-headless-build.html">here</a> for details.</p>
 <h3 id="build-search"><a class="toclink" href="#build-search">Build Search</a></h3>
 <p>When searching for builds the <code>BuildResolver</code> will search one directory deep. The typical directory structure should look something like the following:</p>
@@ -807,23 +807,23 @@
 <p>WOB is now available as a unity package and should be used as such. These instructions will be updated shortly.</p>
 </div>
 <p>Rather than using a standalone build, it is also possible to connect directly to the Unity editor. This requires the WOB project to be open in unity.</p>
-<p>To avoid issues, install Unity version 2020.3.25f1 which can be found in the <a href="https://unity3d.com/get-unity/download/archive">unity download archive</a> using the latest version of <a href="https://unity3d.com/get-unity/download">UnityHub</a>. </p>
-<p>Once installed, locate the <code>UnityProject</code> folder in your <code>worldofbugs</code> install directory, add it as a new project in UnityHub and open it in the editor. </p>
-<p><img src="../imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
+<p>To avoid issues, install Unity version 2020.3.25f1 which can be found in the <a href="https://unity3d.com/get-unity/download/archive">unity download archive</a> using the latest version of <a href="https://unity3d.com/get-unity/download">UnityHub</a>.</p>
+<p>Once installed, locate the <code>UnityProject</code> folder in your <code>worldofbugs</code> install directory, add it as a new project in UnityHub and open it in the editor.</p>
+<p><img src="../imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
 <p>To connect to the editor, run the following script and then press the play button in the editor window.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">worldofbugs</span>
 <span class="c1"># make the environment, None indicates we want to connect to the editor</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">worldofbugs</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> 
+<span class="n">env</span> <span class="o">=</span> <span class="n">worldofbugs</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 
 <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span> <span class="c1"># advance simulation 1000 steps</span>
   <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span> <span class="c1"># take a random action, this will happen in the editor</span>
 </code></pre></div>
 <p>You should see the agent (white sphere) start to move around the level in the scene view, or a message like the one below in the game view.</p>
-<p><img src="../imgs/NoCamerasRendering.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
+<p><img src="../imgs/NoCamerasRendering.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
 <p>By default, the game view is not rendered as no cameras are in use. To look through the eyes of the agent, in the Unity editor go to <code>Window -&gt; Preview -&gt; RenderTextureCameraPreview</code>.</p>
-<p><img src="../imgs/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"> </p>
-<p>The game view can be safely closed in favour of this new view. </p>
+<p><img src="../imgs/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
+<p>The game view can be safely closed in favour of this new view.</p>
 
               
             </article>

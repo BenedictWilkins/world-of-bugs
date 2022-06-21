@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/BugZoo/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Developing%20Worlds/Agents/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/GettingStarted/QuickStart/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/GettingStarted/Live%20Configuration/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/C-Sharp/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Examples/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Examples/GettingStuck-v0/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Examples/Maze-v0/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Examples/World-v1/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Examples/World-v2/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/0_Build/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/0_build/</loc>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/1_Environment/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/1_environment/</loc>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/2_Environment.sidechannel/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/2_environment.sidechannel/</loc>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/3_Utils/</loc>
-         <lastmod>2022-05-13</lastmod>
+         <loc>https://benedictwilkins.github.io/world-of-bugs/Reference/Python/3_utils/</loc>
+         <lastmod>2022-06-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

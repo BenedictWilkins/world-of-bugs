@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://benedictwilkins.github.io/world-of-bugs/Reference/Python/1_Environment/">
+        <link rel="canonical" href="https://benedictwilkins.github.io/world-of-bugs/Reference/Python/0_build/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
     
       
-        <title>Environment - World of Bugs</title>
+        <title>build - World of Bugs</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#environment" class="md-skip">
+        <a href="#build" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Environment
+              build
             
           </span>
         </div>
@@ -416,20 +416,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../0_Build/" class="md-nav__link">
-        Build
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -442,12 +428,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Environment
+          build
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Environment
+        build
       </a>
       
         
@@ -466,16 +452,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-worldofbugsenvironment" class="md-nav__link">
-    Module worldofbugs.environment
+  <a href="#module-build" class="md-nav__link">
+    Module build
   </a>
   
-    <nav class="md-nav" aria-label="Module worldofbugs.environment">
+    <nav class="md-nav" aria-label="Module build">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#worldofbugsenvironmentmake" class="md-nav__link">
-    worldofbugs.environment.make
+  <a href="#__status__" class="md-nav__link">
+    __status__
   </a>
   
 </li>
@@ -500,8 +486,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../2_Environment.sidechannel/" class="md-nav__link">
-        Environment.sidechannel
+      <a href="../1_environment/" class="md-nav__link">
+        environment
       </a>
     </li>
   
@@ -514,8 +500,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../3_Utils/" class="md-nav__link">
-        Utils
+      <a href="../2_environment.sidechannel/" class="md-nav__link">
+        environment.sidechannel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_utils/" class="md-nav__link">
+        utils
       </a>
     </li>
   
@@ -716,16 +716,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#module-worldofbugsenvironment" class="md-nav__link">
-    Module worldofbugs.environment
+  <a href="#module-build" class="md-nav__link">
+    Module build
   </a>
   
-    <nav class="md-nav" aria-label="Module worldofbugs.environment">
+    <nav class="md-nav" aria-label="Module build">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#worldofbugsenvironmentmake" class="md-nav__link">
-    worldofbugs.environment.make
+  <a href="#__status__" class="md-nav__link">
+    __status__
   </a>
   
 </li>
@@ -749,31 +749,38 @@
                 
 
 
-<h1 id="environment"><a class="toclink" href="#environment">Environment</a></h1>
-<p><a id="worldofbugs.environment"></a></p>
-<h2 id="module-worldofbugsenvironment"><a class="toclink" href="#module-worldofbugsenvironment">Module worldofbugs.environment</a></h2>
-<p>The world of bugs environment API. For most usecases <a href="#worldofbugs.environment.make"><code>make</code></a> is sufficient.</p>
-<p><a id="worldofbugs.environment.make"></a></p>
-<h3 id="worldofbugsenvironmentmake"><a class="toclink" href="#worldofbugsenvironmentmake">worldofbugs.environment.make</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="n">env_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-         <span class="n">worker</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-         <span class="n">time_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-         <span class="n">log_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-         <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
-<p>Make a <code>worldofbugs</code> environment. This is different from the default <code>gym.make</code> function as it hooks directly into the underlying Unity environments. This allows one to connect to the a Unity Editor as well as any <code>worldofbugs</code> build that may or may not be registered with <code>gym</code>. Any builds that exist in the default builds directory for the <code>worldofbugs</code> package may be loaded using <code>gym.make</code>.</p>
-<p><strong>Arguments</strong>:</p>
-<ul>
-<li><code>env_id</code> <em>str</em> - unique environment ID, follows the <code>gym</code> format e.g. <code>WoB/World-v1</code>. A value of <code>None</code> will attempt to connect to a Unity Editor instance.</li>
-<li><code>worker</code> <em>int, optional</em> - Worker process to run the environment. This allows multiple environments to run in parallel. Defaults to 0.</li>
-<li><code>time_scale</code> <em>float, optional</em> - Simulation speed. WARNING: this can break the game physics, only change if you know what you are doing. Defaults to 1.0.</li>
-<li><code>log_folder</code> <em>str, optional</em> - directoy to log to. Defaults to None.</li>
-<li><code>debug</code> <em>bool, optional</em> - Get logging messages from unity program and write them to Python stdout. Defaults to True.</li>
-</ul>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>gym.Env</code> - the <code>worldofbugs</code> environment.</li>
-</ul>
+<h1 id="build"><a class="toclink" href="#build">build</a></h1>
+<p><a id="worldofbugs.build"></a></p>
+<h2 id="module-build"><a class="toclink" href="#module-build">Module build</a></h2>
+<p>Build all of the unity environments available in <code>UnityProject</code>. Environment builds are placed in <code>worldofbugs/builds</code>. Building requires unity editor version <code>UNITY_VERSION</code> and the unity mlagents plugin <code>ML_AGENTS_VERSION</code>, for details see <a href="https://github.com/Unity-Technologies/ml-agents">here</a>. Currently a build corresponds to a particular scene and can only be built for linux.Alternatively, you can download builds from <a href="https://www.kaggle.com/benedictwilkinsai/world-of-bugs">here</a>. Building requires the following:
+<div class="highlight"><pre><span></span><code>UNITY_VERSION = &quot;2020.3.25f1&quot;
+ML_AGENTS_VERSION = &quot;2.1.0-exp1 (Preview)&quot;
+</code></pre></div></p>
+<p><a id="worldofbugs.build.__status__"></a></p>
+<h4 id="__status__"><a class="toclink" href="#__status__">__status__</a></h4>
+<p>DEPRECATED: TODO update to match v1.0</p>
+<p>import argparse
+import os
+import subprocess</p>
+<p>UNITY_PROJECT_DIR = "UnityProject"</p>
+<p>parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('--path', '-p', type=str, required=True,
+help="Path of the unity editor to use (please use version 2019.4.25f1 to avoid issues). The editor path can be found in the Unity Hub Settings. Example: '.../editors/2019.4.25f1/Editor/Unity'")</p>
+<p>args = parser.parse_args()</p>
+<p>project_path = os.path.split(<strong>file</strong>)[0]
+project_path = os.path.join(project_path, "..", UNITY_PROJECT_DIR)
+project_path = os.path.abspath(project_path)
+command = f"{args.path} -projectpath {project_path} -executeMethod Build.Start"
+print(f"BUILDING UNITY SCENES USING COMMAND: {command}") # TODO use Logger
+proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+(out, err) = proc.communicate()
+if out is not None:
+if len(out) &gt; 0:
+print(out)
+if err is not None:
+if len(err) &gt; 0:
+print(err)
+print("DONE.")</p>
 
               
             </article>
@@ -787,7 +794,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../0_Build/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Build" rel="prev">
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: worldofbugs" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -796,20 +803,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Build
+              worldofbugs
             </div>
           </div>
         </a>
       
       
         
-        <a href="../2_Environment.sidechannel/" class="md-footer__link md-footer__link--next" aria-label="Next: Environment.sidechannel" rel="next">
+        <a href="../1_environment/" class="md-footer__link md-footer__link--next" aria-label="Next: environment" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Environment.sidechannel
+              environment
             </div>
           </div>
           <div class="md-footer__button md-icon">
