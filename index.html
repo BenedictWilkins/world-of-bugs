@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://benedictwilkins.github.io/world-of-bugs/">
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.0">
     
     
       
@@ -19,11 +19,12 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.644de097.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.69437709.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -37,7 +38,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,11 +79,11 @@
     <a href="." title="World of Bugs" class="md-header__button md-logo" aria-label="World of Bugs" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -131,7 +132,7 @@
     <a href="." title="World of Bugs" class="md-nav__button md-logo" aria-label="World of Bugs" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     World of Bugs
@@ -814,24 +815,24 @@
 <p>Anyone who has played a game has encountered a bug at some point and probably knows that they come in all shapes and sizes. During development, the development and Quality Assurance (QA) teams take costly steps to try and prevent bugs from making it to release. Many strategies are used, ranging from <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit Testing</a> to <a href="https://en.wikipedia.org/wiki/Game_testing">Functional Testing</a>, some of which can be (at least partially) automated. ABD attempts to automate some of the more time-consuming aspects of video game testing, this typically includes game playing, but also the identification of bugs themselves.</p>
 <hr />
 <h2 id="automated-game-playing"><a class="toclink" href="#automated-game-playing">Automated Game Playing</a></h2>
-<p>A large part of ABD involves devising systems that can automatically play and explore video game just like a human game tester would. An automated game player is referred to as an <em>agent</em>. These game playing agents take actions in the game environment in the same way that a human would, using a virtual game-pad and observe what happens, and taking subsequent actions in order to achieve a predefined goal.</p>
+<p>A large part of ABD involves devising systems that can automatically play and explore video game just like a human game tester would. An automated game player is referred to as an <em>agent</em>. These game playing agents take actions in the game environment in the same way that a human would using a virtual game-pad. The agent observes what happens and acts to achieve some predefined goal (e.g. complete the level).</p>
 <p>Perhaps unsurprisingly developing game playing agents can be very difficult. Games are often made to present some challenge to the player with a variety of obstacles, puzzles and enemies. Only in the last few years have agents been able to play with any video games with any real skill. Early attempts at playing <a href="https://arxiv.org/abs/1312.5602">Atari 2600 games with deep reinforcement learning</a> started a trend in researchers attempting to tackle ever more complex games. More recently progress has been made on games that are widely recognised as requiring significant skill such as <a href="https://arxiv.org/abs/1912.06680">Dota2</a> and <a href="https://www.nature.com/articles/s41586-019-1724-z">Starcraft</a>. These systems still require an unrealistic amount of resources to be practical for testing video games, nevertheless they are perhaps an early indication that ABD may form part of the standard toolkit for video game testing in the not so far future.</p>
 <p><img src="imgs/Atari.gif"  width=50% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
-<p>In the majority of research into automated game playing an agent has a goal, usually to win. In the Atari 2600 example, the goal is specified using a reward that is derived from the in-game score. For ABD, what is the goal? How should it be specified? At a high level, the goal is to explore the game to find bugs. The agent should have good <em>coverage</em>, meaning that it should explore as much of the game as possible, visit all the areas, complete all the levels, fight all the enemies etc. We might think of the ABD agent as the most eager completionist. Not only does it want to find all the collectables, but also see everything there is to see. In this sense, the agent is a game player of the most hardcore variety.</p>
+<p>In the majority of research in automated game playing an agent has a goal, usually to win. In the Atari 2600 example, the goal is specified using a reward that is derived from the in-game score. For ABD, what is the goal? How should it be specified? At a high level, the goal is to explore the game to find bugs. The agent should have good <em>coverage</em>, meaning that it should explore as much of the game as possible, visit all the areas, complete all the levels, fight all the enemies etc. We might think of the ABD agent as the most eager completionist. Not only does it want to find all the collectables, but also see everything there is to see. In this sense, the agent is a game player of the most hardcore variety.</p>
 <p>The question of how to specify the goal of such an agent is an open one. Placing this question aside for a moment in favour of a more immediate problem, how is an agent to know that is has encountered a bug on its travels through its favourite game? This is the problem of bug identification.</p>
 <hr />
 <h2 id="automated-bug-identification"><a class="toclink" href="#automated-bug-identification">Automated Bug Identification</a></h2>
 <p>The second facet to the problem of ABD is that of bug identification. When a human tester encounters a bug, how to they know? It could just be some wacky game mechanic, perhaps horses are supposed to do handstands.</p>
 <p><img src="imgs/the-witcher-3-roach.png"  width=80% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
-<p>The waters become a murky around this point. We might formally say that a human tester has a specification that they work from that explicitly states "horses don't do handstands", but this just isn't the case. In reality human testers use their vast experience both in-game and in the real world, along with a high-level description of the intended behaviour of the game to decide whether the horse is behaving correctly. The high level description is not an exhaustive list of every interaction possible, and is written in plain language with all its vagaries.</p>
-<p>How then might an agent go about identifying bugs in its experience?</p>
+<p>The waters become a murky around this point. A human tester might have access to a specification that they work from that explicitly states "horses don't do handstands". In practice this tends not to be the case. Human testers use their vast experience both in-game and in the real world, along with a high-level description of the intended behaviour of the game to decide whether the horse is behaving correctly. The high level description is not an exhaustive list of every interaction possible, and is written in plain language with all its vagaries.</p>
+<p>How then might an agent go about identifying bugs?</p>
 <h3 id="rules"><a class="toclink" href="#rules">Rules</a></h3>
-<p>A common approach, which is sufficient in many cases, is to use rules, conditions or <em>guards</em> to determine whether a particular interaction was valid. An example might be to check the players y-position relative to the ground to ensure they haven't fallen out of the world. This kind of checking is hardly automated -- the automation comes from the automatic game playing, and is limited to cases whether the interaction is easily specified. A more difficult case might be to check whether the scene is rendered correctly, or that the player is not able to see things they shouldn't. Traditionally these kinds of problems are left to the human testers to find.</p>
+<p>A common approach, which is sufficient in many cases, is to use rules, conditions or <em>guards</em> to determine whether a particular interaction is valid. An example might be to check the players y-position relative to the ground to ensure they haven't fallen out of the world. This kind of checking is hardly automated, the real automation comes from the automatic game playing, and is limited to cases whether the interaction is easily specified. A more difficult case might be to check whether the scene is rendered correctly, or that the player is not able to see things they shouldn't. Traditionally these kinds of problems are left to the human testers to find.</p>
 <h3 id="learning"><a class="toclink" href="#learning">Learning</a></h3>
-<p>Learning is a promising new avenue for detecting issues. Machine learning, and in particular machine vision is already being used to detect unusual (anomalous) situations in video footage in a range of domains from monitoring CCTV monitoring (how scary) to filtering inappropriate content on popular video streaming sites. Now, this technology is being explored for the automatic identification of bugs in video games. The ideal is simple at its core, but challenging to implement in practice, it is as follows.</p>
+<p>Learning is a promising new avenue for detecting issues. Machine learning, and in particular machine vision is already being used to detect unusual (anomalous) situations in video footage in a range of domains from monitoring CCTV monitoring to filtering inappropriate content on popular video streaming sites. Now, this technology is being explored for the automatic identification of bugs in video games. The ideal is simple at its core, but challenging to implement in practice, it is as follows.</p>
 <p>Using the vast amount of observations collected as the agent plays the game, it can learn an internal model of the world it finds itself in. The agent develops an expectation about what <em>should</em> happen, and can compare this expectation with what actually happens, if the expectation is not met then one of two things has happened:</p>
 <ol>
-<li>The agents model was wrong, it needs to be updated.</li>
+<li>The agent's model was wrong, it needs to be updated.</li>
 <li>The world was wrong, it needs to be updated.</li>
 </ol>
 <p>The question now is, how to distinguish between case 1 and case 2? This is an open issue, but it is clear that the agent needs some additional information that it cannot learn just by playing the game. For the human tester, this information is in the broader development and design context - the intended behaviour. This information can come in the form of <a href="https://en.wikipedia.org/wiki/Inductive_bias">Inductive Bias</a> where certain assumptions about the statistical properties or features of bugs can inform the agent. Inductive biases are akin to special 'meta'-rules that are subtly encoded into the learning algorithm.</p>
@@ -853,8 +854,12 @@
 <p>The above constitute some of the most challenging open problems in ABD and in AI more broadly. The aim of the World of Bugs platform is to empower researchers to begin tackling associated problems and develop more sophisticated ABD agents.</p>
 <p style="text-align:center"><a class="md-button" href="GettingStarted/QuickStart">Get Started with World of Bugs</a></p>
 
+
+
+
               
             </article>
+            
           </div>
         </div>
         
@@ -862,7 +867,8 @@
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
       
         
@@ -876,7 +882,7 @@
             </div>
           </div>
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
           </div>
         </a>
       
@@ -902,10 +908,11 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.indexes", "navigation.sections"], "search": "assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.indexes", "navigation.sections"], "search": "assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.c44cc438.min.js"></script>
+      <script src="assets/javascripts/bundle.9c69f0bc.min.js"></script>
       
     
   </body>
