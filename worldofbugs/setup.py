@@ -26,8 +26,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         "protobuf==3.20.*",
-        "gym>=0.21.0",
-        "gym_unity",
+        "gym==0.21.0",
+        "gym_unity==0.27.0",
         "omegaconf",
         "loguru",
         "numpy",

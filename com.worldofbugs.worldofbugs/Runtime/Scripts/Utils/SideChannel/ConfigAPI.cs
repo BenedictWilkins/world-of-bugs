@@ -42,7 +42,12 @@ namespace WorldOfBugs {
                 set {
                     bool v = Convert.ToBoolean(value); // turn on this heuristic behaviour.
                     Agent.SetHeuristic(Heuristic);
-                    Debug.Log($"{Agent} is using Heuristic {Heuristic.GetType().Name}.");
+
+                    if(Heuristic != null) {
+                        Debug.Log($"{Agent} is using Heuristic {Heuristic.GetType().Name}.");
+                    } else {
+                        Debug.Log($"{Agent} is using a Python behaviour.");
+                    }
                 }
             }
         }
@@ -59,11 +64,19 @@ namespace WorldOfBugs {
         public Dictionary<string, PolicyConfigurator> Heuristics {
             // TODO support multiple agents...
             get {
-                return controller.Agents[0].GetComponents<HeuristicComponent>().ToDictionary(
-                           x => x.GetType().Name,
+                var heuristics = controller.Agents[0].GetComponents<HeuristicComponent>().ToDictionary(
+                                     x => x.GetType().Name,
                 x => new PolicyConfigurator() {
                     Agent = controller.Agents[0], Heuristic = x
                 });
+                // add the null policy (i.e. use Python)
+                heuristics.Add("Python", new PolicyConfigurator() {
+                    Agent = controller.Agents[0], Heuristic = null
+                });
+                heuristics.Add("None", new PolicyConfigurator() {
+                    Agent = controller.Agents[0], Heuristic = null
+                }); // legacy
+                return heuristics;
             }
         }
 

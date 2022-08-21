@@ -8,20 +8,14 @@
 
 World of Bugs is a test platform for Automated Bug Detection (ABD) research.
 
-## READER NOTE:
-
-Major refactoring is happening in the dev branch of this repositroy in preparation for version 1.0 release. Any documentation is in the process of being updated for this branch.
-
 ### Documentation
 
 Documentation can be found [here](https://benedictwilkins.github.io/world-of-bugs/).
 
 ### Datasets
 
-Datasets have been created using our test environment (World-v1), a pre-built version can be found [here](https://www.kaggle.com/benedictwilkinsai/world-of-bugs).
-
 * Training data is available for download [here](https://www.kaggle.com/benedictwilkinsai/world-of-bugs-normal)
-* Test data is avaliable for download [here](https://www.kaggle.com/benedictwilkinsai/world-of-bugs-test)
+* Test data is available for download [here](https://www.kaggle.com/benedictwilkinsai/world-of-bugs-test)
 
 ### Experiments
 
@@ -29,4 +23,15 @@ Experiments on the initial version of the test environment (World-v1) can be fou
 
 ### Paper
 
-LINKS COMING SOON
+Please consider citing our work if you use WOB in your research.
+
+```
+@article{Wilkins2022,
+  title = {World of Bugs: A Platform for Automated Bug Detection in 3D Video Games},
+  author = {Wilkins, Benedict and Stathis, Kostas},
+  doi = {10.48550/ARXIV.2206.11037},
+  url = {https://arxiv.org/abs/2206.11037},
+  year = {2022},
+}
+```
+

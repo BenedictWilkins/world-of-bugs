@@ -67,6 +67,7 @@ public class CameraHistory : MonoBehaviour {
             _ptindex = (_ptindex +  1) % n;
             // save this frame for use in the history, note that this history is dependant on delta, but is independant of the application framerate.
             Graphics.Blit(src, _previousTextures[_ptindex]);
+            //Debug.Log($"{_previousTextures[_ptindex]} {Time.time}");
         }
     }
 

@@ -7,12 +7,8 @@ namespace WorldOfBugs {
     public class BlackScreen : Bug {
 
         // TODO support a list of cameras + colours to fill
-        [SerializeField, Tooltip("Camera RenderTexture to apply the blackscreen to.")]
-        private RenderTexture _cameraRenderTexture;
-        [SerializeField, Tooltip("Bug Mask RenderTexture that will label black screen.")]
-        private RenderTexture _bugMaskRenderTexture;
 
-        [MinMaxSlider(0.01f, 0.1f), Tooltip("Number of seconds to fill the screen black.")]
+        [MinMaxSlider(0.01f, 1f), Tooltip("Number of seconds to fill the screen black.")]
         public Vector2 frameRange = new Vector2(0.05f, 0.1f);
 
         [MinMaxSlider(0f, 10f), Tooltip("Number of seconds to flicker.")]
@@ -32,10 +28,10 @@ namespace WorldOfBugs {
             // TODO support multiple cameras?
             fillScreens = new FillScreen[2];
             Camera[] cameras = null;
-            cameras = CameraExtensions.GetCamerasByRenderTexture(_cameraRenderTexture);
+            cameras = CameraExtensions.GetObservationCameras();
             fillScreens[0] = cameras[0].gameObject.AddComponent<FillScreen>();
             fillScreens[0].color = new Color(0f, 0f, 0f, 1f);
-            cameras = CameraExtensions.GetCamerasByRenderTexture(_bugMaskRenderTexture);
+            cameras = CameraExtensions.GetBugMaskCamera();
             fillScreens[1] = cameras[0].gameObject.AddComponent<FillScreen>();
             fillScreens[1].color = (Color) bugType;
             StartCoroutine(FlickerToggerCoroutine);
@@ -108,9 +104,11 @@ namespace WorldOfBugs {
 
             public void OnRenderImage(RenderTexture src, RenderTexture dst) {
                 if(enabled) {
+                    RenderTexture.active = dst;
+                    //Debug.Log($"fill screen {_color} {src} {dst}");
                     Graphics.Blit(_solid, dst);
                 }  else {
-                    Graphics.Blit(src, dst);
+                    // Graphics.Blit(src, dst);
                 }
             }
         }

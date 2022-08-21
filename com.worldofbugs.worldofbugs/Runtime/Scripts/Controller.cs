@@ -26,6 +26,7 @@ public class Controller : MonoBehaviour {
     private LogSideChannel logChannel;
 
     void Awake() {
+        enabled = true; // controller should always be enabled...
         // configuration side channel
         configChannel = new ConfigSideChannel(this);
         SideChannelManager.RegisterSideChannel(configChannel);

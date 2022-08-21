@@ -47,13 +47,12 @@ namespace WorldOfBugs {
         }
 
         public virtual void SetHeuristic(HeuristicComponent heuristic) {
-            if(_heuristic != null) {
-                _heuristic.enabled = false;
-                _heuristic.enabled = false;
-            }
-
+            _heuristic.enabled = false;
             _heuristic = heuristic;
-            _heuristic.enabled = true;
+
+            if(_heuristic != null) {
+                _heuristic.enabled = true;
+            }
         }
 
         public override sealed void Heuristic(in ActionBuffers buffer) {

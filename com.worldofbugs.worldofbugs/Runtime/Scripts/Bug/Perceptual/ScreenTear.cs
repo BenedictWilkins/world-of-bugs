@@ -58,9 +58,9 @@ namespace WorldOfBugs {
 
         void Awake() {
             TearTogglerCoroutine = TearToggler();
-            Camera[] cameras = CameraExtensions.GetCamerasByRenderTexture(_cameraRenderTexture);
+            Camera[] cameras = CameraExtensions.GetObservationCameras();
             mainCamera = cameras[0];
-            cameras = CameraExtensions.GetCamerasByRenderTexture(_bugMaskRenderTexture);
+            cameras = CameraExtensions.GetBugMaskCamera();
             bugMaskCamera = cameras[0];
             cameraHistory = mainCamera.gameObject.GetComponent<CameraHistory>();
 
@@ -152,11 +152,12 @@ namespace WorldOfBugs {
 
             void OnRenderImage(RenderTexture src, RenderTexture dst) {
                 if(enabled && Time.frameCount > 10 + n) {
+                    //Debug.Log($"{_material.shader}");
                     _material.SetTexture("_TearTex", _history[n - 1]);
                     //_material.SetTexture("_MainTex", src);
-                    Graphics.Blit(src, dst, _material);
+                    Graphics.Blit(src, dst, _material, -1);
                 } else {
-                    Graphics.Blit(src, dst);
+                    Graphics.Blit(src, dst); //builds dont like this..?
                 }
             }
         }
@@ -177,7 +178,7 @@ namespace WorldOfBugs {
                     _material.SetTexture("_TearTex", _history[n - 1]); // previous rendering of main camera
                     Graphics.Blit(src, dst, _material);
                 } else {
-                    Graphics.Blit(src, dst);
+                    Graphics.Blit(src, dst); //builds dont like this?
                 }
             }
         }

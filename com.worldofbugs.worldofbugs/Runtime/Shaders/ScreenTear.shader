@@ -45,8 +45,11 @@
                 // check if in region of a screen tear
                 float tmax = step(i.uv.y, _TearMax); // <=
                 float tmin = step(_TearMin, i.uv.y); // <=
+                //float tmax = step(i.uv.y, 0.2); // <=
+                //float tmin = step(0.1, i.uv.y); // <=
                 float v = tmax * tmin; // 1 its between the tear bounds, 0 otherwise
                 return lerp(col2, col1, v);
+                //return lerp(col2, (1,1,1,1), v);
                 //return col2;
             }
 			ENDCG
