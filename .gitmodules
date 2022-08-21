@@ -1,0 +1,6 @@
+[submodule "com.worldofbugs.worldofbugs/External/NavMeshComponents"]
+	path = com.worldofbugs.worldofbugs/External/NavMeshComponents
+	url = https://github.com/Unity-Technologies/NavMeshComponents.git
+[submodule "com.worldofbugs.worldofbugs/External/ClassTypeReference-for-Unity"]
+	path = com.worldofbugs.worldofbugs/External/ClassTypeReference-for-Unity
+	url = https://github.com/SolidAlloy/ClassTypeReference-for-Unity.git

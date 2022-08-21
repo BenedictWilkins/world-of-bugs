@@ -1,0 +1,6 @@
+[MASTER]
+disable=
+    C0301, # missing-module-docstring
+    C0415, # import-outside-toplevel
+    R0903, # too-few-public-methods
+good-names-rgxs=^[_a-z][_a-z0-9]?$

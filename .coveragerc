@@ -1,0 +1,10 @@
+[run]
+branch = True
+
+# there is some weird error 'no source for code .../config-3.py' the file doesnt exist.
+# It might be related to opencv? or gyms entry point mechanism...
+
+[report]
+ignore_errors = True
+include =
+    worldofbugs/worldofbugs/*

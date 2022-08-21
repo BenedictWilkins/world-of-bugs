@@ -1,0 +1,62 @@
+exclude : '.*(\.(asset|meta|mat|unity|prefab))'
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+        files : .*(\.py|\.cs)
+        #exclude : '(isort\.cfg|*.(\.svg))' # some weird conflict that is never resolved...
+    -   id: trailing-whitespace
+
+# python tests / linting etc
+- repo: https://github.com/pycqa/isort
+  rev: 5.10.1
+  hooks:
+    - id: isort
+      name: isort (python)
+
+-   repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    -   id: black
+        name: black
+        language_version: python3.8
+        types: [python]
+        stages: [commit]
+
+- repo: local
+  hooks:
+    - id: lint # python linting
+      name: lint
+      entry: python worldofbugs/worldofbugs/test/lint.py
+      language: system
+      pass_filenames: false
+      log_file: logs/lint.log
+
+
+    # TODO it would be nice to have a report here...
+    - id : unit-test
+      name : unit-test
+      entry : coverage run -m unittest discover -s worldofbugs/worldofbugs/test/unit -v
+      language: system
+      pass_filenames: false
+      log_file : logs/unit-test.log
+
+
+    # c-sharp code formatting
+    - id: astyle
+      name: astyle
+      entry: bash worldofbugs/worldofbugs/test/scripts/astyle.sh
+      language: system
+      pass_filenames: false
+      log_file: logs/astyle.log
+
+    # run
+    - id : unity-runtime-test
+      name : unity-runtime-test
+      entry : python worldofbugs/worldofbugs/test/unity-test.py
+      language : system
+      pass_filenames : false
+      log_file: logs/unity-test.log

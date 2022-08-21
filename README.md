@@ -1,6 +1,12 @@
+
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
+[![Pylint](docs/_badge/pylint.svg)](https://github.com/PyCQA/pylint)
+[![Code style: astyle](docs/_badge/astyle.svg)](http://astyle.sourceforge.net)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # WorldOfBugs
 
-World of Bugs is a test plaform for Automated Bug Detection (ABD) research. 
+World of Bugs is a test platform for Automated Bug Detection (ABD) research.
 
 ## READER NOTE:
 
@@ -21,21 +27,6 @@ Datasets have been created using our test environment (World-v1), a pre-built ve
 
 Experiments on the initial version of the test environment (World-v1) can be found in [this](https://github.com/BenedictWilkins/world-of-bugs-experiments) repository.
 
-
-
 ### Paper
 
-[Learning to Identify Perceptual Bugs in 3D Video Games](https://arxiv.org/abs/2202.12884) 
-Submitted to [COG 2022](https://ieee-cog.org/2022/) awaiting peer-review.
-
-Citation:
-```
-@article{Wilkins2022,
-	title = {Learning to Identify Perceptual Bugs in 3D Video Games},
-	url = {http://arxiv.org/abs/2202.12884},
-	journaltitle = {{arXiv}:2202.12884 [cs]},
-	author = {Wilkins, Benedict and Stathis, Kostas},
-}
-```
-
-
+LINKS COMING SOON

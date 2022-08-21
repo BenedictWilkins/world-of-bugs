@@ -1,7 +1,9 @@
+logs/
+.vscode
+
 # Builds (use build.cs to build the scenes)
 builds/
 dataset/
-test/ 
 tmp/
 
 *.tar.hz
