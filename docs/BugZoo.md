@@ -111,9 +111,19 @@ Below is a list of the bugs currently implemented in WOB, the list is growing!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l6c3GmiNqYU?playlist=l6c3GmiNqYU&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
-
 --------------------------
 
+## Invalid Information Access
+
+=== "Description"
+    A bug in which the player is able to obtain information that they would otherwise not have. The example shown
+=== "Implementation"
+    There are many, camera clipping is one example (see video). Another might be the ability to access areas they should (e.g. on top of the walls of a maze). The bug mask should be tailored to support this kind of issue and is a crucial design decision when implementing new environments.
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/akyIkBRZzOc?playlist=akyIkBRZzOc&rel=0&loop=1&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
+
+--------------------------
 
 ## Out of Bounds
 !!! todo
@@ -193,8 +203,6 @@ Below is a list of the bugs currently implemented in WOB, the list is growing!
     This feature is in development
 
 === "Description"
-
-    A
 
 === "Implementation"
 

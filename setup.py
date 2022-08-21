@@ -12,7 +12,7 @@ from setuptools import find_packages, setup
 # last successful build versions:
 # gym-unity-0.28.0
 # mlagents-envs-0.28.0
-# unity 2020.3.25f1
+# unity 2020.3.29f1
 
 GYM_NAMESPACE = "WOB"
 
@@ -25,11 +25,16 @@ setup(
     author_email="benrjw@gmail.com",
     packages=find_packages(),
     install_requires=[
+        "protobuf==3.20.*",
         "gym>=0.21.0",
         "gym_unity",
         "omegaconf",
         "loguru",
         "numpy",
+        "xmltodict",
+        "anybadge",
+        "pylint",
+        "coverage",
     ],
     exclude=["worldofbugs.test"],
     entry_points={

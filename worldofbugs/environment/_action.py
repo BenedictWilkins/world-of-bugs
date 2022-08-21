@@ -61,8 +61,8 @@ class ContinuousActionHandler(_ActionHandler):
     def get_action_tuple(self, actions):
         if actions is None:
             return ActionTuple(np.zeros((self.num_agents, self.action_size)))
-        if isinstance(actions, float):
-            actions = np.array([actions])
+        if isinstance(actions, (int, float)):
+            actions = np.array([float(actions)])
         elif isinstance(actions, (list, tuple)):
             actions = np.array(actions)
         if len(actions.shape) == 1:
@@ -96,6 +96,10 @@ class DiscreteActionHandler(_ActionHandler):
             return ActionTuple()
         elif isinstance(actions, int):
             actions = np.array([actions])
+        elif isinstance(actions, float):
+            raise ValueError(
+                f"Received discrete action {actions} that was of type {type(actions)} when it should be int."
+            )
         elif isinstance(actions, (list, tuple)):
             actions = np.array(actions)
         else:

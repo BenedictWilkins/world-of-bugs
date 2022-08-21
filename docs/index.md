@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 
-<a class="btn" href="https://arxiv.org/abs/2202.12884">
+<a class="btn" href="https://arxiv.org/abs/2206.11037">
 	Paper <i class="fa fa-paperclip"></i>
 </a> <a class="btn" href="https://github.com/BenedictWilkins/world-of-bugs">
     Github <i class="fab fa-github ml-2 "></i>
@@ -20,14 +20,15 @@ Anyone who has played a game has encountered a bug at some point and probably kn
 
 ## Automated Game Playing
 
-A large part of ABD involves devising systems that can automatically play and explore video game just like a human game tester would. An automated game player is referred to as an _agent_. These game playing agents take actions in the game environment in the same way that a human would, using a virtual game-pad and observe what happens, and taking subsequent actions in order to achieve a predefined goal.
+A large part of ABD involves devising systems that can automatically play and explore video game just like a human game tester would. An automated game player is referred to as an _agent_. These game playing agents take actions in the game environment in the same way that a human would using a virtual game-pad. The agent observes what happens and acts to achieve some predefined goal (e.g. complete the level).
+
 
 Perhaps unsurprisingly developing game playing agents can be very difficult. Games are often made to present some challenge to the player with a variety of obstacles, puzzles and enemies. Only in the last few years have agents been able to play with any video games with any real skill. Early attempts at playing [Atari 2600 games with deep reinforcement learning](https://arxiv.org/abs/1312.5602) started a trend in researchers attempting to tackle ever more complex games. More recently progress has been made on games that are widely recognised as requiring significant skill such as [Dota2](https://arxiv.org/abs/1912.06680) and [Starcraft](https://www.nature.com/articles/s41586-019-1724-z). These systems still require an unrealistic amount of resources to be practical for testing video games, nevertheless they are perhaps an early indication that ABD may form part of the standard toolkit for video game testing in the not so far future.
 
 <img src="imgs/Atari.gif"  width=50% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;">
 
 
-In the majority of research into automated game playing an agent has a goal, usually to win. In the Atari 2600 example, the goal is specified using a reward that is derived from the in-game score. For ABD, what is the goal? How should it be specified? At a high level, the goal is to explore the game to find bugs. The agent should have good _coverage_, meaning that it should explore as much of the game as possible, visit all the areas, complete all the levels, fight all the enemies etc. We might think of the ABD agent as the most eager completionist. Not only does it want to find all the collectables, but also see everything there is to see. In this sense, the agent is a game player of the most hardcore variety.
+In the majority of research in automated game playing an agent has a goal, usually to win. In the Atari 2600 example, the goal is specified using a reward that is derived from the in-game score. For ABD, what is the goal? How should it be specified? At a high level, the goal is to explore the game to find bugs. The agent should have good _coverage_, meaning that it should explore as much of the game as possible, visit all the areas, complete all the levels, fight all the enemies etc. We might think of the ABD agent as the most eager completionist. Not only does it want to find all the collectables, but also see everything there is to see. In this sense, the agent is a game player of the most hardcore variety.
 
 The question of how to specify the goal of such an agent is an open one. Placing this question aside for a moment in favour of a more immediate problem, how is an agent to know that is has encountered a bug on its travels through its favourite game? This is the problem of bug identification.
 
@@ -39,21 +40,21 @@ The second facet to the problem of ABD is that of bug identification. When a hum
 
 <img src="imgs/the-witcher-3-roach.png"  width=80% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;">
 
-The waters become a murky around this point. We might formally say that a human tester has a specification that they work from that explicitly states "horses don't do handstands", but this just isn't the case. In reality human testers use their vast experience both in-game and in the real world, along with a high-level description of the intended behaviour of the game to decide whether the horse is behaving correctly. The high level description is not an exhaustive list of every interaction possible, and is written in plain language with all its vagaries.
+The waters become a murky around this point. A human tester might have access to a specification that they work from that explicitly states "horses don't do handstands". In practice this tends not to be the case. Human testers use their vast experience both in-game and in the real world, along with a high-level description of the intended behaviour of the game to decide whether the horse is behaving correctly. The high level description is not an exhaustive list of every interaction possible, and is written in plain language with all its vagaries.
 
-How then might an agent go about identifying bugs in its experience?
+How then might an agent go about identifying bugs?
 
 ### Rules
 
-A common approach, which is sufficient in many cases, is to use rules, conditions or _guards_ to determine whether a particular interaction was valid. An example might be to check the players y-position relative to the ground to ensure they haven't fallen out of the world. This kind of checking is hardly automated -- the automation comes from the automatic game playing, and is limited to cases whether the interaction is easily specified. A more difficult case might be to check whether the scene is rendered correctly, or that the player is not able to see things they shouldn't. Traditionally these kinds of problems are left to the human testers to find.
+A common approach, which is sufficient in many cases, is to use rules, conditions or _guards_ to determine whether a particular interaction is valid. An example might be to check the players y-position relative to the ground to ensure they haven't fallen out of the world. This kind of checking is hardly automated, the real automation comes from the automatic game playing, and is limited to cases whether the interaction is easily specified. A more difficult case might be to check whether the scene is rendered correctly, or that the player is not able to see things they shouldn't. Traditionally these kinds of problems are left to the human testers to find.
 
 ### Learning
 
-Learning is a promising new avenue for detecting issues. Machine learning, and in particular machine vision is already being used to detect unusual (anomalous) situations in video footage in a range of domains from monitoring CCTV monitoring (how scary) to filtering inappropriate content on popular video streaming sites. Now, this technology is being explored for the automatic identification of bugs in video games. The ideal is simple at its core, but challenging to implement in practice, it is as follows.
+Learning is a promising new avenue for detecting issues. Machine learning, and in particular machine vision is already being used to detect unusual (anomalous) situations in video footage in a range of domains from monitoring CCTV monitoring to filtering inappropriate content on popular video streaming sites. Now, this technology is being explored for the automatic identification of bugs in video games. The ideal is simple at its core, but challenging to implement in practice, it is as follows.
 
 Using the vast amount of observations collected as the agent plays the game, it can learn an internal model of the world it finds itself in. The agent develops an expectation about what _should_ happen, and can compare this expectation with what actually happens, if the expectation is not met then one of two things has happened:
 
-1. The agents model was wrong, it needs to be updated.
+1. The agent's model was wrong, it needs to be updated.
 2. The world was wrong, it needs to be updated.
 
 The question now is, how to distinguish between case 1 and case 2? This is an open issue, but it is clear that the agent needs some additional information that it cannot learn just by playing the game. For the human tester, this information is in the broader development and design context - the intended behaviour. This information can come in the form of [Inductive Bias](https://en.wikipedia.org/wiki/Inductive_bias) where certain assumptions about the statistical properties or features of bugs can inform the agent. Inductive biases are akin to special 'meta'-rules that are subtly encoded into the learning algorithm.

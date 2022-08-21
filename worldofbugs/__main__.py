@@ -10,10 +10,9 @@ import gym
 
 import worldofbugs
 
-env = worldofbugs.make(None, debug=True)
+env = worldofbugs.make(None, debug=True)  # make the environment in the unity editor
 
 env.reset()
-env.set_agent_behaviour("HeuristicManual")
 env.set_agent_behaviour("HeuristicNavMesh")
 for i in range(10000):
     action = 1
