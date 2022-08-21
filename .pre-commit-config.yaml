@@ -30,7 +30,7 @@ repos:
   hooks:
     - id: lint # python linting
       name: lint
-      entry: python worldofbugs/test/lint.py
+      entry: python worldofbugs/worldofbugs/test/lint.py
       language: system
       pass_filenames: false
       log_file: logs/lint.log
@@ -39,7 +39,7 @@ repos:
     # TODO it would be nice to have a report here...
     - id : unit-test
       name : unit-test
-      entry : coverage run -m unittest discover -s worldofbugs/test/unit -v
+      entry : coverage run -m unittest discover -s worldofbugs/worldofbugs/test/unit -v
       language: system
       pass_filenames: false
       log_file : logs/unit-test.log
@@ -48,7 +48,7 @@ repos:
     # c-sharp code formatting
     - id: astyle
       name: astyle
-      entry: bash worldofbugs/test/scripts/astyle.sh
+      entry: bash worldofbugs/worldofbugs/test/scripts/astyle.sh
       language: system
       pass_filenames: false
       log_file: logs/astyle.log
@@ -56,7 +56,7 @@ repos:
     # run
     - id : unity-runtime-test
       name : unity-runtime-test
-      entry : python worldofbugs/test/unity-test.py
+      entry : python worldofbugs/worldofbugs/test/unity-test.py
       language : system
       pass_filenames : false
       log_file: logs/unity-test.log
