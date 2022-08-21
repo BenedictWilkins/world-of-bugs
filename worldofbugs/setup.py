@@ -19,8 +19,8 @@ GYM_NAMESPACE = "WOB"
 setup(
     name="worldofbugs",
     version="0.0.1",
-    description="",
-    url="",
+    description="World of Bugs (WOB) is a platform that supports research in Automated Bug Detection (ABD) in video games.",
+    url="https://benedictwilkins.github.io/world-of-bugs/",
     author="Benedict Wilkins",
     author_email="benrjw@gmail.com",
     packages=find_packages(),

@@ -1,12 +1,26 @@
 # Quick Start
 
-Clone the GitHub repository:
+## Install with pip
 
-`git clone https://github.com/BenedictWilkins/world-of-bugs.git`
+The python side of WOB is available as a [PyPi package](https://pypi.org/project/worldofbugs/).
 
-While in the same directory, install with:
+```
+pip install worldofbugs
+```
 
-  ```python -m pip install world-of-bugs```
+Note: as usual it is recommended use a virtual environment to avoid dependency issues.
+
+## Install from source
+
+Clone the GitHub repository and install locally with `pip`:
+
+```
+git clone https://github.com/BenedictWilkins/world-of-bugs.git
+cd worldofbugs
+pip install ./worldofbugs
+```
+
+---------------------
 
 From here there are two options: use a standalone build, or use the unity editor. If you want to use the unity editor, skip to the [next section](#getting-started-with-unity).
 
