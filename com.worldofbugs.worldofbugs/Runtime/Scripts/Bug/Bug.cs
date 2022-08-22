@@ -1,10 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using System.Linq;
+using NaughtyAttributes;
 
 namespace WorldOfBugs {
     public abstract class Bug : MonoBehaviour {
 
+        [SerializeField]
+        public string bugName;
         [SerializeField]
         public string bugTag = "Bug";
         [SerializeField]
@@ -17,14 +20,17 @@ namespace WorldOfBugs {
         }
 
         public void Untag(GameObject go) {
-            Material material = go.GetComponent<Renderer>().material;
-            material.SetOverrideTag("RenderType", "");
+            if(go) {
+                Renderer renderer = go.GetComponent<Renderer>();
+
+                if(renderer) {
+                    renderer.material.SetOverrideTag("RenderType", "");
+                }
+            }
         }
 
         public abstract void OnEnable();
         public abstract void OnDisable();
-
-
 
         private static System.Random _random = new System.Random();
 

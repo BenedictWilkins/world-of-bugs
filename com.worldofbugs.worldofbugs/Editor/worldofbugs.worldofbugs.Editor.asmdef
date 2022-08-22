@@ -1,9 +1,10 @@
 {
     "name": "WorldOfBugs.Editor",
+    "rootNamespace": "",
     "references": [
         "WorldOfBugs",
-        "NavMeshComponents.Editor",
-        "Assemblies.commandline-netstandard2-0.CommandLine"
+        "NaughtyAttributes.Core",
+        "NaughtyAttributes.Editor"
     ],
     "includePlatforms": [
         "Editor"

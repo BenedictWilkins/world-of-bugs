@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using NaughtyAttributes;
 
 namespace WorldOfBugs {
 
@@ -14,16 +15,6 @@ namespace WorldOfBugs {
 
         private static System.Random _random = new System.Random();
         private GameObject[] _gos; // disable collider on this game object
-
-        [Serializable]
-        public class DebugGeometryClipping {
-            public bool Debug;
-            public Color DebugColour = new Color(1, 1, 1, 1);
-        }
-
-        [SerializeField]
-        public DebugGeometryClipping Debug;
-
 
         public override void OnEnable() {
             // TODO the bugType should be used to render the backsides of specific objects this color -- rather than rely on the global backside...?
@@ -51,8 +42,12 @@ namespace WorldOfBugs {
 
 #if UNITY_EDITOR
 
+        public bool Debug;
+        [ShowIf("Debug")]
+        public Color DebugColour = new Color(1, 1, 1, 1);
+
         public void OnDrawGizmos() {
-            if(_gos != null) {
+            if(_gos != null && Debug) {
                 foreach(GameObject go in _gos) {
                     MeshFilter[] mfs = go.GetComponents<MeshFilter>();
 

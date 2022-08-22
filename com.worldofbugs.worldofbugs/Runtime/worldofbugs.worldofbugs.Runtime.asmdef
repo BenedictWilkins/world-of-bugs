@@ -1,9 +1,13 @@
 {
     "name": "WorldOfBugs",
+    "rootNamespace": "",
     "references": [
-       "Unity.ML-Agents",
-       "NavMeshComponents",
-       "TypeReferences"
+        "Unity.ML-Agents",
+        "NavMeshComponents",
+        "TypeReferences",
+        "NaughtyAttributes.Core",
+        "NaughtyAttributes.Editor",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -12,6 +16,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDesfines": [],
+    "versionDefines": [],
     "noEngineReferences": false
 }

@@ -17,14 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 79669c9d609bbb039a63c6a576ee58d0
   m_SerializeEntries:
-  - m_GUID: 55b72da3934ecf68dbaf986e696f5d39
-    m_Address: Packages/com.worldofbugs.worldofbugs/Tests/Runtime/Prefabs/MainCamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 57a278df52935930c978324d41c1ca4d
-    m_Address: Packages/com.worldofbugs.worldofbugs/Tests/Runtime/Prefabs/BugMaskCamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 81c8610c5f312a980b42fab1d3d4d900
     m_Address: Assets/World-v1/Prefabs/Player.prefab
     m_ReadOnly: 0

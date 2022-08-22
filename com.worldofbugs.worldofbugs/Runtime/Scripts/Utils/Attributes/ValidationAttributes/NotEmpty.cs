@@ -22,10 +22,14 @@ namespace WorldOfBugs {
                                       UnityEngine.Object instance) {
             MonoBehaviour mb = instance as MonoBehaviour;
             error = $"Property '{field.Name}' on GameObject '{mb.name}' cannot be empty";
+            object obj = field.GetValue(instance);
+
+            if(obj is string) {
+                return ((string)obj).Length > 0;
+            }
 
             try {
-                ICollection value = null;
-                value = (ICollection)field.GetValue(instance);
+                ICollection value = (ICollection)obj;
                 return value.Count > 0;
             } catch(Exception) {
                 error = $"Property '{field.Name}' on GameObject '{mb.name}' is not enumerable";

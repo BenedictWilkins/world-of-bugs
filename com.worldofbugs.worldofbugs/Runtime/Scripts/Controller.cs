@@ -46,7 +46,7 @@ public class Controller : MonoBehaviour {
 
             // all bugs are turned off initially.
             foreach(Bug bug in Bugs) {
-                bug.enabled = false;
+                //bug.enabled = false;
             }
         }
     }

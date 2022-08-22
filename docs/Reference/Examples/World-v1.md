@@ -8,6 +8,9 @@ World-v1 is a simple environment that has been built to test approaches to the b
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/UZbD8SivkAA?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:none;overflow:hidden;display:block;margin:0 auto;"></iframe>
 
+=== "Bugs"
+    COMING SOON
+
 === "Action Space"
 
     | Action      | Index |  Type | Description                          |

@@ -42,7 +42,9 @@ public class CameraClipping : Bug {
 
     public override void OnDisable() {
         for(int i = 0; i < Cameras.Length; i++) {
-            Cameras[i].nearClipPlane = OldNearClipPlane[i];
+            if(Cameras[i]) {
+                Cameras[i].nearClipPlane = OldNearClipPlane[i];
+            }
         }
 
         // TODO on per camera basis with materials...?

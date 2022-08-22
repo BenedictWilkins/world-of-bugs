@@ -48,7 +48,8 @@ namespace WorldOfBugs.Editor {
                 }
 
                 EditorGUILayout.PropertyField(prop, GUIContent.none,
-                                              GUILayout.Width(EditorGUIUtility.currentViewWidth - 80));
+                                              GUILayout.Width(EditorGUIUtility.currentViewWidth - 200));
+                bug.bugName = EditorGUILayout.TextField(bug.bugName);
                 GUILayout.EndHorizontal();
             }
 
