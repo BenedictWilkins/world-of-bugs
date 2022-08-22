@@ -329,6 +329,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#creating-your-own-environments" class="md-nav__link">
+    Creating your own environments
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -750,6 +757,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#creating-your-own-environments" class="md-nav__link">
+    Creating your own environments
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -823,11 +837,6 @@ pip install ./worldofbugs
 </code></pre></div>
 <p>To avoid issues, install Unity version 2020.3.29f1 which can be found in the <a href="https://unity3d.com/get-unity/download/archive">unity download archive</a> using the latest version of <a href="https://unity3d.com/get-unity/download">UnityHub</a>.</p>
 <p>Open UnityHub (v3.2.0) and choose <code>Open-&gt;Add project from disk</code> navigate to the <code>worldofbugs</code> directory then <code>com.worldofbugs.worldofbugs/Samples~</code> and select either the <code>2D</code> or <code>3D</code> project and <code>Add Project</code>.</p>
-<p>After opening the project, the <code>com.worldofbugs.worldofbugs</code> package needs to be added to the project, Unity may complain that it cannot find the package. Go to <code>window -&gt; Package Manager</code> then <code>+ -&gt; add package from disk</code>, navigate to the <code>com.worldofbugs.worldofbugs</code> directory and select the <code>package.json</code>. This will add <code>worldofbugs</code> to the sample project.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>the above steps are temporary but are required until <code>worldofbugs</code> is registered with OpenUPM (in progress).</p>
-</div>
 <p>To get started, go to <code>Assets</code> and select the environment you would like to work with e.g. <code>World-v1</code>. Open a scene by going to <code>World-v1/Scenes</code> and selecting the scene <code>World-v1.unity</code>. Once opened you should be presented with the following:</p>
 <p><img src="../imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
 <p>To connect to the editor, run the following script and then press the play button in the editor window.</p>
@@ -849,6 +858,12 @@ pip install ./worldofbugs
 <p><img src="../imgs/RenderTextureCameraPreview.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
 <p>The game view can be safely closed in favour of this new view.</p>
 <hr />
+<h2 id="creating-your-own-environments"><a class="toclink" href="#creating-your-own-environments">Creating your own environments</a></h2>
+<p>DOCUMENTATION COMING SOON</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if you are desperate to do this, it is recommended that you start by using the sample projects (3D or 2D) as a template. This will save you a lot of pain when trying to manage dependencies. If you have problems with resolving the <code>worldofbugs</code> package, try updating the path for <code>com.worldofbugs.worldofbugs</code> in the <code>Packages/manifest.json</code> file. </p>
+</div>
 <p>To get setup with bugs and agent behaviours see <a href="../Live%20Configuration/">Live Configuration</a></p>
 
 
