@@ -822,10 +822,14 @@ pip install ./worldofbugs
 <div class="highlight"><pre><span></span><code>git clone https://github.com/BenedictWilkins/world-of-bugs.git
 </code></pre></div>
 <p>To avoid issues, install Unity version 2020.3.29f1 which can be found in the <a href="https://unity3d.com/get-unity/download/archive">unity download archive</a> using the latest version of <a href="https://unity3d.com/get-unity/download">UnityHub</a>.</p>
-<p>Open UnityHub (v3.2.0) and choose <code>Open-&gt;Add project from disk</code> navigate to the <code>worldofbugs</code> directory then <code>com.worldofbugs.worldofbugs/Samples~</code> and select either the <code>2D</code> or <code>3D</code> project and <code>Add Project</code>. </p>
-<p>Open in the unity editor, and you should be presented with an empty scene. Go to <code>Assets</code> and select the environment you would like to work with e.g. <code>World-v1</code>. Open a scene by going to <code>World-v1/Scenes</code> and selecting the scene <code>World-v1.unity</code>. Once opened you should be presented with the following:</p>
+<p>Open UnityHub (v3.2.0) and choose <code>Open-&gt;Add project from disk</code> navigate to the <code>worldofbugs</code> directory then <code>com.worldofbugs.worldofbugs/Samples~</code> and select either the <code>2D</code> or <code>3D</code> project and <code>Add Project</code>.</p>
+<p>After opening the project, the <code>com.worldofbugs.worldofbugs</code> package needs to be added to the project, Unity may complain that it cannot find the package. Go to <code>window -&gt; Package Manager</code> then <code>+ -&gt; add package from disk</code>, navigate to the <code>com.worldofbugs.worldofbugs</code> directory and select the <code>package.json</code>. This will add <code>worldofbugs</code> to the sample project.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the above steps are temporary but are required until <code>worldofbugs</code> is registered with OpenUPM (in progress).</p>
+</div>
+<p>To get started, go to <code>Assets</code> and select the environment you would like to work with e.g. <code>World-v1</code>. Open a scene by going to <code>World-v1/Scenes</code> and selecting the scene <code>World-v1.unity</code>. Once opened you should be presented with the following:</p>
 <p><img src="../imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
-<p>To look through the eyes of the agent, go to <code>window-&gt;Preview-&gt;RenderTextureCameraPreview</code> this should open a new window that shows </p>
 <p>To connect to the editor, run the following script and then press the play button in the editor window.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">worldofbugs</span>
 <span class="c1"># make the environment, None indicates we want to connect to the editor</span>

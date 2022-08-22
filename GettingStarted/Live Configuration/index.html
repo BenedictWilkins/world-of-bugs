@@ -706,18 +706,18 @@
 <p>A bug can be disabled using the <code>disable_bug</code> method, for example:</p>
 <div class="highlight"><pre><span></span><code>env.disable_bug(&quot;TextureMissing&quot;)
 </code></pre></div>
-<p>Bug names a derived from their type name as it appears in Unity. A full list of bugs can be found <a href="../../BugZoo/">here</a>. It is up to the environment which bugs it implements, so not all environments will implement all bugs. To see a list of all the bugs that an environment implements try <code>env.enable_bug("info")</code>. For the moment an error is raised which lists all available bugs. </p>
+<p>Bug names a derived from their type name as it appears in Unity. A full list of bugs can be found <a href="../../BugZoo/">here</a>. It is up to the environment which bugs it implements, so not all environments will implement all bugs. To see a list of all the bugs that an environment implements try <code>env.enable_bug("info")</code>. For the moment an error is raised which lists all available bugs.</p>
 <p>If the Unity editor is open, a list of all bugs can also be found in the <code>Controller</code> game object for most environments, they can be enabled/disabled by clicking the associated tick boxes.</p>
 <p><img src="../imgs/Controller.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
 <h2 id="configuring-agent-behaviour"><a class="toclink" href="#configuring-agent-behaviour">Configuring Agent Behaviour</a></h2>
-<p>An agent's behaviour can be changed using the <code>set_agent_behaviour</code> method, for example: </p>
+<p>An agent's behaviour can be changed using the <code>set_agent_behaviour</code> method, for example:</p>
 <div class="highlight"><pre><span></span><code><span class="n">env</span><span class="o">.</span><span class="n">set_agent_behaviour</span><span class="p">(</span><span class="s1">&#39;Python&#39;</span><span class="p">)</span>
 </code></pre></div>
 <p>Setting the behaviour to <code>'Python'</code> will enable the current Python policy, the agent will take actions received via <code>env.step</code>. Otherwise, a heuristic behaviour defined in Unity will be used, and any Python actions will be ignored. The actual action taken can be retrieved by inspecting <code>info</code> returned by <code>env.step</code> as follows:</p>
 <div class="highlight"><pre><span></span><code>    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">info</span><span class="p">[</span><span class="s1">&#39;Action&#39;</span><span class="p">]</span>
 </code></pre></div>
-<p>Again, it is up to the environment (and in particular the agent) to define which heuristic behaviours are available. </p>
+<p>Again, it is up to the environment (and in particular the agent) to define which heuristic behaviours are available.</p>
 <p>If the Unity editor is open, an agent's behaviour can be set by modifying the <code>Heuristic</code> in the <code>Agent</code> component of the <code>Agent</code> game object. In <code>World-v1</code> for example:</p>
 <p><img src="../imgs/Agent.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;"></p>
 <h2 id="logging"><a class="toclink" href="#logging">Logging</a></h2>
