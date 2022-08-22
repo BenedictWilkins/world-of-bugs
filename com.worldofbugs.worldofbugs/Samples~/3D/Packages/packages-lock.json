@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.dbrizov.naughtyattributes": {
+      "version": "2.1.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.solidalloy.type-references": {
       "version": "2.15.0",
       "depth": 0,
@@ -212,13 +219,14 @@
       }
     },
     "com.worldofbugs.worldofbugs": {
-      "version": "file:/home/ben/Documents/repos/world-of-bugs.dev/com.worldofbugs.worldofbugs",
+      "version": "file:../../..",
       "depth": 0,
       "source": "local",
       "dependencies": {
         "com.unity.addressables": "1.18.19",
         "com.solidalloy.type-references": "2.1.0",
-        "com.unity.ml-agents": "2.1.0-exp.1"
+        "com.unity.ml-agents": "2.1.0-exp.1",
+        "com.dbrizov.naughtyattributes": "2.1.4"
       }
     },
     "org.nuget.system.buffers": {

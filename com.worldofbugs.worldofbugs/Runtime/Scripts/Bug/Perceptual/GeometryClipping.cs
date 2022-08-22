@@ -15,6 +15,16 @@ namespace WorldOfBugs {
         private static System.Random _random = new System.Random();
         private GameObject[] _gos; // disable collider on this game object
 
+        [Serializable]
+        public class DebugGeometryClipping {
+            public bool Debug;
+            public Color DebugColour = new Color(1, 1, 1, 1);
+        }
+
+        [SerializeField]
+        public DebugGeometryClipping Debug;
+
+
         public override void OnEnable() {
             // TODO the bugType should be used to render the backsides of specific objects this color -- rather than rely on the global backside...?
             _gos = GetLeafChildGameObjectsWithComponent<Collider>(Scene, n);
@@ -38,5 +48,24 @@ namespace WorldOfBugs {
                 }
             }
         }
+
+#if UNITY_EDITOR
+
+        public void OnDrawGizmos() {
+            if(_gos != null) {
+                foreach(GameObject go in _gos) {
+                    MeshFilter[] mfs = go.GetComponents<MeshFilter>();
+
+                    foreach(MeshFilter mf in mfs) {
+                        Gizmos.DrawWireMesh(mf.mesh, 0, go.transform.position, go.transform.rotation,
+                                            go.transform.localScale);
+                    }
+                }
+            }
+        }
+
+#endif
+
+
     }
 }

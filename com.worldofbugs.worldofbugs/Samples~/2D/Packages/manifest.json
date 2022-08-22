@@ -1,7 +1,8 @@
 {
   "dependencies": {
-    "com.worldofbugs.worldofbugs": "file:/home/ben/Documents/repos/world-of-bugs.dev/com.worldofbugs.worldofbugs",
+    "com.worldofbugs.worldofbugs": "file:../../..",
     "com.solidalloy.type-references": "2.15.1",
+    "com.dbrizov.naughtyattributes": "2.1.4",
     "com.unity.2d.animation": "5.1.0",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.psdimporter": "4.2.0",
@@ -58,6 +59,7 @@
         "com.solidalloy.type-references",
         "com.solidalloy.unity-dropdown",
         "com.solidalloy.util",
+        "com.dbrizov.naughtyattributes",
         "org.nuget.system.buffers",
         "org.nuget.system.memory",
         "org.nuget.system.numerics.vectors",

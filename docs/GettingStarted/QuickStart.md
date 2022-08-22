@@ -89,12 +89,9 @@ To avoid issues, install Unity version 2020.3.29f1 which can be found in the [un
 
 Open UnityHub (v3.2.0) and choose `Open->Add project from disk` navigate to the `worldofbugs` directory then `com.worldofbugs.worldofbugs/Samples~` and select either the `2D` or `3D` project and `Add Project`.
 
-Open in the unity editor, and you should be presented with an empty scene. Go to `Assets` and select the environment you would like to work with e.g. `World-v1`. Open a scene by going to `World-v1/Scenes` and selecting the scene `World-v1.unity`. Once opened you should be presented with the following:
+To get started, go to `Assets` and select the environment you would like to work with e.g. `World-v1`. Open a scene by going to `World-v1/Scenes` and selecting the scene `World-v1.unity`. Once opened you should be presented with the following:
 
 <img src="../imgs/UnityLanding.png" style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;">
-
-To look through the eyes of the agent, go to `window->Preview->RenderTextureCameraPreview` this should open a new window that shows
-
 
 To connect to the editor, run the following script and then press the play button in the editor window.
 
@@ -121,7 +118,14 @@ By default, the game view is not rendered as no cameras are in use. To look thro
 
 The game view can be safely closed in favour of this new view.
 
------------------
+-----------
+
+## Creating your own environments
+
+DOCUMENTATION COMING SOON
+
+!!! note
+    if you are desperate to do this, it is recommended that you start by using the sample projects (3D or 2D) as a template. This will save you a lot of pain when trying to manage dependencies. If you have problems with resolving the `worldofbugs` package, try updating the path for `com.worldofbugs.worldofbugs` in the `Packages/manifest.json` file.
 
 
 To get setup with bugs and agent behaviours see [Live Configuration](./Live%20Configuration/index.md)

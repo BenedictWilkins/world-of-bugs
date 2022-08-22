@@ -32,6 +32,7 @@ MonoBehaviour:
     - com.solidalloy.type-references
     - com.solidalloy.unity-dropdown
     - com.solidalloy.util
+    - com.dbrizov.naughtyattributes
     - org.nuget.system.buffers
     - org.nuget.system.memory
     - org.nuget.system.numerics.vectors
@@ -51,6 +52,7 @@ MonoBehaviour:
       - com.solidalloy.type-references
       - com.solidalloy.unity-dropdown
       - com.solidalloy.util
+      - com.dbrizov.naughtyattributes
       - org.nuget.system.buffers
       - org.nuget.system.memory
       - org.nuget.system.numerics.vectors
@@ -65,6 +67,7 @@ MonoBehaviour:
     - com.solidalloy.type-references
     - com.solidalloy.unity-dropdown
     - com.solidalloy.util
+    - com.dbrizov.naughtyattributes
     - org.nuget.system.buffers
     - org.nuget.system.memory
     - org.nuget.system.numerics.vectors
