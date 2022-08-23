@@ -1,6 +1,6 @@
 # Maze-v0
 
-Maze-v0 is an environment that has a focus on exploration. The agent is tasked with navigating a maze. Various bugs that allow the agent to cheat have can be enabled in this environment.
+Maze-v0 is an environment that has a focus on exploration. The agent is tasked with navigating a maze. Various bugs that allow the agent to cheat have been enabled in this environment.
 
 <img src="../imgs/Maze-v0.png"  width=50% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;">
 
@@ -23,7 +23,7 @@ Maze-v0 is an environment that has a focus on exploration. The agent is tasked w
 
     <img src="../imgs/Maze-v0-InvalidShortcut.png"  width=50% style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1rem;">
 
-    ### Out of bounds
+    ### Out of Bounds
 
     This bug allows the player to escape the playable area. The player will only be able to escape for a moment before "falling out of the world" and reseting.
 

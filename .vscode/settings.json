@@ -8,5 +8,15 @@
             "recognised",
             "completionist",
         ]
-    }
+    },
+    "files.exclude": {
+        // -------- PROJECT DIRECTORIES --------
+        "**/.git/": true,
+        "node_modules/": true,
+        "out/": true,
+        "typings/": true,
+
+        // ------- PROJECT FILES -------
+        "**/*.meta": true
+    },
 }

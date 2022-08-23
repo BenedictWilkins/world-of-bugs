@@ -4,15 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace WorldOfBugs {
+    /// <summary>
+    /// The BlackScreen bug fills the screen with the given color (black by default).
+    /// </summary>
     public class BlackScreen : Bug {
 
         // TODO support a list of cameras + colours to fill
+        // TODO support constant flickering (i.e. not breaks) or have an explicite non-flickering duration.
 
         [MinMaxSlider(0.01f, 1f), Tooltip("Number of seconds to fill the screen black.")]
         public Vector2 frameRange = new Vector2(0.05f, 0.1f);
 
         [MinMaxSlider(0f, 10f), Tooltip("Number of seconds to flicker.")]
         public Vector2 flickerRange = new Vector2(2f, 5f);
+
+        public Color ScreenColor = new Color(0, 0, 0, 1);
 
         protected FillScreen[] fillScreens;
 
@@ -30,7 +36,7 @@ namespace WorldOfBugs {
             Camera[] cameras = null;
             cameras = CameraExtensions.GetObservationCameras();
             fillScreens[0] = cameras[0].gameObject.AddComponent<FillScreen>();
-            fillScreens[0].color = new Color(0f, 0f, 0f, 1f);
+            fillScreens[0].color = ScreenColor;
             cameras = CameraExtensions.GetBugMaskCamera();
             fillScreens[1] = cameras[0].gameObject.AddComponent<FillScreen>();
             fillScreens[1].color = (Color) bugType;
