@@ -69,6 +69,14 @@ namespace WorldOfBugs {
             return 2f * new Vector3(UnityEngine.Random.value, UnityEngine.Random.value,
                                     UnityEngine.Random.value) - Vector3.one;
         }
-    }
 
+
+#if UNITY_EDITOR
+
+        public void OnDrawGizmos() {
+            HighlightGameObject(_go);
+        }
+
+#endif
+    }
 }

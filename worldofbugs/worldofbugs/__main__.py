@@ -13,9 +13,11 @@ import worldofbugs
 env = worldofbugs.make(None, debug=True)  # make the environment in the unity editor
 
 env.reset()
-env.set_agent_behaviour("HeuristicNavMesh")
+env.set_agent_behaviour("Python")
+env.enable_bug("TextureCorruption")
+
 for i in range(10000):
-    action = 1
+    action = 2
     state, reward, done, info = env.step(action)
     print(info["Position"], reward, done)
 

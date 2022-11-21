@@ -34,7 +34,7 @@ public class BoundaryHole : Bug {
 
     void OnDrawGizmos() {
         if(_go != null) {
-            Gizmos.color = Color.red;
+            Gizmos.color = UnityEngine.Color.red;
             Gizmos.DrawSphere(_go.transform.position, .3f);
         }
     }

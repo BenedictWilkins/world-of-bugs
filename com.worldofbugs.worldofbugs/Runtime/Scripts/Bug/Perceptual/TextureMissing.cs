@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-namespace WorldOfBugs {
 
+namespace WorldOfBugs {
 
     public class TextureMissing : Bug {
 

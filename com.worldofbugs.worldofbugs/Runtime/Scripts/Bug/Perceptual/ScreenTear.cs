@@ -126,7 +126,7 @@ namespace WorldOfBugs {
             }
             public Color BugType {
                 get {
-                    return _bug.bugType;
+                    return _bug.Color;
                 }
             }
 

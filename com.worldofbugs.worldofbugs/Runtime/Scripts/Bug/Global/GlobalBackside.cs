@@ -13,7 +13,7 @@ namespace WorldOfBugs {
 
         public override void OnEnable() {
             Camera[] cameras = CameraExtensions.GetObservationCameras();
-            Shader.SetGlobalColor("_BackFaceColor", (Color)bugType);
+            Shader.SetGlobalColor("_BackFaceColor", (Color)Color);
         }
 
         public override void OnDisable() {

@@ -25,7 +25,7 @@ namespace WorldOfBugs {
                 }
                 set {
                     Bug.enabled = Convert.ToBoolean(value);
-                    Debug.Log($"Bug {Bug.bugName} enabled = {value}");
+                    Debug.Log($"Bug {Bug.Name} enabled = {value}");
                 }
             }
         }
@@ -54,8 +54,8 @@ namespace WorldOfBugs {
 
         public Dictionary<string, BugConfigurator> Bugs {
             get {
-                return controller.Bugs.Where(x => x.bugName != "").ToDictionary(
-                           x => x.bugName,
+                return controller.Bugs.Where(x => x.Name != "").ToDictionary(
+                           x => x.Name,
                 x => new BugConfigurator() {
                     Bug = x
                 });

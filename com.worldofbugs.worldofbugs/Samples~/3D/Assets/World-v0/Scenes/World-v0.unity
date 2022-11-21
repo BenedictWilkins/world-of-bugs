@@ -139,17 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a19c87d00c9552d4a03af82bff584d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &173891616 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1781507075844599708, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
-  m_PrefabInstance: {fileID: 8651228012667946446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1ec833b1ee44308904ed044c509347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &517195454
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +174,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517195454}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb71ad8f30f4cedcd8992e130ffc8120, type: 3}
   m_Name: 
@@ -218,11 +207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b983933c12308fd288653895e6aa972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278255360
+      rgba: 4294967295
+  RenderType: Bug
 --- !u!114 &517195458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,15 +225,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210590942547ed7b3ab092c76b697386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: BlackScreen
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4294967040
-  _cameraRenderTexture: {fileID: 8400000, guid: 7e944b76f5da55d308a18069485266d4, type: 2}
-  _bugMaskRenderTexture: {fileID: 8400000, guid: cb0f69f72f83b07b399aa14a9d41163c, type: 2}
+      rgba: 4294967295
+  RenderType: Bug
   frameRange: {x: 0.069603465, y: 0.1}
   flickerRange: {x: 2, y: 5}
+  ScreenColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &517195459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,11 +246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9cdb8215d2ccad6925743efed4e10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4294910976
+      rgba: 4294967295
+  RenderType: Bug
   Scene: {fileID: 65883144}
   n: 1
 --- !u!114 &517195460
@@ -275,11 +266,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c00d95ce204925886940d188956d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: ZBug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278255615
+      rgba: 4294967295
+  RenderType: Bug
   level: {fileID: 65883144}
   mainCamera: {fileID: 3907196143342652101}
 --- !u!114 &517195461
@@ -294,11 +286,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5e7197ada9997c7b9f618f2126e2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: TextureMissing
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278190335
+      rgba: 4294967295
+  RenderType: Bug
   level: {fileID: 65883144}
   missingTexture: {fileID: 2800000, guid: e405320abea9cc45996194a7c5ba72c1, type: 3}
   color: {r: 1, g: 0, b: 1, a: 1}
@@ -314,13 +307,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a4cddfc40223f25936eac4cfb30866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: TextureCorruption
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278221055
+      rgba: 4294967295
+  RenderType: Bug
   level: {fileID: 65883144}
-  uvcomplexity: 0.2
+  uvcomplexity: 0.5
 --- !u!114 &517195463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,11 +327,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9567d3c39a57f768981bfe9ed1be27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4294901880
+      rgba: 4294967295
+  RenderType: Bug
   _cameraRenderTexture: {fileID: 8400000, guid: 7e944b76f5da55d308a18069485266d4, type: 2}
   _bugMaskRenderTexture: {fileID: 8400000, guid: cb0f69f72f83b07b399aa14a9d41163c, type: 2}
   n: 4
@@ -356,13 +351,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6b607cce8bdb3da80471f76073cfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4294934528
+      rgba: 4278190335
+  RenderType: Bug
   Scene: {fileID: 65883144}
-  n: -1
+  n: 1
 --- !u!114 &517195465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,12 +371,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8dafb89eac1bf6aba90f236fc640e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4294967295
-  power: 3
+      rgba: 4278190335
+  RenderType: Bug
+  power: 0.45
   _static: 0
   level: {fileID: 65883144}
 --- !u!114 &517195466
@@ -395,11 +392,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1892687aa1effa4c4a2ab5358190d151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278255360
+      rgba: 4278190080
+  RenderType: Bug
   NearClipPlane: 1
 --- !u!114 &517195467
 MonoBehaviour:
@@ -408,16 +406,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517195454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 606bb8708a8bef989b28b0cb14e021a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugTag: Bug
-  bugType:
+  Name: BoundaryHole
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278255560
+      rgba: 4278190080
+  RenderType: Bug
   BugMaskCamera: {fileID: 602521671}
   level: {fileID: 65883144}
 --- !u!20 &602521671 stripped
@@ -821,12 +820,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1781507075844599708, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1781507075844599709, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
       propertyPath: _heuristic
       value: 
-      objectReference: {fileID: 173891616}
+      objectReference: {fileID: 0}
     - target: {fileID: 1781507075844599711, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -843,5 +842,21 @@ PrefabInstance:
       propertyPath: MaskShader
       value: 
       objectReference: {fileID: 4800000, guid: 1696b9b71cf736da49a19e159773fc7a, type: 3}
+    - target: {fileID: 5635815378597779218, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635815380162989829, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635815380162989829, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635815380162989829, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c8610c5f312a980b42fab1d3d4d900, type: 3}

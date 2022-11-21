@@ -191,6 +191,9 @@ namespace WorldOfBugs {
                 Gizmos.DrawSphere(nextPosition, .3f);
                 Gizmos.DrawSphere(targetPosition, .5f);
             }
+
+            GizmosExtensions.DrawWireArc(transform.position, transform.forward, sampleAngle,
+                                         walkRadius);
         }
 
         void BuildNavMesh() {

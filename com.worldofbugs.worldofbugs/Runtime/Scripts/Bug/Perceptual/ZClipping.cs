@@ -8,7 +8,7 @@ namespace WorldOfBugs {
     public class ZClipping : Bug {
 
         public static readonly string LAYERTAG = "ZClipping";
-        public static readonly string BUGTAG = "ZBug";
+        public static readonly string RENDERTYPE = "ZBug";
 
         public GameObject level;
         public GameObject mainCamera;
@@ -20,7 +20,7 @@ namespace WorldOfBugs {
         protected int _oldlayer = -1;
 
         void Awake() {
-            bugTag = BUGTAG;
+            RenderType = RENDERTYPE;
             layer = LayerMask.NameToLayer(LAYERTAG);
 
             if(layer < 0) {

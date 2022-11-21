@@ -31,10 +31,10 @@ public class CameraClipping : Bug {
         GlobalCameraClipping global = GetComponent<GlobalCameraClipping>();
 
         if(global != null) {
-            global.enabled =
-                true; // generally the global camera clipping bug should be enabled anyway
-            global.bugType =
-                bugType; // TODO there could be issues if multiple bugs want to use render camera clipping issues...
+            // generally the global camera clipping bug should be enabled anyway
+            global.enabled = true;
+            // TODO there could be issues if multiple bugs want to use render camera clipping issues...
+            global.Color = Color;
         } else {
             throw new WorldOfBugsException("CameraClipping bug requires a GlobalCameraClipping component to correctly render its mask.");
         }

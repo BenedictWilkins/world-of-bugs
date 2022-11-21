@@ -37,7 +37,7 @@ namespace WorldOfBugs {
 
             foreach(Camera camera in cameras) {
                 ModifiedCameras.Add(new CameraProperties(camera));
-                camera.backgroundColor = bugType;
+                camera.backgroundColor = Color;
                 camera.clearFlags = CameraClearFlags.SolidColor;
             }
         }

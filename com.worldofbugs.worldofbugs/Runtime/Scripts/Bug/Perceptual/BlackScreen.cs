@@ -39,7 +39,7 @@ namespace WorldOfBugs {
             fillScreens[0].color = ScreenColor;
             cameras = CameraExtensions.GetBugMaskCamera();
             fillScreens[1] = cameras[0].gameObject.AddComponent<FillScreen>();
-            fillScreens[1].color = (Color) bugType;
+            fillScreens[1].color = (Color) Color;
             StartCoroutine(FlickerToggerCoroutine);
         }
 

@@ -19,6 +19,8 @@ namespace WorldOfBugs {
 
         [HideInInspector]
         public IReset[] Resets;
+        [HideInInspector]
+        public Controller GlobalController;
 
         public new void OnEnable() {
             // unfortunately there is no way to create and add an actuator directly (see LazyInitialize/Initialize/InitializeActuators in MLAgents.Agent)
@@ -28,7 +30,11 @@ namespace WorldOfBugs {
                 actuator.Initialize(this);
             }
 
-            Resets = GetComponents<IReset>().Where(x => !x.Equals(this)).ToArray();
+            GlobalController = Controller.FindInstanceInScene();
+            List<IReset> resets = GetComponents<IReset>().Where(x => !x.Equals(this)).ToList();
+            // TODO this needs updating for environments that contain more than one agent. It currently triggers a global reset if the global controller is included.
+            resets.Add(GlobalController);
+            Resets = resets.ToArray();
             base.OnEnable();
         }
 
@@ -70,7 +76,7 @@ namespace WorldOfBugs {
         }
 
         public virtual bool ShouldReset(GameObject agent) {
-            if(agent != null && !gameObject.Equals(agent)) {
+            if(agent != null || !gameObject.Equals(agent)) {
                 throw new WorldOfBugsException(
                     $"The supplied GameObject {agent} does not belong to this agent.");
             }

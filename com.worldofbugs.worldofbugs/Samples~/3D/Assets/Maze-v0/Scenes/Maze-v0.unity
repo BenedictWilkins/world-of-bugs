@@ -229,7 +229,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517195454}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb71ad8f30f4cedcd8992e130ffc8120, type: 3}
   m_Name: 
@@ -262,12 +262,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1892687aa1effa4c4a2ab5358190d151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugName: InvalidInformationAccess
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 255
+      rgba: 4294967295
+  RenderType: Bug
   NearClipPlane: 1.2
 --- !u!114 &517195458
 MonoBehaviour:
@@ -281,12 +281,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b983933c12308fd288653895e6aa972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugName: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 255
+      rgba: 4294967295
+  RenderType: Bug
 --- !u!114 &517195459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,12 +299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55979eb47a758f3ce9a67f4c50958f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugName: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4294901760
+      rgba: 4294967295
+  RenderType: Bug
   IncludeThis: 0
   InvalidGameObjects:
   - {fileID: 5290355953698685338}
@@ -320,16 +320,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6b607cce8bdb3da80471f76073cfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugName: InvalidShortcut
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278255615
+      rgba: 4294967295
+  RenderType: Bug
   Scene: {fileID: 1782843568}
   n: 1
-  Debug: 1
-  DebugColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &517195461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,16 +340,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6b607cce8bdb3da80471f76073cfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugName: OutOfBounds
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278255615
+      rgba: 4294967295
+  RenderType: Bug
   Scene: {fileID: 843999859}
   n: 1
-  Debug: 1
-  DebugColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &517195462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,12 +360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9c44f3e9a32d34c9302d7039ade546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugName: 
-  bugTag: Bug
-  bugType:
+  Name: 
+  Color:
     type:
       serializedVersion: 2
-      rgba: 4278255615
+      rgba: 4294967295
+  RenderType: Bug
 --- !u!1 &716522280
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +395,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -408,7 +404,7 @@ Light:
     m_Type: 1
     m_Resolution: 3
     m_CustomResolution: -1
-    m_Strength: 0.4
+    m_Strength: 0.2
     m_Bias: 0
     m_NormalBias: 0
     m_NearPlane: 0.1
@@ -6519,7 +6515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &5784937238250456105
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6653,7 +6649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968890744919861837}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 20, y: 0.5, z: 4}
+  m_LocalPosition: {x: 11.43, y: 0.5, z: 20.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3907196141619008222}
@@ -6761,7 +6757,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968890744919861837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e03f7876da0e2764694bf5c405ef0172, type: 3}
   m_Name: 
@@ -6782,7 +6778,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968890744919861837}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e1ec833b1ee44308904ed044c509347, type: 3}
   m_Name: 
@@ -6803,7 +6799,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 10000
-  _heuristic: {fileID: 6968890744919861841}
+  _heuristic: {fileID: 6968890744919861842}
+  GlobalController: {fileID: 0}
   _cameraMain: {fileID: 3907196143342652107}
   _cameraBugMask: {fileID: 3907196141619008220}
   _interactableCollider: {fileID: 0}

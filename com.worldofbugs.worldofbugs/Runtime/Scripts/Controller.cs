@@ -11,7 +11,7 @@ using Unity.MLAgents.SideChannels;
 using WorldOfBugs;
 
 [ExecuteInEditMode]
-public class Controller : MonoBehaviour {
+public class Controller : MonoBehaviour, IReset {
 
     [NotNull, NotEmpty]
     public WorldOfBugs.Agent[] Agents;
@@ -36,21 +36,6 @@ public class Controller : MonoBehaviour {
         Application.logMessageReceived += logChannel.LogDebug;
     }
 
-
-
-    void Start() {
-        if(!Application.isEditor) {
-            //foreach (WorldOfBugs.Agent agent in Agents) {
-            //    agent.SetHeuristic(null); // all heuristics
-            //}
-
-            // all bugs are turned off initially.
-            foreach(Bug bug in Bugs) {
-                //bug.enabled = false;
-            }
-        }
-    }
-
     public void OnDestroy() {
         // Deregister the Debug.Log callback
         try {
@@ -62,15 +47,31 @@ public class Controller : MonoBehaviour {
             SideChannelManager.UnregisterSideChannel(logChannel);
         }
     }
+    public bool ShouldReset(GameObject agent) {
+        return false; // if this is true, the given agent will reset
+    }
 
-    public void OnEpisodeBegin() {
-        // renable bugs
-        // Debug.Log($"RESTART {System.Diagnostics.Process.GetCurrentProcess().Id}");
+    public void Reset() {
+        Debug.Log($"RESTART {System.Diagnostics.Process.GetCurrentProcess().Id}");
+
         foreach(Bug option in Bugs) {
-            if(option.enabled) {  // re-enable all bugs
-                option.enabled = false;
-                option.enabled = true;
+            // reset bugs (this will switch bugs that are enabled to enabled again, and bugs that are disabled to disabled again)
+            option.enabled = !option.enabled;
+            option.enabled = !option.enabled;
+        }
+    }
+
+    public static Controller FindInstanceInScene() {
+        Controller[] controllers = FindObjectsOfType<Controller>();
+
+        if(controllers.Length != 1) {
+            if(controllers.Length == 0) {
+                throw new WorldOfBugsException("A global Controller object was not found, but needs to be defined in the scene.");
+            } else {
+                throw new WorldOfBugsException("More than one global Controller object was found, there can be at most one in a scene.");
             }
         }
+
+        return controllers[0];
     }
 }

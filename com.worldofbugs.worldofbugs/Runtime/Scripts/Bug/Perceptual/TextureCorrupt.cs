@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using NaughtyAttributes;
 
 namespace WorldOfBugs {
 
@@ -11,6 +12,7 @@ namespace WorldOfBugs {
         public GameObject level;
         [Range(0.05f, 1f)]
         public float uvcomplexity = 0.2f;
+
 
         protected GameObject _go;
         protected Vector2 _textureOffset;
@@ -70,5 +72,14 @@ namespace WorldOfBugs {
                 _go = null;
             }
         }
+
+
+#if UNITY_EDITOR
+
+        public void OnDrawGizmos() {
+            HighlightGameObject(_go);
+        }
+
+#endif
     }
 }

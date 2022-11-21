@@ -15,6 +15,7 @@ namespace WorldOfBugs {
 
         public BugType(Color32 _type) {
             this.type = _type;
+            this.type.a = 255;
             BugType.BugTypes.Add(this);
         }
 
@@ -27,7 +28,7 @@ namespace WorldOfBugs {
         public static implicit operator Color32(BugType b) => b.type;
         public static implicit operator Color(BugType b) => (Color)b.type;
         public static explicit operator BugType(Color32 c) => new BugType(c);
-
+        public static explicit operator BugType(Color c) => new BugType(c);
 
 
     }

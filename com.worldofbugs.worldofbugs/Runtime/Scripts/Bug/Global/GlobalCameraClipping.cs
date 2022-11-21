@@ -18,7 +18,7 @@ namespace WorldOfBugs {
             Camera[] cameras = CameraExtensions.GetObservationCameras();
             // TODO... better to use materials on cameras rather than replacement shader? if the nearclipplan is different for different agents things will go wrong ...
             Shader.SetGlobalFloat("_CameraNearClip", cameras[0].nearClipPlane);
-            Shader.SetGlobalColor("_CameraClipColor", (Color)bugType);
+            Shader.SetGlobalColor("_CameraClipColor", (Color)Color);
         }
 
         public override void OnDisable() {

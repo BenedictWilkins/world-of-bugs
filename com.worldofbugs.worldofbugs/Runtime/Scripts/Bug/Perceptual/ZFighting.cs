@@ -26,7 +26,9 @@ namespace WorldOfBugs {
         }
 
         public override void OnDisable() {
-            // TODO destroy all clones
+            foreach(GameObject clone in clones) {
+                Destroy(clone);
+            }
         }
 
         public void CloneAndInvertTextures(GameObject[] objects) {
